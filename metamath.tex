@@ -550,12 +550,22 @@ see the note above) and added it back in.  In addition, the Axiom of
 Replacement in Section~\ref{mmsettheoryaxioms} was revised to a somewhat
 more standard version that should be easier to understand.
 
-\subsubsection{Note Added May 22, 2002}\label{note2004b}
+\subsubsection{Note Added May 22, 2004}\label{note2004b}
 
 About a half a dozen minor typos found by Josh Purinton have been
 corrected.  A technical change he suggested simplified the definition of
 the closure of a pre-statement of formal system in
 Appendix~\ref{formalspec}.
+
+\subsubsection{Note Added September 14, 2004}\label{note2004c}
+
+In the Metamath specification (Section~\ref{spec}), ``Each variable in a
+\texttt{\$e}, \texttt{\$d}, \texttt{\$a}, or \texttt{\$p} statement must
+exist in an active \texttt{\$f} statement'' was changed to ``Each
+variable in a \texttt{\$e}, \texttt{\$a}, or \texttt{\$p} statement must
+exist in an active \texttt{\$f} statement.''  The former requirement was
+unnecessarily restrictive.  Thanks to Mr.\ Mel L.\ O'Cat for pointing this
+out.
 
 \chapter{Introduction}
 \pagenumbering{arabic}
@@ -1948,7 +1958,7 @@ user.  Metamath is one way to help close this gap.
 Besides Metamath, there are several other on-going projects with the goal of
 formalizing mathematics into computer-verifiable databases. One such project
 is {\sc qed},\index{qed project@{\sc qed} project} and several mathematicians
-are currently working to agree on a the requirements for a universal language.
+are currently working to agree on the requirements for a universal language.
 Information on this project is available
 at \url{www.mcs.anl.gov/qed/}.  One
 specific proof-verification language is Mizar,\index{Mizar} which can display
@@ -3318,7 +3328,7 @@ The Proof Assistant\index{Proof Assistant} has several other commands that can
 help you while creating proofs.  See Section~\ref{pfcommands} for a list of
 them.
 
-\section{A Note About Editing a Data\-base File}\label{editing}
+\section{A Note About Editing a Data\-base File}
 
 Once your source file contains proofs, there are some restrictions on how you
 can edit it so that the proofs remain valid.  Pay particular attention to
@@ -6895,7 +6905,7 @@ A \texttt{\$a} or \texttt{\$p} statement is {\bf active} from the place it occur
 through the end of the database.
 
 There may not be two active \texttt{\$f} statements containing the same variable.
-Each variable in a \texttt{\$e}, \texttt{\$d}, \texttt{\$a}, or \texttt{\$p} statement
+Each variable in a \texttt{\$e}, \texttt{\$a}, or \texttt{\$p} statement
 must exist in an active \texttt{\$f} statement.
 
 The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and \texttt{\$p}
@@ -10397,16 +10407,6 @@ Just as in a normal proof under development (Section~\ref{unknown}), any step
 or subproof that is not yet known may be represented with a single \texttt{?}.
 White space does not have to appear between the \texttt{?}\ and the upper-case
 letters (or other \texttt{?}s) representing the remainder of the proof.
-
-%% Todo: add and test this text
-% The compressed proof format assumes that the hypotheses of statements
-% are in a specific order.  To prevent breaking compressed proofs, you
-% should convert proofs to RPN format with with \texttt{save proof}
-% \verb$*$ \texttt{/normal} before making edits that affect variable names
-% or the order of hypotheses.  To restore the compressed proof format, use
-% \texttt{save proof} \verb$*$ \texttt{/normal}.  In any case,
-% \texttt{verify proof} \verb$*$ will ensure the integrity of an edited
-% database file.  See also Section~\ref{editing}.
 
 % April 1, 2004 Appendix C has been added back in with corrections.
 %
