@@ -540,8 +540,8 @@ usually find current references using search engines such as Google.
 
 \subsubsection{Note Added November 20, 2003}\label{note2003b}
 
-About a dozen minor typos that were found by One Hand Clapping have
-been corrected.
+About a dozen minor typos found by One Hand Clapping have been
+corrected.
 
 \subsubsection{Note Added April 2, 2004}\label{note2004}
 
@@ -550,6 +550,12 @@ see the note above) and added it back in.  In addition, the Axiom of
 Replacement in Section~\ref{mmsettheoryaxioms} was revised to a somewhat
 more standard version that should be easier to understand.
 
+\subsubsection{Note Added May 22, 2002}\label{note2004b}
+
+About a half a dozen minor typos found by Josh Purinton have been
+corrected.  A technical change he suggested simplified the definition of
+the closure of a pre-statement of formal system in
+Appendix~\ref{formalspec}.
 
 \chapter{Introduction}
 \pagenumbering{arabic}
@@ -608,7 +614,8 @@ that describes formal\index{formal system} mathematical
 systems and expresses proofs of theorems in those systems.  Such a language
 is called a metalanguage\index{metalanguage} by mathematicians.  ``Metamath''
 is also the name of a computer program that verifies
-proofs expressed in the language.  The Metamath program does not have built-in
+proofs expressed in the language.  The Metamath program does not have
+the built-in
 ability to make logical inferences; it just makes a series of symbol
 substitutions according to instructions given to it in a proof
 and verifies that the result matches the expected theorem.  It makes logical
@@ -1118,7 +1125,7 @@ every $k$.  The reason it is not a theorem is that the general sum $n_1+\ldots
 +n_k$ (as a function of $k$) is not an operation that can be defined directly
 in number theory.} The bugs\index{computer program bugs} that have cropped up
 so far have already made you start to lose faith in the rigor you seem to have
-achieved, and you know its just going to get worse as your program gets larger.
+achieved, and you know it's just going to get worse as your program gets larger.
 
 \begin{center}
 ***
@@ -1175,7 +1182,7 @@ she becomes stuck.
 I believe that eventually computers will enable non-specialists and even
 intelligent laypersons to follow almost any mathematical proof in any field.
 Metamath is an attempt in that direction.  If all of mathematics were as
-easily accessible as say a computer programming language, I could envision
+easily accessible as a computer programming language, I could envision
 computer programmers and hobbyists who otherwise lack mathematical
 sophistication exploring and being amazed by the world of theorems and proofs
 in obscure specialties, perhaps even coming up with results of their own.  A
@@ -1194,6 +1201,11 @@ because computer languages are much more explicit, and ultimately the proof is
 in whether a computer program works or not.  With easily accessible
 computer-based abstract mathematics, a mathematician could say to a crank,
 ``don't bother me until you've demonstrated your claim on the computer!''
+
+% 22-May-04 nm
+% Attempt to move De Millo quote so it doesn't separate from attribution
+% CHANGE THIS NUMBER (AND ELIMINATE IF POSSIBLE) WHEN ABOVE TEXT CHANGES
+\vspace{-0.5em}
 
 \subsection{An Impossible Dream?}\label{dream}
 
@@ -1219,6 +1231,11 @@ p.~40}\\
   he will make errors and arrive at some incorrect result.}
     \flushright\sc  Hao Wang\footnote{\cite{Wang}, p.~140}\\
 \end{quote}\index{Wang, Hao}
+
+% 22-May-04 nm
+% Attempt to move De Millo quote so it doesn't separate from attribution
+% CHANGE THIS NUMBER (AND ELIMINATE IF POSSIBLE) WHEN ABOVE TEXT CHANGES
+\vspace{-0.5em}
 
 \begin{quote}
   {\em The {\em Principia Mathematica} was the crowning achievement of the
@@ -2014,7 +2031,7 @@ is Hofstadter's\index{Hofstadter, Douglas R.} MIU system,\index{MIU-system}
 whose Metamath description is presented in Appendix~\ref{MIU}.
 
 Since the days of David Hilbert,\index{Hilbert, David} mathematicians have
-been concerned with the fact the metalanguage\index{metalanguage} used to
+been concerned with the fact that the metalanguage\index{metalanguage} used to
 describe mathematics may be stronger than the mathematics being described.
 Metamath\index{Metamath}'s underlying finitary\index{finitary proof},
 constructive nature provides a good philosophical basis for studying even the
@@ -3301,7 +3318,7 @@ The Proof Assistant\index{Proof Assistant} has several other commands that can
 help you while creating proofs.  See Section~\ref{pfcommands} for a list of
 them.
 
-\section{A Note About Editing a Data\-base File}
+\section{A Note About Editing a Data\-base File}\label{editing}
 
 Once your source file contains proofs, there are some restrictions on how you
 can edit it so that the proofs remain valid.  Pay particular attention to
@@ -5564,7 +5581,7 @@ theory.  Compare Exercise 4 of Takeuti and Zaring, p.~22.
 other axioms of ZF set theory. Corollary 5.16 of Takeuti and Zaring, p.~20.
 
 \vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ zfnull\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ 0ex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{\varnothing}\m{\in}\m{V}
@@ -6714,7 +6731,7 @@ tolerated (in particular, the program saves proofs with a date tag in
 the form \texttt{\$([}{\em dd-mmm-yy}\texttt{]\$)}); a variable may be
 used before its type is specified by a \texttt{\$f} statement (this
 ``feature'' should never be used in practice); and the label of a
-locally scoped of \texttt{\$f} or \texttt{\$e} statement does not have
+locally scoped \texttt{\$f} or \texttt{\$e} statement does not have
 to be unique (it may be the same as a label in another local scope).  A
 future version of the program is expected to conform to the current
 specification.} It serves as an authoritative reference and presents the
@@ -10381,6 +10398,16 @@ or subproof that is not yet known may be represented with a single \texttt{?}.
 White space does not have to appear between the \texttt{?}\ and the upper-case
 letters (or other \texttt{?}s) representing the remainder of the proof.
 
+%% Todo: add and test this text
+% The compressed proof format assumes that the hypotheses of statements
+% are in a specific order.  To prevent breaking compressed proofs, you
+% should convert proofs to RPN format with with \texttt{save proof}
+% \verb$*$ \texttt{/normal} before making edits that affect variable names
+% or the order of hypotheses.  To restore the compressed proof format, use
+% \texttt{save proof} \verb$*$ \texttt{/normal}.  In any case,
+% \texttt{verify proof} \verb$*$ will ensure the integrity of an edited
+% database file.  See also Section~\ref{editing}.
+
 % April 1, 2004 Appendix C has been added back in with corrections.
 %
 % May 20, 2003 Appendix C was removed for now because there was a problem found
@@ -10631,16 +10658,20 @@ $v_0, v_1, \ldots$ respectively, without repeating terms.  We will represent
 arbitrary symbols by metavariables $\alpha$, $\beta$, etc.
 
 {\footnotesize\begin{quotation}
-{\em Comment.} The variables of our formal system usually correspond to what
-are considered ``metavariables'' in descriptions of specific formal systems in
-the literature.  Typically, when describing a specific formal system a book
-will postulate a set of primitive objects called variables, then procede to
-describe their properties using metavariables that range over them, never
-mentioning again the actual variables themselves.  Our formal system does not
+{\em Comment.} The variables $v_0, v_1, \ldots$ of our formal system
+correspond to what are usually considered ``metavariables'' in
+descriptions of specific formal systems in the literature.  Typically,
+when describing a specific formal system a book will postulate a set of
+primitive objects called variables, then proceed to describe their
+properties using metavariables that range over them, never mentioning
+again the actual variables themselves.  Our formal system does not
 mention these primitive variable objects at all but deals directly with
-metavariables from the start.  This is a subtle but key distinction you should
-keep in mind, and it makes our definition of ``formal system'' somewhat
-different from that typically found in the literature.
+metavariables, as its primitive objects, from the start.  This is a
+subtle but key distinction you should keep in mind, and it makes our
+definition of ``formal system'' somewhat different from that typically
+found in the literature.  (So, the $\alpha$, $\beta$, etc.\ above are
+actually ``metametavariables'' when used to represent $v_0, v_1,
+\ldots$.)
 \end{quotation}}
 
 Finite sequences all terms of which are symbols are called {\em
@@ -10736,7 +10767,7 @@ is $T_M\cup H$.  We call the quadruple $\langle D_M,T_M,H,A \rangle$
 the {\em reduct}\index{reduct!in a formal system} of
 the pre-statement $\langle D,T,H,A \rangle$.
 
-A {\em statement} is the reduct of some pre-statement.\index{statement!in a
+A {\em statement} is the reduct of some pre-statement\index{statement!in a
 formal system}.  A statement is therefore a special kind of pre-statement;
 in particular, a statement is the reduct of itself.
 
@@ -10748,7 +10779,8 @@ means that each variable occurring in a statement's logical
 hypotheses or assertion must have an associated variable-type hypothesis or
 ``type declaration,'' in  analogy to a computer programming language, where a
 variable must be declared to be say, a string or an integer.  The requirement
-that $\forall e,f\in T \, e_1 \ne f_1$) means that each variable must be
+that $\forall e,f\in T \, e_1 \ne f_1$ for $e\neq f$
+means that each variable must be
 associated with a unique constant designating its variable type; e.g., a
 variable might be a ``wff'' or a ``set'' but not both.
 
@@ -10765,7 +10797,7 @@ hypothesis or the assertion.  A provable pre-statement
 (defined below) may require
 non-mandatory variable-type hypotheses that effectively introduce ``dummy''
 variables for use in its proof.  Any number of dummy variables might
-be required by a specific proof; indeed, it has shown by H.\
+be required by a specific proof; indeed, it has been shown by H.\
 Andr\'{e}ka\index{Andr{\'{e}}ka, H.} \cite{Nemeti} that there is no finite
 upper bound to the number of dummy variables needed to prove an arbitrary
 theorem in first-order logic (with equality) having a fixed number $n>2$ of
@@ -10784,6 +10816,9 @@ respectively to the \texttt{\$d}, \texttt{\$f}, and \texttt{\$e}
 statement collections in an extended frame.  The expression $A$
 corresponds to the \texttt{\$a} (or \texttt{\$p}) statement in an
 extended frame.
+
+A statement of a formal system corresponds to a frame in a Metamath
+database.
 \end{quotation}}
 
 \subsection{Formal Systems}
@@ -10796,7 +10831,9 @@ statement!in a formal system}  Sometimes we will refer to a
 formal system by just $\Gamma$ when $\mbox{\em CN}$ and $\mbox{\em VR}$ are
 understood.
 
-Given a formal system $\Gamma$, the {\em closure}\index{closure} of a
+Given a formal system $\Gamma$, the {\em closure}\index{closure}\footnote{This
+definition of closure incorporates a simplification due to
+Josh Purinton.} of a
 pre-statement
 $\langle D,T,H,A \rangle$ is the smallest set $C$ of expressions
 such that:
@@ -10822,12 +10859,10 @@ such that:
   \item[1.] $T\cup H\subseteq C$; and
   \item[2.] If for some axiomatic statement
     $\langle D_M',T_M',H',A' \rangle \in
-       \Gamma$, for
-    some $E \subseteq C$, and for some substitution
+       \Gamma$ and for some substitution
     $\sigma$ we have
     \begin{enumerate}
-       \item[a.] $\sigma(T_M' \cup H') = E$ (where, as defined above, the
-           subscript $M$ means mandatory); and
+       \item[a.] $\sigma(T_M' \cup H') \subseteq C$; and
        \item[b.] for all $\{\alpha,\beta\}\in D_M'$, for all $\gamma\in
          {\cal V}(\sigma(\langle \alpha
          \rangle))$, and for all $\delta\in  {\cal V}(\sigma(\langle \beta
@@ -10848,7 +10883,7 @@ universe.
 
 {\footnotesize\begin{quotation}
 {\em Comment.} The first condition in the definition of closure simply says
-that the hypotheses of the statement are in its closure.
+that the hypotheses of the pre-statement are in its closure.
 
 Condition 2(a) says that a substitution exists that makes the
 mandatory hypotheses of an axiomatic statement exactly match some members of
@@ -10874,8 +10909,9 @@ specified as distinct in the original statement.
 \end{quotation}}
 
 {\footnotesize\begin{quotation}
-{\em Relationship to Metamath.} Axiomatic and provable statements in a formal
-system correspond to the extended frames for \texttt{\$a} and \texttt{\$p} statements
+{\em Relationship to Metamath.} Axiomatic statements
+ and provable statements in a formal
+system correspond to the frames for \texttt{\$a} and \texttt{\$p} statements
 respectively in a Metamath database.  The set of axiomatic statements are a
 subset of the set of provable statements in a formal system, although in a
 Metamath database a \texttt{\$a} statement is distinguished by not having a
@@ -10885,7 +10921,7 @@ leading to a demonstration that the assertion
 being proved is in the closure.  The actual closure typically contains
 an infinite number of expressions.  A formal system itself does not have
 an explicit object called a ``proof'' but rather the existence of a proof
-is indicated indirectly by membership of an assertion in a provable
+is implied indirectly by membership of an assertion in a provable
 statement's closure.  We do this to make the formal system easier
 to describe in the language of set theory.
 
@@ -10933,38 +10969,45 @@ Let
              and whose second member belongs to $\mbox{\em VR}$.\footnote{For
 convenience we let $T$ be an infinite set; the definition of a statement
 permits this in principle.  Since a Metamath source file has a finite size, in
-practice we will of course use an appropriate finite subset of this $T$,
-specifically one containing at least the mandatory variable-type
+practice we must of course use appropriate finite subsets of this $T$,
+specifically ones containing at least the mandatory variable-type
 hypotheses.  Similarly, in the source file we introduce new variables as
 required, with the understanding that a potentially infinite number of
 them are available.}
-\noindent Then $\Gamma$ consists of the following statements (where,
-for each statement, $T_M$
-denotes the set of the mandatory variable-type hypotheses in the reduct of the
-corresponding pre-statement that has $T$ in place of $T_M$):
+\noindent Then $\Gamma$ consists of the axiomatic statements that
+are the reducts of following pre-statements:
     \begin{itemize}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }\lnot\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash(\varphi\to(\psi\to\varphi))
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,
+      \item[] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash((\varphi\to(\psi\to\chi))\to
                ((\varphi\to\psi)\to(\varphi\to\chi)))
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,
+      \item[] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash((\lnot\varphi\to\lnot\psi)\to
                (\psi\to\varphi))\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,
+      \item[] $\langle\varnothing,T,
                \{\langle\vdash(\varphi\to\psi)\rangle,
                  \langle\vdash\varphi\rangle\},
                \langle\vdash\psi\rangle\rangle$
     \end{itemize}
 \end{itemize}
+
+(For example, the reduct of $\langle\varnothing,T,\varnothing,
+               \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
+is $\langle\varnothing,
+\{\langle \mbox{wff\ } \varphi\rangle,
+             \langle \mbox{wff\ } \psi\rangle\},$
+$\varnothing,
+               \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$,
+which is the first axiomatic statement.)
 
 We call the members of $\mbox{\em VR}$ {\em wff variables} or (in the context
 of first-order logic which we will describe shortly) {\em wff metavariables}.
@@ -10988,7 +11031,7 @@ $\vdash (\varphi\to\psi)$ and $\vdash \varphi$ are theorems, then $\vdash
 
 The correspondence to ordinary propositional calculus is as follows.  We
 consider only provable statements of the form $\langle\varnothing,
-T_M,\varnothing,A\rangle$ with $T$ defined as above.  The first term of the
+T,\varnothing,A\rangle$ with $T$ defined as above.  The first term of the
 assertion $A$ of any such statement is either ``wff'' or ``$\vdash$''.  A
 statement for which first term is ``wff'' is a {\em wff} of propositional
 calculus, and one where the first term is ``$\vdash$'' is a {\em
@@ -11055,31 +11098,32 @@ equivalent when functions are introduced via appropriate definitions.
 
 We extend the set $T$ defined in Example~1 with the expressions
 $\{\langle \mbox{var\ } x\rangle,$ $ \langle \mbox{var\ } y\rangle, \langle
-\mbox{var\ } z\rangle,\ldots\}$.  We extend the $\Gamma$ above with this
-extended $T$ and also with the following axiomatic statements:
+\mbox{var\ } z\rangle,\ldots\}$.  We extend the $\Gamma$ above
+with the axiomatic statements that are the reducts of the following
+pre-statements:
 \begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }\forall x\,\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }x=y\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,
+      \item[] $\langle\varnothing,T,
                \{\langle\vdash\varphi\rangle\},
                \langle\vdash\forall x\,\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash((\forall x(\varphi\to\psi)
                   \to(\forall x\,\varphi\to\forall x\,\psi))
                \rangle\rangle$
-      \item[] $\langle\{\{x,\varphi\}\},T_M,\varnothing,
+      \item[] $\langle\{\{x,\varphi\}\},T,\varnothing,
                \langle \vdash(\varphi\to\forall x\,\varphi)
                \rangle\rangle$
-      \item[] $\langle\{\{x,y\}\},T_M,\varnothing,
+      \item[] $\langle\{\{x,y\}\},T,\varnothing,
                \langle \vdash\lnot\forall x\lnot x=y
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash(x=z
                   \to(x=y\to z=y))
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash(y=z
                   \to(x=y\to x=z))
                \rangle\rangle$
@@ -11094,16 +11138,18 @@ $\vdash\lnot\forall x\lnot x = y$, provided that $x$ and $y$ are distinct.''
 weaken the axiom and still show that the system is logically complete.)
 
 Finally, for each predicate symbol $\alpha\in \mbox{\em Pr}$, we add to
-$\Gamma$ the following axiomatic statement that extends the definition of wff:
+$\Gamma$ the an axiomatic statement, extending the definition of wff,
+that is the reduct of the following pre-statement:
 \begin{displaymath}
-    \langle\varnothing,T_M,\varnothing,
+    \langle\varnothing,T,\varnothing,
             \langle \mbox{wff},\alpha\rangle\
             \frown \mbox{\em Vs}\restriction\mbox{rnk}(\alpha)\rangle
 \end{displaymath}
 and for each $\alpha\in \mbox{\em Pr}$ and each $n < \mbox{rnk}(\alpha)$
-we add to $\Gamma$ the following equality axiom:
+we add to $\Gamma$ an equality axiom that is the reduct of the
+following pre-statement:
 \begin{eqnarray*}
-    \lefteqn{\langle\varnothing,T_M,\varnothing,
+    \lefteqn{\langle\varnothing,T,\varnothing,
             \langle
       \vdash,(,\mbox{\em Vs}_n,=,\mbox{\em Vs}_{\mbox{rnk}(\alpha)},\to,
             (,\alpha\rangle\frown \mbox{\em Vs}\restriction\mbox{rnk}(\alpha)} \\
@@ -11128,15 +11174,16 @@ computer language.  They are actually relatively simple for each specific case
 and will become clearer by looking at the special case of a binary predicate
 $\alpha = R$ where $\mbox{rnk}(R)=2$.  Letting $\mbox{\em Vs}$ be the sequence
 $\langle x,y,z,\ldots\rangle$, the axioms we would add to $\Gamma$ for this
-case would be the wff extension and two equality axioms:
+case would be the wff extension and two equality axioms that are the
+reducts of the pre-statements:
 \begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }R x y\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash(x=z
                   \to(R x y \to R z y))
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash(y=z
                   \to(R x y \to R x z))
                \rangle\rangle$
@@ -11194,19 +11241,20 @@ in $\varphi$.''  This works whether or not $x$ and $y$ are distinct.
 \subsection{Metalogical Completeness}\index{metalogical completeness}
 
 In the system of Example~2, the
-following are provable statements:
+following are provable pre-statements (and their reducts are
+provable statements):
 \begin{eqnarray*}
-      & \langle\{\{x,y\}\},T_M,\varnothing,
+      & \langle\{\{x,y\}\},T,\varnothing,
                \langle \vdash\lnot\forall x\lnot x=y
                \rangle\rangle & \\
-     &  \langle\varnothing,T_M,\varnothing,
+     &  \langle\varnothing,T,\varnothing,
                \langle \vdash\lnot\forall x\lnot x=x
                \rangle\rangle &
 \end{eqnarray*}
-whereas the following statement is not to my knowledge provable (but
+whereas the following pre-statement is not to my knowledge provable (but
 in any case we will pretend it's not for sake of illustration) :
 \begin{eqnarray*}
-     &  \langle\varnothing,T_M,\varnothing,
+     &  \langle\varnothing,T,\varnothing,
                \langle \vdash\lnot\forall x\lnot x=y
                \rangle\rangle &
 \end{eqnarray*}
@@ -11219,10 +11267,10 @@ all possible cases.  The third case can be considered a metatheorem whose
 direct proof, using the system of Example~2, lies outside the capability of the
 formal system.
 
-Also, in the system of Example~2 the following statement is not to my
+Also, in the system of Example~2 the following pre-statement is not to my
 knowledge provable (again, a conjecture that we will pretend to be the case):
 \begin{eqnarray*}
-     & \langle\varnothing,T_M,\varnothing,
+     & \langle\varnothing,T,\varnothing,
                \langle \vdash(\forall x\, \varphi\to\varphi)
                \rangle\rangle &
 \end{eqnarray*}
@@ -11267,82 +11315,82 @@ Let
        \mbox{var\ }z\rangle,\ldots\}$.
 
 \noindent Then
-  $\Gamma$ consists of the following statements:
+  $\Gamma$ consists of the reducts of the following pre-statements:
     \begin{itemize}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }\lnot\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }\forall x\,\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }x=y\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }Rxy\rangle\rangle$
-      \item[(C1$'$)] $\langle\varnothing,T_M,\varnothing,
+      \item[(C1$'$)] $\langle\varnothing,T,\varnothing,
                \langle \vdash(\varphi\to(\psi\to\varphi))
                \rangle\rangle$
-      \item[(C2$'$)] $\langle\varnothing,T_M,
+      \item[(C2$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash((\varphi\to(\psi\to\chi))\to
                ((\varphi\to\psi)\to(\varphi\to\chi)))
                \rangle\rangle$
-      \item[(C3$'$)] $\langle\varnothing,T_M,
+      \item[(C3$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash((\lnot\varphi\to\lnot\psi)\to
                (\psi\to\varphi))\rangle\rangle$
-      \item[(C4$'$)] $\langle\varnothing,T_M,
+      \item[(C4$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\forall x(\forall x\,\varphi\to\psi)\to
                  (\forall x\,\varphi\to\forall x\,\psi))\rangle\rangle$
-      \item[(C5$'$)] $\langle\varnothing,T_M,
+      \item[(C5$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\forall x\,\varphi\to\varphi)\rangle\rangle$
-      \item[(C6$'$)] $\langle\varnothing,T_M,
+      \item[(C6$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\forall x\forall y\,\varphi\to
                  \forall y\forall x\,\varphi)\rangle\rangle$
-      \item[(C7$'$)] $\langle\varnothing,T_M,
+      \item[(C7$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\lnot\varphi\to\forall x\lnot\forall x\,\varphi
                  )\rangle\rangle$
-      \item[(C8$'$)] $\langle\varnothing,T_M,
+      \item[(C8$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(x=y\to(x=z\to y=z))\rangle\rangle$
-      \item[(C9$'$)] $\langle\varnothing,T_M,
+      \item[(C9$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\lnot\forall x\, x=y\to(\lnot\forall x\, x=z\to
                  (y=z\to\forall x\, y=z)))\rangle\rangle$
-      \item[(C10$'$)] $\langle\varnothing,T_M,
+      \item[(C10$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\forall x(x=y\to\forall x\,\varphi)\to
                  \varphi))\rangle\rangle$
-      \item[(C11$'$)] $\langle\varnothing,T_M,
+      \item[(C11$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\forall x\, x=y\to(\forall x\,\varphi
                \to\forall y\,\varphi))\rangle\rangle$
-      \item[(C12$'$)] $\langle\varnothing,T_M,
+      \item[(C12$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(x=y\to(Rxz\to Ryz))\rangle\rangle$
-      \item[(C13$'$)] $\langle\varnothing,T_M,
+      \item[(C13$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(x=y\to(Rzx\to Rzy))\rangle\rangle$
-      \item[(C15$'$)] $\langle\varnothing,T_M,
+      \item[(C15$'$)] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(\lnot\forall x\, x=y\to(x=y\to(\varphi
                  \to\forall x(x=y\to\varphi))))\rangle\rangle$
-      \item[(C16$'$)] $\langle\{\{x,y\}\},T_M,
+      \item[(C16$'$)] $\langle\{\{x,y\}\},T,
                \varnothing,
                \langle \vdash(\forall x\, x=y\to(\varphi\to\forall x\,\varphi)
                  )\rangle\rangle$
-      \item[(C5)] $\langle\{\{x,\varphi\}\},T_M,\varnothing,
+      \item[(C5)] $\langle\{\{x,\varphi\}\},T,\varnothing,
                \langle \vdash(\varphi\to\forall x\,\varphi)
                \rangle\rangle$
-      \item[(MP)] $\langle\varnothing,T_M,
+      \item[(MP)] $\langle\varnothing,T,
                \{\langle\vdash(\varphi\to\psi)\rangle,
                  \langle\vdash\varphi\rangle\},
                \langle\vdash\psi\rangle\rangle$
-      \item[(Gen)] $\langle\varnothing,T_M,
+      \item[(Gen)] $\langle\varnothing,T,
                \{\langle\vdash\varphi\rangle\},
                \langle\vdash\forall x\,\varphi\rangle\rangle$
     \end{itemize}
@@ -11380,33 +11428,34 @@ We extend $\mbox{\em CN}$ of Example~3 with new constants $\{\leftrightarrow,
 equivalence ($\leftrightarrow$)}\index{biconditional ($\leftrightarrow$)}
 conjunction,\index{conjunction ($\wedge$)} disjunction,\index{disjunction
 ($\vee$)} and the existential quantifier.\index{existential quantifier
-($\exists$)}  We extend $\Gamma$ with the axiomatic statements:
+($\exists$)}  We extend $\Gamma$ with the axiomatic statements that are
+the reducts of the following pre-statements:
 \begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }(\varphi\leftrightarrow\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }(\varphi\vee\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }(\varphi\wedge\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }\exists x\, \varphi\rangle\rangle$
-  \item[] $\langle\varnothing,T_M,\varnothing,
+  \item[] $\langle\varnothing,T,\varnothing,
      \langle\vdash ( ( \varphi \leftrightarrow \psi ) \to
      ( \varphi \to \psi ) )\rangle\rangle$
-  \item[] $\langle\varnothing,T_M,\varnothing,
+  \item[] $\langle\varnothing,T,\varnothing,
      \langle\vdash ((\varphi\leftrightarrow\psi)\to
     (\psi\to\varphi))\rangle\rangle$
-  \item[] $\langle\varnothing,T_M,\varnothing,
+  \item[] $\langle\varnothing,T,\varnothing,
      \langle\vdash ((\varphi\to\psi)\to(
      (\psi\to\varphi)\to(\varphi
      \leftrightarrow\psi)))\rangle\rangle$
-  \item[] $\langle\varnothing,T_M,\varnothing,
+  \item[] $\langle\varnothing,T,\varnothing,
      \langle\vdash (( \varphi \wedge \psi ) \leftrightarrow\neg ( \varphi
      \to \neg \psi )) \rangle\rangle$
-  \item[] $\langle\varnothing,T_M,\varnothing,
+  \item[] $\langle\varnothing,T,\varnothing,
      \langle\vdash (( \varphi \vee \psi ) \leftrightarrow (\neg \varphi
      \to \psi )) \rangle\rangle$
-  \item[] $\langle\varnothing,T_M,\varnothing,
+  \item[] $\langle\varnothing,T,\varnothing,
      \langle\vdash (\exists x \,\varphi\leftrightarrow
      \lnot \forall x \lnot \varphi)\rangle\rangle$
 \end{list}
@@ -11422,23 +11471,20 @@ definitions in Example~4.
 
 In the $\mbox{\em CN}$ of Example~4 (which extends Example~3), we replace the symbol $R$
 with the symbol $\in$.  We remove from $\Gamma$ of Example~4 the three
-axiomatic statements containing $R$ and replace them with the following:
+axiomatic statements containing $R$ and replace them with the
+reducts of the following:
 \begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }x\in y\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,
+      \item[] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(x=y\to(x\in z\to y\in z))\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,
+      \item[] $\langle\varnothing,T,
                \varnothing,
                \langle \vdash(x=y\to(z\in x\to z\in y))\rangle\rangle$
 \end{list}
-Let $D=\{\{\alpha,\beta\}\in \mbox{\em DV}\,|\alpha,\beta\in \mbox{\em
-Vr}\}$ (in other words all individual variables must be distinct).  For
-a given statement, denote by $D_M$ the set of the mandatory distinct-variable
-restrictions in the reduct of the
-corresponding pre-statement that has $D$ in place of $D_M$).
-We extend
+Letting $D=\{\{\alpha,\beta\}\in \mbox{\em DV}\,|\alpha,\beta\in \mbox{\em
+Vr}\}$ (in other words all individual variables must be distinct), we extend
 $\Gamma$ with the ZFC axioms, called
 \index{Axiom of Extensionality}
 \index{Axiom of Replacement}
@@ -11448,37 +11494,37 @@ $\Gamma$ with the ZFC axioms, called
 \index{Axiom of Infinity}
 \index{Axiom of Choice}
 Extensionality, Replacement, Union, Power
-Set, Regularity, Infinity, and Choice:
+Set, Regularity, Infinity, and Choice, that are the reducts of:
 \begin{list}{}{\itemsep 0.0pt}
-      \item[Ext] $\langle D_M,T_M,
+      \item[Ext] $\langle D,T,
                \varnothing,
                \langle\vdash (\forall x(x\in y\leftrightarrow x \in z)\to y
                =z) \rangle\rangle$
-      \item[Rep] $\langle D_M,T_M,
+      \item[Rep] $\langle D,T,
                \varnothing,
                \langle\vdash\exists x ( \exists y \forall z (\varphi \to z = y
                         ) \to
                         \forall z ( z \in x \leftrightarrow \exists x ( x \in
                         y \wedge \forall y\,\varphi ) ) )\rangle\rangle$
-      \item[Un] $\langle D_M,T_M,
+      \item[Un] $\langle D,T,
                \varnothing,
                \langle\vdash \exists x \forall y ( \exists x ( y \in x \wedge
                x \in z ) \to y \in x ) \rangle\rangle$
-      \item[Pow] $\langle D_M,T_M,
+      \item[Pow] $\langle D,T,
                \varnothing,
                \langle\vdash \exists x \forall y ( \forall x ( x \in y \to x
                \in z ) \to y \in x ) \rangle\rangle$
-      \item[Reg] $\langle D_M,T_M,
+      \item[Reg] $\langle D,T,
                \varnothing,
                \langle\vdash (  x \in y \to
                  \exists x ( x \in y \wedge \forall z ( z \in x \to \lnot z
                 \in y ) ) ) \rangle\rangle$
-      \item[Inf] $\langle D_M,T_M,
+      \item[Inf] $\langle D,T,
                \varnothing,
                \langle\vdash \exists x(y\in x\wedge\forall y(y\in
                x\to
                \exists z(y \in z\wedge z\in x))) \rangle\rangle$
-      \item[AC] $\langle D_M,T_M,
+      \item[AC] $\langle D,T,
                \varnothing,
                \langle\vdash \exists x \forall y \forall z ( ( y \in z
                \wedge z \in w ) \to \exists w \forall y ( \exists w
@@ -11517,27 +11563,29 @@ $\{A,B,C,\ldots\}$. We extend the $T$ of Example~5 with $\{\langle
 \mbox{class\ } A\rangle, \langle \mbox{class\ }B\rangle, \langle \mbox{class\ }
 C\rangle,\ldots\}$.
 
-We add to $\Gamma$ of Example~5 the following axiomatic statements to
-introduce our definitions:
+To
+introduce our definitions,
+we add to $\Gamma$ of Example~5 the axiomatic statements
+that are the reducts of the following pre-statements:
 \begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{class\ }x\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{class\ }\{x|\varphi\}\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }A=B\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{wff\ }A\in B\rangle\rangle$
-      \item[Ab] $\langle\varnothing,T_M,\varnothing,
+      \item[Ab] $\langle\varnothing,T,\varnothing,
                \langle \vdash ( y \in \{ x |\varphi\} \leftrightarrow
                   ( ( x = y \to\varphi) \wedge \exists x ( x = y
                   \wedge\varphi) ))
                \rangle\rangle$
-      \item[Eq] $\langle\{\{x,A\},\{x,B\}\},T_M,\varnothing,
+      \item[Eq] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
                \langle \vdash ( A = B \leftrightarrow
                \forall x ( x \in A \leftrightarrow x \in B ) )
                \rangle\rangle$
-      \item[El] $\langle\{\{x,A\},\{x,B\}\},T_M,\varnothing,
+      \item[El] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
                \langle \vdash ( A \in B \leftrightarrow \exists x
                ( x = A \wedge x \in B ) )
                \rangle\rangle$
@@ -11565,26 +11613,27 @@ individual variable not in the expression being defined; it is done so that
 the right-hand side remains independent of the particular ``dummy'' variable
 we use.
 
-We continue to add to $\Gamma$ the following definitions for empty
+We continue to add to $\Gamma$ the following definitions
+(i.e. the reducts of the following pre-statements) for empty
 set,\index{empty set} class union,\index{union} and unordered
 pair.\index{unordered pair}  They should be self-explanatory.  Analogous to our
 use of ``$\leftrightarrow$'' to define new wffs in Example~4, we use ``$=$''
 to define new abstraction terms, and both may be read informally as ``is
 defined as'' in this context.
 \begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{class\ }\varnothing\rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \vdash \varnothing = \{ x | \lnot x = x \}
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{class\ }(A\cup B)\rangle\rangle$
-      \item[] $\langle\{\{x,A\},\{x,B\}\},T_M,\varnothing,
+      \item[] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
                \langle \vdash ( A \cup B ) = \{ x | ( x \in A \vee x \in B ) \}
                \rangle\rangle$
-      \item[] $\langle\varnothing,T_M,\varnothing,
+      \item[] $\langle\varnothing,T,\varnothing,
                \langle \mbox{class\ }\{A,B\}\rangle\rangle$
-      \item[] $\langle\{\{x,A\},\{x,B\}\},T_M,\varnothing,
+      \item[] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
                \langle \vdash \{ A , B \} = \{ x | ( x = A \vee x = B ) \}
                \rangle\rangle$
 \end{list}
@@ -11594,14 +11643,14 @@ defined as'' in this context.
 This section presupposes a familiarity with the Metamath computer language.
 
 Our theory describes formal systems and their universes.  The Metamath
-language provides a way of representing these set-theoretical objects to a
-computer.  A Metamath database, being a finite set of
-{\sc ascii} characters, can usually describe only a subset of a formal system
-and its universe, which are typically infinite.  However the database
-can contain as large a finite subset of the formal system and its
-universe as we wish.  (Of course a Metamath set theory database can
-indirectly describe an entire infinite formal system by formalizing
-the expository language in this Appendix.)
+language provides a way of representing these set-theoretical objects to
+a computer.  A Metamath database, being a finite set of {\sc ascii}
+characters, can usually describe only a subset of a formal system and
+its universe, which are typically infinite.  However the database can
+contain as large a finite subset of the formal system and its universe
+as we wish.  (Of course a Metamath set theory database can, in
+principle, indirectly describe an entire infinite formal system by
+formalizing the expository language in this Appendix.)
 
 For purpose of our discussion, we assume the Metamath database
 is in the simple form described on p.~\pageref{framelist},
@@ -11617,7 +11666,8 @@ definiteness we could assume that the first math symbol declared as a
 variable corresponds to $v_0$, the second to $v_1$, etc., although the
 exact correspondence we choose is not important.
 
-In the Metamath language, each \texttt{\$d}, \texttt{\$f}, and \texttt{\$e} source
+In the Metamath language, each \texttt{\$d}, \texttt{\$f}, and
+ \texttt{\$e} source
 statement in an extended frame (Section~\ref{frames})
 corresponds respectively to a member of the
 collections $D$, $T$, and $H$ in a formal system statement $\langle
@@ -11627,20 +11677,24 @@ the other two keywords). The math symbol string following a \texttt{\$a} source
 statement corresponds to expression $A$ in an axiomatic statement of the
 formal system; the one following a \texttt{\$p} source statement corresponds to
 $A$ in a provable statement that is not axiomatic.  In other words, each
-extended frame in the Metamath database corresponds to
+extended frame in a Metamath database corresponds to
+a pre-statement of the formal system, and a frame corresponds to
 a statement of the formal system.  (Don't confuse the two meanings of
 ``statement'' here.  A statement of the formal system corresponds to the
-several statements of the Metamath database that may constitute an extended
+several statements in a Metamath database that may constitute a
 frame.)
 
 In order for the computer to verify that a formal system statement is
-provable, each \texttt{\$p} source statement is accompanied by a proof.  However,
-the proof does not correspond to anything in the formal system but is simply a
-way of communicating to the computer the information needed for its
-verification. The proof tells the computer {\em how to construct} specific
-members of the formal system statement's closure, resulting in a member
-matching the extended frame for the \texttt{\$p} statement; the formal system is
-just concerned about the {\em existence} of members of the closure.
+provable, each \texttt{\$p} source statement is accompanied by a proof.
+However, the proof does not correspond to anything in the formal system
+but is simply a way of communicating to the computer the information
+needed for its verification.  The proof tells the computer {\em how to
+construct} specific members of closure of the formal system
+pre-statement corresponding to the extended frame of the \texttt{\$p}
+statement.  The final result of the construction is the member of the
+closure that matches the \texttt{\$p} statement.  The abstract formal
+system, on the other hand, is concerned only with the {\em existence} of
+members of the closure.
 
 As mentioned on p.~\pageref{exampleref},
 Examples 1 and 3--6 in the previous Section parallel the development of logic
