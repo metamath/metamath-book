@@ -1,65 +1,74 @@
-% To generate the metamath.pdf file:
-%   1. Put metamath.tex and metamath.bib in local directory
-%   2. Create realref.sty in local directory (see below)
-%   3. Type the following commands in a Linux bash shell
-%      (or Cygwin under Windows):
-%        touch metamath.ind
-%        pdflatex metamath
-%        pdflatex metamath
-%        bibtex metamath
-%        makeindex metamath
-%        pdflatex metamath
-%        pdflatex metamath
+% This file, 'metamath.tex', is self-contained with everything needed to
+% generate the the PDF file 'metamath.pdf' on standard LaTeX installations.
+% The auxilliary files are embedded as comments.  To generate metamath.pdf
+% file, run these commands under Linux or Cygwin in the directory that
+% contains 'metamath.tex':
+%
+%
+%   grep "^%realref.sty%" metamath.tex | sed -e s/^%realref.sty%// > realref.sty
+%   grep "^%bib%" metamath.tex | sed -e s/^%bib%// > metamath.bib
+%   touch metamath.ind
+%   pdflatex metamath
+%   pdflatex metamath
+%   bibtex metamath
+%   makeindex metamath
+%   pdflatex metamath
+%   pdflatex metamath
+%
+% The warnings that occur in the initial runs of pdflatex can be ignored.
+% The final run should have no warnings (check metamath.log).
 
-% % --------------------------- Start of realref.sty --------------------------
-% % Save the following as realref.sty (take off "% " before each line).
-% % You can then use it with \usepackage{realref}
-% %
-% % This has \pageref jumping to the page on which the ref appears, \ref jumping
-% % to the point of the anchor, and \sectionref jumping to the start of the
-% % section.
-% %
-% % Author:  Anthony Williams
-% %          Software Engineer, Nortel Networks Optical Components Ltd
-% % Date:    9 Nov 2001 (posted to comp.text.tex)
-% %
-% \ProvidesPackage{realref}
-% \RequirePackage[plainpages=false,pdfpagelabels=true]{hyperref}
-% \def\realref@anchorname{}
-% \AtBeginDocument{%
-% % ensure every label is a possible hyperlink target
-% \let\realref@oldrefstepcounter\refstepcounter%
-% \DeclareRobustCommand{\refstepcounter}[1]{\realref@oldrefstepcounter{#1}
-% \edef\realref@anchorname{\string #1.\@currentlabel}%
-% }%
-% \let\realref@oldlabel\label%
-% \DeclareRobustCommand{\label}[1]{\realref@oldlabel{#1}\hypertarget{#1}{}%
-% \@bsphack\protected@write\@auxout{}{%
-%     \string\expandafter\gdef\protect\csname
-%     page@num.#1\string\endcsname{\thepage}%
-%     \string\expandafter\gdef\protect\csname
-%     ref@num.#1\string\endcsname{\@currentlabel}%
-%     \string\expandafter\gdef\protect\csname
-%     sectionref@name.#1\string\endcsname{\realref@anchorname}%
-% }\@esphack}%
-% \DeclareRobustCommand\pageref[1]{{\edef\a{\csname
-%             page@num.#1\endcsname}\expandafter\hyperlink{page.\a}{\a}}}%
-% \DeclareRobustCommand\ref[1]{{\edef\a{\csname
-%             ref@num.#1\endcsname}\hyperlink{#1}{\a}}}%
-% \DeclareRobustCommand\sectionref[1]{{\edef\a{\csname
-%             ref@num.#1\endcsname}\edef\b{\csname
-%             sectionref@name.#1\endcsname}\hyperlink{\b}{\a}}}%
-% }
-% % ---------------------------- End of realref.sty ---------------------------
+% --------------------------- Start of realref.sty -----------------------------
+%realref.sty%% Save the following as realref.sty (take off comment prefix
+%realref.sty%% tag on each line).
+%realref.sty%% You can then use it with \usepackage{realref}
+%realref.sty%%
+%realref.sty%% This has \pageref jumping to the page on which the ref appears,
+%realref.sty%% \ref jumping to the point of the anchor, and \sectionref
+%realref.sty%% jumping to the start of section.
+%realref.sty%%
+%realref.sty%% Author:  Anthony Williams
+%realref.sty%%          Software Engineer
+%realref.sty%%          Nortel Networks Optical Components Ltd
+%realref.sty%% Date:    9 Nov 2001 (posted to comp.text.tex)
+%realref.sty%%
+%realref.sty%\ProvidesPackage{realref}
+%realref.sty%\RequirePackage[plainpages=false,pdfpagelabels=true]{hyperref}
+%realref.sty%\def\realref@anchorname{}
+%realref.sty%\AtBeginDocument{%
+%realref.sty%% ensure every label is a possible hyperlink target
+%realref.sty%\let\realref@oldrefstepcounter\refstepcounter%
+%realref.sty%\DeclareRobustCommand{\refstepcounter}[1]{\realref@oldrefstepcounter{#1}
+%realref.sty%\edef\realref@anchorname{\string #1.\@currentlabel}%
+%realref.sty%}%
+%realref.sty%\let\realref@oldlabel\label%
+%realref.sty%\DeclareRobustCommand{\label}[1]{\realref@oldlabel{#1}\hypertarget{#1}{}%
+%realref.sty%\@bsphack\protected@write\@auxout{}{%
+%realref.sty%    \string\expandafter\gdef\protect\csname
+%realref.sty%    page@num.#1\string\endcsname{\thepage}%
+%realref.sty%    \string\expandafter\gdef\protect\csname
+%realref.sty%    ref@num.#1\string\endcsname{\@currentlabel}%
+%realref.sty%    \string\expandafter\gdef\protect\csname
+%realref.sty%    sectionref@name.#1\string\endcsname{\realref@anchorname}%
+%realref.sty%}\@esphack}%
+%realref.sty%\DeclareRobustCommand\pageref[1]{{\edef\a{\csname
+%realref.sty%            page@num.#1\endcsname}\expandafter\hyperlink{page.\a}{\a}}}%
+%realref.sty%\DeclareRobustCommand\ref[1]{{\edef\a{\csname
+%realref.sty%            ref@num.#1\endcsname}\hyperlink{#1}{\a}}}%
+%realref.sty%\DeclareRobustCommand\sectionref[1]{{\edef\a{\csname
+%realref.sty%            ref@num.#1\endcsname}\edef\b{\csname
+%realref.sty%            sectionref@name.#1\endcsname}\hyperlink{\b}{\a}}}%
+%realref.sty%}
+% ---------------------------- End of realref.sty ------------------------------
 
 
 %Book: Metamath
-%Author:  Norman D. Megill nm@alum.mit.edu
+%Author:  Norman D. Megill Email:  nm at alum.mit.edu
 
 % A book template example
 % http://www.stsci.edu/ftp/software/tex/bookstuff/book.template
 
-%\documentstyle[leqno]{book}
+%\documentstyle[leqno]{book} % LaTeX 2.09 - obsolete
 \documentclass[leqno]{book}
 % hyperref 2002/05/27 v6.72r  (couldn't get pagebackref to work)
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
@@ -81,7 +90,7 @@
 
 \begin{document}
 
-%%%%%%% load in AMS fonts %%%%%%%
+%%%%%%% load in AMS fonts %%%%%%% % LaTeX 2.09 - obsolete
 %\input{amssym.def}
 %\input{amssym.tex}
 %\input{c:/texmf/tex/plain/amsfonts/amssym.def}
@@ -115,40 +124,48 @@
 
 \begin{center}
 
-Copyright (C) 1997, 2002 by Norman D. Megill
+Copyright (C) 1997, 2002, 2003 by Norman D. Megill
 
 \vspace{1ex}
-{\small Permission is granted to make and distribute verbatim copies of this
-book
-provided the copyright notice and this
-permission notice are preserved on all copies.}
+{\small This book is distributed under the terms of the
+GNU Free Documentation License \url{http://www.gnu.org/licenses/fdl.html}}
 
-\vspace{1ex}
-{\small Permission is granted to copy and distribute modified versions of this
-book under the conditions for verbatim copying, provided that the
-entire
-resulting derived work is distributed under the terms of a permission
-notice
-identical to this one.}
+% \vspace{1ex}
+%
+% \vspace{1ex}
+% {\small Permission is granted to make and distribute verbatim copies of this
+% book
+% provided the copyright notice and this
+% permission notice are preserved on all copies.}
+%
+% \vspace{1ex}
+% {\small Permission is granted to copy and distribute modified versions of this
+% book under the conditions for verbatim copying, provided that the
+% entire
+% resulting derived work is distributed under the terms of a permission
+% notice
+% identical to this one.}
+%
+% \vspace{1ex}
+% {\small Permission is granted to copy and distribute translations of this
+% book into another language, under the above conditions for modified
+% versions,
+% except that this permission notice may be stated in a translation
+% approved by the
+% author.}
+%
+% \vspace{1ex}
+% %{\small   For a copy of the \LaTeX\ source files for this book, contact
+% %the author.} \\
+% \ \\
+% \ \\
 
-\vspace{1ex}
-{\small Permission is granted to copy and distribute translations of this
-book into another language, under the above conditions for modified
-versions,
-except that this permission notice may be stated in a translation
-approved by the
-author.}
+\hfill
+\vfill
 
-\vspace{1ex}
-{\small   For a copy of the \LaTeX\ source files for this book, contact
-the author.} \\
-\ \\
-\ \\
-Norman D. Megill\\ 19 Locke Lane, Lexington Ma 02420 \\
-E-mail address: \texttt{nm@alum.mit.edu} \\
-This book was revised on July 26, 1997. \\
-Minor typos were corrected, and a note added to the end of the
-preface, on January 6, 2002. \\
+Norman D. Megill\\ 19 Locke Lane, Lexington, MA 02420 \\
+E-mail address: \texttt{nm @ alum.mit.edu} \\
+See notes added at end of Preface for revision history. \\
 For current information on the Metamath software see \\
 \url{http://metamath.org}.
 \end{center}
@@ -160,9 +177,6 @@ For current information on the Metamath software see \\
 \vfill
 
 \begin{center}
-%{\it In loving memory of my wife Deborah Nickerson Megill, who inspired
-%and encouraged all of this}\\
-%\ \\
 {\it To my son Robin Dwight Megill}
 \end{center}
 
@@ -179,7 +193,7 @@ For current information on the Metamath software see \\
 \addcontentsline{toc}{section}{Preface}
 
 
-(For current information, see the note added January 6, 2002 at the
+(For current information, see the notes added at the
 end of this preface on p.~\pageref{note2002}.)
 
 \subsubsection{Overview}
@@ -398,7 +412,7 @@ reader to become intimately familiar with each detail in a very large
 hierarchy before he or she can proceed to the next step.  The difference with
 Metamath is that the ``reader'' (user) knows that all details are contained in
 its computer database, available as needed; it does not demand that the user
-to know everything but conveniently makes available those portions that are of
+know everything but conveniently makes available those portions that are of
 interest.  As the body of all mathematical knowledge grows larger and larger,
 no one individual can have a thorough grasp of its entirety.  Metamath
 can finalize and put to rest any questions about the validity of any part of it
@@ -440,14 +454,14 @@ my responsibility.
 \subsubsection{Note Added January 6, 2002}\label{note2002}
 
 Except for the correction of a few typographical errors, found by Josh
-Purinton, the text of this book is the same as the original version
+Purinton, the text of this book is the same as the original edition
 written in 1997.  Some additional features, such as the ability to
 produce web pages, have been added to the Metamath program that are not
-shown in Chaper~\ref{commands}, and some of the commands have slightly
+shown in Chapter~\ref{commands}, and some of the commands have slightly
 different or additional switches or defaults.  The examples herein
 should work as shown, but the built-in help in the command-line
 interface should be relied upon as the authoritative reference, rather
-than Chaper~\ref{commands}, which I hope to update at some point in the
+than Chapter~\ref{commands}, which I hope to update at some point in the
 future.  The method of producing \LaTeX\ files has changed; see the
 \texttt{help latex} in the program.  See \texttt{help html} for
 information on how to produce web pages.  Current information can always
@@ -455,9 +469,80 @@ be obtained at \url{http://metamath.org}.
 
 The book has been converted to \LaTeX\ 2$\epsilon$ and PDF with
 hyperlinks, resulting in a different page numbering than the 1997
-version.
+edition.
 
 My wife Deborah passed away on September 4, 1998.
+
+\subsubsection{Note Added May 20, 2003}\label{note2003}
+
+Previous editions had an appendix called ``Metamath's Formal System.''
+Bob Solovay\index{Solovay, Bob} discovered an error in it.  Since that
+appendix is not important to the rest of the text, I removed it for now,
+until I can find time to correct it.  (For the sufficiently curious,
+that appendix, preceded by Bob's remarks, is retained as a comment in the
+\LaTeX\ source file for this book, \texttt{metamath.tex}.)
+
+Bob also communicated a new result of A.~R.~D.~Mathias on the system of
+Bourbaki, and the text has been updated accordingly
+(p.~\pageref{bourbaki}).
+
+Finally, Bob pointed out a clarification of the literature regarding
+category theory and inaccessible cardinals\index{category
+theory}\index{cardinal, inaccessible} (p.~\pageref{categoryth}),
+and a misleading statement was removed from the text.  Specifically,
+contrary to a statement in previous editions, it is possible to express
+``There is a proper class of inaccessible cardinals'' in the language of
+ZFC.  This can be done as follows:  "For every set $x$ there is an
+inaccessible cardinal $\kappa$ such that $\kappa$ is not in $x$."
+Bob writes:\footnote{Private communication, Nov.~30, 2002.}
+\begin{quotation}
+     This axiom is how Grothendieck presents category theory.  To each
+inaccessible cardinal $\kappa$ one associates a Grothendieck universe
+\index{Grothendieck, Alexander} $U(\kappa)$.  $U(\kappa)$ consists of
+those sets which lie in a transitive set of cardinality less than
+$\kappa$.  Instead of the ``category of all groups,'' one works relative
+to a universe [considering the category of groups of cardinality less
+than $\kappa$].  Now the category whose objects are all categories
+``relative'' to the universe $U(\kappa)$'' will be a category not
+relative to this universe but to the next universe.
+
+     All of the things category theorists like to do can be done in this
+framework.  The only controversial point is whether the Grothen\-dieck
+axiom is too strong for the needs of category theorists.  Mac Lane
+\index{Mac Lane, Saunders} argues that ``one universe is enough'' and
+Feferman\index{Feferman, Solomon} has argued that one can get by with
+ordinary ZFC.  I don't find Feferman's arguments persausive.  Mac Lane
+may be right, but when I think about category theory I do it \`{a} la
+Grothendieck.
+
+        By the way Mizar\index{Mizar} adds the axiom ``there is a proper
+class of inaccessibles'' precisely so as to do category theory.
+\end{quotation}
+
+The Metamath command list in Chapter~\ref{commands}, although for the
+most part correct, still reflects the 1997 version of the program.
+% I
+% hope to update it, to borrow a phrase from Bob Solovay's web site
+% (originally popularized by Jerry Pournelle's\index{Pournelle, Jerry}
+% column in {\sc byte} magazine), ``real soon now.''
+I hope to update it at some point, but in the meantime the
+on-line help in the current version of the Metamath program provides the
+definitive reference.  Similar comments apply to that material in
+Chapter~\ref{fol} taken from the \texttt{set.mm} database as it existed
+at that time.
+
+There are references in the text to software packages and web
+sites that were current in 1997 but are now out of date.
+These are constantly subject to change, of course.  I do not plan to
+update these frequently or even in the near future, and they should be
+viewed from a historical perspective.  The interested reader can
+usually find current references using search engines such as Google.
+
+\subsubsection{Note Added November 20, 2003}\label{note2003b}
+
+About a dozen minor typos that were found by One Hand Clapping have
+been corrected.
+
 
 \chapter{Introduction}
 \pagenumbering{arabic}
@@ -1129,7 +1214,7 @@ p.~40}\\
 \end{quote}\index{Wang, Hao}
 
 \begin{quote}
-  {\em The {\em Principia Mathematica} was the crowing achievement of the
+  {\em The {\em Principia Mathematica} was the crowning achievement of the
   formalists.  It was also the deathblow of the formalist view.\ldots\\
   {[Rus\-sell]} failed, in three enormous volumes, to get beyond the elementary
   facts of arithmetic.  He showed what can be done in principle and what
@@ -1158,16 +1243,21 @@ primitive steps that make direct reference to the axioms.  This is
 not necessary.  There is no reason not to make use of previously proved
 theorems rather than proving them over and over.
 
-Just as important, definitions\index{definition} can be introduced along the
-way, allowing very complex formulas to be represented with few symbols.  Not
-doing this can lead to absurdly long formulas.  For example, G\"{o}del's
-incompleteness theorem\index{G\"{o}del's incompleteness theorem}, which can be
-expressed with a small number of defined symbols, would require about 20,000
-primitive symbols to express it.\index{Boolos, George S.}\footnote{George S.\
-Boolos, lecture at Massachusetts Institute of Technology, spring 1990}  An
-extreme example is Bourbaki's language for set theory, which requires tens of
-thousands of symbols in a two-dimensional notation to express the number
-``one'' \cite[p.~17]{Manin}.\index{Manin, Yu I.}\index{Bourbaki, Nicholaus}
+Just as important, definitions\index{definition} can be introduced along
+the way, allowing very complex formulas to be represented with few
+symbols.  Not doing this can lead to absurdly long formulas.  For
+example, G\"{o}del's incompleteness theorem\index{G\"{o}del's
+incompleteness theorem}, which can be expressed with a small number of
+defined symbols, would require about 20,000 primitive symbols to express
+it.\index{Boolos, George S.}\footnote{George S.\ Boolos, lecture at
+Massachusetts Institute of Technology, spring 1990} An extreme example
+is Bourbaki's\label{bourbaki} language for set theory, which requires
+4,523,659,424,929 symbols plus 1,179,618,517,981 disambiguatory links
+(lines connecting symbol pairs, usually drawn below or above the
+formula) to express the number
+``one'' \cite{Mathias}.\index{Mathias, Adrian R. D.}\index{Bourbaki,
+Nicholaus}
+% http://www.dpmms.cam.ac.uk/~ardm/
 
 A hierarchy\index{hierarchy} of theorems and definitions permits an
 exponential growth in the formula sizes and primitive proof steps to be
@@ -1209,7 +1299,7 @@ Every step of the proof is there, pieced together with absolute precision and
 instantly available for inspection through a microscope with a magnification
 as powerful as you desire.
 
-A proof is itself can be considered an object of beauty.  Constructing an
+A proof in itself can be considered an object of beauty.  Constructing an
 elegant proof is an art.  Once a famous theorem has been proved, often
 considerable effort is made to find simpler and more easily understood
 proofs.  Creating and communicating elegant proofs is a major concern of
@@ -1961,7 +2051,7 @@ pure mathematician at the forefront of discovering new mathematical knowledge,
 you will probably find that the rigid formality of Metamath stifles your
 creativity.  On the other hand, we would argue that once this knowledge is
 discovered, there are advantages to documenting it in a standard format that
-will make it accessible to others.  In 60 years from now, your field may be
+will make it accessible to others.  Sixty years from now, your field may be
 dormant, and as Davis and Hersh put it, your ``writings would become less
 translatable than those of the Maya'' \cite[p.~37]{Davis}\index{Davis, Phillip
 J.}.
@@ -2023,22 +2113,26 @@ notation, and Metamath makes use of a very simple version of it
 
 \subsection{Metamath and First-Order Logic}
 
-First-order logic\index{first-order logic} is the
-supporting structure for standard mathematics.  On top of it is set theory,
-which contains the axioms from which virtually all of mathematics can be
-derived---a remarkable fact.\index{Russell's paradox}\index{category
-theory}\index{cardinal, inaccessible}\index{proper
-class}\index{class!proper}\footnote{An exception seems to be category theory.
-There are several schools of thought on whether category theory is derivable
-from set theory.  At a minimum, it appears that an additional axiom is needed
-that asserts the existence of an ``inaccessible cardinal'' (a type of infinity
-so large that standard set theory can't prove or deny that it exists).  But it
-is also argued that not just one but a ``proper class'' of them is needed, and
-the existence of proper classes is impossible in standard set theory.  (A
-proper class is a collection of sets so huge that no set can contain it as an
-element.  Proper classes can lead to inconsistencies such as ``Russell's
-paradox.''  The axioms of standard set theory are devised so as to deny the
-existence of proper classes.)  For more information, see
+First-order logic\index{first-order logic} is the supporting structure
+for standard mathematics.  On top of it is set theory, which contains
+the axioms from which virtually all of mathematics can be derived---a
+remarkable fact.\index{category
+theory}\index{cardinal, inaccessible}\label{categoryth}\footnote{An exception seems
+to be category theory.  There are several schools of thought on whether
+category theory is derivable from set theory.  At a minimum, it appears
+that an additional axiom is needed that asserts the existence of an
+``inaccessible cardinal'' (a type of infinity so large that standard set
+theory can't prove or deny that it exists).
+%
+%%%% (I took this out that was in previous editions:)
+% But it is also argued that not just one but a ``proper class'' of them
+% is needed, and the existence of proper classes is impossible in standard
+% set theory.  (A proper class is a collection of sets so huge that no set
+% can contain it as an element.  Proper classes can lead to
+% inconsistencies such as ``Russell's paradox.''  The axioms of standard
+% set theory are devised so as to deny the existence of proper classes.)
+%
+For more information, see
 \cite[pp.~328--331]{Herrlich}\index{Herrlich, Horst} and
 \cite{Blass}\index{Blass, Andrea}.}
 
@@ -2863,7 +2957,7 @@ specify it unambiguously, Metamath will tell you what choices you have.
         STATEMENT, or SOURCE.
 \end{verbatim}
 
-If you don't what argument to use as part of a command, type a
+If you don't what know argument to use as part of a command, type a
 \texttt{?}\index{\texttt{]}@\texttt{?}\ in command lines}\ at the
 argument position.  Metamath will tell you what it expected there.
 
@@ -3747,14 +3841,15 @@ tailored for set theory; thus there are only two specific predicates $=$ and
 $\in$ and no functions\index{function!in predicate calculus}
 or constants\index{constant!in predicate calculus} unlike more general systems.
 
-Finally, I do not claim that these axioms are the most elegant possible.  They
-have more ``metalogical''\index{metalogic} power than standard axioms
-(although they are equivalent in a ``logical'' sense) and the ones I have
-chosen at least do the job.  Perhaps a logician who reads this would be
-interested in devising a set of equivalent axioms that are shorter or more
-elegant in some sense.\index{axioms in \texttt{set.mm}}  (For example, there used
-to be an axiom \texttt{ax-15} in our list that was later discovered to be
-redundant.)
+Finally, I do not claim that these axioms are the most elegant possible.
+They have more ``metalogical''\index{metalogic} power than standard
+axioms (although they are equivalent in a ``logical'' sense) and the
+ones I have chosen at least do the job.  Perhaps a logician who reads
+this would be interested in devising a set of equivalent axioms that are
+shorter or more elegant in some sense.\index{axioms in \texttt{set.mm}}
+(For example, there used to be an axiom \texttt{ax-15} in our list that
+was later discovered to be redundant in this version of the axiom
+system.  The Comment on p.~\pageref{nodd} has a further remark on this axiom.)
 
 A rigorous justification for this system can be found in
 \cite{Megill}\index{Megill, Norman}.
@@ -4121,7 +4216,7 @@ expressions to be expressed more simply?  In the case of  $\omega$, one goal is
 to provide a basis for the theory of natural numbers.\index{natural number}
 Before set theory was invented, a set of axioms for arithmetic, called Peano's
 postulates\index{Peano's postulates}, was devised and shown to have the
-properties the one expects for natural numbers.  Now anyone can postulate a
+properties one expects for natural numbers.  Now anyone can postulate a
 set of axioms, but if the axioms are inconsistent contradictions can be derived
 from them.  Once a contradiction is derived, anything can be trivially
 proved, including
@@ -5265,8 +5360,9 @@ should be read ``assume variable $x$ is (effectively) not free in wff
 $\varphi$.''\index{effectively not free}
 Literally, this says ``assume it is provable that $\varphi \rightarrow \forall
 x\, \varphi$.''  This device lets us to avoid the complexities associated with
-the standard treatment of free and bound variables.  The footnote
-on p.~\pageref{effectivelybound} discusses this further.
+the standard treatment of free and bound variables.
+%% Uncomment this when uncommenting section {formalspec} below
+% The footnote on p.~\pageref{effectivelybound} discusses this further.
 
 \item
 A statement of one of the forms
@@ -6120,7 +6216,7 @@ understanding.  The \texttt{set.mm} database provides references that will get
 you started.  From there, you will be on your way towards a very deep,
 rigorous understanding of abstract mathematics.
 
-The Metamath\index{Metamath} program help you peruse a Metamath data\-base,
+The Metamath\index{Metamath} program can help you peruse a Metamath data\-base,
 wheth\-er you are trying to figure out how a certain step follows in a proof or
 just have a general curiosity.  We will go through some examples of the
 commands, using the \texttt{set.mm}\index{set theory database (\texttt{set.mm})}
@@ -6585,7 +6681,7 @@ visualize and that computers can easily deal with.  They seem to be just
 about the simplest notions possible that are required to do standard
 mathematics.
 
-This chapter is serves as a reference manual for the Metamath\index{Metamath}
+This chapter serves as a reference manual for the Metamath\index{Metamath}
 language. It covers the tedious technical details of the language, some of
 which you may wish to skim in a first reading.  On the other hand, you should
 pay close attention to the defined terms in {\bf boldface}; they have precise
@@ -6593,9 +6689,10 @@ meanings that are important to keep in mind for later understanding.  It may
 be best to first become familiar with the examples in Chapter~\ref{using} to
 gain some motivation for the language.
 
-If you are have some knowledge of set theory, you may wish to study this
-chapter in conjunction with the formal set-theoretical description of the
-Metamath language in Appendix~\ref{formalspec}.
+%% Uncomment this when uncommenting section {formalspec} below
+% If you have some knowledge of set theory, you may wish to study this
+% chapter in conjunction with the formal set-theoretical description of the
+% Metamath language in Appendix~\ref{formalspec}.
 
 We will use the name ``Metamath''\index{Metamath} to mean either the Metamath
 computer language or the Metamath software associated with the computer
@@ -6603,20 +6700,26 @@ language.  We will not distinguish these two when the context is clear.
 
 The next section contains the complete specification of the Metamath
 language.\footnote{The current version of the Metamath program
-(0.06)\index{Metamath!limitations of version 0.06} implements an older spec
-with a slightly more general syntax than described here.  Among the
-differences: missing white space between tokens is sometimes tolerated and the
-requirement that a \texttt{\$f} statement specify a variable before the variable
-is used is not enforced.  A future version of the program will conform to the
-current spec.} It serves as an authoritative reference and presents the syntax
-in enough detail to write a parser\index{parsing Metamath} and proof verifier.
-The specification is terse and it is probably hard to learn the language
-directly from it, but we include it here for those impatient people who prefer
-to see everything up front before looking at verbose expository material.
-Later sections explain this material and provide examples.  We will repeat the
-definitions in those sections, and you may skip the next section at first
-reading and proceed to Section~\ref{tut1} (p.~\pageref{tut1}).  You may want
-to come back to it to clarify any fine points.
+(0.06)\index{Metamath!limitations of version 0.06} implements an older
+specification with a slightly more general syntax than described here.
+Among the differences:  missing white space between tokens is sometimes
+tolerated (in particular, the program saves proofs with a date tag in
+the form \texttt{\$([}{\em dd-mmm-yy}\texttt{]\$)}); a variable may be
+used before its type is specified by a \texttt{\$f} statement (this
+``feature'' should never be used in practice); and the label of a
+locally scoped of \texttt{\$f} or \texttt{\$e} statement does not have
+to be unique (it may be the same as a label in another local scope).  A
+future version of the program is expected to conform to the current
+specification.} It serves as an authoritative reference and presents the
+syntax in enough detail to write a parser\index{parsing Metamath} and
+proof verifier.  The specification is terse and it is probably hard to
+learn the language directly from it, but we include it here for those
+impatient people who prefer to see everything up front before looking at
+verbose expository material.  Later sections explain this material and
+provide examples.  We will repeat the definitions in those sections, and
+you may skip the next section at first reading and proceed to
+Section~\ref{tut1} (p.~\pageref{tut1}).  You may want to come back to it
+to clarify any fine points.
 
 \section{Specification of the Metamath Language}\label{spec}
 \index{Metamath!specification}
@@ -7954,8 +8057,11 @@ over again rather than stating them once for use by several assertions.
 The scoping statements, which we will discuss next, allow this to be
 done.  In principle, any Metamath database can be converted to the above
 format, and the above format is the most convenient to use when studying
-a Metamath database as a formal system (Appendix \ref{formalspec}).  In
-fact, Metamath internally converts the database to the above format.
+a Metamath database as a formal system%
+%% Uncomment this when uncommenting section {formalspec} below
+%   (Appendix \ref{formalspec})%
+.
+In fact, Metamath internally converts the database to the above format.
 The command \texttt{show statement} in the Metamath program will show
 you the contents of the frame for any \texttt{\$a} or \texttt{\$p}
 statement, as well as its extension in the case of a \texttt{\$p}
@@ -8585,7 +8691,7 @@ information is available to determine a unique unification.  In this case
 Metamath will ask you to pick the correct one.\index{ambiguous
 unification}\index{unification!ambiguous}
 
-\section{Extensions to the Basic Metamath Language}\index{extended
+\section{Extensions to the Metamath Language}\index{extended
 language}
 
 \subsection{Comments in the Metamath Language}\label{comments}
@@ -8993,7 +9099,7 @@ In \texttt{set.mm} our goal was to introduce almost
 all definitions in the form of
 two expressions connected by either $\leftrightarrow$ or $=$, where the thing
 being defined does not appear on the right hand side.  Quine calls this form
-``a genuine or direct definition'' \cite[p. 171]{Quine}\index{Quine, Willard
+``a genuine or direct definition'' \cite[p. 174]{Quine}\index{Quine, Willard
 Van Orman}, which makes the definitions very easy to eliminate and the
 metalogic\index{metalogic} needed to justify them as simple as possible.  We
 achieved this goal in almost all cases. Sometimes this makes the definitions
@@ -9067,10 +9173,10 @@ This chapter describes the commands that are available in the Metamath
 program.\index{Metamath!commands}
 
 In the syntax description, fields enclosed in square brackets [\ ] are
-optional. File names may be optionally enclosed in quotes.  This is useful if
-the file name contains slashes (\texttt{/}), such as in Unix path names,
-\index{Unix file names}\index{file names!Unix} that might be confused with
-Metamath command qualifiers.
+optional.  File names may be optionally enclosed in single or double
+quotes.  This is useful if the file name contains slashes (\texttt{/}),
+such as in Unix path names, \index{Unix file names}\index{file
+names!Unix} that might be confused with Metamath command qualifiers.
 
 \section{Controlling Metamath}
 
@@ -9648,7 +9754,7 @@ assign a temporary variable\index{temporary variable} or unknown step with a
 specific symbol sequence.  They are useful in the middle of creating a proof,
 when you know what should be in the proof step but the unification algorithm
 doesn't yet have enough information to completely specify the temporary
-variables.  An ``temporary'' variable is one that has the form \texttt{\$}{\em
+variables.  A ``temporary'' variable is one that has the form \texttt{\$}{\em
 nn} in the proof display, such as \texttt{\$1}, \texttt{\$2}, etc. The {\em
 symbol-sequence} may contain other unknown variables if desired. Examples:
 
@@ -9914,7 +10020,7 @@ is the same as
 %with information and ask nothing better than to be allowed to impart
 %it.''
 %}
-%  \flushright\sc  John Baez\footnote{John Baez ({\em baez@guitar.ucr.edu}),
+%  \flushright\sc  John Baez\footnote{John Baez ({\em baez @ guitar.ucr.edu}),
 %Internet newsgroup {\em sci.math}, 1995}\\
 %\end{quote}\index{Baez, John}
 
@@ -10229,8 +10335,8 @@ concatenated unambiguously.
 (In the design of the compressed proof format, only upper case letters,
 as opposed to say all printable {\sc ascii} characters other than \texttt{\$}, was
 chosen to make the compressed proof a little less displeasing to the
-eye, at the expense of a typical 20\% compression loss.  The base 20/base
-5 grouping, as opposed to say base 19/base 6, was chosen by
+eye, at the expense of a typical 20\% compression loss.  The base 5/base
+20 grouping, as opposed to say base 6/base 19, was chosen by
 experimentally determining the grouping that resulted in best typical
 compression.)
 
@@ -10244,7 +10350,7 @@ corresponding to the step to later be referenced.
 The integers that the upper-case letters correspond to are mapped to labels as
 follows.  If the statement being proved has $m$ mandatory hypotheses, integers
 1 through $m$ correspond to the labels of these hypotheses in the order shown
-by the \texttt{show statement} command, i.e., the RPN order\index{RPN
+by the \texttt{show statement ... / full} command, i.e., the RPN order\index{RPN
 order} of the mandatory
 hypotheses.  Integers $m+1$ through $m+n$ correspond to the labels enclosed in
 the parentheses of the compressed proof, in the order that they appear, where
@@ -10268,1089 +10374,1210 @@ or subproof that is not yet known may be represented with a single \texttt{?}.
 White space does not have to appear between the \texttt{?}\ and the upper-case
 letters (or other \texttt{?}s) representing the remainder of the proof.
 
-
-\chapter{Metamath's Formal System}\label{formalspec}\index{Metamath!as a formal
-system}
-
-\section{Introduction}
-
-\begin{quote}
-  {\em Perfection is when there is no longer anything more to take away.}
-    \flushright\sc Antoine de
-     Saint-Exupery\footnote{\cite[p.~3-25]{Campbell}}\\
-\end{quote}\index{de Saint-Exupery, Antoine}
-
-This appendix describes the theory behind the Metamath language in an abstract
-way intended for mathematicians.  Specifically, we construct two
-set-theo\-ret\-i\-cal objects:  a ``formal system'' (roughly, a set of syntax
-rules, axioms, and logical rules) and its ``universe'' (roughly, the set of
-theorems derivable in the formal system).  The Metamath computer language
-provides us with a way to describe specific formal systems and, with the aid of
-a proof provided by the user, to verify that given theorems
-belong to their universes.
-
-To understand this appendix, you need a basic knowledge of informal set theory.
-It should be sufficient to understand, for example, Ch.\ 1 of Munkres' {\em
-Topology} \cite{Munkres}\index{Munkres, James R.} or the
-introductory set theory chapter
-in many textbooks that introduce abstract mathematics. (Note that there are
-minor notational differences among authors; e.g.\ Munkres uses $\subset$ instead
-of our $\subseteq$ for ``subset.''  We use ``included in'' to mean ``a subset
-of,'' and ``belongs to'' or ``is contained in'' to mean ``is an element of.'')
-What we call a ``formal'' description here, unlike earlier, is actually an
-informal description in the ordinary language of mathematicians.  However we
-provide sufficient detail so that a mathematician could easily formalize it,
-even in the language of Metamath itself if desired.  To understand the logic
-examples at the end of this appendix, familiarity with an introductory book on
-mathematical logic would be helpful.
-
-\section{The Formal Description}
-
-\subsection[Preliminaries]{Preliminaries\protect\footnotemark}%
-\footnotetext{This section is taken mostly verbatim
-from Tarski \cite[p.~63]{Tarski1965}\index{Tarski, Alfred}.}
-
-By $\omega$ we denote the set of all natural numbers (non-negative integers).
-Each natural number $n$ is identified with the set of all smaller numbers: $n =
-\{ m | m < n \}$.  The formula $m < n$ is thus equivalent to the condition: $m
-\in n$ and $m,n \in \omega$. In particular, 0 is the number zero and at the
-same time the empty set $\varnothing$, $1=\{0\}$, $2=\{0,1\}$, etc. ${}^B A$
-denotes the set of all functions on $B$ to $A$ (i.e.\ with domain $B$ and range
-included in $A$).  The members of ${}^\omega A$ are what are called {\em simple
-infinite sequences},\index{simple infinite sequence}
-with all {\em terms}\index{term} in $A$.  In case $n \in \omega$, the
-members of ${}^n A$ are referred to as {\em finite $n$-termed
-sequences},\index{finite $n$-termed
-sequence} again
-with terms in $A$.  The consecutive terms (function values) of a finite or
-infinite sequence $f$ are denoted by $f_0, f_1, \ldots ,f_n,\ldots$.  Every
-finite sequence $f \in \bigcup _{n \in \omega} {}^n A$ uniquely determines the
-number $n$ such that $f \in {}^n A$; $n$ is called the {\em
-length}\index{length of a sequence ({$"|\ "|$})} of $f$ and
-is denoted by $|f|$.  $\langle a \rangle$ is the sequence $f$ with $|f|=1$ and
-$f_0=a$; $\langle a,b \rangle$ is the sequence $f$ with $|f|=2$, $f_0=a$,
-$f_1=b$; etc.  Given two finite sequences $f$ and $g$, we denote by $f\frown g$
-their {\em concatenation},\index{concatenation} i.e., the
-finite sequence $h$ determined by the
-conditions:
-\begin{eqnarray*}
-& |h| = |f|+|g|;&  \\
-& h_n = f_n & \mbox{\ for\ } n < |f|;  \\
-& h_{|f|+n} = g_n & \mbox{\ for\ } n < |g|.
-\end{eqnarray*}
-
-\subsection{Constants, Variables, and Expressions}
-
-A formal system has a set of {\em symbols}\index{symbol!in
-a formal system} denoted
-by $\mbox{\em SM}$.  A
-precise set-theo\-ret\-i\-cal definition of this set is unimportant; a symbol
-could be considered a primitive or atomic element if we wish.  We assume this
-set is divided into two disjoint subsets:  a set $\mbox{\em CN}$ of {\em
-constants}\index{constant!in a formal system} and a set $\mbox{\em VR}$ of
-{\em variables}.\index{variable!in a formal system}  $\mbox{\em CN}$ and
-$\mbox{\em VR}$ are each assumed to consist of countably many symbols which
-may be arranged in finite or simple infinite sequences $c_0, c_1, \ldots$ and
-$v_0, v_1, \ldots$ respectively, without repeating terms.  We will represent
-arbitrary symbols by metavariables $\alpha$, $\beta$, etc.
-
-{\footnotesize\begin{quotation}
-{\em Comment.} The variables of our formal system usually correspond to what
-are considered ``metavariables'' in descriptions of specific formal systems in
-the literature.  Typically, when describing a specific formal system a book
-will postulate a set of primitive objects called variables, then procede to
-describe their properties using metavariables that range over them, never
-mentioning again the actual variables themselves.  Our formal system does not
-mention these primitive variable objects at all but deals directly with
-metavariables from the start.  This is a subtle but key distinction you should
-keep in mind, and it makes our definition of ``formal system'' somewhat
-different from that typically found in the literature.
-\end{quotation}}
-
-Finite sequences all terms of which are symbols are called {\em
-expressions}.\index{expression!in a formal system}  $\mbox{\em EX}$ is
-the set of all expressions; thus
-\begin{displaymath}
-\mbox{\em EX} = \bigcup _{n \in \omega} {}^n \mbox{\em SM}.
-\end{displaymath}
-
-A {\em constant-prefixed expression}\index{constant-prefixed expression}
-is a an expression of non-zero length
-whose first term is a constant.  We denote the set of all constant-prefixed
-expressions by $\mbox{\em EX}_C = \{ e \in \mbox{\em EX} | ( |e| > 0 \wedge
-e_0 \in \mbox{\em CN} ) \}$.
-
-A {\em constant-variable pair}\index{constant-variable pair}
-is an expression of length 2 whose first term
-is a constant and whose second term is a variable.  We denote the set of all
-constant-variable pairs by $\mbox{\em EX}_2 = \{ e \in \mbox{\em EX}_C | ( |e|
-= 2 \wedge e_1 \in \mbox{\em VR} ) \}$.
-
-
-{\footnotesize\begin{quotation}
-{\em Relationship to Metamath.} In general, the set $\mbox{\em SM}$
-corresponds to the set of declared math symbols in a Metamath database, the
-set $\mbox{\em CN}$ to those declared with \texttt{\$c} statements, and the set
-$\mbox{\em VR}$ to those declared with \texttt{\$v} statements.  Of course a
-Metamath database can only have a finite number of math symbols, whereas
-formal systems in general can have an infinite number, although the number of
-Metamath math symbols available is in principle unlimited.
-
-The set $\mbox{\em EX}_C$ corresponds to the set of permissible expressions
-for \texttt{\$e}, \texttt{\$a}, and \texttt{\$p} statements.  The set $\mbox{\em EX}_2$
-corresponds to the set of permissible expressions for \texttt{\$f} statements.
-\end{quotation}}
-
-We denote by ${\cal V}(e)$ the set of all variables in an expression $e \in
-\mbox{\em EX}$, i.e.\ the set of all $\alpha \in \mbox{\em VR}$ such that
-$\alpha = e_n$ for some $n < |e|$.  We also denote (with abuse of notation) by
-${\cal V}(E)$ the set of all variables in a collection of expressions $E
-\subseteq \mbox{\em EX}$, i.e.\ $\bigcup _{e \in E} {\cal V}(e)$.
-
-
-\subsection{Substitution}
-
-Given a function $F$ from $\mbox{\em VR}$ to
-$\mbox{\em EX}$, we
-denote by $\sigma_{F}$ or just $\sigma$ the function from $\mbox{\em EX}$ to
-$\mbox{\em EX}$ defined recursively for nonempty sequences by
-\begin{eqnarray*}
-& \sigma(<\alpha>) = F(\alpha) & \mbox{for\ } \alpha \in \mbox{\em VR}; \\
-& \sigma(<\alpha>) = <\alpha> & \mbox{for\ } \alpha \not\in \mbox{\em VR}; \\
-& \sigma(g \frown h) = \sigma(g) \frown
-    \sigma(h) & \mbox{for\ } g,h \in \mbox{\em EX}.
-\end{eqnarray*}
-We also define $\sigma(\varnothing)=\varnothing$.  We call $\sigma$ a {\em
-simultaneous substitution}\index{substitution!variable}\index{variable
-substitution} (or just {\em substitution}) with {\em substitution
-map}\index{substitution map} $F$.
-
-We also denote (with abuse of notation) by $\sigma(E)$ a substitution on a
-collection of expressions $E \subseteq \mbox{\em EX}$, i.e.\ the set $\{
-\sigma(e) | e \in E \}$.  The collection $\sigma(E)$ may of course contain
-fewer expressions than $E$ because duplicate expressions could result from the
-substitution.
-
-\subsection{Statements}
-
-We denote by $\mbox{\em DV}$ (for ``distinct variables'') the set of all
-unordered pairs $\{\alpha, \beta \} \subseteq \mbox{\em VR}$ such that $\alpha
-\neq \beta$.
-
-A {\em statement}\index{statement!in a formal system} is a
-quadruple $\langle D,T,H,A \rangle$ such that
-$D\subseteq \mbox{\em DV}$, $T\subseteq \mbox{\em EX}_2$, $H\subseteq
-\mbox{\em EX}_C$, $A\in \mbox{\em EX}_C$, ${\cal V}(H\cup\{A\}) \subseteq
-{\cal V}(T)$, and $\forall e,f\in T {\ } {\cal V}(e) \neq {\cal V}(f)$ (or
-equivalently, $e_1 \ne f_1$). The terms of the quadruple are called {\em
-distinct-variable restrictions},\index{disjoint-variable restriction!in a
-formal system} {\em variable-type hypotheses},\index{variable-type
-hypothesis!in a formal system} {\em logical hypotheses},\index{logical
-hypothesis!in a formal system} and the {\em assertion}\index{assertion!in a
-formal system} respectively.  We denote by $T_M$ ({\em mandatory variable-type
-hypotheses}\index{mandatory variable-type hypothesis!in a formal system}) the
-subset of $T$ such that ${\cal V}(T_M) ={\cal V}(H \cup \{A\})$.  We denote by
-$D_M=\{\{\alpha,\beta\}\in D|\{\alpha,\beta\}\subseteq {\cal V}(T_M)\}$ the
-{\em mandatory distinct-variable restrictions}\index{mandatory
-disjoint-variable restriction!in a formal system} of the statement.  The set
-of {\em mandatory hypotheses}\index{mandatory hypothesis!in a formal system}
-is $T_M\cup H$.
-
-{\footnotesize\begin{quotation}
-{\em Comment.}  $T$ is a set of expressions, each of length 2, that associate
-a set of constants (``variable types'') with a set of variables.  The
-condition ${\cal V}(H\cup\{A\}) \subseteq {\cal V}(T) $
-means that each variable occurring in a statement's logical
-hypotheses or assertion must have an associated variable-type hypothesis or
-``type declaration,'' in  analogy to a computer programming language, where a
-variable must be declared to be say, a string or an integer.  The requirement
-that $\forall e,f\in T \, e_1 \ne f_1$) means that each variable must be
-associated with a unique constant designating its variable type; e.g., a
-variable might be a ``wff'' or a ``set'' but not both.
-
-Distinct-variable restrictions are used to specify what variable substitutions
-are permissible to make for the statement to remain valid.  For example, in
-the theorem scheme of set theory $\lnot\forall x\,x=y$ we may not substitute
-the same variable for both $x$ and $y$.  On the other hand, the theorem scheme
-$x=y\to y=x$ does not require that $x$ and $y$ be distinct, so we do not
-require a distinct-variable restriction, although having one
-would cause no harm other than making the scheme less general.
-
-A mandatory variable-type hypothesis is one whose variable exists in a logical
-hypothesis or the assertion.  A provable statement (defined below) may require
-non-mandatory variable-type hypotheses that effectively introduce ``dummy''
-variables for use in its proof.  Any number of dummy variables might
-be required by a specific proof; indeed, it has shown by H.\
-Andr\'{e}ka\index{Andr{\'{e}}ka, H.} \cite{Nemeti} that there is no finite
-upper bound to the number of dummy variables needed to prove an arbitrary
-theorem in first-order logic (with equality) having a fixed number $n>2$ of
-individual variables.  (See also the Comment on p.~\pageref{nodd}.)
-Axiomatic statements never need non-mandatory
-variable-type hypotheses, since their assertions are given rather than proved,
-but we allow them for convenience.
-\end{quotation}}
-
-{\footnotesize\begin{quotation}
-{\em Relationship to Metamath.} A statement of a formal system
-corresponds to an extended frame in a Metamath database
-(Section~\ref{frames}).  The collections $D$, $T$, and $H$ correspond
-respectively to the \texttt{\$d}, \texttt{\$f}, and \texttt{\$e}
-statement collections in an extended frame.  The expression $A$
-corresponds to the \texttt{\$a} (or \texttt{\$p}) statement in an
-extended frame.
-\end{quotation}}
-
-\subsection{Formal Systems}
-
-A {\em formal system}\index{formal system} is a
-triple $\langle \mbox{\em CN},\mbox{\em
-VR},\Gamma\rangle$ where $\Gamma$ is a set of statements.  The members of
-$\Gamma$ are called {\em axiomatic statements}.\index{axiomatic
-statement!in a formal system}  Sometimes we will refer to a
-formal system by just $\Gamma$ when $\mbox{\em CN}$ and $\mbox{\em VR}$ are
-understood.
-
-Given a formal system $\Gamma$, the {\em closure}\index{closure} of a statement
-$\langle D,T,H,A \rangle$ is the smallest set $C$ of expressions
-such that:
-%\begin{enumerate}
-%  \item $T\cup H\subseteq C$; and
-%  \item If for some axiomatic statement
-%    $\langle D',T',H',A' \rangle \in \Gamma_A$, for
-%    some $E \subseteq C$, some $F \subseteq C-T$ (where ``-'' denotes
-%    set difference), and some substitution
-%    $\sigma$ we have
-%    \begin{enumerate}
-%       \item $\sigma(T'_M) = E$ (where, as above, the $M$ denotes the
-%           mandatory variable-type hypotheses of $T^A$);
-%       \item $\sigma(H') = F$;
-%       \item for all $\{\alpha,\beta\}\in D^A$ and $\subseteq
-%         {\cal V}(T'_M)$, for all $\gamma\in {\cal V}(\sigma(\langle \alpha
-%         \rangle))$, and for all $\delta\in  {\cal V}(\sigma(\langle \beta
-%         \rangle))$, we have $\{\gamma, \delta\} \in D$;
-%   \end{enumerate}
-%   then $\sigma(A') \in C$.
-%\end{enumerate}
-\begin{list}{}{\itemsep 0.0pt}
-  \item[1.] $T\cup H\subseteq C$; and
-  \item[2.] If for some axiomatic statement
-    $\langle D',T',H',A' \rangle \in
-       \Gamma$, for
-    some $E \subseteq C$, and for some substitution
-    $\sigma$ we have
-    \begin{enumerate}
-       \item[a.] $\sigma(T'_M \cup H') = E$ (where, as defined above, the
-           subscript $M$ means mandatory); and
-       \item[b.] for all $\{\alpha,\beta\}\in D_M'$, for all $\gamma\in
-         {\cal V}(\sigma(\langle \alpha
-         \rangle))$, and for all $\delta\in  {\cal V}(\sigma(\langle \beta
-         \rangle))$, we have $\{\gamma, \delta\} \in D$;
-   \end{enumerate}
-   then $\sigma(A') \in C$.
-\end{list}
-The statement $\langle D,T,H,A
-\rangle$ is {\em provable}\index{provable statement!in a formal
-system} if $A\in C$ i.e.\ if its assertion belongs to its
-closure.  The {\em universe}\index{universe of a formal system}
-of a formal system is
-the collection of all of its provable statements.  Note that the
-set of axiomatic statements $\Gamma$ in a formal system is a subset of its
-universe.
-
-{\footnotesize\begin{quotation}
-{\em Comment.} The first condition in the definition of closure simply says
-that the hypotheses of the statement are in its closure.
-
-Condition 2(a) says that a substitution exists that makes the
-mandatory hypotheses of an axiomatic statement exactly match some members of
-the closure.  This is what we explicitly demonstrate in a Metamath language
-proof.
-
-%Conditions 2(a) and 2(b) say that a substitution exists that makes the
-%(mandatory) hypotheses of an axiomatic statement exactly match some members of
-%the closure.  This is what we explicitly demonstrate with a Metamath language
-%proof.
+% Appendix C was removed for now because there was a problem found
+% by Bob Solovay
 %
-%The set of expressions $F$ in condition 2(b) excludes the variable-type
-%hypotheses; this is done because non-mandatory variable-type hypotheses are
-%effectively ``dropped'' as irrelevant whereas logical hypotheses must be
-%retained to achieve a consistent logical system.
+% Also, removed earlier \ref{formalspec} 's (3 cases above)
+%
+% Bob Solovay wrote on 30 Nov 2002:
+%%%%%%%%%%%%% (start of email comment )
+%      3. My next set of comments concern appendix C. I read this before I
+% read Chapter 4. So I first noted that the system as presented in the
+% Appendix lacked a certain formal property that I thought desirable. I
+% then came up with a revised formal system that had this property. Upon
+% reading Chapter 4, I noticed that the revised system was closer to the
+% treatment in Chapter 4 than the system in Appendix C.
+%
+%         First a very minor correction:
+%
+%         On page 142 line 2: The condition that V(e) != V(f) should only be
+% required of e, f in T such that e != f.
+%
+%         Here is a natural property [transitivity] that one would like
+% the formal system to have:
+%
+%         Let Gamma be a set of statements. Suppose that the statement Phi
+% is provable from Gamma and that the statement Psi is provable from Gamma
+% \cup {Phi}. Then Psi is provable from Gamma.
+%
+%         I shall present an example to show that this property does not
+% hold for the formal systems of Appendix C:
+%
+%         I write the example in metamath style:
+%
+% $c A B C D E $.
+% $v x y
+%
+% ${
+% tx $f A x $.
+% ty $f B y $.
+% ax1 $a C x y $.
+% $}
+%
+% ${
+% tx $f A x $.
+% ty $f B y $.
+% ax2-h1 $e C x y $.
+% ax2 $a D y $.
+% $}
+%
+% ${
+% ty $f B y $.
+% ax3-h1 $e D y $.
+% ax3 $a E y $.
+% $}
+%
+% $(These three axioms are Gamma $)
+%
+% ${
+% tx $f A x $.
+% ty $f B y $.
+% Phi $p D y $=
+% tx ty tx ty ax1 ax2 $.
+% $}
+%
+% ${
+% ty $f B y $.
+% Psi $p E y $=
+% ty ty Phi ax3 $.
+% $}
+%
+%
+% I omit the formal proofs of the following claims. [I will be glad to
+% supply them upon request.]
+%
+% 1) Psi is not provable from Gamma;
+%
+% 2) Psi is provable from Gamma + Phi.
+%
+% Here "provable" refers to the formalism of Appendix C.
+%
+% The trouble of course is that Psi is lacking the variable declaration
+%
+% $f Ax $.
+%
+% In the Metamath system there is no trouble proving Psi. I attach a
+% metamath file that shows this and which has been checked by the
+% metamath program.
+%
+% I next want to indicate how I think the treatment in Appendix C should
+% be revised so as to conform more closely to the metamath system of the
+% main text. The revised system *does* have the transitivity property.
+%
+% We want to give revised definitions of "statement" and
+% "provable". [cf. sections C.2.4. and C.2.5] Our new definitions will
+% use the definitions given in Appendix C. So we take the following
+% tack. We refer to the original notions as o-statement and o-provable. And
+% we refer to the notions we are defining as n-statement and n-provable.
+%
+%         A n-statement is an o-statement in which the only variables
+% that appear in the T component are mandatory.
+%
+%         To any o-statement we can associate its reduct which is a
+% n-statement by dropping all the elements of T or D which contain
+% non-mandatory variables.
+%
+%         An n-statement gamma is n-provable if there is an o-statement
+% gamma' which has gamma as its reduct andf such that gamma' is
+% o-provable.
+%
+%         It seems to me [though I am not completely sure on this point]
+% that n-provability corresponds to metamath provability as discussed
+% say in Chapter 4.
+%
+%         Attached to this letter is the metamath proof of Phi and Psi
+% from Gamma discussed above.
+%
+%         I am still brooding over the question of whether metamath
+% correctly formalizes set-theory. No doubt I will have some questions
+% re this after my thoughts become clearer.
+%%%%%%%%%%%%%%%% (end of email comment)
 
-Condition 2(b) describes how distinct-variable restrictions in the axiomatic
-statement must be met.  It means that after a substitution for two variables
-that must be distinct, the resulting two expressions must either contain no
-variables, or if they do, they may not have variables in common, and each pair
-of any variables they do have, with one variable from each expression, must be
-specified as distinct in the original statement.
-\end{quotation}}
-
-{\footnotesize\begin{quotation}
-{\em Relationship to Metamath.} Axiomatic and provable statements in a formal
-system correspond to the extended frames for \texttt{\$a} and \texttt{\$p} statements
-respectively in a Metamath database.  The set of axiomatic statements are a
-subset of the set of provable statements in a formal system, although in a
-Metamath database a \texttt{\$a} statement is distinguished by not having a
-proof.  A Metamath language proof for a \texttt{\$p} statement tells the computer
-how to explicitly construct a series of members of the closure ultimately
-leading to a demonstration that the assertion
-being proved is in the closure.  The actual closure typically contains
-an infinite number of expressions.  A formal system itself does not have
-an explicit object called a ``proof'' but rather the existence of a proof
-is indicated indirectly by membership of an assertion in a provable
-statement's closure.  We do this to make the formal system easier
-to describe in the language of set theory.
-
-We also note that once established as provable, a statement may be considered
-to acquire the same status as an axiomatic statement, because if the set of
-axiomatic statements is extended with a provable statement, the universe of
-the formal system remains unchanged (provided that $\mbox{\em VR}$ is infinite and that
-we regard as equivalent those provable statements differing only in their
-non-mandatory hypotheses and non-mandatory distinct-variable restrictions).
-In practice, this means we can build a hierarchy of provable statements to
-more efficiently establish additional provable statements.  This is
-what we do in Metamath when we allow proofs to reference previous
-\texttt{\$p} statements as well as previous \texttt{\$a} statements.
-\end{quotation}}
-
-\section{Examples of Formal Systems}
-
-{\footnotesize\begin{quotation}
-{\em Relationship to Metamath.} The examples in this section, except Example~2,
-are for the most part exact equivalents of the development in the set
-theory database \texttt{set.mm}.  You may want to compare Examples~1, 3, and 5
-to Section~\ref{metaaxioms}, Example 4 to Sections~\ref{metadefprop} and
-\ref{metadefpred}, and Example 6 to
-Section~\ref{setdefinitions}.\label{exampleref}
-\end{quotation}}
-
-\subsection{Example~1---Propositional Calculus}\index{propositional calculus}
-
-Classical propositional calculus can be described by the following formal
-system.  We assume the set of variables is infinite.  Rather than denoting the
-constants and variables by $c_0, c_1, \ldots$ and $v_0, v_1, \ldots$, for
-readability we will instead use more conventional symbols, with the
-understanding of course that they denote distinct primitive objects.
-Also for readability we may omit commas between successive terms of a
-sequence; thus $\langle \mbox{wff\ } \varphi\rangle$ denotes
-$\langle \mbox{wff}, \varphi\rangle$.
-
-Let
-\begin{itemize}
-  \item[] $\mbox{\em CN}=\{\mbox{wff}, \vdash, \to, \lnot, (,)\}$
-  \item[] $\mbox{\em VR}=\{\varphi,\psi,\chi,\ldots\}$
-  \item[] $T = \{\langle \mbox{wff\ } \varphi\rangle,
-             \langle \mbox{wff\ } \psi\rangle,
-             \langle \mbox{wff\ } \chi\rangle,\ldots\}$, i.e.\ all
-             expressions of length 2 whose first member is $\mbox{\rm wff}$
-             and whose second member belongs to $\mbox{\em VR}$.\footnote{For
-convenience we let $T$ be an infinite set; the definition of a statement
-permits this in principle.  Since a Metamath source file has a finite size, in
-practice we must of course use appropriate finite subsets of this $T$,
-specifically ones containing at least the mandatory variable-type
-hypotheses.  Similarly, in the source file we introduce new variables as
-required, with the understanding that a potentially infinite number of
-them are available.}
-\noindent Then $\Gamma$ consists of the following statements:
-    \begin{itemize}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }\lnot\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash(\varphi\to(\psi\to\varphi))
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash((\varphi\to(\psi\to\chi))\to
-               ((\varphi\to\psi)\to(\varphi\to\chi)))
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash((\lnot\varphi\to\lnot\psi)\to
-               (\psi\to\varphi))\rangle\rangle$
-      \item[] $\langle\varnothing,T,
-               \{\langle\vdash(\varphi\to\psi)\rangle,
-                 \langle\vdash\varphi\rangle\},
-               \langle\vdash\psi\rangle\rangle$
-    \end{itemize}
-\end{itemize}
-
-We call the members of $\mbox{\em VR}$ {\em wff variables} or (in the context
-of first-order logic which we will describe shortly) {\em wff metavariables}.
-Note that the symbols $\phi$, $\psi$, etc.\ denote actual specific members of
-$\mbox{\em VR}$; they are not metavariables of our expository language (which
-we denote with $\alpha$, $\beta$, etc.) but are instead (meta)constant symbols
-(members of $\mbox{\em SM}$) from the point of view of our expository
-language.  The equivalent system of propositional calculus described in
-\cite{Tarski1965} also uses the symbols $\phi$, $\psi$, etc.\ to denote wff
-metavariables, but in \cite{Tarski1965} unlike here those are metavariables of
-the expository language and not primitive symbols of the formal system.
-
-The first two statements define wffs: if $\varphi$ and $\psi$ are wffs, so is
-$(\varphi \to \psi)$; if $\varphi$ is a wff, so is $\lnot\varphi$. The next
-three are the axioms of propositional calculus: if $\varphi$ and $\psi$ are
-wffs, then $\vdash (\varphi \to (\psi \to \varphi))$ is an (axiomatic)
-theorem; etc. The
-last is the rule of modus ponens: if $\varphi$ and $\psi$ are wffs, and
-$\vdash (\varphi\to\psi)$ and $\vdash \varphi$ are theorems, then $\vdash
-\psi$ is a theorem.
-
-The correspondence to ordinary propositional calculus is as follows.  We
-consider only provable statements of the form $\langle\varnothing,
-T,\varnothing,A\rangle$ with $T$ defined as above.  The first term of the
-assertion $A$ of any such statement is either ``wff'' or ``$\vdash$''.  A
-statement for which first term is ``wff'' is a {\em wff} of propositional
-calculus, and one where the first term is ``$\vdash$'' is a {\em
-theorem (scheme)} of propositional calculus.
-
-The universe of this formal system also contains many other provable
-statements.  Those with distinct-variable restrictions are irrelevant because
-propositional calculus has no constraints on substitutions.  Those that have
-logical hypotheses we call {\em inferences}\index{inference} when
-the logical hypotheses are of the form
-$\langle\vdash\rangle\frown w$ where $w$ is a wff (with the leading constant
-term ``wff'' removed).  Inferences (other than the modus ponens rule) are not a
-proper part of propositional calculus but are convenient to use when building a
-hierarchy of provable statements.  A provable statement with a nonsense
-hypothesis such as $\langle \to,\vdash,\lnot\rangle$, and this same expression
-as its assertion, we consider irrelevant; no use can be made of it in
-proving theorems, since there is no way to eliminate the nonsense hypothesis.
-
-{\footnotesize\begin{quotation}
-{\em Comment.} Our use of parentheses in the definition of a wff illustrates
-how axiomatic statements should be carefully stated in a way that
-ties in unambiguously with the substitutions allowed by the formal system.
-There are many ways we could have defined wffs---for example, Polish
-prefix notation would have allowed us to omit parentheses entirely, at
-the expense of readability---but we must define them in a way that is
-unambiguous.  For example, if we had omitted parentheses from the
-definition of $(\varphi\to \psi)$, the wff $\lnot\varphi\to \psi$ could
-be interpreted as either $\lnot(\varphi\to\psi)$ or $(\lnot\varphi\to\psi)$
-and would have allowed us to prove nonsense.  Note that there is no
-concept of operator binding precedence built into our formal system.
-\end{quotation}}
-
-\subsection{Example~2---Predicate Calculus with Equality}\index{predicate
-calculus}
-
-Here we extend Example~1 to include predicate calculus with equality,
-illustrating the use of distinct-variable restrictions.  This system is the
-same as Tarski's system $\mathfrak{S}_2$ in \cite{Tarski1965} (except that the
-axioms of propositional calculus are different but equivalent, and a redundant
-axiom is omitted).  We extend $\mbox{\em CN}$ with the constants
-$\{\mbox{var},\forall,=\}$.  We extend $\mbox{\em VR}$ with an infinite set of
-{\em individual metavariables}\index{individual
-metavariable} $\{x,y,z,\ldots\}$ and denote this subset
-$\mbox{\em Vr}$.
-
-We also join to $\mbox{\em CN}$ a possibly infinite set $\mbox{\em Pr}$ of {\em
-predicates} $\{R,S,\ldots\}$.  We associate with $\mbox{\em Pr}$ a function
-$\mbox{rnk}$ from $\mbox{\em Pr}$ to $\omega$, and for $\alpha\in \mbox{\em
-Pr}$ we call $\mbox{rnk}(\alpha)$ the {\em rank} of the predicate $\alpha$,
-which is simply the number of ``arguments'' that the predicate has.  (Most
-applications of predicate calculus will have a finite number of predicates;
-for example, set theory has the single two-argument or binary predicate $\in$,
-which is usually written with its arguments surrounding the predicate symbol
-rather than with the prefix notation we will use for the general case.)  As a
-device to facilitate our discussion, we will let $\mbox{\em Vs}$ be any fixed
-one-to-one function from $\omega$ to $\mbox{\em Vr}$; thus $\mbox{\em Vs}$ is
-any simple infinite sequence of individual metavariables with no repeating
-terms.
-
-In this example we will not include the function symbols that are often part of
-formalizations of predicate calculus.  Using metalogical arguments that are
-beyond the scope of our discussion, it can be shown that our formalization is
-equivalent when functions are introduced via appropriate definitions.
-
-We extend the set $T$ defined in Example~1 with the expressions
-$\{\langle \mbox{var\ } x\rangle,$ $ \langle \mbox{var\ } y\rangle, \langle
-\mbox{var\ } z\rangle,\ldots\}$.  We extend the $\Gamma$ above with this
-extended $T$ and also with the following axiomatic statements:
-\begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }\forall x\,\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }x=y\rangle\rangle$
-      \item[] $\langle\varnothing,T,
-               \{\langle\vdash\varphi\rangle\},
-               \langle\vdash\forall x\,\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash((\forall x(\varphi\to\psi)
-                  \to(\forall x\,\varphi\to\forall x\,\psi))
-               \rangle\rangle$
-      \item[] $\langle\{\{x,\varphi\}\},T,\varnothing,
-               \langle \vdash(\varphi\to\forall x\,\varphi)
-               \rangle\rangle$
-      \item[] $\langle\{\{x,y\}\},T,\varnothing,
-               \langle \vdash\lnot\forall x\lnot x=y
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash(x=z
-                  \to(x=y\to z=y))
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash(y=z
-                  \to(x=y\to x=z))
-               \rangle\rangle$
-\end{list}
-These are the axioms not involving predicate symbols. The first two statements
-extend the definition of a wff.  The third is the rule of generalization.  The
-fifth states, in effect, ``For a wff $\varphi$ and variable $x$,
-$\vdash(\varphi\to\forall x\,\varphi)$, provided that $x$ does not occur in
-$\varphi$.''  The sixth states ``For a variables $x$ and $y$,
-$\vdash\lnot\forall x\lnot x = y$, provided that $x$ and $y$ are distinct.''
-(This proviso is not necessary but was included by Tarski to
-weaken the axiom and still show that the system is logically complete.)
-
-Finally, for each predicate symbol $\alpha\in \mbox{\em Pr}$, we add to
-$\Gamma$ the following axiomatic statement that extends the definition of wff:
-\begin{displaymath}
-    \langle\varnothing,T,\varnothing,
-            \langle \mbox{wff},\alpha\rangle\
-            \frown \mbox{\em Vs}\restriction\mbox{rnk}(\alpha)\rangle
-\end{displaymath}
-and for each $\alpha\in \mbox{\em Pr}$ and each $n < \mbox{rnk}(\alpha)$
-we add to $\Gamma$ the following equality axiom:
-\begin{eqnarray*}
-    \lefteqn{\langle\varnothing,T,\varnothing,
-            \langle
-      \vdash,(,\mbox{\em Vs}_n,=,\mbox{\em Vs}_{\mbox{rnk}(\alpha)},\to,
-            (,\alpha\rangle\frown \mbox{\em Vs}\restriction\mbox{rnk}(\alpha)} \\
-  & & \frown
-            \langle\to,\alpha\rangle\frown \mbox{\em Vs}\restriction n\frown
-            \langle \mbox{\em Vs}_{\mbox{rnk}(\alpha)}\rangle \\
- & & \frown
-            \mbox{\em Vs}\restriction(\mbox{rnk}(\alpha)\setminus(n+1))\frown
-            \langle),)\rangle\rangle
-\end{eqnarray*}
-where $\restriction$ denotes function domain restriction and $\setminus$
-denotes set difference.  Recall that a subscript on $\mbox{\em Vs}$
-denotes one of its terms.  (In the above two axiom sets commas are placed
-between successive terms of sequences to prevent ambiguity, and if you examine
-them with care you will be able to distinguish those parentheses that denote
-constant symbols from those of our expository language that delimit function
-arguments.  Although it might have been better to use boldface for our
-primitive symbols, unfortunately boldface was not available for all characters
-on the \LaTeX\ system used to typeset this text.)  These seemingly forbidding
-axioms can be understood by analogy to concatenation of substrings in a
-computer language.  They are actually relatively simple for each specific case
-and will become clearer by looking at the special case of a binary predicate
-$\alpha = R$ where $\mbox{rnk}(R)=2$.  Letting $\mbox{\em Vs}$ be the sequence
-$\langle x,y,z,\ldots\rangle$, the axioms we would add to $\Gamma$ for this
-case would be the wff extension and two equality axioms:
-\begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }R x y\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash(x=z
-                  \to(R x y \to R z y))
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash(y=z
-                  \to(R x y \to R x z))
-               \rangle\rangle$
-\end{list}
-Study these carefully to see how the general axioms above evaluate to
-them.  In practice, typically only a few special cases such as this would be
-needed, and in any case the Metamath language will only permit us to describe
-a finite number of predicates, as opposed to the infinite number permitted by
-the formal system.  (If an infinite number should be needed for some reason,
-we could not define the formal system directly in the Metamath language but
-could instead define it metalogically under set theory as we
-do in this appendix, and only the underlying set theory, with its single
-binary predicate, would be defined directly in the Metamath language.)
-
-
-{\footnotesize\begin{quotation}
-{\em Comment.}  As we noted earlier, the specific variables denoted by the
-symbols $x,y,z,\ldots\in \mbox{\em Vr}\subseteq \mbox{\em VR}\subseteq
-\mbox{\em SM}$ in Example~2 are not the actual variables of ordinary predicate
-calculus but should be thought of as metavariables ranging over them.  For
-example, a distinct-variable restriction would be meaningless for actual
-variables of ordinary predicate calculus since two different actual variables
-are by definition distinct.  And when we talk about an arbitrary
-representative $\alpha\in \mbox{\em Vr}$, $\alpha$ is a metavariable (in our
-expository language) that ranges over metavariables (which are primitives of
-our formal system) each of which ranges over the actual individual variables
-of predicate calculus (which are never mentioned in our formal system).
-\end{quotation}}
-
-\subsection{Free Variables and Proper Substitution}\index{free variable}
-\index{proper substitution}\index{substitution!proper}
-
-In the system of Example~2, there are no primitive notions of free variable
-and proper substitution.  Tarski \cite{Tarski1965} shows that this system is
-logically equivalent to the more typical textbook systems that do have these
-primitive notions, if we introduce these notions with appropriate definitions
-and metalogic.  We could also define axioms for such systems directly,
-although the recursive definitions of free variable and proper substitution
-would be messy and awkward to work with.  Instead, we mention two devices that
-can be used in practice to mimic these notions.  (1) Instead of introducing
-special notation to express (as a logical hypothesis) ``where $x$ is not free
-in $\varphi$'' we can use the logical hypothesis $\vdash(\varphi\to\forall
-x\,\varphi)$.\label{effectivelybound}\index{effectively
-not free}\footnote{This is a slightly weaker requirement than ``where $x$ is
-not free in $\varphi$.''  If we let $\varphi$ be $x=x$, we have the theorem
-$(x=x\to\forall x\,x=x)$ which satisfies the hypothesis, even though $x$ is
-free in $x=x$ .  In a case like this we say that $x$ is {\em effectively not
-free}\index{effectively not free} in $x=x$, since $x=x$ is logically
-equivalent to $\forall x\,x=x$ in which $x$ is bound.} (2) It can be shown
-that the wff $((x=y\to\varphi)\wedge\exists x(x=y\wedge\varphi))$ (with the
-usual definitions of $\wedge$ and $\exists$; see Example~4 below) is logically
-equivalent to ``the wff that results from proper substitution of $y$ for $x$
-in $\varphi$.''  This works whether or not $x$ and $y$ are distinct.
-
-\subsection{Metalogical Completeness}\index{metalogical completeness}
-
-In the system of Example~2, the
-following are provable statements:
-\begin{eqnarray*}
-      & \langle\{\{x,y\}\},T,\varnothing,
-               \langle \vdash\lnot\forall x\lnot x=y
-               \rangle\rangle & \\
-     &  \langle\varnothing,T,\varnothing,
-               \langle \vdash\lnot\forall x\lnot x=x
-               \rangle\rangle &
-\end{eqnarray*}
-whereas the following statement is not to my knowledge provable (but
-in any case we will pretend it's not for sake of illustration) :
-\begin{eqnarray*}
-     &  \langle\varnothing,T,\varnothing,
-               \langle \vdash\lnot\forall x\lnot x=y
-               \rangle\rangle &
-\end{eqnarray*}
-In other words, we can prove ``$\lnot\forall x\lnot x=y$ where $x$ and $y$ are
-distinct'' and separately prove ``$\lnot\forall x\lnot x=x$'', but we can't
-prove the combined general case ``$\lnot\forall x\lnot x=y$'' that has no
-proviso.  Now this does not compromise logical completeness, because the
-variables are really metavariables and the two provable cases together cover
-all possible cases.  The third case can be considered a metatheorem whose
-direct proof, using the system of Example~2, lies outside the capability of the
-formal system.
-
-Also, in the system of Example~2 the following statement is not to my
-knowledge provable (again, a conjecture that we will pretend to be the case):
-\begin{eqnarray*}
-     & \langle\varnothing,T,\varnothing,
-               \langle \vdash(\forall x\, \varphi\to\varphi)
-               \rangle\rangle &
-\end{eqnarray*}
-Instead, we can only prove specific cases of $\varphi$ involving individual
-metavariables, and by induction on formula length, prove as a metatheorem
-outside of our formal system the general statement above.  The details of this
-proof are found in \cite{Kalish}.
-
-There does, however, exist a system of predicate calculus in which all such
-``simple metatheorems'' as those above can be proved directly, and we present
-it in Example~3. A {\em simple metatheorem}\index{simple metatheorem}
-is any statement of the formal
-system of Example~2 where all distinct variable restrictions consist of either
-two individual metavariables or an individual metavariable and a wff
-metavariable, and which is provable by combining cases outside the system as
-above.  A system is {\em metalogically complete}\index{metalogical
-completeness} if all of its simple
-metatheorems are (directly) provable statements. The precise definition of
-``simple metatheorem'' and the proof of the ``metalogical completeness'' of
-Example~3 is found in Remark 9.6 and Theorem 9.7 of \cite{Megill}.\index{Megill,
-Norman}
-
-\subsection{Example~3---Metalogically Complete Predicate
-Calculus with
-Equality}
-
-For simplicity we will assume there is one binary predicate $R$;
-this system suffices for set theory, where the $R$ is of course the $\in$
-predicate.  We label the axioms as they appear in \cite{Megill}.  This
-system is logically equivalent to that of Example~3 (when the latter is
-restricted to this single binary predicate) but is also metalogically
-complete.\index{metalogical completeness}
-
-Let
-\begin{itemize}
-  \item[] $\mbox{\em CN}=\{\mbox{wff}, \mbox{var}, \vdash, \to, \lnot, (,),\forall,=,R\}$.
-  \item[] $\mbox{\em VR}=\{\varphi,\psi,\chi,\ldots\}\cup\{x,y,z,\ldots\}$.
-  \item[] $T = \{\langle \mbox{wff\ } \varphi\rangle,
-             \langle \mbox{wff\ } \psi\rangle,
-             \langle \mbox{wff\ } \chi\rangle,\ldots\}\cup
-       \{\langle \mbox{var\ } x\rangle, \langle \mbox{var\ } y\rangle, \langle
-       \mbox{var\ }z\rangle,\ldots\}$.
-
-\noindent Then
-  $\Gamma$ consists of the following statements:
-    \begin{itemize}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }\lnot\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }\forall x\,\varphi\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }x=y\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }Rxy\rangle\rangle$
-      \item[(C1$'$)] $\langle\varnothing,T,\varnothing,
-               \langle \vdash(\varphi\to(\psi\to\varphi))
-               \rangle\rangle$
-      \item[(C2$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash((\varphi\to(\psi\to\chi))\to
-               ((\varphi\to\psi)\to(\varphi\to\chi)))
-               \rangle\rangle$
-      \item[(C3$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash((\lnot\varphi\to\lnot\psi)\to
-               (\psi\to\varphi))\rangle\rangle$
-      \item[(C4$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\forall x(\forall x\,\varphi\to\psi)\to
-                 (\forall x\,\varphi\to\forall x\,\psi))\rangle\rangle$
-      \item[(C5$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\forall x\,\varphi\to\varphi)\rangle\rangle$
-      \item[(C6$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\forall x\forall y\,\varphi\to
-                 \forall y\forall x\,\varphi)\rangle\rangle$
-      \item[(C7$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\lnot\varphi\to\forall x\lnot\forall x\,\varphi
-                 )\rangle\rangle$
-      \item[(C8$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(x=y\to(x=z\to y=z))\rangle\rangle$
-      \item[(C9$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\lnot\forall x\, x=y\to(\lnot\forall x\, x=z\to
-                 (y=z\to\forall x\, y=z)))\rangle\rangle$
-      \item[(C10$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\forall x(x=y\to\forall x\,\varphi)\to
-                 \varphi))\rangle\rangle$
-      \item[(C11$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\forall x\, x=y\to(\forall x\,\varphi
-               \to\forall y\,\varphi))\rangle\rangle$
-      \item[(C12$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(x=y\to(Rxz\to Ryz))\rangle\rangle$
-      \item[(C13$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(x=y\to(Rzx\to Rzy))\rangle\rangle$
-      \item[(C15$'$)] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(\lnot\forall x\, x=y\to(x=y\to(\varphi
-                 \to\forall x(x=y\to\varphi))))\rangle\rangle$
-      \item[(C16$'$)] $\langle\{\{x,y\}\},T,
-               \varnothing,
-               \langle \vdash(\forall x\, x=y\to(\varphi\to\forall x\,\varphi)
-                 )\rangle\rangle$
-      \item[(C5)] $\langle\{\{x,\varphi\}\},T,\varnothing,
-               \langle \vdash(\varphi\to\forall x\,\varphi)
-               \rangle\rangle$
-      \item[(MP)] $\langle\varnothing,T,
-               \{\langle\vdash(\varphi\to\psi)\rangle,
-                 \langle\vdash\varphi\rangle\},
-               \langle\vdash\psi\rangle\rangle$
-      \item[(Gen)] $\langle\varnothing,T,
-               \{\langle\vdash\varphi\rangle\},
-               \langle\vdash\forall x\,\varphi\rangle\rangle$
-    \end{itemize}
-\end{itemize}
-
-While it is known that these axioms are ``metalogically complete,'' it is
-not known whether they are independent (i.e.\ none is
-redundant) in the metalogical sense; specifically, whether any axiom (possibly
-with additional non-mandatory distinct-variable restrictions, for use with any
-dummy variables in its proof) is provable from the others.  Note that
-metalogical independence is a stronger requirement than independence in the
-usual logical sense.  Not all of the above axioms are logically independent:
-for example, C9$'$ can be proved as a metatheorem from the others, outside the
-formal system, by combining the possible cases of distinct variables.
-
-\subsection{Example~4---Adding Definitions}\index{definition}
-There are several ways to add definitions to a formal system.  Probably the
-most proper way is to consider definitions not as part of the formal system at
-all but rather as abbreviations that are part of the expository metalogic
-outside the formal system.  For convenience, though, we may use the formal
-system itself to incorporate definitions, adding them as axiomatic extensions
-to the system.  This could be done by adding a constant representing the
-concept ``is defined as'' along with axioms for it. But there is a nicer way,
-at least in this writer's opinion, that introduces definitions as direct
-extensions to the language rather than as extralogical primitive notions.  We
-introduce additional logical connectives and provide axioms for them.  For
-systems of logic such as Examples 1 through 3, the additional axioms must be
-conservative in the sense that no wff of the original system that was not a
-theorem (when the initial term ``wff'' is replaced by ``$\vdash$'' of course)
-becomes a theorem of the extended system.  In this example we extend Example~3
-(or 2) with standard abbreviations of logic.
-
-We extend $\mbox{\em CN}$ of Example~3 with new constants $\{\leftrightarrow,
-\wedge,\vee,\exists\}$, corresponding to logical equivalence,\index{logical
-equivalence ($\leftrightarrow$)}\index{biconditional ($\leftrightarrow$)}
-conjunction,\index{conjunction ($\wedge$)} disjunction,\index{disjunction
-($\vee$)} and the existential quantifier.\index{existential quantifier
-($\exists$)}  We extend $\Gamma$ with the axiomatic statements:
-\begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }(\varphi\leftrightarrow\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }(\varphi\vee\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }(\varphi\wedge\psi)\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }\exists x\, \varphi\rangle\rangle$
-  \item[] $\langle\varnothing,T,\varnothing,
-     \langle\vdash ( ( \varphi \leftrightarrow \psi ) \to
-     ( \varphi \to \psi ) )\rangle\rangle$
-  \item[] $\langle\varnothing,T,\varnothing,
-     \langle\vdash ((\varphi\leftrightarrow\psi)\to
-    (\psi\to\varphi))\rangle\rangle$
-  \item[] $\langle\varnothing,T,\varnothing,
-     \langle\vdash ((\varphi\to\psi)\to(
-     (\psi\to\varphi)\to(\varphi
-     \leftrightarrow\psi)))\rangle\rangle$
-  \item[] $\langle\varnothing,T,\varnothing,
-     \langle\vdash (( \varphi \wedge \psi ) \leftrightarrow\neg ( \varphi
-     \to \neg \psi )) \rangle\rangle$
-  \item[] $\langle\varnothing,T,\varnothing,
-     \langle\vdash (( \varphi \vee \psi ) \leftrightarrow (\neg \varphi
-     \to \psi )) \rangle\rangle$
-  \item[] $\langle\varnothing,T,\varnothing,
-     \langle\vdash (\exists x \,\varphi\leftrightarrow
-     \lnot \forall x \lnot \varphi)\rangle\rangle$
-\end{list}
-The first three logical axioms (statements containing ``$\vdash$'') introduce
-and effectively define logical equivalence, ``$\leftrightarrow$''.  The last
-three use ``$\leftrightarrow$'' to effectively mean ``is defined as.''
-
-\subsection{Example~5---ZFC Set Theory}\index{ZFC set theory}
-
-Here we add to the system of Example~4 the axioms of Zermelo-Fraenkel set
-theory with Choice.  For convenience we make use of the
-definitions in Example~4.
-
-In the $\mbox{\em CN}$ of Example~4 (which extends Example~3), we replace the symbol $R$
-with the symbol $\in$.  We remove from $\Gamma$ of Example~4 the three
-axiomatic statements containing $R$ and replace them with the following:
-\begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }x\in y\rangle\rangle$
-      \item[] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(x=y\to(x\in z\to y\in z))\rangle\rangle$
-      \item[] $\langle\varnothing,T,
-               \varnothing,
-               \langle \vdash(x=y\to(z\in x\to z\in y))\rangle\rangle$
-\end{list}
-Letting $D=\{\{\alpha,\beta\}\in \mbox{\em DV}\,|\alpha,\beta\in \mbox{\em
-Vr}\}$ (in other words all individual variables must be distinct), we extend
-$\Gamma$ with the ZFC axioms, called
-\index{Axiom of Extensionality}
-\index{Axiom of Replacement}
-\index{Axiom of Union}
-\index{Axiom of Power Sets}
-\index{Axiom of Regularity}
-\index{Axiom of Infinity}
-\index{Axiom of Choice}
-Extensionality, Replacement, Union, Power
-Set, Regularity, Infinity, and Choice:
-\begin{list}{}{\itemsep 0.0pt}
-      \item[Ext] $\langle D,T,
-               \varnothing,
-               \langle\vdash (\forall x(x\in y\leftrightarrow x \in z)\to y
-               =z) \rangle\rangle$
-      \item[Rep] $\langle D,T,
-               \varnothing,
-               \langle\vdash\exists x ( \exists y \forall z (\varphi \to z = y
-                        ) \to
-                        \forall z ( z \in x \leftrightarrow \exists x ( x \in
-                        y \wedge \forall y\,\varphi ) ) )\rangle\rangle$
-      \item[Un] $\langle D,T,
-               \varnothing,
-               \langle\vdash \exists x \forall y ( \exists x ( y \in x \wedge
-               x \in z ) \to y \in x ) \rangle\rangle$
-      \item[Pow] $\langle D,T,
-               \varnothing,
-               \langle\vdash \exists x \forall y ( \forall x ( x \in y \to x
-               \in z ) \to y \in x ) \rangle\rangle$
-      \item[Reg] $\langle D,T,
-               \varnothing,
-               \langle\vdash (  x \in y \to
-                 \exists x ( x \in y \wedge \forall z ( z \in x \to \lnot z
-                \in y ) ) ) \rangle\rangle$
-      \item[Inf] $\langle D,T,
-               \varnothing,
-               \langle\vdash \exists x(y\in x\wedge\forall y(y\in
-               x\to
-               \exists z(y \in z\wedge z\in x))) \rangle\rangle$
-      \item[AC] $\langle D,T,
-               \varnothing,
-               \langle\vdash \exists x \forall y \forall z ( ( y \in z
-               \wedge z \in w ) \to \exists w \forall y ( \exists w
-              ( ( y \in z \wedge z \in w ) \wedge ( y \in w \wedge w \in x
-              ) ) \leftrightarrow y = w ) ) \rangle\rangle$
-\end{list}
-
-\subsection{Example~6---Class Notation in Set Theory}\label{class}
-
-A powerful device that makes set theory easier (and that we have
-been using all along in our informal expository language) is {\em class
-abstraction notation}.\index{class abstraction}\index{abstraction class}  The
-definitions we introduce are rigorously justified
-as conservative by Takeuti and Zaring \cite{Takeuti}\index{Takeuti, Gaisi} or
-Quine \cite{Quine}\index{Quine, Willard Van Orman}.  The key idea is to
-introduce the notation $\{x|\mbox{---}\}$ which means ``the class of all $x$
-such that ---'' for abstraction classes and introduce (meta)variables that
-range over them.  An abstraction class may or may not be a set, depending on
-whether it exists (as a set).  A class that does not exist is
-called a {\em proper class}.\index{proper class}\index{class!proper}
-
-To illustrate the use of abstraction classes we will provide some examples
-of definitions that make use of them:  the empty set, class union, and
-unordered pair.  Many other such definitions can be found in the
-Metamath set theory database, \texttt{set.mm}.
-
-We extend $\mbox{\em CN}$ of Example~5 with new symbols $\{\mbox{class}, \{,
-|, \}, \varnothing, \cup, , \}$ where the inner braces and last comma are
-constant symbols. (As before,
-our dual use of some mathematical symbols for both our expository
-language and as primitives of the formal system should be clear from context.)
-
-We extend $\mbox{\em VR}$ of Example~5 with a set of {\em class
-variables}\index{class variable}
-$\{A,B,C,\ldots\}$. We extend the $T$ of Example~5 with $\{\langle
-\mbox{class\ } A\rangle, \langle \mbox{class\ }B\rangle, \langle \mbox{class\ }
-C\rangle,\ldots\}$.
-
-We add to $\Gamma$ of Example~5 the following axiomatic statements to
-introduce our definitions:
-\begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{class\ }x\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{class\ }\{x|\varphi\}\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }A=B\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{wff\ }A\in B\rangle\rangle$
-      \item[Ab] $\langle\varnothing,T,\varnothing,
-               \langle \vdash ( y \in \{ x |\varphi\} \leftrightarrow
-                  ( ( x = y \to\varphi) \wedge \exists x ( x = y
-                  \wedge\varphi) ))
-               \rangle\rangle$
-      \item[Eq] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
-               \langle \vdash ( A = B \leftrightarrow
-               \forall x ( x \in A \leftrightarrow x \in B ) )
-               \rangle\rangle$
-      \item[El] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
-               \langle \vdash ( A \in B \leftrightarrow \exists x
-               ( x = A \wedge x \in B ) )
-               \rangle\rangle$
-\end{list}
-Here we say that an individual variable is a class; $\{x|\varphi\}$ is a
-class; and we extend the definition of a wff to include class equality and
-membership.  Axiom Ab defines membership of a variable in a class abstraction;
-the right-hand side can be read as ``the wff that results from proper
-substitution of $y$ for $x$ in $\varphi$.''\footnote{Note that this definition
-makes unnecessary the introduction of a separate notation similar to
-$\varphi(x|y)$ for proper substitution, although we may choose to do so to be
-conventional.  Incidentally, $\varphi(x|y)$ as it stands would be ambiguous in
-the formal systems of our examples, since we wouldn't know whether
-$\lnot\varphi(x|y)$ meant $\lnot(\varphi(x|y))$ or $(\lnot\varphi)(x|y)$.
-Instead, we would have to use an unambiguous variant such as $(\varphi\,
-x|y)$.}  Axioms Eq and El extend the meaning of the existing equality and
-membership connectives.  This is potentially dangerous and requires careful
-justification.  For example, from Eq we can derive the Axiom of Extensionality
-with predicate logic alone; thus in principle we should include the Axiom of
-Extensionality as a logical hypothesis.  However we do not bother to do this
-since we have already presupposed that axiom earlier. The distinct variable
-restrictions should be read ``where $x$ does not occur in $A$ or $B$.''  We
-typically do this when the right-hand side of a definition involves an
-individual variable not in the expression being defined; it is done so that
-the right-hand side remains independent of the particular ``dummy'' variable
-we use.
-
-We continue to add to $\Gamma$ the following definitions for empty
-set,\index{empty set} class union,\index{union} and unordered
-pair.\index{unordered pair}  They should be self-explanatory.  Analogous to our
-use of ``$\leftrightarrow$'' to define new wffs in Example~4, we use ``$=$''
-to define new abstraction terms, and both may be read informally as ``is
-defined as'' in this context.
-\begin{list}{}{\itemsep 0.0pt}
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{class\ }\varnothing\rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \vdash \varnothing = \{ x | \lnot x = x \}
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{class\ }(A\cup B)\rangle\rangle$
-      \item[] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
-               \langle \vdash ( A \cup B ) = \{ x | ( x \in A \vee x \in B ) \}
-               \rangle\rangle$
-      \item[] $\langle\varnothing,T,\varnothing,
-               \langle \mbox{class\ }\{A,B\}\rangle\rangle$
-      \item[] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
-               \langle \vdash \{ A , B \} = \{ x | ( x = A \vee x = B ) \}
-               \rangle\rangle$
-\end{list}
-
-\section{Metamath as a Formal System}\label{theorymm}
-
-This section presupposes a familiarity with the Metamath computer language.
-
-Our theory describes formal systems and their universes.  The Metamath
-language provides a way of representing these set-theoretical objects to a
-computer.  A Metamath database, being a finite set of
-{\sc ascii} characters, can usually describe only a subset of a formal system
-and its universe, which are typically infinite.  However the database
-can contain as large a finite subset of the formal system and its
-universe as we wish.  (Of course a Metamath set theory database can
-indirectly describe an entire infinite formal system by formalizing
-the expository language in this Appendix.)
-
-For purpose of our discussion, we assume the Metamath database
-is in the simple form described on p.~\pageref{framelist},
-consisting of all constant and variable declarations at the beginning,
-followed by a sequence of extended frames each
-delimited by \texttt{\$\char`\{} and \texttt{\$\char`\}}.  Any Metamath database can
-be converted to this form, as described on p.~\pageref{frameconvert}.
-
-The math symbol tokens of a Metamath source file, which are declared
-with \texttt{\$c} and \texttt{\$v} statements, are names we assign to
-representatives of $\mbox{\em CN}$ and $\mbox{\em VR}$.  For
-definiteness we could assume that the first math symbol declared as a
-variable corresponds to $v_0$, the second to $v_1$, etc., although the
-exact correspondence we choose is not important.
-
-In the Metamath language, each \texttt{\$d}, \texttt{\$f}, and \texttt{\$e} source
-statement in an extended frame (Section~\ref{frames})
-corresponds respectively to a member of the
-collections $D$, $T$, and $H$ in a formal system statement $\langle
-D,T,H,A\rangle$.  The math symbol strings following these Metamath keywords
-correspond to a variable pair (in the case of \texttt{\$d}) or an expression (for
-the other two keywords). The math symbol string following a \texttt{\$a} source
-statement corresponds to expression $A$ in an axiomatic statement of the
-formal system; the one following a \texttt{\$p} source statement corresponds to
-$A$ in a provable statement that is not axiomatic.  In other words, each
-extended frame in the Metamath database corresponds to
-a statement of the formal system.  (Don't confuse the two meanings of
-``statement'' here.  A statement of the formal system corresponds to the
-several statements of the Metamath database that may constitute an extended
-frame.)
-
-In order for the computer to verify that a formal system statement is
-provable, each \texttt{\$p} source statement is accompanied by a proof.  However,
-the proof does not correspond to anything in the formal system but is simply a
-way of communicating to the computer the information needed for its
-verification. The proof tells the computer {\em how to construct} specific
-members of the formal system statement's closure, resulting in a member
-matching the extended frame for the \texttt{\$p} statement; the formal system is
-just concerned about the {\em existence} of members of the closure.
-
-As mentioned on p.~\pageref{exampleref},
-Examples 1 and 3--6 in the previous Section parallel the development of logic
-and set theory in the Metamath database \texttt{set.mm}.  You may find it
-instructive to compare them.
+%%
+%% When uncommenting the below, also uncomment references above to {formalspec}
+%%
+% \chapter{Metamath's Formal System}\label{formalspec}\index{Metamath!as a formal
+% system}
+%
+% \section{Introduction}
+%
+% \begin{quote}
+%   {\em Perfection is when there is no longer anything more to take away.}
+%     \flushright\sc Antoine de
+%      Saint-Exupery\footnote{\cite[p.~3-25]{Campbell}}\\
+% \end{quote}\index{de Saint-Exupery, Antoine}
+%
+% This appendix describes the theory behind the Metamath language in an abstract
+% way intended for mathematicians.  Specifically, we construct two
+% set-theo\-ret\-i\-cal objects:  a ``formal system'' (roughly, a set of syntax
+% rules, axioms, and logical rules) and its ``universe'' (roughly, the set of
+% theorems derivable in the formal system).  The Metamath computer language
+% provides us with a way to describe specific formal systems and, with the aid of
+% a proof provided by the user, to verify that given theorems
+% belong to their universes.
+%
+% To understand this appendix, you need a basic knowledge of informal set theory.
+% It should be sufficient to understand, for example, Ch.\ 1 of Munkres' {\em
+% Topology} \cite{Munkres}\index{Munkres, James R.} or the
+% introductory set theory chapter
+% in many textbooks that introduce abstract mathematics. (Note that there are
+% minor notational differences among authors; e.g.\ Munkres uses $\subset$ instead
+% of our $\subseteq$ for ``subset.''  We use ``included in'' to mean ``a subset
+% of,'' and ``belongs to'' or ``is contained in'' to mean ``is an element of.'')
+% What we call a ``formal'' description here, unlike earlier, is actually an
+% informal description in the ordinary language of mathematicians.  However we
+% provide sufficient detail so that a mathematician could easily formalize it,
+% even in the language of Metamath itself if desired.  To understand the logic
+% examples at the end of this appendix, familiarity with an introductory book on
+% mathematical logic would be helpful.
+%
+% \section{The Formal Description}
+%
+% \subsection[Preliminaries]{Preliminaries\protect\footnotemark}%
+% \footnotetext{This section is taken mostly verbatim
+% from Tarski \cite[p.~63]{Tarski1965}\index{Tarski, Alfred}.}
+%
+% By $\omega$ we denote the set of all natural numbers (non-negative integers).
+% Each natural number $n$ is identified with the set of all smaller numbers: $n =
+% \{ m | m < n \}$.  The formula $m < n$ is thus equivalent to the condition: $m
+% \in n$ and $m,n \in \omega$. In particular, 0 is the number zero and at the
+% same time the empty set $\varnothing$, $1=\{0\}$, $2=\{0,1\}$, etc. ${}^B A$
+% denotes the set of all functions on $B$ to $A$ (i.e.\ with domain $B$ and range
+% included in $A$).  The members of ${}^\omega A$ are what are called {\em simple
+% infinite sequences},\index{simple infinite sequence}
+% with all {\em terms}\index{term} in $A$.  In case $n \in \omega$, the
+% members of ${}^n A$ are referred to as {\em finite $n$-termed
+% sequences},\index{finite $n$-termed
+% sequence} again
+% with terms in $A$.  The consecutive terms (function values) of a finite or
+% infinite sequence $f$ are denoted by $f_0, f_1, \ldots ,f_n,\ldots$.  Every
+% finite sequence $f \in \bigcup _{n \in \omega} {}^n A$ uniquely determines the
+% number $n$ such that $f \in {}^n A$; $n$ is called the {\em
+% length}\index{length of a sequence ({$"|\ "|$})} of $f$ and
+% is denoted by $|f|$.  $\langle a \rangle$ is the sequence $f$ with $|f|=1$ and
+% $f_0=a$; $\langle a,b \rangle$ is the sequence $f$ with $|f|=2$, $f_0=a$,
+% $f_1=b$; etc.  Given two finite sequences $f$ and $g$, we denote by $f\frown g$
+% their {\em concatenation},\index{concatenation} i.e., the
+% finite sequence $h$ determined by the
+% conditions:
+% \begin{eqnarray*}
+% & |h| = |f|+|g|;&  \\
+% & h_n = f_n & \mbox{\ for\ } n < |f|;  \\
+% & h_{|f|+n} = g_n & \mbox{\ for\ } n < |g|.
+% \end{eqnarray*}
+%
+% \subsection{Constants, Variables, and Expressions}
+%
+% A formal system has a set of {\em symbols}\index{symbol!in
+% a formal system} denoted
+% by $\mbox{\em SM}$.  A
+% precise set-theo\-ret\-i\-cal definition of this set is unimportant; a symbol
+% could be considered a primitive or atomic element if we wish.  We assume this
+% set is divided into two disjoint subsets:  a set $\mbox{\em CN}$ of {\em
+% constants}\index{constant!in a formal system} and a set $\mbox{\em VR}$ of
+% {\em variables}.\index{variable!in a formal system}  $\mbox{\em CN}$ and
+% $\mbox{\em VR}$ are each assumed to consist of countably many symbols which
+% may be arranged in finite or simple infinite sequences $c_0, c_1, \ldots$ and
+% $v_0, v_1, \ldots$ respectively, without repeating terms.  We will represent
+% arbitrary symbols by metavariables $\alpha$, $\beta$, etc.
+%
+% {\footnotesize\begin{quotation}
+% {\em Comment.} The variables of our formal system usually correspond to what
+% are considered ``metavariables'' in descriptions of specific formal systems in
+% the literature.  Typically, when describing a specific formal system a book
+% will postulate a set of primitive objects called variables, then procede to
+% describe their properties using metavariables that range over them, never
+% mentioning again the actual variables themselves.  Our formal system does not
+% mention these primitive variable objects at all but deals directly with
+% metavariables from the start.  This is a subtle but key distinction you should
+% keep in mind, and it makes our definition of ``formal system'' somewhat
+% different from that typically found in the literature.
+% \end{quotation}}
+%
+% Finite sequences all terms of which are symbols are called {\em
+% expressions}.\index{expression!in a formal system}  $\mbox{\em EX}$ is
+% the set of all expressions; thus
+% \begin{displaymath}
+% \mbox{\em EX} = \bigcup _{n \in \omega} {}^n \mbox{\em SM}.
+% \end{displaymath}
+%
+% A {\em constant-prefixed expression}\index{constant-prefixed expression}
+% is a an expression of non-zero length
+% whose first term is a constant.  We denote the set of all constant-prefixed
+% expressions by $\mbox{\em EX}_C = \{ e \in \mbox{\em EX} | ( |e| > 0 \wedge
+% e_0 \in \mbox{\em CN} ) \}$.
+%
+% A {\em constant-variable pair}\index{constant-variable pair}
+% is an expression of length 2 whose first term
+% is a constant and whose second term is a variable.  We denote the set of all
+% constant-variable pairs by $\mbox{\em EX}_2 = \{ e \in \mbox{\em EX}_C | ( |e|
+% = 2 \wedge e_1 \in \mbox{\em VR} ) \}$.
+%
+%
+% {\footnotesize\begin{quotation}
+% {\em Relationship to Metamath.} In general, the set $\mbox{\em SM}$
+% corresponds to the set of declared math symbols in a Metamath database, the
+% set $\mbox{\em CN}$ to those declared with \texttt{\$c} statements, and the set
+% $\mbox{\em VR}$ to those declared with \texttt{\$v} statements.  Of course a
+% Metamath database can only have a finite number of math symbols, whereas
+% formal systems in general can have an infinite number, although the number of
+% Metamath math symbols available is in principle unlimited.
+%
+% The set $\mbox{\em EX}_C$ corresponds to the set of permissible expressions
+% for \texttt{\$e}, \texttt{\$a}, and \texttt{\$p} statements.  The set $\mbox{\em EX}_2$
+% corresponds to the set of permissible expressions for \texttt{\$f} statements.
+% \end{quotation}}
+%
+% We denote by ${\cal V}(e)$ the set of all variables in an expression $e \in
+% \mbox{\em EX}$, i.e.\ the set of all $\alpha \in \mbox{\em VR}$ such that
+% $\alpha = e_n$ for some $n < |e|$.  We also denote (with abuse of notation) by
+% ${\cal V}(E)$ the set of all variables in a collection of expressions $E
+% \subseteq \mbox{\em EX}$, i.e.\ $\bigcup _{e \in E} {\cal V}(e)$.
+%
+%
+% \subsection{Substitution}
+%
+% Given a function $F$ from $\mbox{\em VR}$ to
+% $\mbox{\em EX}$, we
+% denote by $\sigma_{F}$ or just $\sigma$ the function from $\mbox{\em EX}$ to
+% $\mbox{\em EX}$ defined recursively for nonempty sequences by
+% \begin{eqnarray*}
+% & \sigma(<\alpha>) = F(\alpha) & \mbox{for\ } \alpha \in \mbox{\em VR}; \\
+% & \sigma(<\alpha>) = <\alpha> & \mbox{for\ } \alpha \not\in \mbox{\em VR}; \\
+% & \sigma(g \frown h) = \sigma(g) \frown
+%     \sigma(h) & \mbox{for\ } g,h \in \mbox{\em EX}.
+% \end{eqnarray*}
+% We also define $\sigma(\varnothing)=\varnothing$.  We call $\sigma$ a {\em
+% simultaneous substitution}\index{substitution!variable}\index{variable
+% substitution} (or just {\em substitution}) with {\em substitution
+% map}\index{substitution map} $F$.
+%
+% We also denote (with abuse of notation) by $\sigma(E)$ a substitution on a
+% collection of expressions $E \subseteq \mbox{\em EX}$, i.e.\ the set $\{
+% \sigma(e) | e \in E \}$.  The collection $\sigma(E)$ may of course contain
+% fewer expressions than $E$ because duplicate expressions could result from the
+% substitution.
+%
+% \subsection{Statements}
+%
+% We denote by $\mbox{\em DV}$ (for ``distinct variables'') the set of all
+% unordered pairs $\{\alpha, \beta \} \subseteq \mbox{\em VR}$ such that $\alpha
+% \neq \beta$.
+%
+% A {\em statement}\index{statement!in a formal system} is a
+% quadruple $\langle D,T,H,A \rangle$ such that
+% $D\subseteq \mbox{\em DV}$, $T\subseteq \mbox{\em EX}_2$, $H\subseteq
+% \mbox{\em EX}_C$, $A\in \mbox{\em EX}_C$, ${\cal V}(H\cup\{A\}) \subseteq
+% {\cal V}(T)$, and $\forall e,f\in T {\ } {\cal V}(e) \neq {\cal V}(f)$ (or
+% equivalently, $e_1 \ne f_1$). The terms of the quadruple are called {\em
+% distinct-variable restrictions},\index{disjoint-variable restriction!in a
+% formal system} {\em variable-type hypotheses},\index{variable-type
+% hypothesis!in a formal system} {\em logical hypotheses},\index{logical
+% hypothesis!in a formal system} and the {\em assertion}\index{assertion!in a
+% formal system} respectively.  We denote by $T_M$ ({\em mandatory variable-type
+% hypotheses}\index{mandatory variable-type hypothesis!in a formal system}) the
+% subset of $T$ such that ${\cal V}(T_M) ={\cal V}(H \cup \{A\})$.  We denote by
+% $D_M=\{\{\alpha,\beta\}\in D|\{\alpha,\beta\}\subseteq {\cal V}(T_M)\}$ the
+% {\em mandatory distinct-variable restrictions}\index{mandatory
+% disjoint-variable restriction!in a formal system} of the statement.  The set
+% of {\em mandatory hypotheses}\index{mandatory hypothesis!in a formal system}
+% is $T_M\cup H$.
+%
+% {\footnotesize\begin{quotation}
+% {\em Comment.}  $T$ is a set of expressions, each of length 2, that associate
+% a set of constants (``variable types'') with a set of variables.  The
+% condition ${\cal V}(H\cup\{A\}) \subseteq {\cal V}(T) $
+% means that each variable occurring in a statement's logical
+% hypotheses or assertion must have an associated variable-type hypothesis or
+% ``type declaration,'' in  analogy to a computer programming language, where a
+% variable must be declared to be say, a string or an integer.  The requirement
+% that $\forall e,f\in T \, e_1 \ne f_1$) means that each variable must be
+% associated with a unique constant designating its variable type; e.g., a
+% variable might be a ``wff'' or a ``set'' but not both.
+%
+% Distinct-variable restrictions are used to specify what variable substitutions
+% are permissible to make for the statement to remain valid.  For example, in
+% the theorem scheme of set theory $\lnot\forall x\,x=y$ we may not substitute
+% the same variable for both $x$ and $y$.  On the other hand, the theorem scheme
+% $x=y\to y=x$ does not require that $x$ and $y$ be distinct, so we do not
+% require a distinct-variable restriction, although having one
+% would cause no harm other than making the scheme less general.
+%
+% A mandatory variable-type hypothesis is one whose variable exists in a logical
+% hypothesis or the assertion.  A provable statement (defined below) may require
+% non-mandatory variable-type hypotheses that effectively introduce ``dummy''
+% variables for use in its proof.  Any number of dummy variables might
+% be required by a specific proof; indeed, it has shown by H.\
+% Andr\'{e}ka\index{Andr{\'{e}}ka, H.} \cite{Nemeti} that there is no finite
+% upper bound to the number of dummy variables needed to prove an arbitrary
+% theorem in first-order logic (with equality) having a fixed number $n>2$ of
+% individual variables.  (See also the Comment on p.~\pageref{nodd}.)
+% Axiomatic statements never need non-mandatory
+% variable-type hypotheses, since their assertions are given rather than proved,
+% but we allow them for convenience.
+% \end{quotation}}
+%
+% {\footnotesize\begin{quotation}
+% {\em Relationship to Metamath.} A statement of a formal system
+% corresponds to an extended frame in a Metamath database
+% (Section~\ref{frames}).  The collections $D$, $T$, and $H$ correspond
+% respectively to the \texttt{\$d}, \texttt{\$f}, and \texttt{\$e}
+% statement collections in an extended frame.  The expression $A$
+% corresponds to the \texttt{\$a} (or \texttt{\$p}) statement in an
+% extended frame.
+% \end{quotation}}
+%
+% \subsection{Formal Systems}
+%
+% A {\em formal system}\index{formal system} is a
+% triple $\langle \mbox{\em CN},\mbox{\em
+% VR},\Gamma\rangle$ where $\Gamma$ is a set of statements.  The members of
+% $\Gamma$ are called {\em axiomatic statements}.\index{axiomatic
+% statement!in a formal system}  Sometimes we will refer to a
+% formal system by just $\Gamma$ when $\mbox{\em CN}$ and $\mbox{\em VR}$ are
+% understood.
+%
+% Given a formal system $\Gamma$, the {\em closure}\index{closure} of a statement
+% $\langle D,T,H,A \rangle$ is the smallest set $C$ of expressions
+% such that:
+% %\begin{enumerate}
+% %  \item $T\cup H\subseteq C$; and
+% %  \item If for some axiomatic statement
+% %    $\langle D',T',H',A' \rangle \in \Gamma_A$, for
+% %    some $E \subseteq C$, some $F \subseteq C-T$ (where ``-'' denotes
+% %    set difference), and some substitution
+% %    $\sigma$ we have
+% %    \begin{enumerate}
+% %       \item $\sigma(T'_M) = E$ (where, as above, the $M$ denotes the
+% %           mandatory variable-type hypotheses of $T^A$);
+% %       \item $\sigma(H') = F$;
+% %       \item for all $\{\alpha,\beta\}\in D^A$ and $\subseteq
+% %         {\cal V}(T'_M)$, for all $\gamma\in {\cal V}(\sigma(\langle \alpha
+% %         \rangle))$, and for all $\delta\in  {\cal V}(\sigma(\langle \beta
+% %         \rangle))$, we have $\{\gamma, \delta\} \in D$;
+% %   \end{enumerate}
+% %   then $\sigma(A') \in C$.
+% %\end{enumerate}
+% \begin{list}{}{\itemsep 0.0pt}
+%   \item[1.] $T\cup H\subseteq C$; and
+%   \item[2.] If for some axiomatic statement
+%     $\langle D',T',H',A' \rangle \in
+%        \Gamma$, for
+%     some $E \subseteq C$, and for some substitution
+%     $\sigma$ we have
+%     \begin{enumerate}
+%        \item[a.] $\sigma(T'_M \cup H') = E$ (where, as defined above, the
+%            subscript $M$ means mandatory); and
+%        \item[b.] for all $\{\alpha,\beta\}\in D_M'$, for all $\gamma\in
+%          {\cal V}(\sigma(\langle \alpha
+%          \rangle))$, and for all $\delta\in  {\cal V}(\sigma(\langle \beta
+%          \rangle))$, we have $\{\gamma, \delta\} \in D$;
+%    \end{enumerate}
+%    then $\sigma(A') \in C$.
+% \end{list}
+% The statement $\langle D,T,H,A
+% \rangle$ is {\em provable}\index{provable statement!in a formal
+% system} if $A\in C$ i.e.\ if its assertion belongs to its
+% closure.  The {\em universe}\index{universe of a formal system}
+% of a formal system is
+% the collection of all of its provable statements.  Note that the
+% set of axiomatic statements $\Gamma$ in a formal system is a subset of its
+% universe.
+%
+% {\footnotesize\begin{quotation}
+% {\em Comment.} The first condition in the definition of closure simply says
+% that the hypotheses of the statement are in its closure.
+%
+% Condition 2(a) says that a substitution exists that makes the
+% mandatory hypotheses of an axiomatic statement exactly match some members of
+% the closure.  This is what we explicitly demonstrate in a Metamath language
+% proof.
+%
+% %Conditions 2(a) and 2(b) say that a substitution exists that makes the
+% %(mandatory) hypotheses of an axiomatic statement exactly match some members of
+% %the closure.  This is what we explicitly demonstrate with a Metamath language
+% %proof.
+% %
+% %The set of expressions $F$ in condition 2(b) excludes the variable-type
+% %hypotheses; this is done because non-mandatory variable-type hypotheses are
+% %effectively ``dropped'' as irrelevant whereas logical hypotheses must be
+% %retained to achieve a consistent logical system.
+%
+% Condition 2(b) describes how distinct-variable restrictions in the axiomatic
+% statement must be met.  It means that after a substitution for two variables
+% that must be distinct, the resulting two expressions must either contain no
+% variables, or if they do, they may not have variables in common, and each pair
+% of any variables they do have, with one variable from each expression, must be
+% specified as distinct in the original statement.
+% \end{quotation}}
+%
+% {\footnotesize\begin{quotation}
+% {\em Relationship to Metamath.} Axiomatic and provable statements in a formal
+% system correspond to the extended frames for \texttt{\$a} and \texttt{\$p} statements
+% respectively in a Metamath database.  The set of axiomatic statements are a
+% subset of the set of provable statements in a formal system, although in a
+% Metamath database a \texttt{\$a} statement is distinguished by not having a
+% proof.  A Metamath language proof for a \texttt{\$p} statement tells the computer
+% how to explicitly construct a series of members of the closure ultimately
+% leading to a demonstration that the assertion
+% being proved is in the closure.  The actual closure typically contains
+% an infinite number of expressions.  A formal system itself does not have
+% an explicit object called a ``proof'' but rather the existence of a proof
+% is indicated indirectly by membership of an assertion in a provable
+% statement's closure.  We do this to make the formal system easier
+% to describe in the language of set theory.
+%
+% We also note that once established as provable, a statement may be considered
+% to acquire the same status as an axiomatic statement, because if the set of
+% axiomatic statements is extended with a provable statement, the universe of
+% the formal system remains unchanged (provided that $\mbox{\em VR}$ is infinite and that
+% we regard as equivalent those provable statements differing only in their
+% non-mandatory hypotheses and non-mandatory distinct-variable restrictions).
+% In practice, this means we can build a hierarchy of provable statements to
+% more efficiently establish additional provable statements.  This is
+% what we do in Metamath when we allow proofs to reference previous
+% \texttt{\$p} statements as well as previous \texttt{\$a} statements.
+% \end{quotation}}
+%
+% \section{Examples of Formal Systems}
+%
+% {\footnotesize\begin{quotation}
+% {\em Relationship to Metamath.} The examples in this section, except Example~2,
+% are for the most part exact equivalents of the development in the set
+% theory database \texttt{set.mm}.  You may want to compare Examples~1, 3, and 5
+% to Section~\ref{metaaxioms}, Example 4 to Sections~\ref{metadefprop} and
+% \ref{metadefpred}, and Example 6 to
+% Section~\ref{setdefinitions}.\label{exampleref}
+% \end{quotation}}
+%
+% \subsection{Example~1---Propositional Calculus}\index{propositional calculus}
+%
+% Classical propositional calculus can be described by the following formal
+% system.  We assume the set of variables is infinite.  Rather than denoting the
+% constants and variables by $c_0, c_1, \ldots$ and $v_0, v_1, \ldots$, for
+% readability we will instead use more conventional symbols, with the
+% understanding of course that they denote distinct primitive objects.
+% Also for readability we may omit commas between successive terms of a
+% sequence; thus $\langle \mbox{wff\ } \varphi\rangle$ denotes
+% $\langle \mbox{wff}, \varphi\rangle$.
+%
+% Let
+% \begin{itemize}
+%   \item[] $\mbox{\em CN}=\{\mbox{wff}, \vdash, \to, \lnot, (,)\}$
+%   \item[] $\mbox{\em VR}=\{\varphi,\psi,\chi,\ldots\}$
+%   \item[] $T = \{\langle \mbox{wff\ } \varphi\rangle,
+%              \langle \mbox{wff\ } \psi\rangle,
+%              \langle \mbox{wff\ } \chi\rangle,\ldots\}$, i.e.\ all
+%              expressions of length 2 whose first member is $\mbox{\rm wff}$
+%              and whose second member belongs to $\mbox{\em VR}$.\footnote{For
+% convenience we let $T$ be an infinite set; the definition of a statement
+% permits this in principle.  Since a Metamath source file has a finite size, in
+% practice we must of course use appropriate finite subsets of this $T$,
+% specifically ones containing at least the mandatory variable-type
+% hypotheses.  Similarly, in the source file we introduce new variables as
+% required, with the understanding that a potentially infinite number of
+% them are available.}
+% \noindent Then $\Gamma$ consists of the following statements:
+%     \begin{itemize}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }\lnot\varphi\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash(\varphi\to(\psi\to\varphi))
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash((\varphi\to(\psi\to\chi))\to
+%                ((\varphi\to\psi)\to(\varphi\to\chi)))
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash((\lnot\varphi\to\lnot\psi)\to
+%                (\psi\to\varphi))\rangle\rangle$
+%       \item[] $\langle\varnothing,T,
+%                \{\langle\vdash(\varphi\to\psi)\rangle,
+%                  \langle\vdash\varphi\rangle\},
+%                \langle\vdash\psi\rangle\rangle$
+%     \end{itemize}
+% \end{itemize}
+%
+% We call the members of $\mbox{\em VR}$ {\em wff variables} or (in the context
+% of first-order logic which we will describe shortly) {\em wff metavariables}.
+% Note that the symbols $\phi$, $\psi$, etc.\ denote actual specific members of
+% $\mbox{\em VR}$; they are not metavariables of our expository language (which
+% we denote with $\alpha$, $\beta$, etc.) but are instead (meta)constant symbols
+% (members of $\mbox{\em SM}$) from the point of view of our expository
+% language.  The equivalent system of propositional calculus described in
+% \cite{Tarski1965} also uses the symbols $\phi$, $\psi$, etc.\ to denote wff
+% metavariables, but in \cite{Tarski1965} unlike here those are metavariables of
+% the expository language and not primitive symbols of the formal system.
+%
+% The first two statements define wffs: if $\varphi$ and $\psi$ are wffs, so is
+% $(\varphi \to \psi)$; if $\varphi$ is a wff, so is $\lnot\varphi$. The next
+% three are the axioms of propositional calculus: if $\varphi$ and $\psi$ are
+% wffs, then $\vdash (\varphi \to (\psi \to \varphi))$ is an (axiomatic)
+% theorem; etc. The
+% last is the rule of modus ponens: if $\varphi$ and $\psi$ are wffs, and
+% $\vdash (\varphi\to\psi)$ and $\vdash \varphi$ are theorems, then $\vdash
+% \psi$ is a theorem.
+%
+% The correspondence to ordinary propositional calculus is as follows.  We
+% consider only provable statements of the form $\langle\varnothing,
+% T,\varnothing,A\rangle$ with $T$ defined as above.  The first term of the
+% assertion $A$ of any such statement is either ``wff'' or ``$\vdash$''.  A
+% statement for which first term is ``wff'' is a {\em wff} of propositional
+% calculus, and one where the first term is ``$\vdash$'' is a {\em
+% theorem (scheme)} of propositional calculus.
+%
+% The universe of this formal system also contains many other provable
+% statements.  Those with distinct-variable restrictions are irrelevant because
+% propositional calculus has no constraints on substitutions.  Those that have
+% logical hypotheses we call {\em inferences}\index{inference} when
+% the logical hypotheses are of the form
+% $\langle\vdash\rangle\frown w$ where $w$ is a wff (with the leading constant
+% term ``wff'' removed).  Inferences (other than the modus ponens rule) are not a
+% proper part of propositional calculus but are convenient to use when building a
+% hierarchy of provable statements.  A provable statement with a nonsense
+% hypothesis such as $\langle \to,\vdash,\lnot\rangle$, and this same expression
+% as its assertion, we consider irrelevant; no use can be made of it in
+% proving theorems, since there is no way to eliminate the nonsense hypothesis.
+%
+% {\footnotesize\begin{quotation}
+% {\em Comment.} Our use of parentheses in the definition of a wff illustrates
+% how axiomatic statements should be carefully stated in a way that
+% ties in unambiguously with the substitutions allowed by the formal system.
+% There are many ways we could have defined wffs---for example, Polish
+% prefix notation would have allowed us to omit parentheses entirely, at
+% the expense of readability---but we must define them in a way that is
+% unambiguous.  For example, if we had omitted parentheses from the
+% definition of $(\varphi\to \psi)$, the wff $\lnot\varphi\to \psi$ could
+% be interpreted as either $\lnot(\varphi\to\psi)$ or $(\lnot\varphi\to\psi)$
+% and would have allowed us to prove nonsense.  Note that there is no
+% concept of operator binding precedence built into our formal system.
+% \end{quotation}}
+%
+% \subsection{Example~2---Predicate Calculus with Equality}\index{predicate
+% calculus}
+%
+% Here we extend Example~1 to include predicate calculus with equality,
+% illustrating the use of distinct-variable restrictions.  This system is the
+% same as Tarski's system $\mathfrak{S}_2$ in \cite{Tarski1965} (except that the
+% axioms of propositional calculus are different but equivalent, and a redundant
+% axiom is omitted).  We extend $\mbox{\em CN}$ with the constants
+% $\{\mbox{var},\forall,=\}$.  We extend $\mbox{\em VR}$ with an infinite set of
+% {\em individual metavariables}\index{individual
+% metavariable} $\{x,y,z,\ldots\}$ and denote this subset
+% $\mbox{\em Vr}$.
+%
+% We also join to $\mbox{\em CN}$ a possibly infinite set $\mbox{\em Pr}$ of {\em
+% predicates} $\{R,S,\ldots\}$.  We associate with $\mbox{\em Pr}$ a function
+% $\mbox{rnk}$ from $\mbox{\em Pr}$ to $\omega$, and for $\alpha\in \mbox{\em
+% Pr}$ we call $\mbox{rnk}(\alpha)$ the {\em rank} of the predicate $\alpha$,
+% which is simply the number of ``arguments'' that the predicate has.  (Most
+% applications of predicate calculus will have a finite number of predicates;
+% for example, set theory has the single two-argument or binary predicate $\in$,
+% which is usually written with its arguments surrounding the predicate symbol
+% rather than with the prefix notation we will use for the general case.)  As a
+% device to facilitate our discussion, we will let $\mbox{\em Vs}$ be any fixed
+% one-to-one function from $\omega$ to $\mbox{\em Vr}$; thus $\mbox{\em Vs}$ is
+% any simple infinite sequence of individual metavariables with no repeating
+% terms.
+%
+% In this example we will not include the function symbols that are often part of
+% formalizations of predicate calculus.  Using metalogical arguments that are
+% beyond the scope of our discussion, it can be shown that our formalization is
+% equivalent when functions are introduced via appropriate definitions.
+%
+% We extend the set $T$ defined in Example~1 with the expressions
+% $\{\langle \mbox{var\ } x\rangle,$ $ \langle \mbox{var\ } y\rangle, \langle
+% \mbox{var\ } z\rangle,\ldots\}$.  We extend the $\Gamma$ above with this
+% extended $T$ and also with the following axiomatic statements:
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }\forall x\,\varphi\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }x=y\rangle\rangle$
+%       \item[] $\langle\varnothing,T,
+%                \{\langle\vdash\varphi\rangle\},
+%                \langle\vdash\forall x\,\varphi\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash((\forall x(\varphi\to\psi)
+%                   \to(\forall x\,\varphi\to\forall x\,\psi))
+%                \rangle\rangle$
+%       \item[] $\langle\{\{x,\varphi\}\},T,\varnothing,
+%                \langle \vdash(\varphi\to\forall x\,\varphi)
+%                \rangle\rangle$
+%       \item[] $\langle\{\{x,y\}\},T,\varnothing,
+%                \langle \vdash\lnot\forall x\lnot x=y
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash(x=z
+%                   \to(x=y\to z=y))
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash(y=z
+%                   \to(x=y\to x=z))
+%                \rangle\rangle$
+% \end{list}
+% These are the axioms not involving predicate symbols. The first two statements
+% extend the definition of a wff.  The third is the rule of generalization.  The
+% fifth states, in effect, ``For a wff $\varphi$ and variable $x$,
+% $\vdash(\varphi\to\forall x\,\varphi)$, provided that $x$ does not occur in
+% $\varphi$.''  The sixth states ``For a variables $x$ and $y$,
+% $\vdash\lnot\forall x\lnot x = y$, provided that $x$ and $y$ are distinct.''
+% (This proviso is not necessary but was included by Tarski to
+% weaken the axiom and still show that the system is logically complete.)
+%
+% Finally, for each predicate symbol $\alpha\in \mbox{\em Pr}$, we add to
+% $\Gamma$ the following axiomatic statement that extends the definition of wff:
+% \begin{displaymath}
+%     \langle\varnothing,T,\varnothing,
+%             \langle \mbox{wff},\alpha\rangle\
+%             \frown \mbox{\em Vs}\restriction\mbox{rnk}(\alpha)\rangle
+% \end{displaymath}
+% and for each $\alpha\in \mbox{\em Pr}$ and each $n < \mbox{rnk}(\alpha)$
+% we add to $\Gamma$ the following equality axiom:
+% \begin{eqnarray*}
+%     \lefteqn{\langle\varnothing,T,\varnothing,
+%             \langle
+%       \vdash,(,\mbox{\em Vs}_n,=,\mbox{\em Vs}_{\mbox{rnk}(\alpha)},\to,
+%             (,\alpha\rangle\frown \mbox{\em Vs}\restriction\mbox{rnk}(\alpha)} \\
+%   & & \frown
+%             \langle\to,\alpha\rangle\frown \mbox{\em Vs}\restriction n\frown
+%             \langle \mbox{\em Vs}_{\mbox{rnk}(\alpha)}\rangle \\
+%  & & \frown
+%             \mbox{\em Vs}\restriction(\mbox{rnk}(\alpha)\setminus(n+1))\frown
+%             \langle),)\rangle\rangle
+% \end{eqnarray*}
+% where $\restriction$ denotes function domain restriction and $\setminus$
+% denotes set difference.  Recall that a subscript on $\mbox{\em Vs}$
+% denotes one of its terms.  (In the above two axiom sets commas are placed
+% between successive terms of sequences to prevent ambiguity, and if you examine
+% them with care you will be able to distinguish those parentheses that denote
+% constant symbols from those of our expository language that delimit function
+% arguments.  Although it might have been better to use boldface for our
+% primitive symbols, unfortunately boldface was not available for all characters
+% on the \LaTeX\ system used to typeset this text.)  These seemingly forbidding
+% axioms can be understood by analogy to concatenation of substrings in a
+% computer language.  They are actually relatively simple for each specific case
+% and will become clearer by looking at the special case of a binary predicate
+% $\alpha = R$ where $\mbox{rnk}(R)=2$.  Letting $\mbox{\em Vs}$ be the sequence
+% $\langle x,y,z,\ldots\rangle$, the axioms we would add to $\Gamma$ for this
+% case would be the wff extension and two equality axioms:
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }R x y\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash(x=z
+%                   \to(R x y \to R z y))
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash(y=z
+%                   \to(R x y \to R x z))
+%                \rangle\rangle$
+% \end{list}
+% Study these carefully to see how the general axioms above evaluate to
+% them.  In practice, typically only a few special cases such as this would be
+% needed, and in any case the Metamath language will only permit us to describe
+% a finite number of predicates, as opposed to the infinite number permitted by
+% the formal system.  (If an infinite number should be needed for some reason,
+% we could not define the formal system directly in the Metamath language but
+% could instead define it metalogically under set theory as we
+% do in this appendix, and only the underlying set theory, with its single
+% binary predicate, would be defined directly in the Metamath language.)
+%
+%
+% {\footnotesize\begin{quotation}
+% {\em Comment.}  As we noted earlier, the specific variables denoted by the
+% symbols $x,y,z,\ldots\in \mbox{\em Vr}\subseteq \mbox{\em VR}\subseteq
+% \mbox{\em SM}$ in Example~2 are not the actual variables of ordinary predicate
+% calculus but should be thought of as metavariables ranging over them.  For
+% example, a distinct-variable restriction would be meaningless for actual
+% variables of ordinary predicate calculus since two different actual variables
+% are by definition distinct.  And when we talk about an arbitrary
+% representative $\alpha\in \mbox{\em Vr}$, $\alpha$ is a metavariable (in our
+% expository language) that ranges over metavariables (which are primitives of
+% our formal system) each of which ranges over the actual individual variables
+% of predicate calculus (which are never mentioned in our formal system).
+% \end{quotation}}
+%
+% \subsection{Free Variables and Proper Substitution}\index{free variable}
+% \index{proper substitution}\index{substitution!proper}
+%
+% In the system of Example~2, there are no primitive notions of free variable
+% and proper substitution.  Tarski \cite{Tarski1965} shows that this system is
+% logically equivalent to the more typical textbook systems that do have these
+% primitive notions, if we introduce these notions with appropriate definitions
+% and metalogic.  We could also define axioms for such systems directly,
+% although the recursive definitions of free variable and proper substitution
+% would be messy and awkward to work with.  Instead, we mention two devices that
+% can be used in practice to mimic these notions.  (1) Instead of introducing
+% special notation to express (as a logical hypothesis) ``where $x$ is not free
+% in $\varphi$'' we can use the logical hypothesis $\vdash(\varphi\to\forall
+% x\,\varphi)$.\label{effectivelybound}\index{effectively
+% not free}\footnote{This is a slightly weaker requirement than ``where $x$ is
+% not free in $\varphi$.''  If we let $\varphi$ be $x=x$, we have the theorem
+% $(x=x\to\forall x\,x=x)$ which satisfies the hypothesis, even though $x$ is
+% free in $x=x$ .  In a case like this we say that $x$ is {\em effectively not
+% free}\index{effectively not free} in $x=x$, since $x=x$ is logically
+% equivalent to $\forall x\,x=x$ in which $x$ is bound.} (2) It can be shown
+% that the wff $((x=y\to\varphi)\wedge\exists x(x=y\wedge\varphi))$ (with the
+% usual definitions of $\wedge$ and $\exists$; see Example~4 below) is logically
+% equivalent to ``the wff that results from proper substitution of $y$ for $x$
+% in $\varphi$.''  This works whether or not $x$ and $y$ are distinct.
+%
+% \subsection{Metalogical Completeness}\index{metalogical completeness}
+%
+% In the system of Example~2, the
+% following are provable statements:
+% \begin{eqnarray*}
+%       & \langle\{\{x,y\}\},T,\varnothing,
+%                \langle \vdash\lnot\forall x\lnot x=y
+%                \rangle\rangle & \\
+%      &  \langle\varnothing,T,\varnothing,
+%                \langle \vdash\lnot\forall x\lnot x=x
+%                \rangle\rangle &
+% \end{eqnarray*}
+% whereas the following statement is not to my knowledge provable (but
+% in any case we will pretend it's not for sake of illustration) :
+% \begin{eqnarray*}
+%      &  \langle\varnothing,T,\varnothing,
+%                \langle \vdash\lnot\forall x\lnot x=y
+%                \rangle\rangle &
+% \end{eqnarray*}
+% In other words, we can prove ``$\lnot\forall x\lnot x=y$ where $x$ and $y$ are
+% distinct'' and separately prove ``$\lnot\forall x\lnot x=x$'', but we can't
+% prove the combined general case ``$\lnot\forall x\lnot x=y$'' that has no
+% proviso.  Now this does not compromise logical completeness, because the
+% variables are really metavariables and the two provable cases together cover
+% all possible cases.  The third case can be considered a metatheorem whose
+% direct proof, using the system of Example~2, lies outside the capability of the
+% formal system.
+%
+% Also, in the system of Example~2 the following statement is not to my
+% knowledge provable (again, a conjecture that we will pretend to be the case):
+% \begin{eqnarray*}
+%      & \langle\varnothing,T,\varnothing,
+%                \langle \vdash(\forall x\, \varphi\to\varphi)
+%                \rangle\rangle &
+% \end{eqnarray*}
+% Instead, we can only prove specific cases of $\varphi$ involving individual
+% metavariables, and by induction on formula length, prove as a metatheorem
+% outside of our formal system the general statement above.  The details of this
+% proof are found in \cite{Kalish}.
+%
+% There does, however, exist a system of predicate calculus in which all such
+% ``simple metatheorems'' as those above can be proved directly, and we present
+% it in Example~3. A {\em simple metatheorem}\index{simple metatheorem}
+% is any statement of the formal
+% system of Example~2 where all distinct variable restrictions consist of either
+% two individual metavariables or an individual metavariable and a wff
+% metavariable, and which is provable by combining cases outside the system as
+% above.  A system is {\em metalogically complete}\index{metalogical
+% completeness} if all of its simple
+% metatheorems are (directly) provable statements. The precise definition of
+% ``simple metatheorem'' and the proof of the ``metalogical completeness'' of
+% Example~3 is found in Remark 9.6 and Theorem 9.7 of \cite{Megill}.\index{Megill,
+% Norman}
+%
+% \subsection{Example~3---Metalogically Complete Predicate
+% Calculus with
+% Equality}
+%
+% For simplicity we will assume there is one binary predicate $R$;
+% this system suffices for set theory, where the $R$ is of course the $\in$
+% predicate.  We label the axioms as they appear in \cite{Megill}.  This
+% system is logically equivalent to that of Example~2 (when the latter is
+% restricted to this single binary predicate) but is also metalogically
+% complete.\index{metalogical completeness}
+%
+% Let
+% \begin{itemize}
+%   \item[] $\mbox{\em CN}=\{\mbox{wff}, \mbox{var}, \vdash, \to, \lnot, (,),\forall,=,R\}$.
+%   \item[] $\mbox{\em VR}=\{\varphi,\psi,\chi,\ldots\}\cup\{x,y,z,\ldots\}$.
+%   \item[] $T = \{\langle \mbox{wff\ } \varphi\rangle,
+%              \langle \mbox{wff\ } \psi\rangle,
+%              \langle \mbox{wff\ } \chi\rangle,\ldots\}\cup
+%        \{\langle \mbox{var\ } x\rangle, \langle \mbox{var\ } y\rangle, \langle
+%        \mbox{var\ }z\rangle,\ldots\}$.
+%
+% \noindent Then
+%   $\Gamma$ consists of the following statements:
+%     \begin{itemize}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }(\varphi\to\psi)\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }\lnot\varphi\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }\forall x\,\varphi\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }x=y\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }Rxy\rangle\rangle$
+%       \item[(C1$'$)] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash(\varphi\to(\psi\to\varphi))
+%                \rangle\rangle$
+%       \item[(C2$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash((\varphi\to(\psi\to\chi))\to
+%                ((\varphi\to\psi)\to(\varphi\to\chi)))
+%                \rangle\rangle$
+%       \item[(C3$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash((\lnot\varphi\to\lnot\psi)\to
+%                (\psi\to\varphi))\rangle\rangle$
+%       \item[(C4$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\forall x(\forall x\,\varphi\to\psi)\to
+%                  (\forall x\,\varphi\to\forall x\,\psi))\rangle\rangle$
+%       \item[(C5$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\forall x\,\varphi\to\varphi)\rangle\rangle$
+%       \item[(C6$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\forall x\forall y\,\varphi\to
+%                  \forall y\forall x\,\varphi)\rangle\rangle$
+%       \item[(C7$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\lnot\varphi\to\forall x\lnot\forall x\,\varphi
+%                  )\rangle\rangle$
+%       \item[(C8$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(x=y\to(x=z\to y=z))\rangle\rangle$
+%       \item[(C9$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\lnot\forall x\, x=y\to(\lnot\forall x\, x=z\to
+%                  (y=z\to\forall x\, y=z)))\rangle\rangle$
+%       \item[(C10$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\forall x(x=y\to\forall x\,\varphi)\to
+%                  \varphi))\rangle\rangle$
+%       \item[(C11$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\forall x\, x=y\to(\forall x\,\varphi
+%                \to\forall y\,\varphi))\rangle\rangle$
+%       \item[(C12$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(x=y\to(Rxz\to Ryz))\rangle\rangle$
+%       \item[(C13$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(x=y\to(Rzx\to Rzy))\rangle\rangle$
+%       \item[(C15$'$)] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(\lnot\forall x\, x=y\to(x=y\to(\varphi
+%                  \to\forall x(x=y\to\varphi))))\rangle\rangle$
+%       \item[(C16$'$)] $\langle\{\{x,y\}\},T,
+%                \varnothing,
+%                \langle \vdash(\forall x\, x=y\to(\varphi\to\forall x\,\varphi)
+%                  )\rangle\rangle$
+%       \item[(C5)] $\langle\{\{x,\varphi\}\},T,\varnothing,
+%                \langle \vdash(\varphi\to\forall x\,\varphi)
+%                \rangle\rangle$
+%       \item[(MP)] $\langle\varnothing,T,
+%                \{\langle\vdash(\varphi\to\psi)\rangle,
+%                  \langle\vdash\varphi\rangle\},
+%                \langle\vdash\psi\rangle\rangle$
+%       \item[(Gen)] $\langle\varnothing,T,
+%                \{\langle\vdash\varphi\rangle\},
+%                \langle\vdash\forall x\,\varphi\rangle\rangle$
+%     \end{itemize}
+% \end{itemize}
+%
+% While it is known that these axioms are ``metalogically complete,'' it is
+% not known whether they are independent (i.e.\ none is
+% redundant) in the metalogical sense; specifically, whether any axiom (possibly
+% with additional non-mandatory distinct-variable restrictions, for use with any
+% dummy variables in its proof) is provable from the others.  Note that
+% metalogical independence is a stronger requirement than independence in the
+% usual logical sense.  Not all of the above axioms are logically independent:
+% for example, C9$'$ can be proved as a metatheorem from the others, outside the
+% formal system, by combining the possible cases of distinct variables.
+%
+% \subsection{Example~4---Adding Definitions}\index{definition}
+% There are several ways to add definitions to a formal system.  Probably the
+% most proper way is to consider definitions not as part of the formal system at
+% all but rather as abbreviations that are part of the expository metalogic
+% outside the formal system.  For convenience, though, we may use the formal
+% system itself to incorporate definitions, adding them as axiomatic extensions
+% to the system.  This could be done by adding a constant representing the
+% concept ``is defined as'' along with axioms for it. But there is a nicer way,
+% at least in this writer's opinion, that introduces definitions as direct
+% extensions to the language rather than as extralogical primitive notions.  We
+% introduce additional logical connectives and provide axioms for them.  For
+% systems of logic such as Examples 1 through 3, the additional axioms must be
+% conservative in the sense that no wff of the original system that was not a
+% theorem (when the initial term ``wff'' is replaced by ``$\vdash$'' of course)
+% becomes a theorem of the extended system.  In this example we extend Example~3
+% (or 2) with standard abbreviations of logic.
+%
+% We extend $\mbox{\em CN}$ of Example~3 with new constants $\{\leftrightarrow,
+% \wedge,\vee,\exists\}$, corresponding to logical equivalence,\index{logical
+% equivalence ($\leftrightarrow$)}\index{biconditional ($\leftrightarrow$)}
+% conjunction,\index{conjunction ($\wedge$)} disjunction,\index{disjunction
+% ($\vee$)} and the existential quantifier.\index{existential quantifier
+% ($\exists$)}  We extend $\Gamma$ with the axiomatic statements:
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }(\varphi\leftrightarrow\psi)\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }(\varphi\vee\psi)\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }(\varphi\wedge\psi)\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }\exists x\, \varphi\rangle\rangle$
+%   \item[] $\langle\varnothing,T,\varnothing,
+%      \langle\vdash ( ( \varphi \leftrightarrow \psi ) \to
+%      ( \varphi \to \psi ) )\rangle\rangle$
+%   \item[] $\langle\varnothing,T,\varnothing,
+%      \langle\vdash ((\varphi\leftrightarrow\psi)\to
+%     (\psi\to\varphi))\rangle\rangle$
+%   \item[] $\langle\varnothing,T,\varnothing,
+%      \langle\vdash ((\varphi\to\psi)\to(
+%      (\psi\to\varphi)\to(\varphi
+%      \leftrightarrow\psi)))\rangle\rangle$
+%   \item[] $\langle\varnothing,T,\varnothing,
+%      \langle\vdash (( \varphi \wedge \psi ) \leftrightarrow\neg ( \varphi
+%      \to \neg \psi )) \rangle\rangle$
+%   \item[] $\langle\varnothing,T,\varnothing,
+%      \langle\vdash (( \varphi \vee \psi ) \leftrightarrow (\neg \varphi
+%      \to \psi )) \rangle\rangle$
+%   \item[] $\langle\varnothing,T,\varnothing,
+%      \langle\vdash (\exists x \,\varphi\leftrightarrow
+%      \lnot \forall x \lnot \varphi)\rangle\rangle$
+% \end{list}
+% The first three logical axioms (statements containing ``$\vdash$'') introduce
+% and effectively define logical equivalence, ``$\leftrightarrow$''.  The last
+% three use ``$\leftrightarrow$'' to effectively mean ``is defined as.''
+%
+% \subsection{Example~5---ZFC Set Theory}\index{ZFC set theory}
+%
+% Here we add to the system of Example~4 the axioms of Zermelo-Fraenkel set
+% theory with Choice.  For convenience we make use of the
+% definitions in Example~4.
+%
+% In the $\mbox{\em CN}$ of Example~4 (which extends Example~3), we replace the symbol $R$
+% with the symbol $\in$.  We remove from $\Gamma$ of Example~4 the three
+% axiomatic statements containing $R$ and replace them with the following:
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }x\in y\rangle\rangle$
+%       \item[] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(x=y\to(x\in z\to y\in z))\rangle\rangle$
+%       \item[] $\langle\varnothing,T,
+%                \varnothing,
+%                \langle \vdash(x=y\to(z\in x\to z\in y))\rangle\rangle$
+% \end{list}
+% Letting $D=\{\{\alpha,\beta\}\in \mbox{\em DV}\,|\alpha,\beta\in \mbox{\em
+% Vr}\}$ (in other words all individual variables must be distinct), we extend
+% $\Gamma$ with the ZFC axioms, called
+% \index{Axiom of Extensionality}
+% \index{Axiom of Replacement}
+% \index{Axiom of Union}
+% \index{Axiom of Power Sets}
+% \index{Axiom of Regularity}
+% \index{Axiom of Infinity}
+% \index{Axiom of Choice}
+% Extensionality, Replacement, Union, Power
+% Set, Regularity, Infinity, and Choice:
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[Ext] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash (\forall x(x\in y\leftrightarrow x \in z)\to y
+%                =z) \rangle\rangle$
+%       \item[Rep] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash\exists x ( \exists y \forall z (\varphi \to z = y
+%                         ) \to
+%                         \forall z ( z \in x \leftrightarrow \exists x ( x \in
+%                         y \wedge \forall y\,\varphi ) ) )\rangle\rangle$
+%       \item[Un] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash \exists x \forall y ( \exists x ( y \in x \wedge
+%                x \in z ) \to y \in x ) \rangle\rangle$
+%       \item[Pow] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash \exists x \forall y ( \forall x ( x \in y \to x
+%                \in z ) \to y \in x ) \rangle\rangle$
+%       \item[Reg] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash (  x \in y \to
+%                  \exists x ( x \in y \wedge \forall z ( z \in x \to \lnot z
+%                 \in y ) ) ) \rangle\rangle$
+%       \item[Inf] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash \exists x(y\in x\wedge\forall y(y\in
+%                x\to
+%                \exists z(y \in z\wedge z\in x))) \rangle\rangle$
+%       \item[AC] $\langle D,T,
+%                \varnothing,
+%                \langle\vdash \exists x \forall y \forall z ( ( y \in z
+%                \wedge z \in w ) \to \exists w \forall y ( \exists w
+%               ( ( y \in z \wedge z \in w ) \wedge ( y \in w \wedge w \in x
+%               ) ) \leftrightarrow y = w ) ) \rangle\rangle$
+% \end{list}
+%
+% \subsection{Example~6---Class Notation in Set Theory}\label{class}
+%
+% A powerful device that makes set theory easier (and that we have
+% been using all along in our informal expository language) is {\em class
+% abstraction notation}.\index{class abstraction}\index{abstraction class}  The
+% definitions we introduce are rigorously justified
+% as conservative by Takeuti and Zaring \cite{Takeuti}\index{Takeuti, Gaisi} or
+% Quine \cite{Quine}\index{Quine, Willard Van Orman}.  The key idea is to
+% introduce the notation $\{x|\mbox{---}\}$ which means ``the class of all $x$
+% such that ---'' for abstraction classes and introduce (meta)variables that
+% range over them.  An abstraction class may or may not be a set, depending on
+% whether it exists (as a set).  A class that does not exist is
+% called a {\em proper class}.\index{proper class}\index{class!proper}
+%
+% To illustrate the use of abstraction classes we will provide some examples
+% of definitions that make use of them:  the empty set, class union, and
+% unordered pair.  Many other such definitions can be found in the
+% Metamath set theory database, \texttt{set.mm}.
+%
+% We extend $\mbox{\em CN}$ of Example~5 with new symbols $\{\mbox{class}, \{,
+% |, \}, \varnothing, \cup, , \}$ where the inner braces and last comma are
+% constant symbols. (As before,
+% our dual use of some mathematical symbols for both our expository
+% language and as primitives of the formal system should be clear from context.)
+%
+% We extend $\mbox{\em VR}$ of Example~5 with a set of {\em class
+% variables}\index{class variable}
+% $\{A,B,C,\ldots\}$. We extend the $T$ of Example~5 with $\{\langle
+% \mbox{class\ } A\rangle, \langle \mbox{class\ }B\rangle, \langle \mbox{class\ }
+% C\rangle,\ldots\}$.
+%
+% We add to $\Gamma$ of Example~5 the following axiomatic statements to
+% introduce our definitions:
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{class\ }x\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{class\ }\{x|\varphi\}\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }A=B\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{wff\ }A\in B\rangle\rangle$
+%       \item[Ab] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash ( y \in \{ x |\varphi\} \leftrightarrow
+%                   ( ( x = y \to\varphi) \wedge \exists x ( x = y
+%                   \wedge\varphi) ))
+%                \rangle\rangle$
+%       \item[Eq] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
+%                \langle \vdash ( A = B \leftrightarrow
+%                \forall x ( x \in A \leftrightarrow x \in B ) )
+%                \rangle\rangle$
+%       \item[El] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
+%                \langle \vdash ( A \in B \leftrightarrow \exists x
+%                ( x = A \wedge x \in B ) )
+%                \rangle\rangle$
+% \end{list}
+% Here we say that an individual variable is a class; $\{x|\varphi\}$ is a
+% class; and we extend the definition of a wff to include class equality and
+% membership.  Axiom Ab defines membership of a variable in a class abstraction;
+% the right-hand side can be read as ``the wff that results from proper
+% substitution of $y$ for $x$ in $\varphi$.''\footnote{Note that this definition
+% makes unnecessary the introduction of a separate notation similar to
+% $\varphi(x|y)$ for proper substitution, although we may choose to do so to be
+% conventional.  Incidentally, $\varphi(x|y)$ as it stands would be ambiguous in
+% the formal systems of our examples, since we wouldn't know whether
+% $\lnot\varphi(x|y)$ meant $\lnot(\varphi(x|y))$ or $(\lnot\varphi)(x|y)$.
+% Instead, we would have to use an unambiguous variant such as $(\varphi\,
+% x|y)$.}  Axioms Eq and El extend the meaning of the existing equality and
+% membership connectives.  This is potentially dangerous and requires careful
+% justification.  For example, from Eq we can derive the Axiom of Extensionality
+% with predicate logic alone; thus in principle we should include the Axiom of
+% Extensionality as a logical hypothesis.  However we do not bother to do this
+% since we have already presupposed that axiom earlier. The distinct variable
+% restrictions should be read ``where $x$ does not occur in $A$ or $B$.''  We
+% typically do this when the right-hand side of a definition involves an
+% individual variable not in the expression being defined; it is done so that
+% the right-hand side remains independent of the particular ``dummy'' variable
+% we use.
+%
+% We continue to add to $\Gamma$ the following definitions for empty
+% set,\index{empty set} class union,\index{union} and unordered
+% pair.\index{unordered pair}  They should be self-explanatory.  Analogous to our
+% use of ``$\leftrightarrow$'' to define new wffs in Example~4, we use ``$=$''
+% to define new abstraction terms, and both may be read informally as ``is
+% defined as'' in this context.
+% \begin{list}{}{\itemsep 0.0pt}
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{class\ }\varnothing\rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \vdash \varnothing = \{ x | \lnot x = x \}
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{class\ }(A\cup B)\rangle\rangle$
+%       \item[] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
+%                \langle \vdash ( A \cup B ) = \{ x | ( x \in A \vee x \in B ) \}
+%                \rangle\rangle$
+%       \item[] $\langle\varnothing,T,\varnothing,
+%                \langle \mbox{class\ }\{A,B\}\rangle\rangle$
+%       \item[] $\langle\{\{x,A\},\{x,B\}\},T,\varnothing,
+%                \langle \vdash \{ A , B \} = \{ x | ( x = A \vee x = B ) \}
+%                \rangle\rangle$
+% \end{list}
+%
+% \section{Metamath as a Formal System}\label{theorymm}
+%
+% This section presupposes a familiarity with the Metamath computer language.
+%
+% Our theory describes formal systems and their universes.  The Metamath
+% language provides a way of representing these set-theoretical objects to a
+% computer.  A Metamath database, being a finite set of
+% {\sc ascii} characters, can usually describe only a subset of a formal system
+% and its universe, which are typically infinite.  However the database
+% can contain as large a finite subset of the formal system and its
+% universe as we wish.  (Of course a Metamath set theory database can
+% indirectly describe an entire infinite formal system by formalizing
+% the expository language in this Appendix.)
+%
+% For purpose of our discussion, we assume the Metamath database
+% is in the simple form described on p.~\pageref{framelist},
+% consisting of all constant and variable declarations at the beginning,
+% followed by a sequence of extended frames each
+% delimited by \texttt{\$\char`\{} and \texttt{\$\char`\}}.  Any Metamath database can
+% be converted to this form, as described on p.~\pageref{frameconvert}.
+%
+% The math symbol tokens of a Metamath source file, which are declared
+% with \texttt{\$c} and \texttt{\$v} statements, are names we assign to
+% representatives of $\mbox{\em CN}$ and $\mbox{\em VR}$.  For
+% definiteness we could assume that the first math symbol declared as a
+% variable corresponds to $v_0$, the second to $v_1$, etc., although the
+% exact correspondence we choose is not important.
+%
+% In the Metamath language, each \texttt{\$d}, \texttt{\$f}, and \texttt{\$e} source
+% statement in an extended frame (Section~\ref{frames})
+% corresponds respectively to a member of the
+% collections $D$, $T$, and $H$ in a formal system statement $\langle
+% D,T,H,A\rangle$.  The math symbol strings following these Metamath keywords
+% correspond to a variable pair (in the case of \texttt{\$d}) or an expression (for
+% the other two keywords). The math symbol string following a \texttt{\$a} source
+% statement corresponds to expression $A$ in an axiomatic statement of the
+% formal system; the one following a \texttt{\$p} source statement corresponds to
+% $A$ in a provable statement that is not axiomatic.  In other words, each
+% extended frame in the Metamath database corresponds to
+% a statement of the formal system.  (Don't confuse the two meanings of
+% ``statement'' here.  A statement of the formal system corresponds to the
+% several statements of the Metamath database that may constitute an extended
+% frame.)
+%
+% In order for the computer to verify that a formal system statement is
+% provable, each \texttt{\$p} source statement is accompanied by a proof.  However,
+% the proof does not correspond to anything in the formal system but is simply a
+% way of communicating to the computer the information needed for its
+% verification. The proof tells the computer {\em how to construct} specific
+% members of the formal system statement's closure, resulting in a member
+% matching the extended frame for the \texttt{\$p} statement; the formal system is
+% just concerned about the {\em existence} of members of the closure.
+%
+% As mentioned on p.~\pageref{exampleref},
+% Examples 1 and 3--6 in the previous Section parallel the development of logic
+% and set theory in the Metamath database \texttt{set.mm}.  You may find it
+% instructive to compare them.
 
 
 \chapter{The MIU System}
@@ -11474,7 +11701,7 @@ the system above because the MU-puzzle is a question {\em
 about} the system.  To prove the answer to the MU-puzzle,
 a much more elaborate system is needed, namely one that
 models the MIU-system within set theory.  (Incidentally, the
-answer to the MIU-puzzle is no.)
+answer to the MU-puzzle is no.)
 
 
 \chapter{Software Sources}\label{swsources}
@@ -11538,7 +11765,7 @@ or contact
 %payable to:\\
 Norman D. Megill\\
 19 Locke Lane, Lexington, MA 02420\\
-E-mail:  \texttt{nm@alum.mit.edu}
+E-mail:  \texttt{nm @ alum.mit.edu}
 \end{quote}
 
 
@@ -11578,3 +11805,544 @@ Metamath is a trademark of Norman D. Megill.
 
 \end{document}
 
+% Copy from here to end of file to metamath.bib, then remove "%bib%" prefix.
+
+%bib%%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%bib%@book{Albers, editor = "Donald J. Albers and G. L. Alexanderson",
+%bib%  title = "Mathematical People",
+%bib%  publisher = "Contemporary Books, Inc.",
+%bib%  address = "Chicago",
+%bib%  note = "[QA28.M37]",
+%bib%  year = 1985 }
+%bib%@book{Anderson, author = "Alan Ross Anderson and Nuel D. Belnap",
+%bib%  title = "Entailment",
+%bib%  publisher = "Princeton University Press",
+%bib%  address = "Princeton",
+%bib%  volume = 1,
+%bib%  note = "[QA9.A634 1975 v.1]",
+%bib%  year = 1975}
+%bib%@book{Barrow, author = "John D. Barrow",
+%bib%  title = "Theories of Everything:  The Quest for Ultimate Explanation",
+%bib%  publisher = "Oxford University Press",
+%bib%  address = "Oxford",
+%bib%  note = "[Q175.B225]",
+%bib%  year = 1991 }
+%bib%@book{Behnke,
+%bib%  editor = "H. Behnke and F. Backmann and K. Fladt and W. S{\"{u}}ss",
+%bib%  title = "Fundamentals of Mathematics",
+%bib%  volume = "I",
+%bib%  publisher = "The MIT Press",
+%bib%  address = "Cambridge, Massachusetts",
+%bib%  note = "[QA37.2.B413]",
+%bib%  year = 1974 }
+%bib%@book{Bell, author = "J. L. Bell and M. Machover",
+%bib%  title = "A Course in Mathematical Logic",
+%bib%  publisher = "North-Holland",
+%bib%  address = "Amsterdam",
+%bib%  note = "[QA9.B3953]",
+%bib%  year = 1977 }
+%bib%@inproceedings{Blass, author = "Andrea Blass",
+%bib%  title = "The Interaction Between Category Theory and Set Theory",
+%bib%  pages = "5--29",
+%bib%  booktitle = "Mathematical Applications of Category Theory (Proceedings
+%bib%     of the Special Session on Mathematical Applications
+%bib%     Category Theory, 89th Annual Meeting of the American Mathematical
+%bib%     Society, held in Denver, Colorado January 5--9, 1983)",
+%bib%  editor = "John Walter Gray",
+%bib%  year = 1983,
+%bib%  note = "[QA169.A47 1983]",
+%bib%  publisher = "American Mathematical Society",
+%bib%  address = "Providence, Rhode Island"}
+%bib%@proceedings{Bledsoe, editor = "W. W. Bledsoe and D. W. Loveland",
+%bib%  title = "Automated Theorem Proving:  After 25 Years (Proceedings
+%bib%     of the Special Session on Automatic Theorem Proving,
+%bib%     89th Annual Meeting of the American Mathematical
+%bib%     Society, held in Denver, Colorado January 5--9, 1983)",
+%bib%  year = 1983,
+%bib%  note = "[QA76.9.A96.S64 1983]",
+%bib%  publisher = "American Mathematical Society",
+%bib%  address = "Providence, Rhode Island" }
+%bib%@book{Boolos, author = "George S. Boolos and Richard C. Jeffrey",
+%bib%  title = "Computability and Log\-ic",
+%bib%  publisher = "Cambridge University Press",
+%bib%  edition = "third",
+%bib%  address = "Cambridge",
+%bib%  note = "[QA9.59.B66 1989]",
+%bib%  year = 1989 }
+%bib%@book{Campbell, author = "John Campbell",
+%bib%  title = "Programmer's Progress",
+%bib%  publisher = "White Star Software",
+%bib%  address = "Box 51623, Palo Alto, CA 94303",
+%bib%  year = 1991 }
+%bib%@inproceedings{Chou, author = "Shang-Ching Chou",
+%bib%  title = "Proving Elementary Geometry Theorems Using {W}u's Algorithm",
+%bib%  pages = "243--286",
+%bib%  booktitle = "Automated Theorem Proving:  After 25 Years (Proceedings
+%bib%     of the Special Session on Automatic Theorem Proving,
+%bib%     89th Annual Meeting of the American Mathematical
+%bib%     Society, held in Denver, Colorado January 5--9, 1983)",
+%bib%  editor = "W. W. Bledsoe and D. W. Loveland",
+%bib%  year = 1983,
+%bib%  note = "[QA76.9.A96.S64 1983]",
+%bib%  publisher = "American Mathematical Society",
+%bib%  address = "Providence, Rhode Island" }
+%bib%@incollection{Courant, author = "Richard Courant and Herbert Robbins",
+%bib%  title = "Topology",
+%bib%  pages = "573--590",
+%bib%  booktitle = "The World of Mathematics, Volume One",
+%bib%  editor = "James R. Newman",
+%bib%  publisher = "Simon and Schuster",
+%bib%  address = "New York",
+%bib%  note = "[QA3.W67 1988]",
+%bib%  year = 1956 }
+%bib%@book{Curry, author = "Haskell B. Curry",
+%bib%  title = "Foundations of Mathematical Logic",
+%bib%  publisher = "Dover Publications, Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA9.C976 1977]",
+%bib%  year = 1977 }
+%bib%@book{Davis, author = "Philip J. Davis and Reuben Hersh",
+%bib%  title = "The Mathematical Experience",
+%bib%  publisher = "Birkh{\"{a}}user Boston",
+%bib%  address = "Boston",
+%bib%  note = "[QA8.4.D37 1982]",
+%bib%  year = 1981 }
+%bib%@incollection{deMillo,
+%bib%  author = "Richard de Millo and Richard Lipton and Alan Perlis",
+%bib%  title = "Social Processes and Proofs of Theorems and Programs",
+%bib%  pages = "267--285",
+%bib%  booktitle = "New Directions in the Philosophy of Mathematics",
+%bib%  editor = "Thomas Tymoczko",
+%bib%  publisher = "Birkh{\"{a}}user Boston, Inc.",
+%bib%  address = "Boston",
+%bib%  note = "[QA8.6.N48 1986]",
+%bib%  year = 1986 }
+%bib%@book{Edwards, author = "Robert E. Edwards",
+%bib%  title = "A Formal Background to Mathematics",
+%bib%  publisher = "Springer-Verlag",
+%bib%  address = "New York",
+%bib%  note = "[QA37.2.E38 v.1a]",
+%bib%  year = 1979 }
+%bib%@book{Enderton, author = "Herbert B. Enderton",
+%bib%  title = "Elements of Set Theory",
+%bib%  publisher = "Academic Press, Inc.",
+%bib%  address = "San Diego",
+%bib%  note = "[QA248.E5]",
+%bib%  year = 1977 }
+%bib%@book{Goodstein, author = "R. L. Goodstein",
+%bib%  title = "Development of Mathematical Logic",
+%bib%  publisher = "Springer-Verlag New York Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA9.G6554]",
+%bib%  year = 1971 }
+%bib%@book{Guillen, author = "Michael Guillen",
+%bib%  title = "Bridges to Infinity",
+%bib%  publisher = "Jeremy P. Tarcher, Inc.",
+%bib%  address = "Los Angeles",
+%bib%  note = "[QA93.G8]",
+%bib%  year = 1983 }
+%bib%@book{Hamilton, author = "Alan G. Hamilton",
+%bib%  title = "Logic for Mathematicians",
+%bib%  edition = "revised",
+%bib%  publisher = "Cambridge University Press",
+%bib%  address = "Cambridge",
+%bib%  note = "[QA9.H298]",
+%bib%  year = 1988 }
+%bib%@unpublished{Harrison, author = "John Robert Harrison",
+%bib%  title = "Metatheory and Reflection in Theorem Proving:
+%bib%    A Survey and Critique",
+%bib%  note = "Technical Report
+%bib%    CRC-053.
+%bib%    SRI Cambridge,
+%bib%    Millers Yard, Cambridge, UK,
+%bib%    1995.
+%bib%    Available on the Web as
+%bib%{\verb+http:+}\-{\verb+//www.cl.cam.ac.uk/users/jrh/papers/reflect.dvi.gz+}"}
+%bib%@TECHREPORT{Harrison-thesis,
+%bib%        author          = "John Robert Harrison",
+%bib%        title           = "Theorem Proving with the Real Numbers",
+%bib%        institution   = "University of Cambridge Computer
+%bib%                         Lab\-o\-ra\-to\-ry",
+%bib%        address         = "New Museums Site, Pembroke Street, Cambridge,
+%bib%                           CB2 3QG, UK",
+%bib%        year            = 1996,
+%bib%        number          = 408,
+%bib%        type            = "Technical Report",
+%bib%        note            = "Author's PhD thesis,
+%bib%   available on the Web at
+%bib%{\verb+http:+}\-{\verb+//www.cl.cam.ac.uk+}\-{\verb+/users+}\-{\verb+/jrh+}%
+%bib%\-{\verb+/papers+}\-{\verb+/thesis.html+}"}
+%bib%@book{Herrlich, author = "Horst Herrlich and George E. Strecker",
+%bib%  title = "Category Theory:  An Introduction",
+%bib%  publisher = "Allyn and Bacon Inc.",
+%bib%  address = "Boston",
+%bib%  note = "[QA169.H567]",
+%bib%  year = 1973 }
+%bib%@article{Hindley, author = "J. Roger Hindley and David Meredith",
+%bib%  title = "Principal Type-Schemes and Condensed Detachment",
+%bib%  journal = "The Journal of Symbolic Logic",
+%bib%  volume = 55,
+%bib%  year = 1990,
+%bib%  note = "[QA.J87]",
+%bib%  pages = "90--105" }
+%bib%@book{Hofstadter, author = "Douglas R. Hofstadter",
+%bib%  title = "G{\"{o}}del, Escher, Bach",
+%bib%  publisher = "Basic Books, Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA9.H63 1980]",
+%bib%  year = 1979 }
+%bib%@article{Kalish, author = "D. Kalish and R. Montague",
+%bib%  title = "On {T}arski's Formalization of Predicate Logic with Identity",
+%bib%  journal = "Archiv f{\"{u}}r Mathematische Logik und Grundlagenfor\-schung",
+%bib%  volume = 7,
+%bib%  year = 1965,
+%bib%  note = "[QA.A673]",
+%bib%  pages = "81--101" }
+%bib%@article{Kalman, author = "J. A. Kalman",
+%bib%  title = "Condensed Detachment as a Rule of Inference",
+%bib%  journal = "Studia Logica",
+%bib%  volume = 42,
+%bib%  number = 4,
+%bib%  year = 1983,
+%bib%  note = "[B18.P6.S933]",
+%bib%  pages = "443-451" }
+%bib%@book{Kline, author = "Morris Kline",
+%bib%  title = "Mathematical Thought from Ancient to Modern Times",
+%bib%  publisher = "Oxford University Press",
+%bib%  address = "New York",
+%bib%  note = "[QA21.K516 1990 v.3]",
+%bib%  year = 1972 }
+%bib%@book{Klinel, author = "Morris Kline",
+%bib%  title = "Mathematics, The Loss of Certainty",
+%bib%  publisher = "Oxford University Press",
+%bib%  address = "New York",
+%bib%  note = "[QA21.K525]",
+%bib%  year = 1980 }
+%bib%@book{Kramer, author = "Edna E. Kramer",
+%bib%  title = "The Nature and Growth of Modern Mathematics",
+%bib%  publisher = "Princeton University Press",
+%bib%  address = "Princeton, New Jersey",
+%bib%  note = "[QA93.K89 1981]",
+%bib%  year = 1981 }
+%bib%@book{Landau, author = "Edmund Landau",
+%bib%  title = "Foundations of Analysis",
+%bib%  publisher = "Chelsea Publishing Company",
+%bib%  address = "New York",
+%bib%  edition = "second",
+%bib%  note = "[QA241.L2541 1960]",
+%bib%  year = 1960 }
+%bib%@article{Leblanc, author = "Hugues Leblanc",
+%bib%  title = "On {M}eyer and {L}ambert's Quantificational Calculus {FQ}",
+%bib%  journal = "The Journal of Symbolic Logic",
+%bib%  volume = 33,
+%bib%  year = 1968,
+%bib%  note = "[QA.J87]",
+%bib%  pages = "275--280" }
+%bib%@article{Lejewski, author = "Czeslaw Lejewski",
+%bib%  title = "On Implicational Definitions",
+%bib%  journal = "Studia Logica",
+%bib%  volume = 8,
+%bib%  year = 1958,
+%bib%  note = "[B18.P6.S933]",
+%bib%  pages = "189--208" }
+%bib%@book{Margaris, author = "Angelo Margaris",
+%bib%  title = "First Order Mathematical Logic",
+%bib%  publisher = "Blaisdell Publishing Company",
+%bib%  address = "Waltham, Massachusetts",
+%bib%  note = "[QA9.M327]",
+%bib%  year = 1967}
+%bib%@book{Manin, author = "Yu I. Manin",
+%bib%  title = "A Course in Mathematical Logic",
+%bib%  publisher = "Springer-Verlag",
+%bib%  address = "New York",
+%bib%  note = "[QA9.M29613]",
+%bib%  year = "1977" }
+%bib%@article{Mathias, author = "Adrian R. D. Mathias",
+%bib%  title = "A Term of Length 4,523,659,424,929",
+%bib%  journal = "Synthese",
+%bib%  volume = 133,
+%bib%  year = 2002,
+%bib%  note = "[Q.S993]",
+%bib%  pages = "75--86" }
+%bib%@article{Megill, author = "Norman D. Megill",
+%bib%  title = "A Finitely Axiomatized Formalization of Predicate Calculus
+%bib%     with Equality",
+%bib%  journal = "Notre Dame Journal of Formal Logic",
+%bib%  volume = 36,
+%bib%  year = 1995,
+%bib%  note = "[QA.N914]",
+%bib%  pages = "435--453" }
+%bib%@unpublished{Megillc, author = "Norman D. Megill",
+%bib%  title = "A Shorter Equivalent of the Axiom of Choice",
+%bib%  month = "June",
+%bib%  note = "Unpublished",
+%bib%  year = 1991 }
+%bib%@article{MegillBunder, author = "Norman D. Megill and Martin W.
+%bib%    Bunder",
+%bib%  title = "Weaker {D}-Complete Logics",
+%bib%  journal = "Journal of the IGPL",
+%bib%  volume = 4,
+%bib%  year = 1996,
+%bib%  pages = "215--225",
+%bib%  note = "Available on the Web at
+%bib%{\verb+http:+}\-{\verb+//www.mpi-sb.mpg.de+}\-{\verb+/igpl+}%
+%bib%\-{\verb+/Journal+}\-{\verb+/V4-2+}\-{\verb+/#Megill+}"}
+%bib%}
+%bib%@book{Mendelson, author = "Elliott Mendelson",
+%bib%  title = "Introduction to Mathematical Logic",
+%bib%  edition = "second",
+%bib%  publisher = "D. Van Nostrand Company, Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA9.M537 1979]",
+%bib%  year = 1979 }
+%bib%@article{Meredith, author = "David Meredith",
+%bib%  title = "In Memoriam {C}arew {A}rthur {M}eredith (1904-1976)",
+%bib%  journal = "Notre Dame Journal of Formal Logic",
+%bib%  volume = 18,
+%bib%  year = 1977,
+%bib%  note = "[QA.N914]",
+%bib%  pages = "513--516" }
+%bib%@article{CAMeredith, author = "C. A. Meredith",
+%bib%  title = "Single Axioms for the Systems ({C},{N}), ({C},{O}) and ({A},{N})
+%bib%      of the Two-Valued Propositional Calculus",
+%bib%  journal = "The Journal of Computing Systems",
+%bib%  volume = 3,
+%bib%  year = 1953,
+%bib%  pages = "155--164" }
+%bib%@article{Monk, author = "J. Donald Monk",
+%bib%  title = "Provability With Finitely Many Variables",
+%bib%  journal = "The Journal of Symbolic Logic",
+%bib%  volume = 27,
+%bib%  year = 1971,
+%bib%  note = "[QA.J87]",
+%bib%  pages = "353--358" }
+%bib%@article{Monks, author = "J. Donald Monk",
+%bib%  title = "Substitutionless Predicate Logic With Identity",
+%bib%  journal = "Archiv f{\"{u}}r Mathematische Logik und Grundlagenfor\-schung",
+%bib%  volume = 7,
+%bib%  year = 1965,
+%bib%  pages = "103--121" }
+%bib%  %% Took out this from above to prevent LaTeX underfull warning:
+%bib%  % note = "[QA.A673]",
+%bib%@book{Moore, author = "A. W. Moore",
+%bib%  title = "The Infinite",
+%bib%  publisher = "Routledge",
+%bib%  address = "New York",
+%bib%  note = "[BD411.M59]",
+%bib%  year = 1989}
+%bib%@book{Munkres, author = "James R. Munkres",
+%bib%  title = "Topology: A First Course",
+%bib%  publisher = "Prentice-Hall, Inc.",
+%bib%  address = "Englewood Cliffs, New Jersey",
+%bib%  note = "[QA611.M82]",
+%bib%  year = 1975}
+%bib%@article{Nemesszeghy, author = "E. Z. Nemesszeghy and E. A. Nemesszeghy",
+%bib%  title = "On Strongly Creative Definitions:  A Reply to {V}. {F}. {R}ickey",
+%bib%  journal = "Logique et Analyse (N.\ S.)",
+%bib%  year = 1977,
+%bib%  volume = 20,
+%bib%  note = "[BC.L832]",
+%bib%  pages = "111--115" }
+%bib%@unpublished{Nemeti, author = "N{\'{e}}meti, I.",
+%bib%  title = "Algebraizations of Quantifier Logics, an Overview",
+%bib%  note = "Version 11.4, preprint, Mathematical Institute, Budapest,
+%bib%    1994.  A shortened version without proofs appeared in
+%bib%    ``Algebraizations of quantifier logics, an introductory overview,''
+%bib%   {\em Studia Logica}, 50:485--569, 1991 [B18.P6.S933]"}
+%bib%@article{Pavicic, author = "M. Pavi{\v{c}}i{\'{c}}",
+%bib%  title = "A New Axiomatization of Unified Quantum Logic",
+%bib%  journal = "International Journal of Theoretical Physics",
+%bib%  year = 1992,
+%bib%  volume = 31,
+%bib%  note = "[QC.I626]",
+%bib%  pages = "1753 --1766" }
+%bib%@book{Penrose, author = "Roger Penrose",
+%bib%  title = "The Emperor's New Mind",
+%bib%  publisher = "Oxford University Press",
+%bib%  address = "New York",
+%bib%  note = "[Q335.P415]",
+%bib%  year = 1989 }
+%bib%@book{PetersonI, author = "Ivars Peterson",
+%bib%  title = "The Mathematical Tourist",
+%bib%  publisher = "W. H. Freeman and Company",
+%bib%  address = "New York",
+%bib%  note = "[QA93.P475]",
+%bib%  year = 1988 }
+%bib%@article{Peterson, author = "Jeremy George Peterson",
+%bib%  title = "An automatic theorem prover for substitution and detachment systems",
+%bib%  journal = "Notre Dame Journal of Formal Logic",
+%bib%  volume = 19,
+%bib%  year = 1978,
+%bib%  note = "[QA.N914]",
+%bib%  pages = "119--122" }
+%bib%@book{Quine, author = "Willard Van Orman Quine",
+%bib%  title = "Set Theory and Its Logic",
+%bib%  edition = "revised",
+%bib%  publisher = "The Belknap Press of Harvard University Press",
+%bib%  address = "Cambridge, Massachusetts",
+%bib%  note = "[QA248.Q7 1969]",
+%bib%  year = 1969 }
+%bib%@article{Robinson, author = "J. A. Robinson",
+%bib%  title = "A Machine-Oriented Logic Based on the Resolution Principle",
+%bib%  journal = "Journal of the Association for Computing Machinery",
+%bib%  year = 1965,
+%bib%  volume = 12,
+%bib%  pages = "23--41" }
+%bib%@article{RobinsonT, author = "T. Thacher Robinson",
+%bib%  title = "Independence of Two Nice Sets of Axioms for the Propositional
+%bib%    Calculus",
+%bib%  journal = "The Journal of Symbolic Logic",
+%bib%  volume = 33,
+%bib%  year = 1968,
+%bib%  note = "[QA.J87]",
+%bib%  pages = "265--270" }
+%bib%@book{Rucker, author = "Rudy Rucker",
+%bib%  title = "Infinity and the Mind:  The Science and Philosophy of the
+%bib%    Infinite",
+%bib%  publisher = "Bantam Books, Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA9.R79 1982]",
+%bib%  year = 1982 }
+%bib%@book{Russell, author = "Bertrand Russell",
+%bib%  title = "Mysticism and Logic, and Other Essays",
+%bib%  publisher = "Barnes \& Noble Books",
+%bib%  address = "Totowa, New Jersey",
+%bib%  note = "[B1649.R963.M9 1981]",
+%bib%  year = 1981 }
+%bib%@article{Russell2, author = "Bertrand Russell",
+%bib%  title = "Recent Work on the Principles of Mathematics",
+%bib%  journal = "International Monthly",
+%bib%  volume = 4,
+%bib%  year = 1901,
+%bib%  pages = "84"}
+%bib%@book{Shoenfield, author = "Joseph R. Shoenfield",
+%bib%  title = "Mathematical Logic",
+%bib%  publisher = "Addison-Wesley Publishing Company, Inc.",
+%bib%  address = "Reading, Massachusetts",
+%bib%  year = 1967,
+%bib%  note = "[QA9.S52]" }
+%bib%@book{Smullyan, author = "Raymond M. Smullyan",
+%bib%  title = "Theory of Formal Systems",
+%bib%  publisher = "Princeton University Press",
+%bib%  address = "Princeton, New Jersey",
+%bib%  year = 1961,
+%bib%  note = "[QA248.5.S55]" }
+%bib%@book{Solow, author = "Daniel Solow",
+%bib%  title = "How to Read and Do Proofs:  An Introduction to Mathematical
+%bib%    Thought Process",
+%bib%  publisher = "John Wiley \& Sons",
+%bib%  address = "New York",
+%bib%  year = 1982,
+%bib%  note = "[QA9.S577]" }
+%bib%@book{Stark, author = "Harold M. Stark",
+%bib%  title = "An Introduction to Number Theory",
+%bib%  publisher = "Markham Publishing Company",
+%bib%  address = "Chicago",
+%bib%  note = "[QA241.S72 1978]",
+%bib%  year = 1970 }
+%bib%@article{Swart, author = "E. R. Swart",
+%bib%  title = "The Philosophical Implications of the Four-Color Problem",
+%bib%  journal = "American Mathematical Monthly",
+%bib%  year = 1980,
+%bib%  volume = 87,
+%bib%  month = "November",
+%bib%  note = "[QA.A5125]",
+%bib%  pages = "697--707" }
+%bib%@book{Takeuti, author = "Gaisi Takeuti and Wilson M. Zaring",
+%bib%  title = "Introduction to Axiomatic Set Theory",
+%bib%  edition = "second",
+%bib%  publisher = "Springer-Verlag New York Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA248.T136 1982]",
+%bib%  year = 1982}
+%bib%@inproceedings{Tarski, author = "Alfred Tarski",
+%bib%  title = "What is Elementary Geometry",
+%bib%  pages = "16--29",
+%bib%  booktitle = "The Axiomatic Method, with Special Reference to Geometry and
+%bib%     Physics (Proceedings of an International Symposium held at the University
+%bib%     of California, Berkeley, December 26, 1957 --- January 4, 1958)",
+%bib%  editor = "Leon Henkin and Patrick Suppes and Alfred Tarski",
+%bib%  year = 1959,
+%bib%  publisher = "North-Holland Publishing Company",
+%bib%  address = "Amsterdam"}
+%bib%@article{Tarski1965, author = "Alfred Tarski",
+%bib%  title = "A Simplified Formalization of Predicate Logic with Identity",
+%bib%  journal = "Archiv f{\"{u}}r Mathematische Logik und Grundlagenforschung",
+%bib%  volume = 7,
+%bib%  year = 1965,
+%bib%  note = "[QA.A673]",
+%bib%  pages = "61--79" }
+%bib%@book{Tymoczko,
+%bib%  title = "New Directions in the Philosophy of Mathematics",
+%bib%  editor = "Thomas Tymoczko",
+%bib%  publisher = "Birkh{\"{a}}user Boston, Inc.",
+%bib%  address = "Boston",
+%bib%  note = "[QA8.6.N48 1986]",
+%bib%  year = 1986 }
+%bib%@incollection{Wang,
+%bib%  author = "Hao Wang",
+%bib%  title = "Theory and Practice in Mathematics",
+%bib%  pages = "129--152",
+%bib%  booktitle = "New Directions in the Philosophy of Mathematics",
+%bib%  editor = "Thomas Tymoczko",
+%bib%  publisher = "Birkh{\"{a}}user Boston, Inc.",
+%bib%  address = "Boston",
+%bib%  note = "[QA8.6.N48 1986]",
+%bib%  year = 1986 }
+%bib%@manual{Webster,
+%bib%  title = "Webster's New Collegiate Dictionary",
+%bib%  organization = "G. \& C. Merriam Co.",
+%bib%  address = "Springfield, Massachusetts",
+%bib%  note = "[PE1628.W4M4 1977]",
+%bib%  year = 1977 }
+%bib%@manual{Whitehead, author = "Alfred North Whitehead",
+%bib%  title = "An Introduction to Mathematics",
+%bib%  year = 1911 }
+%bib%@book{PM, author = "Alfred North Whitehead and Bertrand Russell",
+%bib%  title = "Principia Mathematica",
+%bib%  edition = "second",
+%bib%  publisher = "Cambridge University Press",
+%bib%  address = "Cambridge",
+%bib%  year = "1927",
+%bib%  note = "(3 vols.) [QA9.W592 1927]" }
+%bib%@book{Wolfram,
+%bib%  author = "Stephen Wolfram",
+%bib%  title = "Mathematica:  A System for Doing Mathematics by Computer",
+%bib%  edition = "second",
+%bib%  publisher = "Addison-Wesley Publishing Co.",
+%bib%  address = "Redwood City, California",
+%bib%  note = "[QA76.95.W65 1991]",
+%bib%  year = 1991 }
+%bib%@book{Wos, author = "Larry Wos and Ross Overbeek and Ewing Lusk and Jim Boyle",
+%bib%  title = "Automated Reasoning:  Introduction and Applications",
+%bib%  edition = "second",
+%bib%  publisher = "McGraw-Hill, Inc.",
+%bib%  address = "New York",
+%bib%  note = "[QA76.9.A96.A93 1992]",
+%bib%  year = 1992 }
+%bib%
+%bib%%
+%bib%%
+%bib%%[1] Church, Alonzo, Introduction to Mathematical Logic,
+%bib%% Volume 1, Princeton University Press, Princeton, N. J., 1956.
+%bib%%
+%bib%%[2] Cohen, Paul J., Set Theory and the Continuum Hypothesis,
+%bib%% W. A. Benjamin, Inc., Reading, Mass., 1966.
+%bib%%
+%bib%%[3] Hamilton, Alan G., Logic for Mathematicians, Cambridge
+%bib%% University Press,
+%bib%% Cambridge, 1988.
+%bib%
+%bib%%[6] Kleene, Stephen Cole, Introduction to Metamathematics, D.  Van
+%bib%% Nostrand Company, Inc., Princeton (1952).
+%bib%
+%bib%%[13] Tarski, Alfred, "A simplified formalization of predicate
+%bib%% logic with identity," Archiv fur Mathematische Logik und
+%bib%% Grundlagenforschung, vol. 7 (1965), pp. 61-79.
+%bib%
+%bib%%[14] Tarski, Alfred and Steven Givant, A Formalization of Set
+%bib%% Theory Without Variables, American Mathematical Society Colloquium
+%bib%% Publications, vol. 41, American Mathematical Society,
+%bib%% Providence, R. I., 1987.
+%bib%
+%bib%%[15] Zeman, J. J., Modal Logic, Oxford University Press, Oxford, 1973.
