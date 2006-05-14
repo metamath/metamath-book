@@ -4260,11 +4260,10 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 
 \subsection{That's It}
 
-There you have it, the axioms for (essentially) all of mathematics!
-Wonder at them and stare at them in awe.  Put a copy in your wallet, and
-you will carry in your pocket the encoding for all theorems ever proved
-and that ever will be proved, from the most mundane to the most
-profound.
+There you have it, the axioms for all of mathematics!  Wonder at them and
+stare at them in awe.  Put a copy in your wallet, and you will carry in your
+pocket the encoding for all theorems ever proved and that ever will be proved,
+from the most mundane to the most profound.
 
 \section{A Hierarchy of Definitions}\label{hierarchy}
 
@@ -6895,12 +6894,9 @@ statement} from the place it occurs until the end of the block it occurs in.
 A \texttt{\$a} or \texttt{\$p} statement is {\bf active} from the place it occurs
 through the end of the database.
 
-There may not be two active \texttt{\$f} statements containing the same
-variable.  Each variable in a \texttt{\$e}, \texttt{\$a}, or
-\texttt{\$p} statement must exist in an active \texttt{\$f}
-statement.\footnote{This requirement can greatly simplify the
-unification algorithm (substitution calculation) required by proof
-verification.}
+There may not be two active \texttt{\$f} statements containing the same variable.
+Each variable in a \texttt{\$e}, \texttt{\$a}, or \texttt{\$p} statement
+must exist in an active \texttt{\$f} statement.
 
 The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and \texttt{\$p}
 statement must be unique.
@@ -9520,33 +9516,22 @@ which means that you will prompted to continue or quit after each
 full screen in a long listing.  In \texttt{continuous} mode, long listings will be
 scrolled without pausing.
 
-% LaTeX bug? (1) \texttt{\_} puts out different character than
-% \texttt{{\char`\_}}
+% LaTeX bug? (1) \texttt{\_} puts out different character than \texttt{{\char`\_}}
 %  = \verb$_$  (2) \texttt{{\char`\_}} puts out garbage in \subsection
 %  argument
-\subsection{\texttt{set width} Command}\index{\texttt{set
-width} command}
-Syntax:  \texttt{set width} {\em number}
+\subsection{\texttt{set screen\_width} Command}\index{\texttt{set
+screen{\char`\_}width} command}
+Syntax:  \texttt{set screen{\char`\_}width} {\em number}
 
-Metamath assumes the width of your screen is 79 characters (chosen
-because the Command Prompt in Windows XP has a wrapping bug at column
-80).  If your screen is wider or narrower, this command allows you to
-change this default screen width.  A larger width is advantageous for
-logging proofs to an output file to be printed on a wide printer.  A
-smaller width may be necessary on some terminals; in this case, the
-wrapping of the information messages may sometimes seem somewhat
-unnatural, however.  In \LaTeX\index{latex@{\LaTeX}!characters per line},
-there is normally a maximum of 61 characters per line with typewriter
-font.  (The examples in this book were produced with 61 characters per
-line.)
-
-\subsection{\texttt{set height} Command}\index{\texttt{set
-height} command}
-Syntax:  \texttt{set height} {\em number}
-
-Metamath assumes your screen height is 24 lines of characters.  If your
-screen is taller or shorter, this command lets you to change the number
-of lines at which the display pauses and prompts you to continue.
+Metamath assumes the width of your screen is 79 characters.  If your
+screen is wider or narrower, this command allows you to change this default screen
+width.  A larger width is advantageous for logging proofs to an output
+file to be printed on a wide printer.  A smaller width may be necessary
+on some terminals; in this case, the wrapping of the information
+messages may sometimes seem somewhat unnatural, however.  In
+LaTeX\index{latex@{\LaTeX}!characters per line}, there
+is normally a maximum of 61 characters per line with typewriter font.
+(The examples in this book were produced with 61 characters per line.)
 
 \subsection{\texttt{beep} Command}\index{\texttt{beep} command}
 
@@ -9727,12 +9712,8 @@ Optional qualifiers (only one qualifier at a time is allowed):
        and \texttt{\$f} statements).
 
     \texttt{/tex} - This qualifier will write the statement information to the
-       \LaTeX\ file previously opened with \texttt{open tex}.  See
+       LaTeX file previously opened with \texttt{open tex}.  See
        Section~\ref{texout}.
-
-    \texttt{/simple{\char`\_}tex} - The same as \texttt{/tex}, except that
-       \LaTeX\ macros are not used for formatting equations, allowing easier
-       manual edits of the output for slide presentations, etc.
 
     \texttt{/html}\index{html generation@{\sc html} generation},
        \texttt{/alt{\char`\_}html}, \texttt{/brief{\char`\_}html},
@@ -10428,13 +10409,11 @@ Optional command qualifiers:
 
 \section{Creating \LaTeX\ Output}\label{texout}\index{latex@{\LaTeX}}
 
-The \texttt{show statement} and \texttt{show proof} commands each have a
-special \texttt{/tex} command qualifier that produces \LaTeX\ output.
-(The \texttt{show statement} command also has the
-\texttt{/simple{\char`\_}tex} qualifier for output that is easier to
-edit by hand.)  Before you can use them, you must open a \LaTeX\ file to
-which to send their output.  A typical complete session will use this
-sequence of Metamath commands:
+The \texttt{show statement} and \texttt{show proof} commands each have
+a special \texttt{/tex} command qualifier that produces \LaTeX\ output.
+Before you can use them, you must open a \LaTeX\ file to which to
+send their output.  A typical complete session will use this sequence
+of Metamath commands:
 
 \begin{verbatim}
     read set.mm
@@ -10920,7 +10899,7 @@ to \texttt{set.mm} over time.  Consult the latest version at
 These symbols are defined in the \texttt{set.mm} database file inside of
 a special comment, which is indicated by the appearance of the
 two-character string \texttt{\$t} at the beginning of the comment
-(see Section~\ref{tcomment}, p.~\pageref{tcomment}).  This
+Section~\ref{tcomment}.  This
 special comment is called a \texttt{\$t} {\em
 comment}\index{\texttt{\$t} comment} or {\em typesetting
 comment.}\index{typesetting comment}
@@ -10971,7 +10950,7 @@ be broken up into  multiple quote-enclosed strings joined by \texttt{\char`\+} i
 order to fit them on several lines; thus
 \begin{center}
  \texttt{\char`\"ab\char`\"\ \char`\+\ \char`\"cd\char`\"
-    \char`\+\ 'ef'}
+    \ \char`\+\ 'ef'}
 \end{center}
 is the same as
 \begin{center}
@@ -11276,7 +11255,7 @@ format here and show how it maps to the normal RPN proof format.
 A compressed proof, located between \texttt{\$=} and \texttt{\$.} keywords, consists
 of a left parenthesis, a sequence of statement labels, a right parenthesis,
 and a sequence of upper-case letters \texttt{A} through \texttt{Z} (with optional
-white space between them).  White space must surround the parenthesis
+white space between them).  White space must surround the parentheses
 and the labels.  The left parenthesis tells Metamath that a
 compressed proof follows.  (A normal RPN proof consists of just a sequence of
 labels, and a parenthesis is not a legal character in a label.)
@@ -11304,19 +11283,21 @@ described later.
    etc.
 \end{center}
 
-In other words, \texttt{A} through \texttt{T} represent a
-least-significant digit in base 20, and \texttt{U} through \texttt{Y}
-represent zero or more most-significant digits in base 5, where the
-digits start counting at 1 instead of the usual 0. With this scheme, we
-don't need white space between these ``numbers.''
+In other words, \texttt{A} through \texttt{T} represent a least-significant digit
+in base 20, and \texttt{U} through \texttt{Y} represent zero or more
+most-significant digits in base 5.  By using a separate set of letters for
+the least significant digit, the letter representation of numbers can be
+concatenated unambiguously.
 
 (In the design of the compressed proof format, only upper case letters,
-as opposed to say all printable {\sc ascii} characters other than \texttt{\$}, was
-chosen to make the compressed proof a little less displeasing to the
-eye, at the expense of a typical 20\% compression loss.  The base 5/base
-20 grouping, as opposed to say base 6/base 19, was chosen by
-experimentally determining the grouping that resulted in best typical
-compression.)
+as opposed to say all printable {\sc ascii} characters other than
+%\texttt{\$}, was chosen to make the compressed proof a little less
+%displeasing to the eye, at the expense of a typical 20\% compression
+\texttt{\$}, were chosen so as not to collide with most text editor
+searches, at the expense of a typical 20\% compression
+loss.  The base 5/base 20 grouping, as opposed to say base 6/base 19,
+was chosen by experimentally determining the grouping that resulted in
+best typical compression.)
 
 The letter \texttt{Z} identifies (tags) a proof step that is identical to one
 that occurs later on in the proof; it helps shorten the proof by not requiring
@@ -12159,7 +12140,7 @@ expository language) that ranges over metavariables (which are primitives of
 our formal system) each of which ranges over the actual individual variables
 of predicate calculus (which are never mentioned in our formal system).
 
-The constant called ``var'' above is called \texttt{set} in the
+The constant called ``var'' above is called \texttt{set} is the
 \texttt{set.mm} database file, but it means the same thing.  I felt
 that ``var'' is a more meaningful name in the context of predicate
 calculus, whose use is not limited to set theory.  For consistency we
