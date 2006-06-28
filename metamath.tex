@@ -1,4 +1,4 @@
-% This file, 'metamath.tex', is copyright (C) 2005 by Norman Megill.  It
+% This file, 'metamath.tex', is copyright (C) 2006 by Norman Megill.  It
 % is licensed under the terms of GNU Free Documentation License
 % http://www.gnu.org/licenses/fdl.html and must be made available whenever
 % its compiled output 'metamath.pdf' is distributed.
@@ -146,7 +146,7 @@
 
 \begin{center}
 
-Copyright \copyright\ 2005 by Norman Megill
+Copyright \copyright\ 2006 by Norman Megill
 
 \vspace{1ex}
 {\small This book is distributed under the terms of the
@@ -534,6 +534,13 @@ class of inaccessibles'' precisely so as to do category theory.
 
 The most current information on the Metamath program and databases can
 always be found at \url{http://metamath.org}.
+
+
+\subsubsection{Note Added June 24, 2006}\label{note2006}
+
+The Metamath spec was restricted slightly to make parsers easier to
+write.  See the footnote on p.~\pageref{namespace}.
+
 
 \chapter{Introduction}
 \pagenumbering{arabic}
@@ -2686,7 +2693,7 @@ alternate ways of invoking the Metamath program.)
 When you first enter Metamath\index{Metamath}, it will be at the CLI, waiting
 for your input. You will see the following on your screen:
 \begin{verbatim}
-        Metamath - Version 0.07 22-Jun-05
+        Metamath - Version 0.07.17 4-Jun-06
         Type HELP for help, EXIT to exit.
         MM>
 \end{verbatim}
@@ -4260,10 +4267,11 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 
 \subsection{That's It}
 
-There you have it, the axioms for all of mathematics!  Wonder at them and
-stare at them in awe.  Put a copy in your wallet, and you will carry in your
-pocket the encoding for all theorems ever proved and that ever will be proved,
-from the most mundane to the most profound.
+There you have it, the axioms for (essentially) all of mathematics!
+Wonder at them and stare at them in awe.  Put a copy in your wallet, and
+you will carry in your pocket the encoding for all theorems ever proved
+and that ever will be proved, from the most mundane to the most
+profound.
 
 \section{A Hierarchy of Definitions}\label{hierarchy}
 
@@ -6629,8 +6637,8 @@ qualifier gives you all of them.)
 
 \subsection{A Note on ``Compact'' Proof Format}
 
-The present version of Metamath (0.07)\index{Metamath!limitations of
-version 0.07} will display proofs in a ``compact''\index{compact proof}
+The present version of Metamath (0.07.17)\index{Metamath!limitations of
+version 0.07.17} will display proofs in a ``compact''\index{compact proof}
 format whenever the proof is stored in compressed format in the database.  It
 may be be slightly confusing unless you know how to interpret it.  (A
 future version may eliminate this format from displays.)  For example,
@@ -6724,7 +6732,7 @@ language.  We will not distinguish these two when the context is clear.
 
 The next section contains the complete specification of the Metamath
 language.\footnote{The current version of the Metamath program
-(0.07)\index{Metamath!limitations of version 0.07} implements an older
+(0.07.17)\index{Metamath!limitations of version 0.07.17} implements an older
 specification with a slightly more general syntax than described here.
 Among the differences:  missing white space between tokens is sometimes
 tolerated (in particular, the program saves proofs with a date tag in
@@ -6894,14 +6902,19 @@ statement} from the place it occurs until the end of the block it occurs in.
 A \texttt{\$a} or \texttt{\$p} statement is {\bf active} from the place it occurs
 through the end of the database.
 
-There may not be two active \texttt{\$f} statements containing the same variable.
-Each variable in a \texttt{\$e}, \texttt{\$a}, or \texttt{\$p} statement
-must exist in an active \texttt{\$f} statement.
+There may not be two active \texttt{\$f} statements containing the same
+variable.  Each variable in a \texttt{\$e}, \texttt{\$a}, or
+\texttt{\$p} statement must exist in an active \texttt{\$f}
+statement.\footnote{This requirement can greatly simplify the
+unification algorithm (substitution calculation) required by proof
+verification.}
 
-The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and
-\texttt{\$p} statement must be unique.
+%The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and
+%\texttt{\$p} statement must be unique.
+Each label token must be unique.
 
-No label token may match any math symbol token.\footnote{This
+No label token may match any math symbol
+token.\label{namespace}\footnote{{\em (Added June 24, 2006)} This
 restriction did not exist in earlier versions of this specification.
 While not theoretically necessary, it is imposed to make it easier to
 write certain parsers.}
@@ -8747,7 +8760,7 @@ in {\em text}.  Thus nested comments are not
 permitted:\footnote{Computer languages have differing standards for
 nested comments, and rather than picking one it was felt simplest not to
 allow them at all, at least in the current version of Metamath
-(0.07)\index{Metamath!limitations of version 0.07}.} Metamath will
+(0.07.17)\index{Metamath!limitations of version 0.07.17}.} Metamath will
 complain if you give it
 \begin{center}
  \texttt{\$( This is a \$( nested \$) comment.\ \$)}
@@ -8788,7 +8801,7 @@ and have no effect on how Metamath verifies the database.  The improper
 use of them may result in incorrectly typeset output, but no Metamath
 error messages will result during the \texttt{read} and \texttt{verify
 proof} commands.  (However, the new \texttt{write
-theorem\texttt{\char`\_}list} command, added in version 0.07 of the
+theorem\texttt{\char`\_}list} command, added in version 0.07.17 of the
 Metamath program, will check for markup errors as a side-effect of its
 {\sc html} generation.)
 
@@ -8867,7 +8880,7 @@ and error messages will be issued during that output if they aren't.)
 
 The automated generation of {\sc html}\index{html generation@{\sc html}
 generation} web pages
-(Section~\ref{htmlout}) is new in version 0.07 of the Metamath program.
+(Section~\ref{htmlout}) is new in version 0.07.17 of the Metamath program.
 The comment markup notation for \LaTeX\ also applies to {\sc html}, and
 some additional features specifically for {\sc html} were added.
 These markup features (including those reused from \LaTeX) are the
@@ -9051,15 +9064,16 @@ letters, and can be thought of as a large integer in base 26.  White
 space\index{white space} inside of {\em compressed-proof} is
 optional and is ignored.
 
-It is important to note that the order of the mandatory hypotheses of the
-statement being proved must not be changed if the compressed proof format is
-used, otherwise the proof will become incorrect.  The reason for this is that
-the mandatory hypotheses are not mentioned explicitly in the compressed proof
-in order to make the compression more efficient.  If you wish to change the
-order of mandatory hypotheses, you must first convert the proof back to normal
-format using the \texttt{save proof {\em statement} /normal}\index{\texttt{save
-proof} command} command.  Later, you can go back to compressed format with
-\texttt{save proof {\em statement} /compressed}.
+It is important to note that the order of the mandatory hypotheses of
+the statement being proved must not be changed if the compressed proof
+format is used, otherwise the proof will become incorrect.  The reason
+for this is that the mandatory hypotheses are not mentioned explicitly
+in the compressed proof in order to make the compression more efficient.
+If you wish to change the order of mandatory hypotheses, you must first
+convert the proof back to normal format using the \texttt{save proof
+{\em statement} /normal}\index{\texttt{save proof} command} command.
+Later, you can go back to compressed format with \texttt{save proof {\em
+statement} /compressed}.
 
 During error checking with the \texttt{verify proof} command, an error
 found in the a compressed proof may point to a character in {\em
@@ -9129,37 +9143,41 @@ metatheorems to establish that they are not creative.
 
 A more conservative stance was taken by logician S.
 Le\'{s}niewski.\index{Le\'{s}niewski, S.}
-\begin{quote} Le\'{s}niewski regards
-definitions as theses of the system.  In this respect they do not differ
-either from the axioms or from theorems, i.e.\ from the theses added to the
-system on the basis of the rule of substitution or the rule of detachment
-[modus ponens].  Once definitions have been accepted as theses of the system,
-it becomes necessary to consider them as true propositions in the same sense
-in which axioms are true \cite{Lejewski}.
+\begin{quote}
+Le\'{s}niewski
+regards definitions as theses of the system.  In this respect they do
+not differ either from the axioms or from theorems, i.e.\ from the
+theses added to the system on the basis of the rule of substitution or
+the rule of detachment [modus ponens].  Once definitions have been
+accepted as theses of the system, it becomes necessary to consider them
+as true propositions in the same sense in which axioms are true
+\cite{Lejewski}.
 \end{quote}\index{Lejewski, Czeslaw}
 
-Let us look at some simple examples of definitions in propositional calculus.
-Consider the definition of logical {\sc or} (disjunction):\index{disjunction
-($\vee$)}  ``$P\vee Q$ denotes $\neg P \rightarrow Q$ (not $P$ implies
-$Q$).''  It is very easy to recognize a statement making use of this
-definition, because it introduces the new symbol $\vee$ that did not
-previously exist in the language.  It is easy to see that no new theorems of
-the original language will result from this definition.
+Let us look at some simple examples of definitions in propositional
+calculus.  Consider the definition of logical {\sc or}
+(disjunction):\index{disjunction ($\vee$)} ``$P\vee Q$ denotes $\neg P
+\rightarrow Q$ (not $P$ implies $Q$).''  It is very easy to recognize a
+statement making use of this definition, because it introduces the new
+symbol $\vee$ that did not previously exist in the language.  It is easy
+to see that no new theorems of the original language will result from
+this definition.
 
-Next, consider a definition that eliminates parentheses: ``$P
-\rightarrow Q\rightarrow R$ denotes $P\rightarrow (Q \rightarrow R)$.''  This
-is more subtle, because no new symbols are introduced.  The reason this
-definition is considered proper is that no new symbol sequences that are valid
-wffs (well-formed formulas)\index{well-formed formula (wff)} in the original
-language will result from the definition, since ``$P \rightarrow Q\rightarrow
-R$'' is not a wff in the original language.  Here, we implicitly make use of
-the fact that there is a decision procedure that allows us to determine
-whether or not a symbol sequence is a wff, and this fact allows us to use
-symbol sequences that are not wffs to represent other things (such as wffs) by
-means of the definition.  However, to justify the definition as not being
-creative we need to prove that ``$P \rightarrow Q\rightarrow
-R$'' is in fact not a wff in the original language, and this is more
-difficult than in the case where we simply introduce a new symbol.
+Next, consider a definition that eliminates parentheses:  ``$P
+\rightarrow Q\rightarrow R$ denotes $P\rightarrow (Q \rightarrow R)$.''
+This is more subtle, because no new symbols are introduced.  The reason
+this definition is considered proper is that no new symbol sequences
+that are valid wffs (well-formed formulas)\index{well-formed formula
+(wff)} in the original language will result from the definition, since
+``$P \rightarrow Q\rightarrow R$'' is not a wff in the original
+language.  Here, we implicitly make use of the fact that there is a
+decision procedure that allows us to determine whether or not a symbol
+sequence is a wff, and this fact allows us to use symbol sequences that
+are not wffs to represent other things (such as wffs) by means of the
+definition.  However, to justify the definition as not being creative we
+need to prove that ``$P \rightarrow Q\rightarrow R$'' is in fact not a
+wff in the original language, and this is more difficult than in the
+case where we simply introduce a new symbol.
 
 %Now let's take this reasoning to an extreme.  Propositional calculus is a
 %decidable theory,\footnote{This means that a mechanical algorithm exists to
@@ -9200,66 +9218,70 @@ difficult than in the case where we simply introduce a new symbol.
 %is up to the human mathematician to judge whether the definition is ``proper''
 %'\index{proper definition}\index{definition!proper} in some agreed-upon way.
 
-What constitutes a definition\index{definition}
-versus\index{axiom vs.\ definition} an axiom\index{axiom} is sometimes
-arbitrary in mathematical literature.  For example, the connectives
-$\vee$ ({\sc or}), $\wedge$ ({\sc and}), and $\leftrightarrow$ (equivalent to) in
-propositional calculus are usually considered defined symbols that can be
-used as abbreviations for expressions containing the ``primitive'' connectives
-$\rightarrow$ and $\neg$.  This is the way we treat them in the standard logic
-and set theory database \texttt{set.mm}\index{set theory database (\texttt{set.mm})}.
-However, the first three connectives can also be considered ``primitive,'' and
-axiom systems have been devised that treat all of them as such.  For example,
-\cite[p.~35]{Goodstein}\index{Goodstein, R. L.} presents one with 15 axioms,
-some of which in fact coincide with what we have chosen to call definitions in
-\texttt{set.mm}.  In certain subsets of classical propositional calculus, such as
-the intuitionist fragment\index{intuitionism}, it can be shown that one cannot
-make do with just $\rightarrow$ and $\neg$ but must treat additional
-connectives as primitive in order for the system to make sense.\footnote{Two
-nice systems that make the transition from intuitionistic and other weak
+What constitutes a definition\index{definition} versus\index{axiom vs.\
+definition} an axiom\index{axiom} is sometimes arbitrary in mathematical
+literature.  For example, the connectives $\vee$ ({\sc or}), $\wedge$
+({\sc and}), and $\leftrightarrow$ (equivalent to) in propositional
+calculus are usually considered defined symbols that can be used as
+abbreviations for expressions containing the ``primitive'' connectives
+$\rightarrow$ and $\neg$.  This is the way we treat them in the standard
+logic and set theory database \texttt{set.mm}\index{set theory database
+(\texttt{set.mm})}.  However, the first three connectives can also be
+considered ``primitive,'' and axiom systems have been devised that treat
+all of them as such.  For example,
+\cite[p.~35]{Goodstein}\index{Goodstein, R. L.} presents one with 15
+axioms, some of which in fact coincide with what we have chosen to call
+definitions in \texttt{set.mm}.  In certain subsets of classical
+propositional calculus, such as the intuitionist
+fragment\index{intuitionism}, it can be shown that one cannot make do
+with just $\rightarrow$ and $\neg$ but must treat additional connectives
+as primitive in order for the system to make sense.\footnote{Two nice
+systems that make the transition from intuitionistic and other weak
 fragments to classical logic just by adding axioms are given in
 \cite{Robinsont}\index{Robinson, T. Thacher}.}
 
-In set theory, recursive definitions define a newly introduced symbol
-in terms of itself.  The justification of recursive definitions,
-using several ``recursion theorems,''  is the usually one of the first
-sophisticated proofs a student encounters when learning set
-theory, and there is a significant amount of implicit metalogic behind
-a recursive definition even though the definition itself is typically
-simple to state.  It is, however, possible to
-substitute one kind of complexity for another.  We can eliminate the need for
-metalogical justification by defining the operation directly with an explicit
-(but complicated) expression, then deriving the recursive definition
-directly as a theorem, using a recursion theorem ``in reverse.''  We do
-this in \texttt{set.mm}, as follows.
+In set theory, recursive definitions define a newly introduced symbol in
+terms of itself.  The justification of recursive definitions, using
+several ``recursion theorems,'' is the usually one of the first
+sophisticated proofs a student encounters when learning set theory, and
+there is a significant amount of implicit metalogic behind a recursive
+definition even though the definition itself is typically simple to
+state.  It is, however, possible to substitute one kind of complexity
+for another.  We can eliminate the need for metalogical justification by
+defining the operation directly with an explicit (but complicated)
+expression, then deriving the recursive definition directly as a
+theorem, using a recursion theorem ``in reverse.''  We do this in
+\texttt{set.mm}, as follows.
 
-In \texttt{set.mm} our goal was to introduce almost
-all definitions in the form of
-two expressions connected by either $\leftrightarrow$ or $=$, where the thing
-being defined does not appear on the right hand side.  Quine calls this form
-``a genuine or direct definition'' \cite[p. 174]{Quine}\index{Quine, Willard
-Van Orman}, which makes the definitions very easy to eliminate and the
-metalogic\index{metalogic} needed to justify them as simple as possible.  We
-achieved this goal in almost all cases. Sometimes this makes the definitions
-more complex and less intuitive.  For example, the traditional way to define
-addition of natural numbers is to define an operation called {\em
+In \texttt{set.mm} our goal was to introduce almost all definitions in
+the form of two expressions connected by either $\leftrightarrow$ or
+$=$, where the thing being defined does not appear on the right hand
+side.  Quine calls this form ``a genuine or direct definition'' \cite[p.
+174]{Quine}\index{Quine, Willard Van Orman}, which makes the definitions
+very easy to eliminate and the metalogic\index{metalogic} needed to
+justify them as simple as possible.  We achieved this goal in almost all
+cases.  Sometimes this makes the definitions more complex and less
+intuitive.  For example, the traditional way to define addition of
+natural numbers is to define an operation called {\em
 successor}\index{successor} (which means ``plus one'' and is denoted by
-``${\rm suc}$''), then define addition recursively\index{recursive definition}
-with the two definitions $n + 0 = n$ and $m + {\rm suc}\,n = {\rm suc} (m +
-n)$.  Although this definition seems simple and obvious, the method to
-eliminate the definition is not obvious: in the second part of the definition,
-addition is defined in terms of itself.  By eliminating the definition, we
-don't mean repeatedly applying it to specific $m$ and $n$ but rather showing
-the explicit, closed-form set-theoretical expression that $m + n$ represents,
-that will work for any $m$ and $n$ and that does not have a $+$ sign on its
-right-hand side. For a recursive definition like this not to be circular
-(creative), there are some hidden, underlying assumptions we must make, for
-example that the natural numbers have a certain kind of order. In \texttt{set.mm}
-we chose to start with the direct (though complex and nonintuitive) definition
-then derive from it the standard recursive definition.\footnote{The
-closed-form definition used in \texttt{set.mm} for the addition operation on
-ordinals\index{ordinal addition}\index{addition!of ordinals} (of which natural
-numbers are a subset) is
+``${\rm suc}$''), then define addition recursively\index{recursive
+definition} with the two definitions $n + 0 = n$ and $m + {\rm suc}\,n =
+{\rm suc} (m + n)$.  Although this definition seems simple and obvious,
+the method to eliminate the definition is not obvious:  in the second
+part of the definition, addition is defined in terms of itself.  By
+eliminating the definition, we don't mean repeatedly applying it to
+specific $m$ and $n$ but rather showing the explicit, closed-form
+set-theoretical expression that $m + n$ represents, that will work for
+any $m$ and $n$ and that does not have a $+$ sign on its right-hand
+side.  For a recursive definition like this not to be circular
+(creative), there are some hidden, underlying assumptions we must make,
+for example that the natural numbers have a certain kind of order.  In
+\texttt{set.mm} we chose to start with the direct (though complex and
+nonintuitive) definition then derive from it the standard recursive
+definition.\footnote{The closed-form definition used in \texttt{set.mm}
+for the addition operation on ordinals\index{ordinal
+addition}\index{addition!of ordinals} (of which natural numbers are a
+subset) is
 
 \setbox\startprefix=\hbox{\tt \ \ df-oadd\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
@@ -9490,6 +9512,9 @@ of the screen output is continuous, so you may want to open a log file
 After the lines in the file are exhausted, Metamath returns to its
 normal user interface mode.
 
+Currently, the \texttt{submit} command is not recursive.  In other words,
+\texttt{submit} commands are not allowed inside of a command file.
+
 
 \subsection{\texttt{erase} Command}\index{\texttt{erase} command}
 Syntax:  \texttt{erase}
@@ -9521,22 +9546,33 @@ which means that you will prompted to continue or quit after each
 full screen in a long listing.  In \texttt{continuous} mode, long listings will be
 scrolled without pausing.
 
-% LaTeX bug? (1) \texttt{\_} puts out different character than \texttt{{\char`\_}}
+% LaTeX bug? (1) \texttt{\_} puts out different character than
+% \texttt{{\char`\_}}
 %  = \verb$_$  (2) \texttt{{\char`\_}} puts out garbage in \subsection
 %  argument
-\subsection{\texttt{set screen\_width} Command}\index{\texttt{set
-screen{\char`\_}width} command}
-Syntax:  \texttt{set screen{\char`\_}width} {\em number}
+\subsection{\texttt{set width} Command}\index{\texttt{set
+width} command}
+Syntax:  \texttt{set width} {\em number}
 
-Metamath assumes the width of your screen is 79 characters.  If your
-screen is wider or narrower, this command allows you to change this default screen
-width.  A larger width is advantageous for logging proofs to an output
-file to be printed on a wide printer.  A smaller width may be necessary
-on some terminals; in this case, the wrapping of the information
-messages may sometimes seem somewhat unnatural, however.  In
-LaTeX\index{latex@{\LaTeX}!characters per line}, there
-is normally a maximum of 61 characters per line with typewriter font.
-(The examples in this book were produced with 61 characters per line.)
+Metamath assumes the width of your screen is 79 characters (chosen
+because the Command Prompt in Windows XP has a wrapping bug at column
+80).  If your screen is wider or narrower, this command allows you to
+change this default screen width.  A larger width is advantageous for
+logging proofs to an output file to be printed on a wide printer.  A
+smaller width may be necessary on some terminals; in this case, the
+wrapping of the information messages may sometimes seem somewhat
+unnatural, however.  In \LaTeX\index{latex@{\LaTeX}!characters per line},
+there is normally a maximum of 61 characters per line with typewriter
+font.  (The examples in this book were produced with 61 characters per
+line.)
+
+\subsection{\texttt{set height} Command}\index{\texttt{set
+height} command}
+Syntax:  \texttt{set height} {\em number}
+
+Metamath assumes your screen height is 24 lines of characters.  If your
+screen is taller or shorter, this command lets you to change the number
+of lines at which the display pauses and prompts you to continue.
 
 \subsection{\texttt{beep} Command}\index{\texttt{beep} command}
 
@@ -9634,7 +9670,7 @@ Syntax:  \texttt{write source} {\em filename} [\texttt{/clean}]
 
 This command will write the contents of a Metamath\index{database}
 database into a file.\index{source file} Note:  The present version of
-Metamath (0.07)\index{Metamath!limitations of version 0.07} will not
+Metamath (0.07.17)\index{Metamath!limitations of version 0.07.17} will not
 split the database into its constituent source files included with
 \texttt{\$[}\index{\texttt{\$[} and \texttt{\$]} auxiliary keywords} and
 \texttt{\$]} keywords.  A future version is planned to properly separate
@@ -9717,8 +9753,12 @@ Optional qualifiers (only one qualifier at a time is allowed):
        and \texttt{\$f} statements).
 
     \texttt{/tex} - This qualifier will write the statement information to the
-       LaTeX file previously opened with \texttt{open tex}.  See
+       \LaTeX\ file previously opened with \texttt{open tex}.  See
        Section~\ref{texout}.
+
+    \texttt{/simple{\char`\_}tex} - The same as \texttt{/tex}, except that
+       \LaTeX\ macros are not used for formatting equations, allowing easier
+       manual edits of the output for slide presentations, etc.
 
     \texttt{/html}\index{html generation@{\sc html} generation},
        \texttt{/alt{\char`\_}html}, \texttt{/brief{\char`\_}html},
@@ -9923,10 +9963,10 @@ Optional command qualifiers:
 
 \section{Creating Proofs}\label{pfcommands}\index{Proof Assistant}
 
-
-Before using the Proof Assistant, you must include the statement you want
-to prove in a \texttt{\$p} statement in your source file.  Its proof should consist
-of a single \texttt{?}, meaning ``unknown step.''  Example:
+Before using the Proof Assistant, you must add a \texttt{\$p} to your
+source file (using a text editor) containing the statement you want to
+prove.  Its proof should consist of a single \texttt{?}, meaning
+``unknown step.''  Example:
 \begin{verbatim}
     equid $p x = x $= ? $.
 \end{verbatim}
@@ -9955,16 +9995,16 @@ want to \texttt{prove} an existing theorem, then delete all steps with
 looking at its proof display (before deletion).
 
 {\em Important:} Keep track of your work with a log file (\texttt{open
-log}) and save it frequently (\texttt{save new{\char`\_}proof}, \texttt{write
-source}), because currently there is no undo command!  Hopefully there
-will be an undo command will be in a future version.  However, you can
-use \texttt{delete} to reverse an \texttt{assign}, and you can do
-\texttt{delete floating{\char`\_}hypotheses}, then \texttt{initialize all}, then
-\texttt{unify all /interactive} to reinitialize bad unifications made
-accidentally or by bad \texttt{assign}s.  You cannot reverse a
-\texttt{delete} except by \texttt{exit /force} then reentering the
-Proof Assistant to recover from the
-last \texttt{save new{\char`\_}proof}.
+log}) and save it frequently (\texttt{save new{\char`\_}proof},
+\texttt{write source}), because currently there is no undo command!
+Hopefully there will be an undo command will be in a future version.
+However, you can use \texttt{delete} to reverse an \texttt{assign}, and
+you can do \texttt{delete floating{\char`\_}hypotheses}, then
+\texttt{initialize all}, then \texttt{unify all /interactive} to
+reinitialize bad unifications made accidentally or by bad
+\texttt{assign}s.  You cannot reverse a \texttt{delete} except by
+\texttt{exit /force} then reentering the Proof Assistant to recover from
+the last \texttt{save new{\char`\_}proof}.
 
 The following commands available in the Proof Assistant (at the
 \texttt{MM-PA>} prompt) to help you create your proof.  See the
@@ -10076,7 +10116,7 @@ allow you to create or edit the proof of the specified statement.
 The command-line prompt will change from \texttt{MM>} to \texttt{MM-PA>}.
 
 Note:  In the present version of Metamath
-(0.07)\index{Metamath!limitations of version 0.07}, the Proof
+(0.07.17)\index{Metamath!limitations of version 0.07.17}, the Proof
 Assistant does not verify that \texttt{\$d}\index{\texttt{\$d}
 statement} restrictions are met as a proof is being built.  After you
 have completed a proof, you should type \texttt{save new{\char`\_}proof}
@@ -10113,18 +10153,19 @@ empty{\char`\_}substitution off}
 Proof Assistant\index{Proof Assistant} only.)
 
 The Metamath language allows variables to be
-substituted\index{substitution!variable}\index{variable substitution} with
-empty symbol sequences\index{empty substitution}.  However, in many formal
-systems\index{formal system} this will never happen in a valid proof.
-Allowing for this possibility increases the likelihood of ambiguous
-unifications\index{ambiguous
-unification}\index{unification!ambiguous} during proof creation, and you may
-want to \texttt{set empty{\char`\_}substitution off} to help make the process
-more efficient.  With this mode set, you may not be able to create some proofs
-in formal systems that allow empty substitutions.  (An example would be a
-system that implements a Deduction Rule and in which deductions from empty
-assumption lists would be permissible.  The MIU-system\index{MIU-system}
-described in Appendix~\ref{MIU} is another example.)
+substituted\index{substitution!variable}\index{variable substitution}
+with empty symbol sequences\index{empty substitution}.  However, in many
+formal systems\index{formal system} this will never happen in a valid
+proof.  Allowing for this possibility increases the likelihood of
+ambiguous unifications\index{ambiguous
+unification}\index{unification!ambiguous} during proof creation, and you
+may want to \texttt{set empty{\char`\_}substitution off} to help make
+the process more efficient.  With this mode set, you may not be able to
+create some proofs in formal systems that allow empty substitutions.
+(An example would be a system that implements a Deduction Rule and in
+which deductions from empty assumption lists would be permissible.  The
+MIU-system\index{MIU-system} described in Appendix~\ref{MIU} is another
+example.)
 
 Note that this command does not affect the way proofs are verified with
 the \texttt{verify proof} command.  Outside of the Proof Assistant,
@@ -10276,7 +10317,8 @@ unified.
 
 Optional command qualifier for \texttt{unify all}:
 
-    \texttt{/interactive} - You will be prompted to select among the unifications
+    \texttt{/interactive} - You will be prompted to select among the
+        unifications
         that are possible for any steps that do not have unique
         unifications.  (Otherwise \texttt{unify all} will bypass these.)
 
@@ -10365,7 +10407,8 @@ all}.
 
 Optional command qualifier:
 
-    \texttt{/depth} {\em number} - This qualifier will cause the search to include
+    \texttt{/depth} {\em number} - This qualifier will cause the search
+        to include
         statements with \texttt{\$e} hypotheses (but no new variables in
         the \texttt{\$e}
         hypotheses), provided that the backtracking has not exceeded the
@@ -10385,20 +10428,20 @@ new{\char`\_}proof} command}
 Syntax:  \texttt{save new{\char`\_}proof} {\em label} [\texttt{/normal}]
    [\texttt{/compressed}]
 
-The \texttt{save new{\char`\_}proof} command is available in the Proof Assistant
-only. It saves the proof in progress in the source buffer\index{source
-buffer}.  \texttt{save new{\char`\_}proof} may be used to save a completed proof,
-or it may be used to save a proof in progress in order to work on it later.
-If an incomplete proof is saved, any user assignments with \texttt{let step} or
-\texttt{let variable} will be lost, as will any ambiguous
-unifications\index{ambiguous
-unification}\index{unification!ambiguous} that were resolved manually. To help
-make recovery easier, it can be helpful to \texttt{improve all} before \texttt{save
-new{\char`\_}proof} so that the incomplete proof will have as much information
-as possible.
+The \texttt{save new{\char`\_}proof} command is available in the Proof
+Assistant only.  It saves the proof in progress in the source
+buffer\index{source buffer}.  \texttt{save new{\char`\_}proof} may be
+used to save a completed proof, or it may be used to save a proof in
+progress in order to work on it later.  If an incomplete proof is saved,
+any user assignments with \texttt{let step} or \texttt{let variable}
+will be lost, as will any ambiguous unifications\index{ambiguous
+unification}\index{unification!ambiguous} that were resolved manually.
+To help make recovery easier, it can be helpful to \texttt{improve all}
+before \texttt{save new{\char`\_}proof} so that the incomplete proof
+will have as much information as possible.
 
-Note that the proof will not be permanently saved until a \texttt{write source}
-command is issued.
+Note that the proof will not be permanently saved until a \texttt{write
+source} command is issued.
 
 Optional command qualifiers:
 
@@ -10408,17 +10451,20 @@ Optional command qualifiers:
         is used if a qualifier is omitted.
 
     \texttt{/compressed} - The proof is saved in the compressed format, which
-        reduces storage requirements for a database.  (See Appendix~\ref{compressed}.)
+        reduces storage requirements for a database.
+        (See Appendix~\ref{compressed}.)
 
 
 
 \section{Creating \LaTeX\ Output}\label{texout}\index{latex@{\LaTeX}}
 
-The \texttt{show statement} and \texttt{show proof} commands each have
-a special \texttt{/tex} command qualifier that produces \LaTeX\ output.
-Before you can use them, you must open a \LaTeX\ file to which to
-send their output.  A typical complete session will use this sequence
-of Metamath commands:
+The \texttt{show statement} and \texttt{show proof} commands each have a
+special \texttt{/tex} command qualifier that produces \LaTeX\ output.
+(The \texttt{show statement} command also has the
+\texttt{/simple{\char`\_}tex} qualifier for output that is easier to
+edit by hand.)  Before you can use them, you must open a \LaTeX\ file to
+which to send their output.  A typical complete session will use this
+sequence of Metamath commands:
 
 \begin{verbatim}
     read set.mm
@@ -10445,10 +10491,11 @@ typically type at the shell prompt
 \subsection{\texttt{open tex} Command}\index{\texttt{open tex} command}
 Syntax:  \texttt{open tex} {\em file-name} [\texttt{/no{\char`\_}header}]
 
-This command opens a file for writing \LaTeX\ source\index{latex@{\LaTeX}} and
-writes a \LaTeX\ header to the file.  \LaTeX\ source can be written with the
-\texttt{show proof}, \texttt{show new{\char`\_}proof}, and \texttt{show statement}
-commands using the \texttt{/tex} qualifier.
+This command opens a file for writing \LaTeX\
+source\index{latex@{\LaTeX}} and writes a \LaTeX\ header to the file.
+\LaTeX\ source can be written with the \texttt{show proof}, \texttt{show
+new{\char`\_}proof}, and \texttt{show statement} commands using the
+\texttt{/tex} qualifier.
 
 The mapping to \LaTeX\ symbols is defined in a special comment
 containing a \texttt{\$t} token, described in Appendix~\ref{ASCII}.
@@ -10464,26 +10511,30 @@ Optional command qualifier:
 \subsection{\texttt{close tex} Command}\index{\texttt{close tex} command}
 Syntax:  \texttt{close tex}
 
-This command writes a trailer to any \LaTeX\ file\index{latex@{\LaTeX}} that
-was opened with  \texttt{open tex} (unless \texttt{/no{\char`\_}header} was used with
-\texttt{open tex}) and closes the \LaTeX\ file.
+This command writes a trailer to any \LaTeX\ file\index{latex@{\LaTeX}}
+that was opened with \texttt{open tex} (unless
+\texttt{/no{\char`\_}header} was used with \texttt{open tex}) and closes
+the \LaTeX\ file.
 
 
 \section{Creating HTML Output}\label{htmlout}
 
-The ability to produce {\sc html} web pages is new in Metamath version 0.07.
+The ability to produce {\sc html} web pages is new in Metamath version
+0.07.17.
 
-To create an {\sc html} output file for a \texttt{\$a} or \texttt{\$p} statement, use
+To create an {\sc html} output file for a \texttt{\$a} or \texttt{\$p}
+statement, use
 \begin{quote}
     \texttt{show statement} {\em label} \texttt{/html}
 \end{quote}
-The output file will be named {\em label}\texttt{.html}.
-When {\em label} has wildcard (\texttt{*}) characters, all statements with matching
-labels will have {\sc html} files produced for them.  Also, when {\em label} has a
-wildcard (\texttt{*}) character, two additional files,
-\texttt{mmdefinitions.html} and \texttt{mmascii.html} will be produced.
-To produce {\em only} these two additional files, you can use
-\texttt{?*}, which will not match any statement label, in place of {\em label}.
+The output file will be named {\em label}\texttt{.html}.  When {\em
+label} has wildcard (\texttt{*}) characters, all statements with
+matching labels will have {\sc html} files produced for them.  Also,
+when {\em label} has a wildcard (\texttt{*}) character, two additional
+files, \texttt{mmdefinitions.html} and \texttt{mmascii.html} will be
+produced.  To produce {\em only} these two additional files, you can use
+\texttt{?*}, which will not match any statement label, in place of {\em
+label}.
 
 There are three other qualifiers for \texttt{show statement} that also
 generate {\sc HTML} code.  These are \texttt{/alt{\char`\_}html},
@@ -10504,12 +10555,13 @@ errors.)\index{error checking}
 
 \subsection{The Typesetting Comment (\texttt{\$t})}\label{tcomment}
 
-The {\sc html} definitions for math symbols, as well as some customization
-of the generated web page, are
-specified by statements in a special typesetting comment in the input
-database file.  The typesetting comment is identified by the token
-\texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting comment}
-in the comment, and the typesetting statements run until the next \texttt{\$)}:
+The {\sc html} definitions for math symbols, as well as some
+customization of the generated web page, are specified by statements in
+a special typesetting comment in the input database file.  The
+typesetting comment is identified by the token
+\texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting comment} in
+the comment, and the typesetting statements run until the next
+\texttt{\$)}:
 \[
   \mbox{\tt \$(\ }
   \mbox{\tt \$t\ }
@@ -10521,7 +10573,7 @@ in the comment, and the typesetting statements run until the next \texttt{\$)}:
   \mbox{\tt \ \$)}
 \]
 
-In version 0.07\index{Metamath!limitations of version 0.07} of the
+In version 0.07.17\index{Metamath!limitations of version 0.07.17} of the
 Metamath program, there may be only one \texttt{\$t} comment in a
 database.  See the
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})} database
@@ -10685,14 +10737,14 @@ Optional command qualifier:
  This qualifier specifies the number of statements to
         write per web page.  The default is 100.
 
-{\em Note:} In version 0.07\index{Metamath!limitations of version 0.07}
-of Metamath, the ``Related Theorems'' links on the individual web pages
-presuppose 100 theorems per page when linking to the theorem list pages.
-Therefore the \texttt{/theorems{\char`\_}per{\char`\_}page} qualifier,
-if it specifies a number other than 100, will cause the individual web
-pages to be out of sync and should not be used to generate the main
-theorem list for the web site.  This is expected to be fixed in a future
-version.
+{\em Note:} In version 0.07.17\index{Metamath!limitations of version
+0.07.17} of Metamath, the ``Related Theorems'' links on the individual
+web pages presuppose 100 theorems per page when linking to the theorem
+list pages.  Therefore the \texttt{/theorems{\char`\_}per{\char`\_}page}
+qualifier, if it specifies a number other than 100, will cause the
+individual web pages to be out of sync and should not be used to
+generate the main theorem list for the web site.  This is expected to be
+fixed in a future version.
 
 
 \subsection{\texttt{write bibliography}\label{wrbib}
@@ -10762,22 +10814,24 @@ script-building tasks needed to use the Metamath program effectively.
 Syntax:  \texttt{help}
 
 The \texttt{help} command lists the commands available in the
-\texttt{tools} utility, along with a
-brief description.  Each command, in turn, has its own help, such as
-\texttt{help add}.  As with Metamath's \texttt{MM>} prompt, a
-complete command can be entered at once, or just the command word can be typed,
-causing to program to prompt for each argument.
+\texttt{tools} utility, along with a brief description.  Each command,
+in turn, has its own help, such as \texttt{help add}.  As with
+Metamath's \texttt{MM>} prompt, a complete command can be entered at
+once, or just the command word can be typed, causing to program to
+prompt for each argument.
 
 \vskip 1ex
 \noindent Line-by-line editing commands:
 
   \texttt{add} - Add a specified string to each line in a file.
 
-  \texttt{clean} - Trim spaces and tabs on each line in a file; convert characters.
+  \texttt{clean} - Trim spaces and tabs on each line in a file; convert
+         characters.
 
   \texttt{delete} - Delete a section of each line in a file.
 
-  \texttt{insert} - Insert a string at a specified column in each line of a file.
+  \texttt{insert} - Insert a string at a specified column in each line of
+        a file.
 
   \texttt{substitute} - Make a simple substitution on each line of the file.
 
@@ -10786,7 +10840,8 @@ causing to program to prompt for each argument.
 \vskip 1ex
 \noindent Other file processing commands:
 
-  \texttt{break} - Break up (parse) a file into a list of tokens (one per line).
+  \texttt{break} - Break up (parse) a file into a list of tokens (one per
+        line).
 
   \texttt{build} - Build a file with multiple tokens per line from a list.
 
@@ -10798,17 +10853,20 @@ causing to program to prompt for each argument.
 
   \texttt{reverse} - Reverse the order of the lines in a file.
 
-  \texttt{right} - Right-justify lines in a file (useful before sorting numbers).
+  \texttt{right} - Right-justify lines in a file (useful before sorting
+         numbers).
 
 %  \texttt{tag} - Tag edit updates in a program for revision control.
 
-  \texttt{sort} - Sort the lines in a file with key starting at specified string.
+  \texttt{sort} - Sort the lines in a file with key starting at
+         specified string.
 
   \texttt{match} - Extract lines containing (or not) a specified string.
 
   \texttt{unduplicate} - Eliminate duplicate occurrences of lines in a file.
 
-  \texttt{duplicate} - Extract first occurrence of any line occurring more than
+  \texttt{duplicate} - Extract first occurrence of any line occurring
+         more than
 
    \ \ \    once in a file, discarding lines occurring exactly once.
 
@@ -10818,8 +10876,8 @@ causing to program to prompt for each argument.
   \texttt{type} (10 lines) - Display the first few lines in a file.
                   Similar to Unix \texttt{head}.
 
-  \texttt{copy} - Similar to Unix \texttt{cat} but safe (same input and output
-        file allowed).
+  \texttt{copy} - Similar to Unix \texttt{cat} but safe (same input
+         and output file allowed).
 
   \texttt{submit} - Run a script containing \texttt{tools} commands.
 
@@ -10830,7 +10888,8 @@ causing to program to prompt for each argument.
  sort the lines as a side effect.
 
 
-\subsection{Using \texttt{tools} to Build Metamath \texttt{submit} Scripts}
+\subsection{Using \texttt{tools} to Build Metamath \texttt{submit}
+Scripts}
 
 The \texttt{break} command is typically used to break up a series of
 statement labels, such as the output of Metamath's \texttt{show usage},
@@ -10904,7 +10963,7 @@ to \texttt{set.mm} over time.  Consult the latest version at
 These symbols are defined in the \texttt{set.mm} database file inside of
 a special comment, which is indicated by the appearance of the
 two-character string \texttt{\$t} at the beginning of the comment
-Section~\ref{tcomment}.  This
+(see Section~\ref{tcomment}, p.~\pageref{tcomment}).  This
 special comment is called a \texttt{\$t} {\em
 comment}\index{\texttt{\$t} comment} or {\em typesetting
 comment.}\index{typesetting comment}
@@ -10919,16 +10978,18 @@ operation of the Metamath program, but is referenced only when you open a
 \texttt{\$t} comment consists of a series of \LaTeX\ definitions with
 the following syntax:
 \begin{center}
- \texttt{latexdef} {\em token-string} \texttt{as} {\em latex-string} \texttt{;}
+ \texttt{latexdef} {\em token-string} \texttt{as} {\em latex-string}
+ \texttt{;}
 \end{center}
 \index{latex definitions@\LaTeX\ definitions}%
 \index{\texttt{latexdef} statement}
-The fields are separated by white space (blanks, carriage returns, etc.),
-although white space is not needed before the \texttt{;} terminator.  Each
-definition should start on a new line.\footnote{This restriction of the current
-version of Metamath (0.07)\index{Metamath!limitations of version 0.07}
-may be removed in a future version, but you should do it anyway for
-readability.}  For example,
+The fields are separated by white space (blanks, carriage returns,
+etc.), although white space is not needed before the \texttt{;}
+terminator.  Each definition should start on a new line.\footnote{This
+restriction of the current version of Metamath
+(0.07.17)\index{Metamath!limitations of version 0.07.17} may be removed
+in a future version, but you should do it anyway for readability.} For
+example,
 \begin{center}
  \verb$latexdef "(_" as "\subseteq";$
 \end{center}
@@ -10949,10 +11010,9 @@ the quotation mark twice; for example the {\em token-string}\,s
  \texttt{'g\char`\"\char`\"h'}
 \end{center}
 specify the tokens \texttt{a\char`\"b}, \texttt{c'd}, \texttt{e''f}, and
-\texttt{g\char`\"\char`\"h} respectively.  Finally, a
-long {\em latex-string} may
-be broken up into  multiple quote-enclosed strings joined by \texttt{\char`\+} in
-order to fit them on several lines; thus
+\texttt{g\char`\"\char`\"h} respectively.  Finally, a long {\em
+latex-string} may be broken up into multiple quote-enclosed strings
+joined by \texttt{\char`\+} in order to fit them on several lines; thus
 \begin{center}
  \texttt{\char`\"ab\char`\"\ \char`\+\ \char`\"cd\char`\"
     \ \char`\+\ 'ef'}
@@ -11288,11 +11348,11 @@ described later.
    etc.
 \end{center}
 
-In other words, \texttt{A} through \texttt{T} represent a least-significant digit
-in base 20, and \texttt{U} through \texttt{Y} represent zero or more
-most-significant digits in base 5.  By using a separate set of letters for
-the least significant digit, the letter representation of numbers can be
-concatenated unambiguously.
+In other words, \texttt{A} through \texttt{T} represent a
+least-significant digit in base 20, and \texttt{U} through \texttt{Y}
+represent zero or more most-significant digits in base 5, where the
+digits start counting at 1 instead of the usual 0. With this scheme, we
+don't need white space between these ``numbers.''
 
 (In the design of the compressed proof format, only upper case letters,
 as opposed to say all printable {\sc ascii} characters other than
@@ -12145,7 +12205,7 @@ expository language) that ranges over metavariables (which are primitives of
 our formal system) each of which ranges over the actual individual variables
 of predicate calculus (which are never mentioned in our formal system).
 
-The constant called ``var'' above is called \texttt{set} is the
+The constant called ``var'' above is called \texttt{set} in the
 \texttt{set.mm} database file, but it means the same thing.  I felt
 that ``var'' is a more meaningful name in the context of predicate
 calculus, whose use is not limited to set theory.  For consistency we
