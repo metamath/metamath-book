@@ -6898,8 +6898,13 @@ There may not be two active \texttt{\$f} statements containing the same variable
 Each variable in a \texttt{\$e}, \texttt{\$a}, or \texttt{\$p} statement
 must exist in an active \texttt{\$f} statement.
 
-The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and \texttt{\$p}
-statement must be unique.
+The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and
+\texttt{\$p} statement must be unique.
+
+No label token may match any math symbol token.\footnote{This
+restriction did not exist in earlier versions of this specification.
+While not theoretically necessary, it is imposed to make it easier to
+write certain parsers.}
 
 The set of {\bf mandatory variables}\index{mandatory variable} associated with
 an assertion is the set of (zero or more) variables in the assertion and in any
