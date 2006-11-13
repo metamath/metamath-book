@@ -1,13 +1,18 @@
-% This file, 'metamath.tex', is copyright (C) 2006 by Norman Megill.  It
-% is licensed under the terms of GNU Free Documentation License
-% http://www.gnu.org/licenses/fdl.html and must be made available whenever
-% its compiled output 'metamath.pdf' is distributed.
+% metamath.tex - Version of 24-Jul-2006
+%
+%                              PUBLIC DOMAIN
+%
+% This file (specifically, the version of this file with the above date)
+% has been released into the Public Domain per the Creative Commons Public
+% Domain Dedication. http://creativecommons.org/licenses/publicdomain/
+%
+% Norman Megill - email: nm(at)alum(dot)mit(dot)edu
 
 % This file, 'metamath.tex', is self-contained with everything needed to
-% generate the the PDF file 'metamath.pdf' on standard LaTeX installations.
-% The auxiliary files are embedded as comments.  To generate metamath.pdf
-% file, run these commands under Linux or Cygwin in the directory that
-% contains 'metamath.tex':
+% generate the the PDF file 'metamath.pdf' (the _Metamath_ book) on
+% standard LaTeX installations.  The auxiliary files are embedded as
+% comments.  To generate metamath.pdf file, run these commands under
+% Linux or Cygwin in the directory that contains 'metamath.tex':
 %
 %   grep "^%realref.sty%" metamath.tex | sed -e s/^%realref.sty%// > realref.sty
 %   grep "^%bib%" metamath.tex | sed -e s/^%bib%// > metamath.bib
@@ -36,6 +41,14 @@
 %realref.sty%%          Software Engineer
 %realref.sty%%          Nortel Networks Optical Components Ltd
 %realref.sty%% Date:    9 Nov 2001 (posted to comp.text.tex)
+%realref.sty%%
+%realref.sty%% The following declaration was made by Anthony Williams on
+%realref.sty%% 24 Jul 2006 (private email to Norman Megill):
+%realref.sty%%
+%realref.sty%%   ``I hereby donate the code for realref.sty posted on the
+%realref.sty%%   comp.text.tex newsgroup on 9th November 2001, accessible from
+%realref.sty%%   http://groups.google.com/group/comp.text.tex/msg/5a0e1cc13ea7fbb2
+%realref.sty%%   to the public domain.''
 %realref.sty%%
 %realref.sty%\ProvidesPackage{realref}
 %realref.sty%\RequirePackage[plainpages=false,pdfpagelabels=true]{hyperref}
@@ -145,12 +158,25 @@
 \vfill
 
 \begin{center}
+$\sim$\ {\sc Public Domain}\ $\sim$
 
-Copyright \copyright\ 2006 by Norman Megill
+\vspace{2ex}
+This book has been released into the Public Domain by Norman Megill on
+July 24, 2006, per the Creative Commons Public Domain Dedication.
 
-\vspace{1ex}
-{\small This book is distributed under the terms of the
-GNU Free Documentation License \url{http://www.gnu.org/licenses/fdl.html}}
+For more information, see:
+\url{http://creativecommons.org/licenses/publicdomain/}
+
+\vspace{3ex}
+Several quotations from copyrighted works appear in this book under
+the ``fair use'' provision of Section 107 of the United States Copyright
+Act (Title 17 of the {\em United States Code}).  The public-domain
+status of this book is not applicable to those quotations.
+
+\vspace{3ex}
+Any trademarks used in this book are the property of their owners.
+
+% QA76.9.L63.M??
 
 % \vspace{1ex}
 %
@@ -540,6 +566,18 @@ always be found at \url{http://metamath.org}.
 
 The Metamath spec was restricted slightly to make parsers easier to
 write.  See the footnote on p.~\pageref{namespace}.
+
+%\subsubsection{Note Added July 24, 2006}\label{note2006b}
+\subsubsection{Note Added November 12, 2006}\label{note2006b}
+
+I am grateful to Anthony Williams\index{Williams, Anthony} for writing
+the \LaTeX\ package called {\tt realref.sty} and contributing it to the
+public domain.  This package allows the internal hyperlinks in a {\sc
+pdf} file to anchor to specific page numbers instead of just section
+titles, making the navigation of the {\sc pdf} file for this book much
+more pleasant and ``logical.''
+
+A typographical error found by Martin Kiselkov was corrected.
 
 
 \chapter{Introduction}
@@ -6184,7 +6222,7 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
-\m{)}\m{\rightarrow}\m{(}\m{(}\m{0}\m{<}\m{A}\m{\wedge}\m{0}\m{_{10}}%
+\m{)}\m{\rightarrow}\m{(}\m{(}\m{0}\m{<}\m{A}\m{\wedge}\m{0}%
 \m{<}\m{B}\m{)}\m{\rightarrow}\m{0}\m{<}\m{(}\m{A}\m{\cdot}\m{B}\m{)}%
 \m{)}\m{)}
 \endm
@@ -6732,26 +6770,23 @@ language.  We will not distinguish these two when the context is clear.
 
 The next section contains the complete specification of the Metamath
 language.\footnote{The current version of the Metamath program
-(0.07.17)\index{Metamath!limitations of version 0.07.17} implements an older
-specification with a slightly more general syntax than described here.
-Among the differences:  missing white space between tokens is sometimes
-tolerated (in particular, the program saves proofs with a date tag in
-the form \texttt{\$([}{\em dd-mmm-yy}\texttt{]\$)}); a variable may be
-used before its type is specified by a \texttt{\$f} statement (this
-``feature'' should never be used in practice); and the label of a
-locally scoped \texttt{\$f} or \texttt{\$e} statement does not have
-to be unique (it may be the same as a label in another local scope).  A
-future version of the program is expected to conform to the current
-specification.} It serves as an authoritative reference and presents the
-syntax in enough detail to write a parser\index{parsing Metamath} and
-proof verifier.  The specification is terse and it is probably hard to
-learn the language directly from it, but we include it here for those
-impatient people who prefer to see everything up front before looking at
-verbose expository material.  Later sections explain this material and
-provide examples.  We will repeat the definitions in those sections, and
-you may skip the next section at first reading and proceed to
-Section~\ref{tut1} (p.~\pageref{tut1}).  You may want to come back to it
-to clarify any fine points.
+(0.07.17)\index{Metamath!limitations of version 0.07.17} implements an
+older specification with a slightly more general syntax than described
+here.  Among the differences:  missing white space around keyword tokens
+is sometimes tolerated, and a variable may be used before its type is
+specified by a \texttt{\$f} statement (this ``feature'' should never be
+used in practice).  A future version of the program is
+expected to conform to the current specification.} It serves as an
+authoritative reference and presents the syntax in enough detail to
+write a parser\index{parsing Metamath} and proof verifier.  The
+specification is terse and it is probably hard to learn the language
+directly from it, but we include it here for those impatient people who
+prefer to see everything up front before looking at verbose expository
+material.  Later sections explain this material and provide examples.
+We will repeat the definitions in those sections, and you may skip the
+next section at first reading and proceed to Section~\ref{tut1}
+(p.~\pageref{tut1}).  You may want to come back to it to clarify any
+fine points.
 
 \section{Specification of the Metamath Language}\label{spec}
 \index{Metamath!specification}
@@ -10768,7 +10803,7 @@ syntax details.
 
 \subsection{\texttt{write recent\_additions}
 Command}\index{\texttt{write recent{\char`\_}additions} command}
-Syntax:  \texttt{write recent{\char`\_}additions}
+Syntax:  \texttt{write recent{\char`\_}additions} {\em filename}
 [\texttt{/limit} {\em number}]
 
 This command reads an existing ``Recent Additions'' {\sc html} file,
@@ -12782,8 +12817,10 @@ $( Assert the rules. $)
  ${
    Ia   $e |- x I $.
 $( Given any theorem ending with "I", it remains a theorem
-if "U" is added after it. $)
-   I    $a |- x I U $.
+if "U" is added after it.  (We distinguish the label I_
+from the math symbol I to conform to the 24-Jun-2006
+Metamath spec.) $)
+   I_    $a |- x I U $.
  $}
  ${
 IIa  $e |- M x $.
@@ -12809,7 +12846,7 @@ comparing this proof with that of Hofstadter (pp. 35 - 36).
 $)
  theorem1  $p |- M U I I U $=
       we wM wU wI we wI wU we wU wI wU we wM we wI wU we wM
-      wI wI wI we wI wI we wI ax II II I III II IV $.
+      wI wI wI we wI wI we wI ax II II I_ III II IV $.
 \end{verbatim}\index{well-formed formula (wff)}
 
 The \texttt{show proof /essential/lemmon/renumber} command
@@ -12820,7 +12857,7 @@ to the one in \cite[pp.~35--36]{Hofstadter}.\index{Hofstadter, Douglas R.}
         1 ax             $a |- M I
         2 1 II           $a |- M I I
         3 2 II           $a |- M I I I I
-        4 3 I            $a |- M I I I I U
+        4 3 I_           $a |- M I I I I U
         5 4 III          $a |- M U I U
         6 5 II           $a |- M U I U U I U
         7 6 IV           $a |- M U I I U
