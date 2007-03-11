@@ -1,10 +1,20 @@
-% metamath.tex - Version of 24-Jul-2006
+% metamath.tex - Version of 10-Mar-2007
 %
 %                              PUBLIC DOMAIN
 %
 % This file (specifically, the version of this file with the above date)
 % has been released into the Public Domain per the Creative Commons Public
-% Domain Dedication. http://creativecommons.org/licenses/publicdomain/
+% Domain Dedication.  http://creativecommons.org/licenses/publicdomain/
+%
+% The public domain release applies worldwide.  In case this is not
+% legally possible, the right is granted to use the work for any purpose,
+% without any conditions, unless such conditions are required by law.
+%
+% Several short, attributed quotations from copyrighted works
+% appear in this file under the ``fair use'' provision of Section 107 of
+% the United States Copyright Act (Title 17 of the {\em United States
+% Code}).  The public-domain status of this file is not applicable to
+% those quotations.
 %
 % Norman Megill - email: nm(at)alum(dot)mit(dot)edu
 
@@ -162,16 +172,18 @@ $\sim$\ {\sc Public Domain}\ $\sim$
 
 \vspace{2ex}
 This book has been released into the Public Domain by Norman Megill on
-July 24, 2006, per the Creative Commons Public Domain Dedication.
-
-For more information, see:
-\url{http://creativecommons.org/licenses/publicdomain/}
+March 10, 2007, per the Creative Commons Public Domain Dedication
+(\url{http://creativecommons.org/licenses/publicdomain/}).
+The public domain release applies worldwide.  In case this is not
+legally possible, the right is granted to use the work for any purpose,
+without any conditions, unless such conditions are required by law.
 
 \vspace{3ex}
-Several quotations from copyrighted works appear in this book under
-the ``fair use'' provision of Section 107 of the United States Copyright
-Act (Title 17 of the {\em United States Code}).  The public-domain
-status of this book is not applicable to those quotations.
+Several short, attributed quotations from copyrighted works
+appear in this book under the ``fair use'' provision of Section 107 of
+the United States Copyright Act (Title 17 of the {\em United States
+Code}).  The public-domain status of this book is not applicable to
+those quotations.
 
 \vspace{3ex}
 Any trademarks used in this book are the property of their owners.
@@ -568,7 +580,7 @@ The Metamath spec was restricted slightly to make parsers easier to
 write.  See the footnote on p.~\pageref{namespace}.
 
 %\subsubsection{Note Added July 24, 2006}\label{note2006b}
-\subsubsection{Note Added November 12, 2006}\label{note2006b}
+\subsubsection{Note Added March 10, 2007}\label{note2006b}
 
 I am grateful to Anthony Williams\index{Williams, Anthony} for writing
 the \LaTeX\ package called {\tt realref.sty} and contributing it to the
@@ -578,6 +590,8 @@ titles, making the navigation of the {\sc pdf} file for this book much
 more pleasant and ``logical.''
 
 A typographical error found by Martin Kiselkov was corrected.
+A confusing remark about unification was deleted per suggestion of
+Mel O'Cat.
 
 
 \chapter{Introduction}
@@ -2731,7 +2745,7 @@ alternate ways of invoking the Metamath program.)
 When you first enter Metamath\index{Metamath}, it will be at the CLI, waiting
 for your input. You will see the following on your screen:
 \begin{verbatim}
-        Metamath - Version 0.07.17 4-Jun-06
+        Metamath - Version 0.07.30 8-Feb-2007
         Type HELP for help, EXIT to exit.
         MM>
 \end{verbatim}
@@ -3425,9 +3439,9 @@ duplicate it then rename the original to \texttt{mytheoremOLD}
 throughout the database.  Once the edited version is re-proved, all
 statements referencing \texttt{mytheoremOLD} can be updated in the Proof
 Assistant using \texttt{minimize{\char`\_}with
-mytheorem /allow{\char`\_}growth}.\index{\texttt{minimize{\char`\_}with}
-command}
-
+mytheorem
+/allow{\char`\_}growth}.\index{\texttt{minimize{\char`\_}with} command}
+% 3/10/07 Note: line-breaking the above results in duplicate index entries
 
 \chapter{Abstract Mathematics Revealed}\label{fol}
 
@@ -6675,8 +6689,8 @@ qualifier gives you all of them.)
 
 \subsection{A Note on ``Compact'' Proof Format}
 
-The present version of Metamath (0.07.17)\index{Metamath!limitations of
-version 0.07.17} will display proofs in a ``compact''\index{compact proof}
+The present version of Metamath (0.07.30)\index{Metamath!limitations of
+version 0.07.30} will display proofs in a ``compact''\index{compact proof}
 format whenever the proof is stored in compressed format in the database.  It
 may be be slightly confusing unless you know how to interpret it.  (A
 future version may eliminate this format from displays.)  For example,
@@ -6770,7 +6784,7 @@ language.  We will not distinguish these two when the context is clear.
 
 The next section contains the complete specification of the Metamath
 language.\footnote{The current version of the Metamath program
-(0.07.17)\index{Metamath!limitations of version 0.07.17} implements an
+(0.07.30)\index{Metamath!limitations of version 0.07.30} implements an
 older specification with a slightly more general syntax than described
 here.  Among the differences:  missing white space around keyword tokens
 is sometimes tolerated, and a variable may be used before its type is
@@ -8747,9 +8761,11 @@ process, as in ``two unifications are possible.'')  After the substitutions
 are made, the hypotheses are said the be {\bf unified}.
 
 If no such substitutions are possible, Metamath will consider the proof
-incorrect and notify you with an error message.  The syntax of the
-Metamath language ensures that if a set of substitutions exists, it
-will be unique.
+incorrect and notify you with an error message.
+% (deleted 3/10/07, per suggestion of Mel O'Cat:)
+% The syntax of the
+% Metamath language ensures that if a set of substitutions exists, it
+% will be unique.
 
 The general algorithm for unification described in the literature is
 somewhat complex.  However, in the case of Metamath it is trivial
@@ -8795,7 +8811,7 @@ in {\em text}.  Thus nested comments are not
 permitted:\footnote{Computer languages have differing standards for
 nested comments, and rather than picking one it was felt simplest not to
 allow them at all, at least in the current version of Metamath
-(0.07.17)\index{Metamath!limitations of version 0.07.17}.} Metamath will
+(0.07.30)\index{Metamath!limitations of version 0.07.30}.} Metamath will
 complain if you give it
 \begin{center}
  \texttt{\$( This is a \$( nested \$) comment.\ \$)}
@@ -8836,7 +8852,7 @@ and have no effect on how Metamath verifies the database.  The improper
 use of them may result in incorrectly typeset output, but no Metamath
 error messages will result during the \texttt{read} and \texttt{verify
 proof} commands.  (However, the new \texttt{write
-theorem\texttt{\char`\_}list} command, added in version 0.07.17 of the
+theorem\texttt{\char`\_}list} command, added in version 0.07.30 of the
 Metamath program, will check for markup errors as a side-effect of its
 {\sc html} generation.)
 
@@ -8915,7 +8931,7 @@ and error messages will be issued during that output if they aren't.)
 
 The automated generation of {\sc html}\index{html generation@{\sc html}
 generation} web pages
-(Section~\ref{htmlout}) is new in version 0.07.17 of the Metamath program.
+(Section~\ref{htmlout}) is new in version 0.07.30 of the Metamath program.
 The comment markup notation for \LaTeX\ also applies to {\sc html}, and
 some additional features specifically for {\sc html} were added.
 These markup features (including those reused from \LaTeX) are the
@@ -9659,17 +9675,27 @@ arrays, which are allocated dynamically as needed.
 
 \section{Reading and Writing Files}
 
-The \texttt{open log}, \texttt{write}, and other output commands will
-not overwrite an existing {\em filename} but will rename the
-existing one to {\em
+The following commands create new files:  the \texttt{open} commands;
+the \texttt{write} commands; the \texttt{/html},
+\texttt{/alt{\char`\_}html}, \texttt{/brief{\char`\_}html},
+\texttt{/brief{\char`\_}alt{\char`\_}html} qualifiers of \texttt{show
+statement}, and \texttt{midi}.  The following commands append to files
+previously opened:  the \texttt{/tex} qualifier of \texttt{show proof}
+and \texttt{show new{\char`\_}proof}; the \texttt{/tex} and
+\texttt{/simple{\char`\_}tex} qualifiers of \texttt{show statement}; the
+\texttt{close} commands; and all screen dialog between \texttt{open log}
+and \texttt{close log}.
+
+The commands that create new files will not overwrite an existing {\em
+filename} but will rename the existing one to {\em
 filename}\texttt{{\char`\~}1}.  An existing {\em
 filename}\texttt{{\char`\~}1} is renamed {\em
 filename}\texttt{{\char`\~}2}, etc.\ up to {\em
 filename}\texttt{{\char`\~}9}.  An existing {\em
 filename}\texttt{{\char`\~}9} is deleted.  This makes recovery from
-mistakes easier but also will clutter up your directory, so
-occasionally you may want
-to clean up (delete) these \texttt{{\char`\~}}$n$ files.
+mistakes easier but also will clutter up your directory, so occasionally
+you may want to clean up (delete) these \texttt{{\char`\~}}$n$ files.
+
 
 \subsection{\texttt{read} Command}\index{\texttt{read} command}
 Syntax:  \texttt{read} {\em file-name} [\texttt{/verify}]
@@ -9705,7 +9731,7 @@ Syntax:  \texttt{write source} {\em filename} [\texttt{/clean}]
 
 This command will write the contents of a Metamath\index{database}
 database into a file.\index{source file} Note:  The present version of
-Metamath (0.07.17)\index{Metamath!limitations of version 0.07.17} will not
+Metamath (0.07.30)\index{Metamath!limitations of version 0.07.30} will not
 split the database into its constituent source files included with
 \texttt{\$[}\index{\texttt{\$[} and \texttt{\$]} auxiliary keywords} and
 \texttt{\$]} keywords.  A future version is planned to properly separate
@@ -9715,7 +9741,7 @@ Optional command qualifier (primarily intended to assist web site updates):
 
     \texttt{/clean} - Suppresses (deletes) the output of any theorem that
         has been flagged
-        with a question mark (\texttt{?}) placed in the date
+        with a question mark (\texttt{?}) placed in or in place of the date
        comment field at the
         end of its proof, for example ``\texttt{\$( [?31-Oct-00] \$)}.''
         This lets
@@ -9809,15 +9835,18 @@ Optional qualifiers (only one qualifier at a time is allowed):
 Syntax:  search {\em label-match}
 \texttt{"}{\em symbol-match}{\tt}" [\texttt{/ all}] [\texttt{/ comments}]
 
-This command searches all \texttt{\$a} and \texttt{\$p} statements matching {\em
-label-match} for occurrences of {\em symbol-match}.  A \verb@*@ in {\em
-label-match} matches any label character.  A \verb@$*@ in {\em symbol-match}
-matches any sequence of symbols.  The symbols in {\em symbol-match} must be
-separated by white space.  The quotes surrounding {\em symbol-match} may be
-single or double quotes.  For example, \texttt{search b}\verb@* "-> $* ch"@ will
-list all statements whose labels begin with \texttt{b} and contain the symbols
-\verb@->@ and \texttt{ch} surrounding any symbol sequence (including no symbol
-sequence).
+This command searches all \texttt{\$a} and \texttt{\$p} statements
+matching {\em label-match} for occurrences of {\em symbol-match}.  A
+\verb@*@ in {\em label-match} matches any label character.  A \verb@$*@
+in {\em symbol-match} matches any sequence of symbols.  The symbols in
+{\em symbol-match} must be separated by white space.  The quotes
+surrounding {\em symbol-match} may be single or double quotes.  For
+example, \texttt{search b}\verb@* "-> $* ch"@ will list all statements
+whose labels begin with \texttt{b} and contain the symbols \verb@->@ and
+\texttt{ch} surrounding any symbol sequence (including no symbol
+sequence).  The wildcards \texttt{?} and \texttt{\$?} are also available
+to match individual characters in labels and symbols respectively; see
+\texttt{help search} in the Metamath program for details on their usage.
 
 Optional command qualifiers:
 
@@ -10072,7 +10101,7 @@ individual commands for more detail.
     \texttt{let step} {\em step} \texttt{= "}{\em symbol sequence}\texttt{"} -
           Forces a symbol sequence
         to replace the contents of a proof step, provided it can be
-        unified with the existing step contents.  (Very rarely used.)
+        unified with the existing step contents.  (I rarely use this.)
 \item[]
     \texttt{unify step} {\em step} (or \texttt{unify all}) - Unifies
         the source and target of
@@ -10116,15 +10145,21 @@ individual commands for more detail.
         \texttt{exit /force} from the Proof Assistant then re-enter the Proof
         Assistant.
  \item[]
-    \texttt{match step} {\em step} (or \texttt{match all}) - Shows what statements are
-        possibilities for the \texttt{assign} statement. (This command is not very
+    \texttt{match step} {\em step} (or \texttt{match all}) - Shows what
+        statements are
+        possibilities for the \texttt{assign} statement. (This command
+        is not very
         useful in its present form and hopefully will be improved
         eventually.  In the meantime, use the \texttt{search} statement for
         candidates matching specific math token combinations.)
  \item[]
-    \texttt{minimize{\char`\_}with} - After a proof is complete, this command will attempt
+ \texttt{minimize{\char`\_}with}\index{\texttt{minimize{\char`\_}with} command}
+% 3/10/07 Note: line-breaking the above results in duplicate index entries
+     - After a proof is complete, this command will attempt
         to match other database theorems to the proof to see if the proof
-        size can be reduced as a result.
+        size can be reduced as a result.  See \texttt{help
+        minimize{\char`\_}with} in the
+        Metamath program for its usage.
 \end{itemize}
 
 The following commands set parameters that may be relevant to your proof.
@@ -10151,7 +10186,7 @@ allow you to create or edit the proof of the specified statement.
 The command-line prompt will change from \texttt{MM>} to \texttt{MM-PA>}.
 
 Note:  In the present version of Metamath
-(0.07.17)\index{Metamath!limitations of version 0.07.17}, the Proof
+(0.07.30)\index{Metamath!limitations of version 0.07.30}, the Proof
 Assistant does not verify that \texttt{\$d}\index{\texttt{\$d}
 statement} restrictions are met as a proof is being built.  After you
 have completed a proof, you should type \texttt{save new{\char`\_}proof}
@@ -10256,6 +10291,8 @@ See also:  \texttt{show proof}
 \subsection{\texttt{assign} Command}\index{\texttt{assign} command}
 Syntax:   \texttt{assign} {\em step} {\em label}
 
+   and:   \texttt{assign first} {\em label}
+
    and:   \texttt{assign last} {\em label}
 
 
@@ -10270,13 +10307,24 @@ used.  This can be useful for building a proof with a command file (see
 \texttt{help submit}).  It also makes building proofs faster when you know
 the assignment for the last step.
 
+If \texttt{first} is specified instead of {\em step} number, the first
+step that is shown by \texttt{show new{\char`\_}proof /unknown} will be
+used.
+
+If {\em step} is zero or negative, the -{\em step}th from last unknown
+step, as shown by \texttt{show new{\char`\_}proof /unknown}, will be
+used.  \texttt{assign -1} {\em label} will assign the penultimate
+unknown step, \texttt{assign -2} {\em label} the antepenultimate, and
+\texttt{assign 0} {\em label} is the same as \texttt{assign last} {\em
+label}.
+
 Optional command qualifier:
 
     \texttt{/no{\char`\_}unify} - do not prompt user to select a unification if there is
         more than one possibility.  This is useful for noninteractive
-        command files.  Later, the user can \texttt{unify all /interactive}.  (The
-        assignment will still be automatically unified if there is only
-        possibility and will be refused if unification is not possible.)
+        command files.  Later, the user can \texttt{unify all /interactive}.
+        (The assignment will still be automatically unified if there is only
+        one possibility and will be refused if unification is not possible.)
 
 
 
@@ -10310,7 +10358,7 @@ Optional command qualifiers:
 \subsection{\texttt{let} Command}\index{\texttt{let} command}
 Syntax: \texttt{let variable} {\em variable} = \verb/"/{\em symbol-sequence}\verb/"/
 
-      and:   \texttt{let step} {\em step} = \verb/"/{\em symbol-sequence}\verb/"/
+  and: \texttt{let step} {\em step} = \verb/"/{\em symbol-sequence}\verb/"/
 
 These commands, available in the Proof Assistant\index{Proof Assistant}
 only, assign a temporary variable\index{temporary variable} or unknown
@@ -10326,18 +10374,35 @@ other unknown variables if desired.  Examples:
 
     \verb/let variable $32 = "A = $35"/
 
-    \verb/let step 10 = "|- x = x"/
+    \verb/let step 10 = '|- x = x'/
+
+    \verb/let step -2 = "|- ( $7 = ph )"/
 
 Any symbol sequence will be accepted for the \texttt{let variable}
-command.  The step in \texttt{let step} must be an unknown step, and
-only symbol sequences that can be unified with the step will be
-accepted.
+command.  Only those symbol sequences that can be unified with the step
+will be accepted for \texttt{let step}.
 
 The \texttt{let} commands ``zap'' the proof with information that can
 only be verified when the proof is built up further.  If you make an
 error, the command sequence \texttt{delete
 floating{\char`\_}hypotheses}, \texttt{initialize all}, and
 \texttt{unify all /interactive} will undo a bad \texttt{let} assignment.
+
+If {\em step} is zero or negative, the -{\em step}th from last unknown
+step, as shown by \texttt{show new{\char`\_}proof /unknown}, will be
+used.  The command \texttt{let step 0} = \verb/"/{\em
+symbol-sequence}\verb/"/ will use the last unknown step, \texttt{let
+step -1} = \verb/"/{\em symbol-sequence}\verb/"/ the penultimate, etc.
+If {\em step} is positive, \texttt{let step} may be used to assign known
+(in the sense of having previously been assigned a label with
+\texttt{assign}) as well as unknown steps.
+
+Either single or double quotes can surround the {\em symbol-sequence} as
+long as they are different from any quotes inside of {\em
+symbol-sequence}.  If {\em symbol-sequence} contains both kinds of
+quotes, see the instructions at the end of \texttt{help let} in the
+Metamath program.
+
 
 \subsection{\texttt{unify} Command}\index{\texttt{unify} command}
 Syntax:  \texttt{unify step} {\em step}
@@ -10418,8 +10483,14 @@ usually easy to recover from.
 
 \subsection{\texttt{improve} Command}\index{\texttt{improve} command}
 \label{improve}
-Syntax:  \texttt{improve step} {\em step} [\texttt{/depth} {\em number}]
+Syntax:  \texttt{improve} {\em step} [\texttt{/depth} {\em number}]
                                                [\texttt{/no{\char`\_}distinct}]
+
+   and:   \texttt{improve first} [\texttt{/depth} {\em number}]
+                                              [\texttt{/no{\char`\_}distinct}]
+
+   and:   \texttt{improve last} [\texttt{/depth} {\em number}]
+                                              [\texttt{/no{\char`\_}distinct}]
 
    and:   \texttt{improve all} [\texttt{/depth} {\em number}]
                                               [\texttt{/no{\char`\_}distinct}]
@@ -10439,6 +10510,20 @@ later on a larger computer.  Warning:  Once memory has overflowed, there
 is no recovery.  If in doubt, save the intermediate proof (\texttt{save
 new{\char`\_}proof} then \texttt{write source}) before \texttt{improve
 all}.
+
+If \texttt{last} is specified instead of {\em step} number, the last
+step that is shown by \texttt{show new{\char`\_}proof /unknown} will be
+used.
+
+If \texttt{first} is specified instead of {\em step} number, the first
+step that is shown by \texttt{show new{\char`\_}proof /unknown} will be
+used.
+
+If {\em step} is zero or negative, the -{\em step}th from last unknown
+step, as shown by \texttt{show new{\char`\_}proof /unknown}, will be
+used.  \texttt{improve -1} will use the penultimate
+unknown step, \texttt{improve -2} {\em label} the antepenultimate, and
+\texttt{improve 0} is the same as \texttt{improve last}.
 
 Optional command qualifier:
 
@@ -10555,7 +10640,7 @@ the \LaTeX\ file.
 \section{Creating HTML Output}\label{htmlout}
 
 The ability to produce {\sc html} web pages is new in Metamath version
-0.07.17.
+0.07.30.
 
 To create an {\sc html} output file for a \texttt{\$a} or \texttt{\$p}
 statement, use
@@ -10608,7 +10693,7 @@ the comment, and the typesetting statements run until the next
   \mbox{\tt \ \$)}
 \]
 
-In version 0.07.17\index{Metamath!limitations of version 0.07.17} of the
+In version 0.07.30\index{Metamath!limitations of version 0.07.30} of the
 Metamath program, there may be only one \texttt{\$t} comment in a
 database.  See the
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})} database
@@ -10772,8 +10857,8 @@ Optional command qualifier:
  This qualifier specifies the number of statements to
         write per web page.  The default is 100.
 
-{\em Note:} In version 0.07.17\index{Metamath!limitations of version
-0.07.17} of Metamath, the ``Related Theorems'' links on the individual
+{\em Note:} In version 0.07.30\index{Metamath!limitations of version
+0.07.30} of Metamath, the ``Related Theorems'' links on the individual
 web pages presuppose 100 theorems per page when linking to the theorem
 list pages.  Therefore the \texttt{/theorems{\char`\_}per{\char`\_}page}
 qualifier, if it specifies a number other than 100, will cause the
@@ -11022,7 +11107,7 @@ The fields are separated by white space (blanks, carriage returns,
 etc.), although white space is not needed before the \texttt{;}
 terminator.  Each definition should start on a new line.\footnote{This
 restriction of the current version of Metamath
-(0.07.17)\index{Metamath!limitations of version 0.07.17} may be removed
+(0.07.30)\index{Metamath!limitations of version 0.07.30} may be removed
 in a future version, but you should do it anyway for readability.} For
 example,
 \begin{center}
