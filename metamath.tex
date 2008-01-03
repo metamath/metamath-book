@@ -1,4 +1,4 @@
-% metamath.tex - Version of 10-Mar-2007
+% metamath.tex - Version of 2-Jan-2008
 %
 %                              PUBLIC DOMAIN
 %
@@ -221,7 +221,8 @@ Any trademarks used in this book are the property of their owners.
 % \ \\
 
 \vspace{7ex}
-ISBN: 1-4116-3724-0 \\
+% ISBN: 1-4116-3724-0 \\
+ISBN: 978-1-4116-3724-5 \\
 {\ } \\
 Lulu Press \\
 Morrisville, North Carolina\\
@@ -3604,7 +3605,7 @@ objects and can easily ``see'' how it generalizes to $x\cdot y = y\cdot x$,
 even though you might not be able to rigorously prove it.  Similarly, in set
 theory it can be helpful to understand how the axioms of set theory apply to
 (and are correct for) small finite collections of objects.  You should be aware
-that in set theory intuition can be misleading for infinite collections and
+that in set theory intuition can be misleading for infinite collections, and
 rigorous proofs become more important.  For example, while $x\cdot y = y\cdot
 x$ is correct for finite ordinals (which are the natural numbers), it is not
 usually true for infinite ordinals.
@@ -4399,17 +4400,17 @@ meets the restrictions on the dummy variable imposed by \texttt{\$d} and
 definition remains logically equivalent when we replace $\varphi$ with any
 other wff.  (We do not define $\perp$ in \texttt{set.mm}.)
 
-There are a few cases where eliminating definitions is a little more complex.
-These cases are the definitions \texttt{df-bi1}, \texttt{df-bi2}, \texttt{df-bi3},
-and \texttt{df-cleq}.  The first three stretch the concept of a
-definition a little, as in effect they ``define a definition''; however
-taken together they meet our requirements for a definition.  Theorem \texttt{bii}
-shows the substitution needed to eliminate the $\leftrightarrow$\index{logical
-equivalence ($\leftrightarrow$)}\index{biconditional ($\leftrightarrow$)}
-symbol.
+There are two cases where eliminating definitions is a little more
+complex.  These cases are the definitions \texttt{df-bi} and
+\texttt{df-cleq}.  The first stretches the concept of a definition a
+little, as in effect it ``defines a definition;'' however, it meets our
+requirements for a definition in that it is eliminable and does not
+strengthen the language.  Theorem \texttt{bii} shows the substitution
+needed to eliminate the $\leftrightarrow$\index{logical equivalence
+($\leftrightarrow$)}\index{biconditional ($\leftrightarrow$)} symbol.
 
 Definition \texttt{df-cleq}\index{equality ($=$)} extends the usage of
-the equality symbol to include ``classes''\index{class} in set theory; the
+the equality symbol to include ``classes''\index{class} in set theory.  The
 reason it is potentially problematic is that it can lead to statements which
 do not follow from logic alone but presuppose the Axiom of
 Extensionality\index{Axiom of Extensionality}, so we include this axiom
@@ -9914,8 +9915,8 @@ Optional command qualifiers:
         as Lemmon style, with explicit previous step number references.
         If this qualifier is omitted, steps are indented in a tree format.
 
-    \texttt{/column} {\em number} - Overrides the default column at which
-        the formula display starts in a Lemmon-style display.  May be
+    \texttt{/start{\char`\_}column} {\em number} - Overrides the default column
+        at which the formula display starts in a Lemmon-style display.  May be
         used only in conjunction with \texttt{/lemmon}.
 
     \texttt{/normal} - The proof is displayed in normal format suitable for
