@@ -1,4 +1,4 @@
-% metamath.tex - Version of 2-Jan-2008
+% metamath.tex - Version of 8-Oct-2008
 %
 %                              PUBLIC DOMAIN
 %
@@ -3814,14 +3814,16 @@ axioms of equality as a prerequisite for the version of set theory we will
 use.  In standard systems, the axioms for equality are the following two:
 \begin{center}
 $x=x$\\ \ \\
-$x=y\rightarrow (\varphi(x,y)\rightarrow\varphi(x,x))$ where ``$\varphi(x,x)$
-   arises from $\varphi(x,y)$ by replacing some, but not necessarily all,
+$x=y\rightarrow (\varphi(x,x)\rightarrow\varphi(x,y))$ where ``$\varphi(x,y)$
+   arises from $\varphi(x,x)$ by replacing some, but not necessarily all,
    free\index{free variable}
-   occurrences of $x$ by $y$.'' \end{center}
-The first equality axiom is simple, but the proviso on the second one is
+   occurrences of $x$ by $y$,\\ provided that $y$ is free for $x$
+   in $\phi(x,x)$.'' \end{center}
+% (Mendelson p. 95)
+The first equality axiom is simple, but the condition on the second one is
 somewhat awkward to implement on a computer.  Again, the axiom system we use in
 the \texttt{set.mm}\index{set theory database (\texttt{set.mm})} database avoids the
-complexity of this proviso by effectively embedding the complexity into the
+complexity of this condition by effectively embedding the complexity into the
 axioms themselves.
 
 \subsection{Set Theory}
