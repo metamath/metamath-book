@@ -1,4 +1,4 @@
-% metamath.tex - Version of 27-May-2009
+% metamath.tex - Version of 17-Nov-2014
 %
 %                              PUBLIC DOMAIN
 %
@@ -1172,6 +1172,11 @@ Mel O'Cat.
 Several typos found by Kim Sparre were corrected.  A note was added that
 the Poincar\'{e} conjecture has been proved (p.~\pageref{poincare}).
 
+\subsubsection{Note Added Nov. 17, 2014}\label{note2014}
+
+The statement of the Schr\"{o}der-Bernstein theorem was corrected in
+Section~\ref{trust}.  Thanks to Bob Solovay for pointing out the error.
+
 \chapter{Introduction}
 \pagenumbering{arabic}
 
@@ -2260,7 +2265,7 @@ with a degree of confidence approaching certainty.  (An independently written
 implementation of Metamath could pretty much eliminate any residual doubt on
 the part of a skeptic.)
 
-\subsection{Trusting the Mathematician}
+\subsection{Trusting the Mathematician}\label{trust}
 
 \begin{quote}
   {\em There is no Algebraist nor Mathematician so expert in his science, as
@@ -2314,12 +2319,12 @@ students, instructors, and mathematicians who studied Euclid.
   \item The first published proof of the famous Schr\"{o}der-Bernstein
 theorem\index{Schr\"{o}der-Bernstein theorem} in set theory was incorrect
 \cite[p.~148]{Enderton}\index{Enderton, Herbert B.}.  This theorem states
-that if there exists a function\footnote{A {\em set}\index{set} is any
+that if there exists a 1-to-1 function\footnote{A {\em set}\index{set} is any
 collection of objects. A {\em function}\index{function} or {\em
 mapping}\index{mapping} is a rule that assigns to each element of one set
 (called the function's {\em domain}\index{domain}) an element from another
-set.} from set $A$ onto set $B$ and vice-versa, then sets $A$ and $B$ can be
-put into one-to-one correspondence.  Although it sounds simple and obvious,
+set.} from set $A$ into set $B$ and vice-versa, then sets $A$ and $B$ have
+a 1-to-1 correspondence.  Although it sounds simple and obvious,
 the standard proof is quite long and complex.
   \item In the early 1900's, Hilbert\index{Hilbert, David} published a
 purported proof of the continuum hypothesis\index{continuum hypothesis}, which
