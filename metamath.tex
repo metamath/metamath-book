@@ -1177,6 +1177,10 @@ the Poincar\'{e} conjecture has been proved (p.~\pageref{poincare}).
 The statement of the Schr\"{o}der-Bernstein theorem was corrected in
 Section~\ref{trust}.  Thanks to Bob Solovay for pointing out the error.
 
+\subsubsection{Note Added May 25, 2016}\label{note2016}
+
+Thanks to Jerry James for correcting 16 typos.
+
 \chapter{Introduction}
 \pagenumbering{arabic}
 
@@ -2879,7 +2883,7 @@ containing samples of the Metamath language, all ending with
 starting point for other areas of mathematics.
 
 You will also need a text editor\index{text editor} capable of editing plain
-{\sc ascii}\footnote{American Standard for Coded Information Interchange} text
+{\sc ascii}\footnote{American Standard Code for Information Interchange} text
 in order to prepare your input files.\index{ascii@{\sc ascii}}  Most computers
 have this capability built in.  Note that plain text is not necessarily the
 default for some word processing programs\index{word processor}, especially if
@@ -3483,7 +3487,7 @@ proof}\index{proof!tree-style}
 
 The first number on each line is the step
 number of the proof.  Any numbers that follow are step numbers assigned to the
-hypotheses of the statement in referenced by that step.  Next is the label of
+hypotheses of the statement referenced by that step.  Next is the label of
 the statement referenced by the step.  The statement type of the statement
 referenced comes next, followed by the math symbol\index{math symbol} string
 constructed by the proof up to that step.
@@ -3779,7 +3783,7 @@ We are now going to describe an obscure feature that you will probably
 never use but should be aware of.  The Metamath language allows empty
 symbol sequences to be substituted for variables, but in most formal
 systems this feature is never used.  One of the few examples where is it
-used is the The MIU-system\index{MIU-system} described in
+used is the MIU-system\index{MIU-system} described in
 Appendix~\ref{MIU}.  But such systems are rare, and by default this
 feature is turned off in the Proof Assistant.  (It is always allowed for
 {\tt verify proof}.)  Let us turn it on and see what
@@ -4072,7 +4076,7 @@ theory}
 Here in a nutshell is what the axioms are all about in an informal way. The
 connection between this description and symbols we will show you won't be
 immediately apparent and in principle needn't ever be.  Our description just
-tries to summarizes what mathematicians think about when they work with the
+tries to summarize what mathematicians think about when they work with the
 axioms.
 
 Logic is more or less the translation of what we would consider common sense
@@ -4196,7 +4200,7 @@ usually true for infinite ordinals.
 
 \section{The Axioms for All of Mathematics}
 
-In this section\index{axioms for mathematics}, we will show you how the axioms
+In this section\index{axioms for mathematics}, we will show you the axioms
 for all of standard mathematics (i.e.\ logic and set theory) as they are
 traditionally presented.  The traditional presentation is useful for someone
 with the mathematical experience needed to correctly manipulate high-level
@@ -4348,9 +4352,9 @@ wff\index{well-formed formula (wff)}; this is just an informal way of
 referring to some arbitrary variable that may occur in the wff.  The
 conditional clauses do, of course, have a precise meaning, but as it turns out
 the precise meaning is somewhat complicated and awkward to formalize in a
-way that a computer handle easily.  Unlike propositional calculus, a certain
-amount of mathematical sophistication and practice is needed to be able to
-easily grasp and manipulate these concepts correctly.
+way that a computer can handle easily.  Unlike propositional calculus, a
+certain amount of mathematical sophistication and practice is needed to be
+able to easily grasp and manipulate these concepts correctly.
 
 We take a different approach in the Metamath\index{Metamath} database
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})}.  We do not
@@ -5054,7 +5058,7 @@ equivalence)\index{logical equivalence
 ($\leftrightarrow$)}\index{biconditional ($\leftrightarrow$)}.  Unlike
 most traditional developments, we have chosen not to have a separate
 symbol such as ``Df.'' to mean ``is defined as.''  Instead, we will use
-the biconditional connective for this purpose, as it lets us to use
+the biconditional connective for this purpose, as it lets us use
 logic to manipulate definitions directly.  Here we state the properties
 of the biconditional connective with a carefully crafted \texttt{\$a}
 statement, which effectively uses the biconditional connective to define
@@ -6062,7 +6066,7 @@ A hypothesis of the form
 should be read ``assume variable $x$ is (effectively) not free in wff
 $\varphi$.''\index{effectively not free}
 Literally, this says ``assume it is provable that $\varphi \rightarrow \forall
-x\, \varphi$.''  This device lets us to avoid the complexities associated with
+x\, \varphi$.''  This device lets us avoid the complexities associated with
 the standard treatment of free and bound variables.
 %% Uncomment this when uncommenting section {formalspec} below
 The footnote on p.~\pageref{effectivelybound} discusses this further.
@@ -6213,7 +6217,7 @@ references for the text references.)  Their proofs often embody important
 concepts you may wish to explore with the Metamath program (see
 Section~\ref{exploring}).  All the symbols that are used here are defined in
 Section~\ref{hierarchy}.  For brevity we haven't included the \texttt{\$d}
-restrictions or \texttt{\$f} hypothesis for these theorems; when you are
+restrictions or \texttt{\$f} hypotheses for these theorems; when you are
 uncertain consult the \texttt{set.mm} database.
 
 Our first theorem is not very deep but provides us with a notational device
@@ -6505,7 +6509,7 @@ Axiom of Infinity.)
 This section presents the axioms for real and complex numbers.  Analysis
 textbooks implicitly or explicity use these axioms or their equivalents are
 used as their starting point.  In the database \texttt{set.mm}, we define real
-and complex numbers as (rather complicated) specific sets and derive the these
+and complex numbers as (rather complicated) specific sets and derive these
 axioms as {\em theorems} from the axioms of ZF set theory, using a method
 called Dedekind cuts.  We omit the details of this construction, which you can
 follow if you wish using the \texttt{set.mm} database in conjunction with the
@@ -7256,9 +7260,9 @@ verify the proof completely starting from the axioms.  A few more
 statistics are also shown.  There are one or more paths back to axioms
 that are the longest; this command ferrets out one of them and shows it
 to you.  There may be a sense in which the longest path length is
-related to how ``deep'' theorem is.
+related to how ``deep'' the theorem is.
 
-Finally, we might be curious about what proofs depend the theorem
+Finally, we might be curious about what proofs depend on the theorem
 \texttt{prth}.  If it is never used later on, we could eliminate it as
 redundant if it has no intrinsic interest by itself.\index{\texttt{show
 usage} command}
@@ -7655,7 +7659,7 @@ Our expository material begins here.
 
 Like most computer languages, Metamath\index{Metamath} takes its input from
 one or more {\bf source files}\index{source file} which contain characters
-expressed in the standard {\sc ascii} (American Standard for Coded Information
+expressed in the standard {\sc ascii} (American Standard Code for Information
 Interchange)\index{ascii@{\sc ascii}} code for computers.  A source file
 consists of a series of {\bf tokens}\index{token}, which are strings of
 printable characters (from the set of 94 shown on p.~\pageref{spec1chars})
