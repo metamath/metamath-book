@@ -1,0 +1,14 @@
+#!/bin/sh
+# Generate metamath.pdf from source file metamath.tex.
+
+# Stop processing if error occurs (-e) and show what we're doing (-x)
+set -ex
+
+rm -f realref.sty metamath.bib
+touch metamath.ind
+pdflatex metamath
+pdflatex metamath
+bibtex metamath
+makeindex metamath
+pdflatex metamath
+pdflatex metamath
