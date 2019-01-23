@@ -4,11 +4,18 @@
 # Stop processing if error occurs (-e) and show what we're doing (-x)
 set -ex
 
+# Run pdflatex on $1.
+# TODO: Add -output-directory _build
+do_pdflatex () {
+  pdflatex -halt-on-error -interaction=nonstopmode "$1"
+}
+
 rm -f realref.sty metamath.bib
 touch metamath.ind
-pdflatex -halt-on-error metamath
-pdflatex -halt-on-error metamath
+
+do_pdflatex metamath
+do_pdflatex metamath
 bibtex metamath
 makeindex metamath
-pdflatex -halt-on-error metamath
-pdflatex -halt-on-error metamath
+do_pdflatex metamath
+do_pdflatex metamath
