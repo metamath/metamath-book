@@ -6,9 +6,9 @@ set -ex
 
 rm -f realref.sty metamath.bib
 touch metamath.ind
-pdflatex metamath
-pdflatex metamath
+pdflatex -halt-on-error metamath
+pdflatex -halt-on-error metamath
 bibtex metamath
 makeindex metamath
-pdflatex metamath
-pdflatex metamath
+pdflatex -halt-on-error metamath
+pdflatex -halt-on-error metamath
