@@ -52,3 +52,15 @@ address = {Morrisville, North Carolina},
 note = {{\tt http://us.metamath.org/downloads/metamath.pdf}},
 }
 ~~~~
+
+## Narrow width screens
+
+An old version of this book was generated specifically for
+narrow-width screens (such as mobile phones).
+It was called the "Kindle version".
+The changes that implemented the Kindle version are in
+file kindle-changes.patch.
+We intend to investigate if there's still a need for a special
+version of the PDF for narrow-width screens, and if so, how to do it.
+The information in that old patch may help us get there.
+If you'd like to help, please let us know!
