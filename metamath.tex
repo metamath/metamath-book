@@ -7373,14 +7373,8 @@ computer language or the Metamath software associated with the computer
 language.  We will not distinguish these two when the context is clear.
 
 The next section contains the complete specification of the Metamath
-language.\footnote{The current version of the Metamath program
-implements an
-older specification with a slightly more general syntax than described
-here.  Among the differences:  missing white space around keyword tokens
-is sometimes tolerated, and a variable may be used before its type is
-specified by a \texttt{\$f} statement (this ``feature'' should never be
-used in practice).  A future version of the program is
-expected to conform to the current specification.} It serves as an
+language.
+It serves as an
 authoritative reference and presents the syntax in enough detail to
 write a parser\index{parsing Metamath} and proof verifier.  The
 specification is terse and it is probably hard to learn the language
@@ -7568,7 +7562,7 @@ Each label token must be unique, and
 no label token may match any math symbol
 token.\label{namespace}\footnote{This
 restriction was added on June 24, 2006.
-It is not theoretically necessary, but is imposed to make it easier to
+It is not theoretically necessary but is imposed to make it easier to
 write certain parsers.}
 
 The set of {\bf mandatory variables}\index{mandatory variable} associated with
