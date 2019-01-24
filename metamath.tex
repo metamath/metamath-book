@@ -7447,13 +7447,12 @@ It is only allowed in the outermost scope (i.e., not between
 and must not be inside of a statement (e.g., it may not occur
 between the label of a \texttt{\$a} statement and its \texttt{\$.}).
 The file name may not
-contain a \texttt{\$} or white space.  The file must exist, and is
-relative to the current directory (which might not be the directory
-containing the verifier).  The case-sensitivity
+contain a \texttt{\$} or white space.  The file must exist.
+The case-sensitivity
 of its name follows the conventions of the operating system.  The contents of
 the file replace the inclusion command.
-Included files may include other
-files. Only the first reference to a given file is included; any later
+Included files may include other files.
+Only the first reference to a given file is included; any later
 references to the same file (whether in the top-level file or in included
 files) cause the inclusion command to be ignored (treated like white space).
 A file self-reference is ignored, as is any reference to the top-level file.
@@ -7461,6 +7460,9 @@ Included files may not include a \texttt{\$(} without a matching \texttt{\$)},
 may not include a \texttt{\$[} without a matching \texttt{\$]}, and may
 not include incomplete statements (e.g., a \texttt{\$a} without a matching
 \texttt{\$.}).
+It is currently unspecified if path references are relative to the process'
+current directory or the file's containing directory, so databases should
+avoid using pathname separators (e.g., "/") in file names.
 
 Like all tokens, the \texttt{\$(}, \texttt{\$)}, \texttt{\$[}, and \texttt{\$]} keywords
 must be surrounded by white space.
