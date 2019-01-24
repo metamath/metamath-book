@@ -7373,14 +7373,8 @@ computer language or the Metamath software associated with the computer
 language.  We will not distinguish these two when the context is clear.
 
 The next section contains the complete specification of the Metamath
-language.\footnote{The current version of the Metamath program
-(0.07.30)\index{Metamath!limitations of version 0.07.30} implements an
-older specification with a slightly more general syntax than described
-here.  Among the differences:  missing white space around keyword tokens
-is sometimes tolerated, and a variable may be used before its type is
-specified by a \texttt{\$f} statement (this ``feature'' should never be
-used in practice).  A future version of the program is
-expected to conform to the current specification.} It serves as an
+language.
+It serves as an
 authoritative reference and presents the syntax in enough detail to
 write a parser\index{parsing Metamath} and proof verifier.  The
 specification is terse and it is probably hard to learn the language
@@ -7389,8 +7383,7 @@ prefer to see everything up front before looking at verbose expository
 material.  Later sections explain this material and provide examples.
 We will repeat the definitions in those sections, and you may skip the
 next section at first reading and proceed to Section~\ref{tut1}
-(p.~\pageref{tut1}).  You may want to come back to it to clarify any
-fine points.
+(p.~\pageref{tut1}).
 
 \section{Specification of the Metamath Language}\label{spec}
 \index{Metamath!specification}
@@ -7407,8 +7400,8 @@ them as simply as one knows how.}
 A Metamath {\bf database}\index{database} is built up from a top-level source
 file together with any source files that are brought in through file inclusion
 commands (see below).  The only characters that are allowed to appear in a
-Metamath source file are the 94 printable characters on standard {\sc
-ascii}\index{ascii@{\sc ascii}} keyboards, which are digits, upper and lower
+Metamath source file are the 94 printable {\sc
+ascii}\index{ascii@{\sc ascii}} characters, which are digits, upper and lower
 case letters, and the following 32 special characters\index{special characters}
 \label{spec1chars}
 
@@ -7440,23 +7433,34 @@ case-sensitive.
 \texttt{\$(} begins a {\bf comment} and \texttt{\$)} ends a comment.\index{\texttt{\$(}
 and \texttt{\$)} auxiliary keywords}\index{comment}  Comments may contain any of
 the 94 printable characters and white space, except they may not contain the
-2-character sequences \texttt{\$(} or \texttt{\$)}.  Comments are ignored (treated
-like white space) for the purpose of parsing.
-
-Two special characters inside comments, \verb$`$ and \verb$~$, control the
-typesetting of comments and are discussed on p.~\pageref{mathcomments}. They
-may be ignored for the purpose of parsing.
+2-character sequences \texttt{\$(} or \texttt{\$)} (comments do not nest).  Comments are ignored (treated
+like white space) for the purpose of parsing, e.g.,
+\texttt{\$( \$[ \$)} is a comment.
+See p.~\pageref{mathcomments} for comment typesetting conventions; these
+conventions may be ignored for the purpose of parsing.
 
 A {\bf file inclusion command} consists of \texttt{\$[} followed by a file name
 followed by \texttt{\$]}.\index{\texttt{\$[} and \texttt{\$]} auxiliary
-keywords}\index{included file}\index{file inclusion}  The file name may not
-contain a \texttt{\$} or white space.  The file must exist.  The case-sensitivity
+keywords}\index{included file}\index{file inclusion}
+It is only allowed in the outermost scope (i.e., not between 
+\texttt{\$\char`\{} and \texttt{\$\char`\}})
+and must not be inside of a statement (e.g., it may not occur
+between the label of a \texttt{\$a} statement and its \texttt{\$.}).
+The file name may not
+contain a \texttt{\$} or white space.  The file must exist, and is
+relative to the current directory (which might not be the directory
+containing the verifier).  The case-sensitivity
 of its name follows the conventions of the operating system.  The contents of
-the file replace the inclusion command.  Included files may include other
+the file replace the inclusion command.
+Included files may include other
 files. Only the first reference to a given file is included; any later
 references to the same file (whether in the top-level file or in included
 files) cause the inclusion command to be ignored (treated like white space).
 A file self-reference is ignored, as is any reference to the top-level file.
+Included files may not include a \texttt{\$(} without a matching \texttt{\$)},
+may not include a \texttt{\$[} without a matching \texttt{\$]}, and may
+not include incomplete statements (e.g., a \texttt{\$a} without a matching
+\texttt{\$.}).
 
 Like all tokens, the \texttt{\$(}, \texttt{\$)}, \texttt{\$[}, and \texttt{\$]} keywords
 must be surrounded by white space.
@@ -7464,7 +7468,7 @@ must be surrounded by white space.
 \subsection{Basic Syntax}
 
 After preprocessing, a database will consist of a sequence of {\bf
-statements}.  It may contain only the statement types defined below.
+statements}.
 These are the scoping statements \texttt{\$\char`\{} and
 \texttt{\$\char`\}}, along with the \texttt{\$c}, \texttt{\$v},
 \texttt{\$f}, \texttt{\$e}, \texttt{\$d}, \texttt{\$a}, and \texttt{\$p}
@@ -7501,17 +7505,22 @@ variable may not be declared a second time while it is active, but it
 may be declared again (as a variable, but not as a constant) after it
 becomes inactive.  A constant must be declared in the outermost block and may
 not be declared a second time.\footnote{The rules for redeclaration may
-become more general in the future; see footnote on
-p.~\pageref{redeclarationf}.}\index{redeclaration of symbols}
+become more general in the future;
+see p.~\pageref{redeclarationf}.}\index{redeclaration of symbols}
 
 A {\bf \$f statement}\index{\texttt{\$f} statement} consists of a label,
-followed by \texttt{\$f}, followed by an active constant, followed by an
+followed by \texttt{\$f}, followed by an active constant (its type), followed by an
 active variable, followed by \texttt{\$.}\,.  A {\bf \$e
 statement}\index{\texttt{\$e} statement} consists of a label, followed
 by \texttt{\$e}, followed by an active constant, followed by zero or more
 active math symbols, followed by \texttt{\$.}\,.  A {\bf
 hypothesis}\index{hypothesis} is a \texttt{\$f} or \texttt{\$e}
 statement.
+The type declared by a \texttt{\$f} statement for a given label
+is global even if the variable is not
+(e.g., a database may not have \texttt{wff P} in one local scope
+nd \texttt{class P} in another).
+A \texttt{\$e} statement may not occur in the outermost scope.
 
 A {\bf simple \$d statement}\index{\texttt{\$d} statement!simple}
 consists of \texttt{\$d}, followed by two different active variables,
@@ -7540,7 +7549,6 @@ A \texttt{\$f}, \texttt{\$e}, or \texttt{\$d} statement is {\bf active}\index{ac
 statement} from the place it occurs until the end of the block it occurs in.
 A \texttt{\$a} or \texttt{\$p} statement is {\bf active} from the place it occurs
 through the end of the database.
-
 There may not be two active \texttt{\$f} statements containing the same
 variable.  Each variable in a \texttt{\$e}, \texttt{\$a}, or
 \texttt{\$p} statement must exist in an active \texttt{\$f}
@@ -7550,12 +7558,11 @@ verification.}
 
 %The label that begins each \texttt{\$f}, \texttt{\$e}, \texttt{\$a}, and
 %\texttt{\$p} statement must be unique.
-Each label token must be unique.
-
-No label token may match any math symbol
-token.\label{namespace}\footnote{{\em (Added June 24, 2006)} This
-restriction did not exist in earlier versions of this specification.
-While not theoretically necessary, it is imposed to make it easier to
+Each label token must be unique, and
+no label token may match any math symbol
+token.\label{namespace}\footnote{This
+restriction was added on June 24, 2006.
+It is not theoretically necessary but is imposed to make it easier to
 write certain parsers.}
 
 The set of {\bf mandatory variables}\index{mandatory variable} associated with
@@ -7564,7 +7571,6 @@ active \texttt{\$e} statements.  The (possibly empty) set of {\bf mandatory
 hypotheses}\index{mandatory hypothesis} is the set of all active \texttt{\$f}
 statements containing mandatory variables, together with all active \texttt{\$e}
 statements.
-
 The set of {\bf mandatory {\bf \$d} statements}\index{mandatory
 disjoint-variable restriction} associated with an assertion are those active
 \texttt{\$d} statements whose variables are both among the assertion's
