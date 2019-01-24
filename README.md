@@ -55,12 +55,15 @@ note = {{\tt http://us.metamath.org/downloads/metamath.pdf}},
 
 ## Narrow width screens
 
-An old version of this book was generated specifically for
+You can run ./make-narrow to generate "metamath-narrow.pdf",
+a version of the PDF formatted for
 narrow-width screens (such as mobile phones).
-It was called the "Kindle version".
+The program erases metamath.pdf, so you'll need to regenerate metamath.pdf
+afterwards if you want it.
+
+That work is based on
+an old version of this book that was generated specifically for
+narrow-width screens called the "Kindle version".
 The changes that implemented the Kindle version are in
-file kindle-changes.patch.
-We intend to investigate if there's still a need for a special
-version of the PDF for narrow-width screens, and if so, how to do it.
-The information in that old patch may help us get there.
-If you'd like to help, please let us know!
+file kindle-changes.patch.  We keep the .patch file around so that
+we can borrow future ideas in the future.
