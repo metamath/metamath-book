@@ -4648,14 +4648,20 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
-\subsection{Pure Predicate Calculus}\index{axioms of predicate calculus}
+\subsection{Axioms of Predicate Calculus with equality - Tarski's S2}\index{axioms of predicate calculus}
 
-\noindent Axiom of Specialization.
+\noindent Rule of Generalization.\index{rule of generalization}
 
-\setbox\startprefix=\hbox{\tt \ \ ax-c5\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
+\setbox\startprefix=\hbox{\tt \ \ ax-g.1\ \$e\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{(}\m{\forall}\m{x}\m{\varphi}\m{\rightarrow}\m{\varphi}\m{)}
+\m{\vdash}\m{\varphi}
+\endm
+
+\setbox\startprefix=\hbox{\tt \ \ ax-gen\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{\forall}\m{x}\m{\varphi}
 \endm
 
 \noindent Axiom of Quantified Implication.
@@ -4667,6 +4673,54 @@ Axiom of Simplification.\label{ax1}
 \psi}\m{)}\m{\rightarrow}\m{(}\m{\forall}\m{x}\m{\varphi}\m{\rightarrow}\m{
 \forall}\m{x}\m{\psi}\m{)}\m{)}
 \endm
+
+\noindent Axiom of Distinctness.
+
+% Aka: Add $d x ph $.
+\setbox\startprefix=\hbox{\tt \ \ ax-5\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{\varphi}\m{\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}\m{where}\m{ }\m{x}\m{ }\m{does}\m{ }\m{not}\m{ }\m{occur}\m{ }\m{in}\m{ }\m{\varphi}
+\endm
+
+\noindent Axiom of Existence.
+
+\setbox\startprefix=\hbox{\tt \ \ ax-6\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{\forall}\m{x}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{\forall}
+\m{x}\m{\varphi}\m{)}\m{\rightarrow}\m{\varphi}\m{)}
+\endm
+
+\noindent Axiom of Equality.
+
+\setbox\startprefix=\hbox{\tt \ \ ax-7\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{x}\m{=}\m{z}\m{
+\rightarrow}\m{y}\m{=}\m{z}\m{)}\m{)}
+\endm
+
+\noindent Axiom of Left Equality for Binary Predicate.
+
+\setbox\startprefix=\hbox{\tt \ \ ax-8\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{x}\m{\in}\m{z}\m{
+\rightarrow}\m{y}\m{\in}\m{z}\m{)}\m{)}
+\endm
+
+\noindent Axiom of Right Equality for Binary Predicate.
+
+\setbox\startprefix=\hbox{\tt \ \ ax-9\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{z}\m{\in}\m{x}\m{
+\rightarrow}\m{z}\m{\in}\m{y}\m{)}\m{)}
+\endm
+
+
+\subsection{Axioms of Predicate Calculus with Equality - Auxiliary}\index{axioms of predicate calculus - auxiliary}
 
 \noindent Axiom of Quantified Negation.
 
@@ -4687,52 +4741,7 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
-\noindent Rule of Generalization.\index{rule of generalization}
-
-\setbox\startprefix=\hbox{\tt \ \ ax-g.1\ \$e\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{\varphi}
-\endm
-
-\setbox\startprefix=\hbox{\tt \ \ ax-gen\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{\forall}\m{x}\m{\varphi}
-\endm
-
-
-\subsection{Equality and Substitution}\index{axioms of equality}
-
-\noindent Axiom of Equality (1).
-
-\setbox\startprefix=\hbox{\tt \ \ ax-7\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{x}\m{=}\m{z}\m{
-\rightarrow}\m{y}\m{=}\m{z}\m{)}\m{)}
-\endm
-
-\noindent Axiom of Existence.
-
-\setbox\startprefix=\hbox{\tt \ \ ax-6\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{\forall}\m{x}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{\forall}
-\m{x}\m{\varphi}\m{)}\m{\rightarrow}\m{\varphi}\m{)}
-\endm
-
-\noindent Axiom of Quantifier Substitution.
-
-\setbox\startprefix=\hbox{\tt \ \ ax-c11n\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{\forall}\m{x}\m{\,x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{\forall}
-\m{x}\m{\varphi}\m{\rightarrow}\m{\forall}\m{y}\m{\varphi}\m{)}\m{)}
-\endm
-
-
-\noindent Axiom of Variable Substitution.
+\noindent Axiom of Substitution.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-12\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
@@ -4742,7 +4751,7 @@ Axiom of Simplification.\label{ax1}
 \m{x}\m{=}\m{y}\m{\rightarrow}\m{\varphi}\m{)}\m{)}\m{)}\m{)}
 \endm
 
-\noindent Axiom of Quantifier Introduction (1).
+\noindent Axiom of Quantified Equality.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-13\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
@@ -4752,56 +4761,47 @@ Axiom of Simplification.\label{ax1}
 \m{\rightarrow}\m{\forall}\m{z}\m{\,x}\m{=}\m{y}\m{)}\m{)}\m{)}
 \endm
 
-\noindent Axiom of Equality (2).
+% \noindent Axiom of Quantifier Substitution
+%
+% \setbox\startprefix=\hbox{\tt \ \ ax-c11n\ \$a\ }
+% \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+% \startm
+% \m{\vdash}\m{(}\m{\forall}\m{x}\m{\,x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{\forall}
+% \m{x}\m{\varphi}\m{\rightarrow}\m{\forall}\m{y}\m{\varphi}\m{)}\m{)}
+% \endm
+%
+% \noindent Axiom of Distinct Variables. (This axiom requires
+% that two individual variables
+% be distinct\index{\texttt{\$d} statement}\index{distinct
+% variables}.)
+%
+% \setbox\startprefix=\hbox{\tt \ \ \ \ \ \ \ \ \$d\ }
+% \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+% \startm
+% \m{x}\m{\,}\m{y}
+% \endm
+%
+% \setbox\startprefix=\hbox{\tt \ \ ax-c16\ \$a\ }
+% \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+% \startm
+% \m{\vdash}\m{(}\m{\forall}\m{x}\m{\,x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{\varphi}\m{
+% \rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}\m{)}
+% \endm
 
-\setbox\startprefix=\hbox{\tt \ \ ax-8\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{x}\m{\in}\m{z}\m{
-\rightarrow}\m{y}\m{\in}\m{z}\m{)}\m{)}
-\endm
-
-\noindent Axiom of Equality (3).
-
-\setbox\startprefix=\hbox{\tt \ \ ax-9\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{z}\m{\in}\m{x}\m{
-\rightarrow}\m{z}\m{\in}\m{y}\m{)}\m{)}
-\endm
-
-\noindent Axiom of Distinct Variables.  (This axiom requires
-that two individual variables
-be distinct\index{\texttt{\$d} statement}\index{distinct
-variables}.)
-
-\setbox\startprefix=\hbox{\tt \ \ \ \ \ \ \ \ \$d\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{x}\m{\,}\m{y}
-\endm
-
-\setbox\startprefix=\hbox{\tt \ \ ax-c16\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{\forall}\m{x}\m{\,x}\m{=}\m{y}\m{\rightarrow}\m{(}\m{\varphi}\m{
-\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}\m{)}
-\endm
-
-\noindent Axiom of Quantifier Introduction (2).  (This axiom requires
-that the individual variable not occur in the
-wff\index{\texttt{\$d} statement}\index{distinct variables}.)
-
-\setbox\startprefix=\hbox{\tt \ \ \ \ \ \ \ \ \$d\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{x}\m{\,}\m{\varphi}
-\endm
-\setbox\startprefix=\hbox{\tt \ \ ax-5\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{\varphi}\m{\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}
-\endm
+% \noindent Axiom of Quantifier Introduction (2).  (This axiom requires
+% that the individual variable not occur in the
+% wff\index{\texttt{\$d} statement}\index{distinct variables}.)
+%
+% \setbox\startprefix=\hbox{\tt \ \ \ \ \ \ \ \ \$d\ }
+% \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+% \startm
+% \m{x}\m{\,}\m{\varphi}
+% \endm
+% \setbox\startprefix=\hbox{\tt \ \ ax-5\ \$a\ }
+% \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+% \startm
+% \m{\vdash}\m{(}\m{\varphi}\m{\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}
+% \endm
 
 \subsection{Set Theory}\label{mmsettheoryaxioms}
 
