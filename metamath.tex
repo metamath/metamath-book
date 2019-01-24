@@ -9358,11 +9358,15 @@ incorrect and notify you with an error message.
 % will be unique.
 
 The general algorithm for unification described in the literature is
-somewhat complex.  However, in the case of Metamath it is trivial
-because of the requirement that each variable have its type specified
-with a \texttt{\$f} hypothesis and that each \texttt{\$f} hypothesis
-have the restricted syntax of a constant followed by a variable.  The
-constant in the \texttt{\$f} hypothesis must match the first symbol of
+somewhat complex.
+However, in the case of Metamath it is intentionally trivial.
+Mandatory hypotheses must be
+pushed on the proof stack in the order in which they appear.
+In addition, each variable must have its type specified
+with a \texttt{\$f} hypothesis before it is used
+and that each \texttt{\$f} hypothesis
+have the restricted syntax of a constant followed by a variable.
+The constant in the \texttt{\$f} hypothesis must match the first symbol of
 the corresponding RPN stack entry (which will also be a constant), so
 the only possible match for the variable in the \texttt{\$f} hypothesis is
 the sequence of symbols in the stack entry after the initial constant.
