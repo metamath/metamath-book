@@ -4248,6 +4248,10 @@ which is believed to be the shortest possible.}
 \varphi)$
 \end{center}
 
+These three axioms are widely used.
+They are attributed to Jan {\L}ukasiewicz
+(pronounced woo-kah-SHAY-vitch) and was popularized by Alonzo Church,
+who called it system P2. (Thanks to Ted Ulrich for this information.)
 
 There are an infinite number of axioms, one for each possible
 wff\index{well-formed formula (wff)} of the above form.  (For this reason,
@@ -4310,7 +4314,8 @@ Predicate calculus\index{predicate calculus} introduces the concept of
 ``individual variables,''\index{variable!in predicate calculus}\index{individual
 variable} which
 we will usually just call ``variables.''
-These will always represent sets when we get to set theory.  There are also
+These variables can represent something other than true or false (wffs),
+and will always represent sets when we get to set theory.  There are also
 three new symbols $\forall$\index{universal quantifier ($\forall$)},
 $=$\index{equality ($=$)}, and $\in$\index{stylized epsilon ($\in$)},
 read ``for all,'' ``equals,'' and ``is an element of''
@@ -4318,13 +4323,6 @@ respectively.  We will represent variables with the letters $x$, $y$, $z$, and
 $w$, as is common practice in the literature.
 For example, $\forall x \varphi$ means ``for all possible values of
 $x$, $\varphi$ is true.''
-
-To prevent confusion, it might be best at this point to think of the variables
-of Metamath\index{Metamath} as ``metavariables,''\index{metavariable} because
-they are not quite the same as the variables we are introducing here.  A
-(meta)variable in Metamath can be a wff or an individual variable, as well
-as many other things; in general, it represents a kind of place holder for an
-unspecified sequence of math symbols\index{math symbol}.
 
 In predicate calculus, we extend the definition of a wff\index{well-formed
 formula (wff)}.  If $\varphi$ is a wff and $x$ and $y$ are variables, then
@@ -4335,7 +4333,34 @@ absent in propositional calculus.  But starting wff or not, all we are really
 concerned with is whether our wffs are correctly constructed according to
 these mechanical rules.
 
-In standard texts of logic, there are two axioms of predicate
+A quick aside:
+To prevent confusion, it might be best at this point to think of the variables
+of Metamath\index{Metamath} as ``metavariables,''\index{metavariable} because
+they are not quite the same as the variables we are introducing here.  A
+(meta)variable in Metamath can be a wff or an individual variable, as well
+as many other things; in general, it represents a kind of place holder for an
+unspecified sequence of math symbols\index{math symbol}.
+
+Unlike propositional calculus, no decision procedure\index{decision procedure}
+analogous to the truth table method exists (nor theoretically can exist) that
+will definitely determine whether a formula is a theorem of predicate
+calculus.  Much of the work in the field of automated theorem
+proving\index{automated theorem proving} has been dedicated to coming up with
+clever heuristics for proving theorems of predicate calculus, but they can
+never be guaranteed to work always.
+
+We now turn to looking at how predicate calculus can be formally
+represented.
+
+\subsection{Common Axioms}
+
+There is a new rule of inference in predicate calculus:  if $\varphi$ is
+an axiom or a theorem, then $\forall x \,\varphi$ is also a
+theorem\index{theorem}.  This is called the rule of
+``generalization.''\index{rule of generalization}
+This is easily represented in Metamath.
+
+In standard texts of logic, there are often two axioms of predicate
 calculus\index{axioms of predicate calculus}:
 \begin{center}
   $\forall x \,\varphi ( x ) \rightarrow \varphi ( y )$,
@@ -4357,11 +4382,137 @@ way that a computer can handle easily.  Unlike propositional calculus, a
 certain amount of mathematical sophistication and practice is needed to be
 able to easily grasp and manipulate these concepts correctly.
 
-We take a different approach in the Metamath\index{Metamath} database
+Predicate calculus may be presented with or without axioms for
+equality\index{axioms of equality}\index{equality ($=$)}. We will require the
+axioms of equality as a prerequisite for the version of set theory we will
+use.  The axioms for equality, when included, are often represented using these
+two axioms:
+\begin{center}
+$x=x$\\ \ \\
+$x=y\rightarrow (\varphi(x,x)\rightarrow\varphi(x,y))$ where ``$\varphi(x,y)$
+   arises from $\varphi(x,x)$ by replacing some, but not necessarily all,
+   free\index{free variable}
+   occurrences of $x$ by $y$,\\ provided that $y$ is free for $x$
+   in $\phi(x,x)$.'' \end{center}
+% (Mendelson p. 95)
+The first equality axiom is simple, but again,
+the condition on the second one is
+somewhat awkward to implement on a computer.
+
+\subsection{Tarski System S2}
+
+Of course, we are not the first to notice the complications of these
+predicate calculus axioms when being rigorous.
+
+Well-known logician Alfred Tarski published in 1965
+a system he called system S2\cite[p.~77]{Tarski1965}.
+Tarski's system is \textit{exactly equivalent} to the traditional textbook
+formalization, but (by clever use of equality axioms) it eliminates the
+latter's primitive notions of ``proper substitution'' and ``free variable,''
+replacing them with direct substitution and the notion of a variable
+not occurring in a formula (which we express with distinct variable
+constraints).
+
+In advocating his system, Tarski wrote, ``The relatively complicated
+character of [free variables and proper substitution] is a source
+of certain inconveniences of both practical and theoretical nature;
+this is clearly experienced both in teaching an elementary course of
+mathematical logic and in formalizing the syntax of predicate logic for
+some theoretical purposes''\cite[p.~61]{Tarski1965}\index{Tarski, Alfred}.
+
+\subsection{Developing a Metamath Representation}
+
+The standard textbook axioms of predicate calculus are somewhat
+cumbersome to implement on a computer because of the complex notions of
+``free variable''\index{free variable} and ``proper
+substitution.''\index{proper substitution}\index{substitution!proper}
+While it is possible to use the Metamath\index{Metamath} language to
+implement these concepts, we have chosen not to implement them
+as primitive constructs in the
+\texttt{set.mm} set theory database.  Instead, we have eliminated them
+within the axioms
+by carefully crafting the axioms so as to avoid them,
+building on Tarski's system S2.  This makes it
+easy for a beginner to follow the steps in a proof without knowing any
+advanced concepts other than the simple concept of
+replacing\index{substitution!variable}\index{variable substitution}
+variables with expressions.
+
+In order to develop the concepts of free variable and proper
+substitution from the axioms, we use an additional
+Metamath statement type called ``disjoint variable
+restriction''\index{disjoint variables} that we have not encountered
+before.  In the context of the axioms, the statement \texttt{\$d} $ x\,
+y$\index{\texttt{\$d} statement} simply means that $x$ and $y$ must be
+distinct\index{distinct variables}, i.e.\ they may not be simultaneously
+substituted\index{substitution!variable}\index{variable substitution}
+with the same variable.  The statement \texttt{\$d} $ x\, \varphi$ means
+variable $x$ must not occur in wff $\varphi$.  For the precise
+definition of \texttt{\$d}, see Section~\ref{dollard}.
+
+\subsection{Metamath representation}
+
+The Metamath axiom system for predicate calculus
+defined in set.mm uses Tarski's system S2.
+As noted above, this has a different representation
+than the traditional textbook formalization,
+but it is \textit{exactly equivalent} to the textbook formalization,
+and it is \textit{much} easier to work with.
+This is reproduced as system S3 in Section 6 of
+Megill's formalization\cite{Megill}\index{Megill, Norman}.
+
+There is one exception, Tarski's axiom of existence,
+which we label as axiom ax-6.
+In the case of ax-6, Tarski's version is weaker because it includes a
+distinct variable proviso. If we wish, we can also weaken our version
+in this way and still have a metalogically complete system. Theorem
+ax6 shows this by deriving, in the presence of the other axioms, our
+ax-6 from Tarski's weaker version ax6v. However, we chose the stronger
+version for our system because it is simpler to state and easier to use.
+
+Tarski's system was designed for proving specific theorems rather than
+more general theorem schemes. However, theorem schemes are much more
+efficient than specific theorems for building a body of mathematical
+knowledge, since they can be reused with different instances as
+needed. While Tarski does derive some theorem schemes from his axioms,
+their proofs require concepts that are "outside" of the system, such as
+induction on formula length. The verification of such proofs is difficult
+to automate in a proof verifier. (Specifically, Tarski treats the formulas
+of his system as set-theoretical objects. In order to verify the proofs
+of his theorem schemes, a proof verifier would need a significant amount
+of set theory built into it.)
+
+The Metamath axiom system for predicate calculus extends
+Tarski's system to eliminate this difficulty. The additional
+``auxilliary'' axiom
+schemes (as we will call them in this section; see below) endow Tarski's
+system with a nice property we call
+metalogical completeness\cite[Remark 9.6]{Megill.}\index{Megill, Norman}.
+As a result, we can prove any theorem scheme
+expressable in the "simple metalogic" of Tarski's system by using
+only Metamath's direct substitution rule applied to the axiom system
+(and no other metalogical or set-theoretical notions "outside" of the
+system). Simple metalogic consists of schemes containing wff metavariables
+(with no arguments) and/or set (also called "individual") metavariables,
+accompanied by optional provisos each stating that two specified set
+metavariables must be distinct or that a specified set metavariable may
+not occur in a specified wff metavariable. Metamath's logic and set theory
+axiom and rule schemes are all examples of simple metalogic. The schemes
+of traditional predicate calculus with equality are examples which are
+not simple metalogic, because they use wff metavariables with arguments
+and have "free for" and "not free in" side conditions.
+
+A rigorous justification for this system, using an older but
+exactly equivalent set of axioms, can be
+found in \cite{Megill}\index{Megill, Norman}.
+
+This allows us to
+take a different approach in the Metamath\index{Metamath} database
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})}.  We do not
-use the primitive notions of ``free variable''\index{free variable} and
-``proper substitution''\index{proper
-substitution}\index{substitution!proper} at all.  Instead, we use a set
+directly use the primitive notions of ``free variable''\index{free variable}
+and ``proper substitution''\index{proper
+substitution}\index{substitution!proper} at all as primitive constructs.
+Instead, we use a set
 of axioms that are almost as simple to manipulate as those of
 propositional calculus.  Our axiom system avoids complex primitive
 notions by effectively embedding the complexity into the axioms
@@ -4369,9 +4520,9 @@ themselves.  As a result, we will end up with a larger number of axioms,
 but they are ideally suited for a computer language such as Metamath.
 (Section~\ref{metaaxioms} shows these axioms.)
 
-We will not elaborate on the ``free variable'' and ``proper substitution''
-concepts here.  We listed the two axioms above so that you will recognize them
-when you encounter them in the literature. You may consult
+We will not elaborate further
+on the ``free variable'' and ``proper substitution''
+concepts here.  You may consult
 \cite[ch.\ 3--4]{Hamilton}\index{Hamilton, Alan G.} (as well as
 many other books) for a precise explanation
 of these concepts.  If you intend to do serious mathematical work, it is wise
@@ -4382,38 +4533,14 @@ if you are just developing Metamath proofs, familiarity with the traditional
 approach can help you arrive at a proof outline much faster, which you can
 then convert to the detail required by Metamath.
 
-There is also a new rule of inference in predicate calculus:  if $\varphi$ is
-an axiom or a theorem, then $\forall x \,\varphi$ is also a
-theorem\index{theorem}.  This is called the rule of
-``generalization.''\index{rule of generalization}
+We do develop proper substitution rules later on, but in set.mm
+they are defined as derived constructs; they are not primitives.
 
-Unlike propositional calculus, no decision procedure\index{decision procedure}
-analogous to the truth table method exists (nor theoretically can exist) that
-will definitely determine whether a formula is a theorem of predicate
-calculus.  Much of the work in the field of automated theorem
-proving\index{automated theorem proving} has been dedicated to coming up with
-clever heuristics for proving theorems of predicate calculus, but they can
-never be guaranteed to work always.
-
-\subsection{Equality}
-
-Predicate calculus may be presented with or without axioms for
-equality\index{axioms of equality}\index{equality ($=$)}. We will require the
-axioms of equality as a prerequisite for the version of set theory we will
-use.  In standard systems, the axioms for equality are the following two:
-\begin{center}
-$x=x$\\ \ \\
-$x=y\rightarrow (\varphi(x,x)\rightarrow\varphi(x,y))$ where ``$\varphi(x,y)$
-   arises from $\varphi(x,x)$ by replacing some, but not necessarily all,
-   free\index{free variable}
-   occurrences of $x$ by $y$,\\ provided that $y$ is free for $x$
-   in $\phi(x,x)$.'' \end{center}
-% (Mendelson p. 95)
-The first equality axiom is simple, but the condition on the second one is
-somewhat awkward to implement on a computer.  Again, the axiom system we use in
-the \texttt{set.mm}\index{set theory database (\texttt{set.mm})} database avoids the
-complexity of this condition by effectively embedding the complexity into the
-axioms themselves.
+You should also note that our system of predicate calculus is specifically
+tailored for set theory; thus there are only two specific predicates $=$ and
+$\in$ and no functions\index{function!in predicate calculus}
+or constants\index{constant!in predicate calculus} unlike more general systems.
+We later add these.
 
 \subsection{Set Theory}
 
@@ -4520,44 +4647,11 @@ redundant axioms are derived from the other ones.
 
 \section{The Axioms in the Metamath Language}\label{metaaxioms}
 
-The standard textbook axioms of predicate calculus are somewhat
-cumbersome to implement on a computer because of the complex notions of
-``free variable''\index{free variable} and ``proper
-substitution.''\index{proper substitution}\index{substitution!proper}
-While it is possible to use the Metamath\index{Metamath} language to
-implement these concepts, we have chosen not to implement them
-as primitive constructs in the
-\texttt{set.mm} set theory database.  Instead, we have eliminated them
-by carefully crafting the axioms so as to avoid them.  This makes it
-easy for a beginner to follow the steps in a proof without knowing any
-advanced concepts other than the simple concept of
-replacing\index{substitution!variable}\index{variable substitution}
-variables with expressions.  Here we list the axioms as they appear in
+Here we list the axioms as they appear in
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})} so you can
 look them up there easily.  Incidentally, the \texttt{show statement
 /tex} command\index{\texttt{show statement} command} was used to
 typeset them.
-
-In order to develop the concepts of free variable and proper
-substitution from the axioms described below, we use an additional
-Metamath statement type called ``disjoint variable
-restriction''\index{disjoint variables} that we have not encountered
-before.  In the context of the axioms, the statement \texttt{\$d} $ x\,
-y$\index{\texttt{\$d} statement} simply means that $x$ and $y$ must be
-distinct\index{distinct variables}, i.e.\ they may not be simultaneously
-substituted\index{substitution!variable}\index{variable substitution}
-with the same variable.  The statement \texttt{\$d} $ x\, \varphi$ means
-variable $x$ must not occur in wff $\varphi$.  For the precise
-definition of \texttt{\$d}, see Section~\ref{dollard}.
-
-You should also note that our system of predicate calculus is specifically
-tailored for set theory; thus there are only two specific predicates $=$ and
-$\in$ and no functions\index{function!in predicate calculus}
-or constants\index{constant!in predicate calculus} unlike more general systems.
-
-A rigorous justification for this system, using an older but
-exactly equivalent set of axioms, can be
-found in \cite{Megill}\index{Megill, Norman}.
 
 %macros from show statement /tex
 \newbox\mlinebox
@@ -4579,8 +4673,6 @@ found in \cite{Megill}\index{Megill, Norman}.
 \def\endm{  % Output the last line of a formula
   \box\mlinebox
 }
-
-
 
 \subsection{Propositional Calculus}\label{propcalc}\index{axioms of
 propositional calculus}
