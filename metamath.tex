@@ -4316,6 +4316,8 @@ $=$\index{equality ($=$)}, and $\in$\index{stylized epsilon ($\in$)},
 read ``for all,'' ``equals,'' and ``is an element of''
 respectively.  We will represent variables with the letters $x$, $y$, $z$, and
 $w$, as is common practice in the literature.
+For example, $\forall x \varphi$ means ``for all possible values of
+$x$, $\varphi$ is true.''
 
 To prevent confusion, it might be best at this point to think of the variables
 of Metamath\index{Metamath} as ``metavariables,''\index{metavariable} because
@@ -4523,7 +4525,8 @@ cumbersome to implement on a computer because of the complex notions of
 ``free variable''\index{free variable} and ``proper
 substitution.''\index{proper substitution}\index{substitution!proper}
 While it is possible to use the Metamath\index{Metamath} language to
-implement these concepts, we have chosen not to do so in the
+implement these concepts, we have chosen not to do implement them
+as primitive constructs in the
 \texttt{set.mm} set theory database.  Instead, we have eliminated them
 by carefully crafting the axioms so as to avoid them.  This makes it
 easy for a beginner to follow the steps in a proof without knowing any
@@ -4547,30 +4550,13 @@ with the same variable.  The statement \texttt{\$d} $ x\, \varphi$ means
 variable $x$ must not occur in wff $\varphi$.  For the precise
 definition of \texttt{\$d}, see Section~\ref{dollard}.
 
-In our system, the axioms of predicate calculus have been divided into what we
-call ``pure predicate calculus,'' which uses no $=$ or $\in$ symbols, and
-``equality and substitution.''  The former is weaker than traditional
-predicate calculus because it does not have substitution (although it is a
-beautifully simple and interesting system in itself), and the latter extends
-its power to the full predicate calculus with equality.
-
 You should also note that our system of predicate calculus is specifically
 tailored for set theory; thus there are only two specific predicates $=$ and
 $\in$ and no functions\index{function!in predicate calculus}
 or constants\index{constant!in predicate calculus} unlike more general systems.
 
-Finally, I do not claim that these axioms are the most elegant possible.
-They have more ``metalogical''\index{metalogic} power than standard
-axioms (although they are equivalent in a ``logical'' sense) and the
-ones I have chosen at least do the job.  Perhaps a logician who reads
-this would be interested in devising a set of equivalent axioms that are
-shorter or more elegant in some sense.\index{axioms in \texttt{set.mm}}
-(For example, there used to be an axiom \texttt{ax-c14} in our list that
-was later discovered to be redundant in this version of the axiom
-system.  The Comment on p.~\pageref{nodd} has a further remark on this axiom.)
-
-A rigorous justification for this system can be found in
-\cite{Megill}\index{Megill, Norman}.
+A rigorous (though slightly dated) justification for this system can be
+ound in \cite{Megill}\index{Megill, Norman}.
 
 %macros from show statement /tex
 \newbox\mlinebox
@@ -4680,7 +4666,7 @@ Axiom of Simplification.\label{ax1}
 \setbox\startprefix=\hbox{\tt \ \ ax-5\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{(}\m{\varphi}\m{\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}\m{where}\m{ }\m{x}\m{ }\m{does}\m{ }\m{not}\m{ }\m{occur}\m{ }\m{in}\m{ }\m{\varphi}
+\m{\vdash}\m{(}\m{\varphi}\m{\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}\m{where}\m{ }\m{\$d}\m{ }\m{x}\m{ }\m{\varphi}\m{ }\m{(}\m{x}\m{ }\m{does}\m{ }\m{not}\m{ }\m{occur}\m{ }\m{in}\m{ }\m{\varphi}\m{)}
 \endm
 
 \noindent Axiom of Existence.
