@@ -664,29 +664,21 @@
 \documentclass[leqno]{book} % LaTeX 2e. 10pt. Use [leqno,12pt] for 12pt
 % hyperref 2002/05/27 v6.72r  (couldn't get pagebackref to work)
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
-\usepackage{breqn}         % automatic equation breaking
-\usepackage{microtype}     % microtypography, reduces hyphenation
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment the next 3 lines to suppress boxes and colors on the hyperlinks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\hypersetup{
-%colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black
-%}
+\hypersetup{
+colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black
+}
 %
 \usepackage{realref}
-
-% Restarting page numbers: try?
-%   \printglossary
-%   \cleardoublepage
-%   \pagenumbering{arabic}
-%   \setcounter{page}{1}    ???needed
-%   \include{chap1}
-
-% not used:
-% \def\R2Lurl#1#2{\mbox{\href{#1}\texttt{#2}}}
-
+\usepackage{graphicx} % for rotated iota
 \usepackage{amssymb}
+\usepackage{amsmath} % For \begin{align}...
+\usepackage{amsthm}
+\theoremstyle{plain}
+\allowdisplaybreaks[1] % Allow page breaks in {align}
 
 % Version 1 of book: margins: t=.4, b=.2, ll=.4, rr=.55
 % \usepackage{anysize}
@@ -706,6 +698,11 @@
 
 % \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 \usepackage{special-settings}
+
+% Put these last so that they can tweak previous packages.
+% This is especially important for breqn.
+\usepackage{microtype}     % microtypography, reduces hyphenation
+\usepackage{breqn}         % automatic equation breaking
 
 \raggedbottom
 \makeindex
@@ -4897,6 +4894,14 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \m{\in}\m{w}\m{)}\m{\wedge}\m{(}\m{y}\m{\in}\m{w}\m{\wedge}\m{w}\m{\in}\m{x}%
 \m{)}\m{)}\m{\leftrightarrow}\m{y}\m{=}\m{w}\m{)}\m{)}
 \endm
+
+
+\begin{align}
+\vdash \exists y ( x \in y \wedge \forall z \in y ( \forall w ( w \subseteq z
+    \rightarrow w \in y ) \wedge \exists w \in y \forall v ( v \subseteq z
+    \rightarrow v \in w ) ) \wedge \forall z ( z \subseteq y \rightarrow ( z
+    \approx y \vee z \in y ) ) )\label{eq:ax-groth}\tag{ax-groth}
+\end{align}
 
 \subsection{That's It}
 
