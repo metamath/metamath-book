@@ -6497,91 +6497,81 @@ Axiom of Infinity.)
 \index{real and complex numbers!axioms for}
 
 This section presents the axioms for real and complex numbers.  Analysis
-textbooks implicitly or explicity use these axioms or their equivalents are
-used as their starting point.  In the database \texttt{set.mm}, we define real
+textbooks implicitly or explicitly use these axioms or their equivalents
+as their starting point.  In the database \texttt{set.mm}, we define real
 and complex numbers as (rather complicated) specific sets and derive these
 axioms as {\em theorems} from the axioms of ZF set theory, using a method
 called Dedekind cuts.  We omit the details of this construction, which you can
 follow if you wish using the \texttt{set.mm} database in conjunction with the
-textbooks referenced therein.  The construction is actually unimportant other
+textbooks referenced therein.
+
+Once we prove those theorems, we then restate these proven theorems as axioms.
+This lets us easily identify which axioms are needed for a particular complex number proof, without the obfuscation of the set theory used to derive them.
+As a result,
+the construction is actually unimportant other
 than to show that sets exist that satisfy the axioms, and thus that the axioms
 are consistent if ZF set theory is consistent.  When working with real numbers
 you can think of them as being the actual sets resulting
 from the construction (for definiteness), or you can
 think of them as otherwise unspecified sets that happen to satisfy the axioms.
+The derivation is not easy, but the fact that it works is quite remarkable
+and lends support to the idea that ZFC set theory is all we need to
+provide a foundation for essentially all of mathematics.
 
 For the axioms we are given (or postulate) 8 classes:  $\mathbb{C}$ (the
 set of complex numbers), $\mathbb{R}$ (the set of real numbers, a subset
 of $\mathbb{C}$), $0$ (zero), $1$ (one), $i$ (square root of
-$-1$), $+$ (plus), $\cdot$ (times), and $<$ (less than).
+$-1$), $+$ (plus), $\cdot$ (times), and
+$<_\mathbb{R}$ (less than for just the real numbers).
 Subtraction and division are defined terms and are not part of the
 axioms; for their definitions see \texttt{set.mm}.
 
 Note that the notation $(A+B)$ (and similarly $(A\cdot B)$) specifies a class
 called an {\em operation},\index{operation} and is the function value of the
 class $+$ at ordered pair $\langle A,B \rangle$.  An operation is defined by
-statement \texttt{df-opr} on p.~\pageref{dfopr}.  The notation $A<B$ specifies a
-wff called a {\em binary relation}\index{binary relation} and means $\langle
-A,B \rangle \in \,<$, as defined by statement \texttt{df-br} on p.~\pageref{dfbr}.
+statement \texttt{df-opr} on p.~\pageref{dfopr}.
+The notation $A <_\mathbb{R} B$ specifies a
+wff called a {\em binary relation}\index{binary relation} and means $\langle A,B \rangle \in \,<_\mathbb{R}$, as defined by statement \texttt{df-br} on p.~\pageref{dfbr}.
 
-Our set of 8 given classes is assumed to satisfy the following 28 axioms.
+Our set of 8 given classes is assumed to satisfy the following 22 axioms
+(in the axioms listed below, $<$ really means $<_\mathbb{R}$).
 
 \vskip 2ex
 
-\noindent 1. The class of complex numbers is a set.
+\noindent 1. The real numbers are a subset of the complex numbers.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axcnex\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{\mathbb{C}}\m{\in}\m{V}
-\endm
-%\vskip 1ex
-
-\noindent 2. The real numbers are a subset of the complex numbers.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axresscn\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-resscn\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{\mathbb{R}}\m{\subseteq}\m{\mathbb{C}}
 \endm
 %\vskip 1ex
 
-\noindent 3. Zero is a real number.
+\noindent 2. One is a complex number.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ ax0re\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-1cn\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{0}\m{\in}\m{\mathbb{R}}
+\m{\vdash}\m{1}\m{\in}\m{\mathbb{C}}
 \endm
 %\vskip 1ex
 
-\noindent 4. One is a real number.
+\noindent 3. The imaginary number $i$ is a complex number.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ ax1re\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{1}\m{\in}\m{\mathbb{R}}
-\endm
-%\vskip 1ex
-
-\noindent 5. The imaginary number $i$ is a complex number.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axicn\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-icn\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{i}\m{\in}\m{\mathbb{C}}
 \endm
 %\vskip 1ex
 
-\noindent 6. Complex numbers are closed under addition.
+\noindent 4. Complex numbers are closed under addition.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axaddcl\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-addcl\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
@@ -6589,10 +6579,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 7. Real numbers are closed under addition.
+\noindent 5. Real numbers are closed under addition.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axaddrcl\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-addrcl\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
@@ -6600,10 +6590,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 8. Complex numbers are closed under multiplication.
+\noindent 6. Complex numbers are closed under multiplication.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axmulcl\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-mulcl\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
@@ -6611,10 +6601,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 9. Real numbers are closed under multiplication.
+\noindent 7. Real numbers are closed under multiplication.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axmulrcl\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-mulrcl\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
@@ -6622,22 +6612,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 10. Addition of complex numbers is commutative.
+\noindent 8. Multiplication of complex numbers is commutative.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axaddcom\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
-\m{)}\m{\rightarrow}\m{(}\m{A}\m{+}\m{B}\m{)}\m{=}\m{(}\m{B}\m{+}\m{A}\m{)}%
-\m{)}
-\endm
-%\vskip 1ex
-
-\noindent 11. Multiplication of complex numbers is commutative.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axmulcom\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-mulcom\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
@@ -6646,10 +6624,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 12. Addition of complex numbers is associative.
+\noindent 9. Addition of complex numbers is associative.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axaddass\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-addass\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
@@ -6659,10 +6637,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 13. Multiplication of complex numbers is associative.
+\noindent 10. Multiplication of complex numbers is associative.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axmulass\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-mulass\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
@@ -6672,10 +6650,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 14. Multiplication distributes over addition for complex numbers.
+\noindent 11. Multiplication distributes over addition for complex numbers.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axdistr\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-distr\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{C}}%
@@ -6685,65 +6663,42 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 15. One and zero are distinct.
+\noindent 12. The square of $i$ equals $-1$ (expressed as $i$-squared plus 1 is
+0).
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ ax1ne0\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-i2m1\ \$p\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{(}\m{i}\m{\cdot}\m{i}\m{)}\m{+}\m{1}\m{)}\m{=}\m{0}
+\endm
+%\vskip 1ex
+
+\noindent 13. One and zero are distinct.
+
+%\vskip 0.5ex
+\setbox\startprefix=\hbox{\tt \ \ ax-1ne0\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{1}\m{\ne}\m{0}
 \endm
 %\vskip 1ex
 
-\noindent 16. Zero is an identity element for addition.
+\noindent 14. One is an identity element for real multiplication.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ ax0id\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-1rid\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\rightarrow}\m{(}\m{A}\m{+}\m{0}%
+\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\rightarrow}\m{(}\m{A}\m{\cdot}\m{1}%
 \m{)}\m{=}\m{A}\m{)}
 \endm
 %\vskip 1ex
 
-\noindent 17. One is an identity element for multiplication.
+\noindent 15. Every real number has a negative.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ ax1id\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\rightarrow}\m{(}\m{A}\m{\cdot}\m{1}%
-\m{)}\m{=}\m{A}\m{)}
-\endm
-%\vskip 1ex
-
-\noindent 18. Every complex number has a negative.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axnegex\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\rightarrow}\m{\exists}\m{x}\m{\in}%
-\m{\mathbb{C}}\m{(}\m{A}\m{+}\m{x}\m{)}\m{=}\m{0}\m{)}
-\endm
-%\vskip 1ex
-
-\noindent 19. Every nonzero complex number has a reciprocal.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axrecex\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\rightarrow}\m{(}\m{A}\m{\ne}\m{0}%
-\m{\rightarrow}\m{\exists}\m{x}\m{\in}\m{\mathbb{C}}\m{(}\m{A}\m{\cdot}%
-\m{x}\m{)}\m{=}\m{1}\m{)}\m{)}
-\endm
-%\vskip 1ex
-
-\noindent 20. Every real number has a negative.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axrnegex\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-rnegex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\rightarrow}\m{\exists}\m{x}\m{\in}%
@@ -6751,10 +6706,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 21. Every nonzero real number has a reciprocal.
+\noindent 16. Every nonzero real number has a reciprocal.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axrrecex\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-rrecex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\rightarrow}\m{(}\m{A}\m{\ne}\m{0}%
@@ -6763,21 +6718,22 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 22. The square of $i$ equals $-1$ (expressed as $i$-squared plus 1 is
-0).
+\noindent 17. A complex number can be expressed in terms of two reals.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axi2m1\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-cnre\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{(}\m{(}\m{i}\m{\cdot}\m{i}\m{)}\m{+}\m{1}\m{)}\m{=}\m{0}
+\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\rightarrow}\m{\exists}\m{x}\m{\in}%
+\m{\mathbb{R}}\m{\exists}\m{y}\m{\in}\m{\mathbb{R}}\m{A}\m{=}\m{(}\m{x}\m{+}\m{(}%
+\m{y}\m{\cdot}\m{i}\m{)}\m{)}\m{)}
 \endm
 %\vskip 1ex
 
-\noindent 23. Ordering on reals satisfies strict trichotomy.
+\noindent 18. Ordering on reals satisfies strict trichotomy.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axlttri\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-pre-lttri\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
@@ -6786,10 +6742,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 24. Ordering on reals is transitive.
+\noindent 19. Ordering on reals is transitive.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axlttrn\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-pre-lttrn\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
@@ -6798,10 +6754,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 25. Ordering on reals is preserved after addition to both sides.
+\noindent 20. Ordering on reals is preserved after addition to both sides.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axltadd\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-pre-ltadd\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
@@ -6810,10 +6766,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 26. The product of two positive reals is positive.
+\noindent 21. The product of two positive reals is positive.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axmulgt0\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-pre-mulgt0\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\in}\m{\mathbb{R}}\m{\wedge}\m{B}\m{\in}\m{\mathbb{R}}%
@@ -6823,22 +6779,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \endm
 %\vskip 1ex
 
-\noindent 27. A complex number can be expressed in terms of two reals.
+\noindent 22. A non-empty, bounded-above set of reals has a supremum.
 
 %\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axcnre\ \$p\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{A}\m{\in}\m{\mathbb{C}}\m{\rightarrow}\m{\exists}\m{x}\m{\in}%
-\m{\mathbb{R}}\m{\exists}\m{y}\m{\in}\m{\mathbb{R}}\m{A}\m{=}\m{(}\m{x}\m{+}\m{(}%
-\m{y}\m{\cdot}\m{i}\m{)}\m{)}\m{)}
-\endm
-%\vskip 1ex
-
-\noindent 28. A non-empty, bounded-above set of reals has a supremum.
-
-%\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ axsup\ \$p\ }
+\setbox\startprefix=\hbox{\tt \ \ ax-pre-sup\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{(}\m{A}\m{\subseteq}\m{\mathbb{R}}\m{\wedge}\m{A}\m{\ne}\m{%
@@ -6848,6 +6792,10 @@ Our set of 8 given classes is assumed to satisfy the following 28 axioms.
 \forall}\m{y}\m{\in}\m{\mathbb{R}}\m{(}\m{y}\m{<}\m{x}\m{\rightarrow}\m{\exists}%
 \m{z}\m{\in}\m{A}\m{\,y}\m{<}\m{z}\m{)}\m{)}\m{)}
 \endm
+
+% NOTE: The \m{...} expressions above could be represented as
+% $ \vdash ( ( A \subseteq \mathbb{R} \wedge A \ne \varnothing \wedge \exists x \in \mathbb{R} \forall y \in A \,y < x ) \rightarrow \exists x \in \mathbb{R} ( \forall y \in A \lnot x < y \wedge \forall y \in \mathbb{R} ( y < x \rightarrow \exists z \in A \,y < z ) ) ) $
+
 \vskip 2ex
 
 This completes the set of axioms for real and complex numbers.  You may
@@ -6873,12 +6821,19 @@ but are not stated in their pure form.  (This is also done in
 Other texts will simply state that $\mathbb{R}$ is a ``complete ordered
 subfield of $\mathbb{C}$,'' leading to redundant axioms when this phrase
 is completely expanded out.  In fact I have not seen a text with the
-axioms in the explicit form above.  It is possible that one or more of
-the axioms above are redundant or could be made weaker; if you discover
-an improvement, please let me know, and I will properly acknowledge your
-contribution.  {\em Update (Feb. 2005):} The third axiom, ``0 is a real
-number,'' is redundant; see the \url{http://metamath.org} web site for
-details.
+axioms in the explicit form above.
+None these axioms is unique individually, but this carefully worked out
+collection of axioms is the result of years of work
+by the Metamath community.
+
+We once had more axioms for real and complex numbers, but over time
+we have found ways to eliminate them (by proving them from other axioms),
+and in some cases we have found ways to weaken them.
+we could eliminate 0 as an axiomatic object by defining it as
+$( ( i \cdot i ) + 1 )$
+and replacing it with this expression throughout the axioms. If this
+is done, axiom ax-i2m1 becomes redundant. However, the remaining axioms
+would become longer and less intuitive.
 
 \section{Exploring the Set Theory Database}\label{exploring}
 
