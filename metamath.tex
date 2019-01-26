@@ -702,7 +702,13 @@ colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black
 % Put these last so that they can tweak previous packages.
 % This is especially important for breqn.
 \usepackage{microtype}     % microtypography, reduces hyphenation
-\usepackage{breqn}         % automatic equation breaking
+% \usepackage{breqn}         % automatic equation breaking
+
+% Must first install package "autobreak". To install
+% # Install gpg, e.g., apt-get install gpg
+% tlmgr init-usertree
+% tlmgr install --usermode autobreak
+\usepackage{autobreak}         % enable equation breaking
 
 \raggedbottom
 \makeindex
