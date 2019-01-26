@@ -661,10 +661,11 @@
 % A book template example
 % http://www.stsci.edu/ftp/software/tex/bookstuff/book.template
 
-%\documentstyle[leqno]{book} % LaTeX 2.09 - obsolete
-\documentclass[leqno]{book} % LaTeX 2e
+\documentclass[leqno]{book} % LaTeX 2e. 10pt. Use [leqno,12pt] for 12pt
 % hyperref 2002/05/27 v6.72r  (couldn't get pagebackref to work)
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
+\usepackage{breqn}         % automatic equation breaking
+\usepackage{microtype}     % microtypography, reduces hyphenation
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment the next 3 lines to suppress boxes and colors on the hyperlinks
@@ -702,6 +703,9 @@
 % l/r 0.85in&0.6431-0.6539 works t/b ?-?
 %\marginsize{0.85in}{0.6485in}{0.55in}{0.35in}
 \marginsize{0.8in}{0.65in}{0.5in}{0.3in}
+
+% \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
+\usepackage{special-settings}
 
 \raggedbottom
 \makeindex

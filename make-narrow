@@ -1,0 +1,11 @@
+#!/bin/sh
+# Make metamath-narrow.pdf
+# WARNING: This erases metamath.pdf and special-settings.sty
+
+cp -p narrow.sty special-settings.sty
+
+./generate-pdf
+mv metamath.pdf metamath-narrow.pdf
+
+rm -f special-settings.sty
+touch special-settings.sty
