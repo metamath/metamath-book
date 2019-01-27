@@ -10,6 +10,10 @@ do_pdflatex () {
   pdflatex -halt-on-error -interaction=nonstopmode "$1"
 }
 
+# Try to remove metamath.pdf first - if we can't, no point in going further.
+rm -f metamath.pdf
+
+# Clean up
 rm -f realref.sty metamath.bib
 touch metamath.ind
 
