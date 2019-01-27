@@ -7493,6 +7493,8 @@ Included files may include other files.
 Only the first reference to a given file is included; any later
 references to the same file (whether in the top-level file or in included
 files) cause the inclusion command to be ignored (treated like white space).
+A verifier may assume that file names with different strings
+refer to different files for the purpose of ignoring later references.
 A file self-reference is ignored, as is any reference to the top-level file.
 Included files may not include a \texttt{\$(} without a matching \texttt{\$)},
 may not include a \texttt{\$[} without a matching \texttt{\$]}, and may
