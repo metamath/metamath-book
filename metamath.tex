@@ -8610,11 +8610,8 @@ variable in a \texttt{\$e}, \texttt{\$a}, or \texttt{\$p} statement must
 have an associated ``variable type'' defined for it in a \texttt{\$f}
 statement.
   \item No two \texttt{\$f} statements may contain the same variable.
-  \item Each of the two variables in any \texttt{\$d} statement must occur in a
-\texttt{\$f} statement.
   \item Any \texttt{\$f} statement
-must occur before a \texttt{\$e} or \texttt{\$d} statement in which its variable
-occurs.
+must occur before a \texttt{\$e} statement in which its variable occurs.
 \end{enumerate}
 
 The first property determines the set of variables occurring in a frame.
@@ -9142,7 +9139,10 @@ hypotheses removed.
 
 An equivalent way of saying this is that the extended frame of an assertion
 is the collection of all \texttt{\$f}, \texttt{\$e}, and \texttt{\$d} statements
-whose scope includes the assertion, in the order they appear.
+whose scope includes the assertion.
+The \texttt{\$f} and \texttt{\$e} statements
+occur in the order they appear
+(order is irrelevant for \texttt{\$d} statements).
 
 %c%, renaming any
 %c%redeclared variables as needed so that all of them have unique names.  (The
