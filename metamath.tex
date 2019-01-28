@@ -3335,9 +3335,9 @@ simply \texttt{metamath}.  (Metamath's {\tt help invoke} command describes
 alternate ways of invoking the Metamath program.)
 
 When you first enter Metamath\index{Metamath}, it will be at the CLI, waiting
-for your input. You will see the following on your screen:
+for your input. You will see something the following on your screen:
 \begin{verbatim}
-        Metamath - Version 0.07.30 8-Feb-2007
+	Metamath - Version 0.172 25-Jan-2019
         Type HELP for help, EXIT to exit.
         MM>
 \end{verbatim}
@@ -3345,6 +3345,8 @@ The \texttt{MM>} prompt means that Metamath is waiting for a command.
 (The help message line suggests that commands should be typed in upper
 case, but actually command keywords\index{command keyword} are not case
 sensitive.  We will use lower case in our examples.)
+The version number and its release date will probably be different on your
+system from the one we show above.
 
 The first thing that you need to do is to read in your
 database:\index{\texttt{read} command}\footnote{If a directory path is
@@ -7317,7 +7319,7 @@ qualifier gives you all of them.)
 
 \subsection{A Note on ``Compact'' Proof Format}
 
-The present version of Metamath (0.07.30)\index{Metamath!limitations of
+The present version of Metamath\index{Metamath!limitations of
 version 0.07.30} will display proofs in a ``compact''\index{compact proof}
 format whenever the proof is stored in compressed format in the database.  It
 may be be slightly confusing unless you know how to interpret it.  (A
@@ -9452,8 +9454,8 @@ that the character strings \texttt{\$(} and \texttt{\$)} may not appear
 in {\em text}.  Thus nested comments are not
 permitted:\footnote{Computer languages have differing standards for
 nested comments, and rather than picking one it was felt simplest not to
-allow them at all, at least in the current version of Metamath
-(0.07.30)\index{Metamath!limitations of version 0.07.30}.} Metamath will
+allow them at all, at least in the current version of
+Metamath\index{Metamath!limitations of version 0.07.30}.} Metamath will
 complain if you give it
 \begin{center}
  \texttt{\$( This is a \$( nested \$) comment.\ \$)}
@@ -9493,7 +9495,7 @@ These markup features have to do only with how the comments are typeset,
 and have no effect on how Metamath verifies the database.  The improper
 use of them may result in incorrectly typeset output, but no Metamath
 error messages will result during the \texttt{read} and \texttt{verify
-proof} commands.  (However, the new \texttt{write
+proof} commands.  (However, the \texttt{write
 theorem\texttt{\char`\_}list} command, added in version 0.07.30 of the
 Metamath program, will check for markup errors as a side-effect of its
 {\sc html} generation.)
@@ -9573,7 +9575,7 @@ and error messages will be issued during that output if they aren't.)
 
 The automated generation of {\sc html}\index{html generation@{\sc html}
 generation} web pages
-(Section~\ref{htmlout}) is new in version 0.07.30 of the Metamath program.
+(Section~\ref{htmlout}) was added in version 0.07.30 of the Metamath program.
 The comment markup notation for \LaTeX\ also applies to {\sc html}, and
 some additional features specifically for {\sc html} were added.
 These markup features (including those reused from \LaTeX) are the
@@ -10373,7 +10375,7 @@ Syntax:  \texttt{write source} {\em filename} [\texttt{/clean}]
 
 This command will write the contents of a Metamath\index{database}
 database into a file.\index{source file} Note:  The present version of
-Metamath (0.07.30)\index{Metamath!limitations of version 0.07.30} will not
+Metamath\index{Metamath!limitations of version 0.07.30} will not
 split the database into its constituent source files included with
 \texttt{\$[}\index{\texttt{\$[} and \texttt{\$]} auxiliary keywords} and
 \texttt{\$]} keywords.  A future version is planned to properly separate
@@ -10827,8 +10829,8 @@ This command will enter the Proof Assistant\index{Proof Assistant}, which will
 allow you to create or edit the proof of the specified statement.
 The command-line prompt will change from \texttt{MM>} to \texttt{MM-PA>}.
 
-Note:  In the present version of Metamath
-(0.07.30)\index{Metamath!limitations of version 0.07.30}, the Proof
+Note:  In the present version of
+Metamath\index{Metamath!limitations of version 0.07.30}, the Proof
 Assistant does not verify that \texttt{\$d}\index{\texttt{\$d}
 statement} restrictions are met as a proof is being built.  After you
 have completed a proof, you should type \texttt{save new{\char`\_}proof}
@@ -11281,7 +11283,7 @@ the \LaTeX\ file.
 
 \section{Creating HTML Output}\label{htmlout}
 
-The ability to produce {\sc html} web pages is new in Metamath version
+The ability to produce {\sc html} web pages was added in Metamath version
 0.07.30.
 
 To create an {\sc html} output file for a \texttt{\$a} or \texttt{\$p}
@@ -11571,7 +11573,6 @@ users not comfortable with Unix, \texttt{tools} provides an
 easy-to-learn alternative that is adequate for most of the
 script-building tasks needed to use the Metamath program effectively.
 
-
 \subsection{\texttt{help} Command (in \texttt{tools})}
 Syntax:  \texttt{help}
 
@@ -11596,6 +11597,8 @@ prompt for each argument.
         a file.
 
   \texttt{substitute} - Make a simple substitution on each line of the file.
+
+  \texttt{tag} - Like \texttt{add}, but restricted to a range of lines.
 
   \texttt{swap} - Swap the two halves of each line in a file.
 
@@ -11633,7 +11636,6 @@ prompt for each argument.
    \ \ \    once in a file, discarding lines occurring exactly once.
 
   \texttt{unique} - Extract lines occurring exactly once in a file.
-
 
   \texttt{type} (10 lines) - Display the first few lines in a file.
                   Similar to Unix \texttt{head}.
