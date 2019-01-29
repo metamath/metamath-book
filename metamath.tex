@@ -704,6 +704,14 @@
 %\marginsize{0.85in}{0.6485in}{0.55in}{0.35in}
 \marginsize{0.8in}{0.65in}{0.5in}{0.3in}
 
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,        % print size
+  breaklines=true,                              % sets automatic line breaking
+  breakatwhitespace=true,                 % sets if automatic breaks should only happen at whitespace
+}
+
+
 % \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 \usepackage{special-settings}
 
@@ -3121,40 +3129,39 @@ a term.
 Here, without further ado, is our example converted to the
 Metamath\index{Metamath} language:\index{metavariable}\label{demo0}
 
-\begin{verbatim}
-
-        $( Declare the constant symbols we will use $)
-            $c 0 + = -> ( ) term wff |- $.
-        $( Declare the metavariables we will use $)
-            $v t r s P Q $.
-        $( Specify properties of the metavariables $)
-            tt $f term t $.
-            tr $f term r $.
-            ts $f term s $.
-            wp $f wff P $.
-            wq $f wff Q $.
-        $( Define "term" and "wff" $)
-            tze $a term 0 $.
-            tpl $a term ( t + r ) $.
-            weq $a wff t = r $.
-            wim $a wff ( P -> Q ) $.
-        $( State the axioms $)
-            a1 $a |- ( t = r -> ( t = s -> r = s ) ) $.
-            a2 $a |- ( t + 0 ) = t $.
-        $( Define the modus ponens inference rule $)
-            ${
-               min $e |- P $.
-               maj $e |- ( P -> Q ) $.
-               mp  $a |- Q $.
-            $}
-        $( Prove a theorem $)
-            th1 $p |- t = t $=
-          $( Here is its proof: $)
-               tt tze tpl tt weq tt tt weq tt a2 tt tze tpl
-               tt weq tt tze tpl tt weq tt tt weq wim tt a2
-               tt tze tpl tt tt a1 mp mp
-             $.
-\end{verbatim}\index{metavariable}
+\begin{lstlisting}[breaklines]
+$( Declare the constant symbols we will use $)
+    $c 0 + = -> ( ) term wff |- $.
+$( Declare the metavariables we will use $)
+    $v t r s P Q $.
+$( Specify properties of the metavariables $)
+    tt $f term t $.
+    tr $f term r $.
+    ts $f term s $.
+    wp $f wff P $.
+    wq $f wff Q $.
+$( Define "term" and "wff" $)
+    tze $a term 0 $.
+    tpl $a term ( t + r ) $.
+    weq $a wff t = r $.
+    wim $a wff ( P -> Q ) $.
+$( State the axioms $)
+    a1 $a |- ( t = r -> ( t = s -> r = s ) ) $.
+    a2 $a |- ( t + 0 ) = t $.
+$( Define the modus ponens inference rule $)
+    ${
+       min $e |- P $.
+       maj $e |- ( P -> Q ) $.
+       mp  $a |- Q $.
+    $}
+$( Prove a theorem $)
+    th1 $p |- t = t $=
+  $( Here is its proof: $)
+       tt tze tpl tt weq tt tt weq tt a2 tt tze tpl
+       tt weq tt tze tpl tt weq tt tt weq wim tt a2
+       tt tze tpl tt tt a1 mp mp
+     $.
+\end{lstlisting}\index{metavariable}
 
 A ``database''\index{database} is a set of one or more {\sc ascii} source
 files.  Here's a brief description of this Metamath\index{Metamath} database
@@ -3336,11 +3343,11 @@ alternate ways of invoking the Metamath program.)
 
 When you first enter Metamath\index{Metamath}, it will be at the CLI, waiting
 for your input. You will see the following on your screen:
-\begin{verbatim}
-        Metamath - Version 0.07.30 8-Feb-2007
-        Type HELP for help, EXIT to exit.
-        MM>
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+Metamath - Version 0.07.30 8-Feb-2007
+Type HELP for help, EXIT to exit.
+MM>
+\end{lstlisting}
 The \texttt{MM>} prompt means that Metamath is waiting for a command.
 (The help message line suggests that commands should be typed in upper
 case, but actually command keywords\index{command keyword} are not case
@@ -3353,9 +3360,9 @@ enclose the path/file name in quotes to prevent Metamath from thinking
 that the \texttt{/} in the path name is a command qualifier, e.g.,
 \texttt{read \char`\"db/set.mm\char`\"}.  Quotes are optional when there
 is no ambiguity.}
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
         MM> read demo0.mm
-\end{verbatim}
+\end{lstlisting}
 Remember to press the {\em return} key after entering this command.  If
 you omit the file name, Metamath will prompt you for one.   The syntax for
 specifying a Macintosh file name path is given in a footnote on
@@ -3369,24 +3376,24 @@ slow it down too much.  It is a good idea to periodically verify the proofs in
 a database you are making changes to.  To do this, use the following command
 (and do it for your \texttt{demo0.mm} file now).  Note that the \texttt{*} is a
 ``wild card'' meaning all proofs in the file.\index{\texttt{verify proof} command}
-\begin{verbatim}
-        MM> verify proof *
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> verify proof *
+\end{lstlisting}
 Metamath will report any proofs that are incorrect.
 
 It is often useful to save the information that the Metamath program displays
 on the screen. You can save everything that happens on the screen by opening a
 log file. You may want to do this before you read in a database so that you
 can examine any errors later on.  To open a log file, type
-\begin{verbatim}
-        MM> open log abc.log
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> open log abc.log
+\end{lstlisting}
 This will open a file called \texttt{abc.log}, and everything that appears on the
 screen from this point on will be stored in this file.  The name of the log file
 is arbitrary. To close the log file, type
-\begin{verbatim}
-        MM> close log
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> close log
+\end{lstlisting}
 
 Several commands let you examine what's inside of your database.
 Section~\ref{exploring} has an overview of some useful ones.  The
@@ -3397,38 +3404,38 @@ letter \texttt{t}.\index{\texttt{show labels} command} The \texttt{/all}
 is a ``command qualifier''\index{command qualifier} that tells Metamath
 to include labels of hypotheses.  (To see the syntax explained, type
 \texttt{help show labels}.)  Type
-\begin{verbatim}
-        MM> show labels t* /all
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show labels t* /all
+\end{lstlisting}
 Metamath will respond with
-\begin{verbatim}
-        The statement number, label, and type are shown.
-        3 tt $f       4 tr $f       5 ts $f       8 tze $a
-        9 tpl $a      19 th1 $p
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+The statement number, label, and type are shown.
+3 tt $f       4 tr $f       5 ts $f       8 tze $a
+9 tpl $a      19 th1 $p
+\end{lstlisting}
 
 You can use the \texttt{show statement} command to get information about a
 particular statement.\index{\texttt{show statement} command}
 For example, you can get information about the statement with label \texttt{mp}
 by typing
-\begin{verbatim}
-        MM> show statement mp /full
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show statement mp /full
+\end{lstlisting}
 Metamath will respond with
-\begin{verbatim}
-        Statement 17 is located on line 43 of the file
-        "demo0.mm".
-        "Define the modus ponens inference rule"
-        17 mp $a |- Q $.
-        Its mandatory hypotheses in RPN order are:
-          wp $f wff P $.
-          wq $f wff Q $.
-          min $e |- P $.
-          maj $e |- ( P -> Q ) $.
-        The statement and its hypotheses require the
-              variables:  Q P
-        The variables it contains are:  Q P
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+Statement 17 is located on line 43 of the file
+"demo0.mm".
+"Define the modus ponens inference rule"
+17 mp $a |- Q $.
+Its mandatory hypotheses in RPN order are:
+  wp $f wff P $.
+  wq $f wff Q $.
+  min $e |- P $.
+  maj $e |- ( P -> Q ) $.
+The statement and its hypotheses require the
+      variables:  Q P
+The variables it contains are:  Q P
+\end{lstlisting}
 The mandatory hypotheses\index{mandatory hypothesis} and their
 order\index{RPN order} are
 useful to know when you are trying to understand or debug a proof.
@@ -3438,48 +3445,48 @@ how to look at every step in the proof---not just the ones corresponding to an
 ordinary formal proof\index{formal proof}, but also the ones that build up the
 formulas that appear in each ordinary formal proof step.\index{\texttt{show
 proof} command}
-\begin{verbatim}
-        MM> show proof th1 /lemmon /all
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show proof th1 /lemmon /all
+\end{lstlisting}
 
 This will display the proof on the screen in the following format:
-\begin{verbatim}
-         1 tt            $f term t
-         2 tze           $a term 0
-         3 1,2 tpl       $a term ( t + 0 )
-         4 tt            $f term t
-         5 3,4 weq       $a wff ( t + 0 ) = t
-         6 tt            $f term t
-         7 tt            $f term t
-         8 6,7 weq       $a wff t = t
-         9 tt            $f term t
-        10 9 a2          $a |- ( t + 0 ) = t
-        11 tt            $f term t
-        12 tze           $a term 0
-        13 11,12 tpl     $a term ( t + 0 )
-        14 tt            $f term t
-        15 13,14 weq     $a wff ( t + 0 ) = t
-        16 tt            $f term t
-        17 tze           $a term 0
-        18 16,17 tpl     $a term ( t + 0 )
-        19 tt            $f term t
-        20 18,19 weq     $a wff ( t + 0 ) = t
-        21 tt            $f term t
-        22 tt            $f term t
-        23 21,22 weq     $a wff t = t
-        24 20,23 wim     $a wff ( ( t + 0 ) = t -> t = t )
-        25 tt            $f term t
-        26 25 a2         $a |- ( t + 0 ) = t
-        27 tt            $f term t
-        28 tze           $a term 0
-        29 27,28 tpl     $a term ( t + 0 )
-        30 tt            $f term t
-        31 tt            $f term t
-        32 29,30,31 a1   $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
-                                             = t -> t = t ) )
-        33 15,24,26,32 mp  $a |- ( ( t + 0 ) = t -> t = t )
-        34 5,8,10,33 mp  $a |- t = t
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+ 1 tt            $f term t
+ 2 tze           $a term 0
+ 3 1,2 tpl       $a term ( t + 0 )
+ 4 tt            $f term t
+ 5 3,4 weq       $a wff ( t + 0 ) = t
+ 6 tt            $f term t
+ 7 tt            $f term t
+ 8 6,7 weq       $a wff t = t
+ 9 tt            $f term t
+10 9 a2          $a |- ( t + 0 ) = t
+11 tt            $f term t
+12 tze           $a term 0
+13 11,12 tpl     $a term ( t + 0 )
+14 tt            $f term t
+15 13,14 weq     $a wff ( t + 0 ) = t
+16 tt            $f term t
+17 tze           $a term 0
+18 16,17 tpl     $a term ( t + 0 )
+19 tt            $f term t
+20 18,19 weq     $a wff ( t + 0 ) = t
+21 tt            $f term t
+22 tt            $f term t
+23 21,22 weq     $a wff t = t
+24 20,23 wim     $a wff ( ( t + 0 ) = t -> t = t )
+25 tt            $f term t
+26 25 a2         $a |- ( t + 0 ) = t
+27 tt            $f term t
+28 tze           $a term 0
+29 27,28 tpl     $a term ( t + 0 )
+30 tt            $f term t
+31 tt            $f term t
+32 29,30,31 a1   $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
+                                     = t -> t = t ) )
+33 15,24,26,32 mp  $a |- ( ( t + 0 ) = t -> t = t )
+34 5,8,10,33 mp  $a |- t = t
+\end{lstlisting}
 
 The \texttt{/lemmon} command qualifier specifies what is known as a Lemmon-style
 display\index{Lemmon-style proof}\index{proof!Lemmon-style}.  Omitting the
@@ -3504,46 +3511,46 @@ established that
 itself tell us in detail what is happening in step 5.  Note that the
 ``target hypothesis'' refers to where step 5 is eventually used, i.e., in step
 34.
-\begin{verbatim}
-        MM> show proof th1 /detailed_step 5
-        Proof step 5:  wp=weq $a wff ( t + 0 ) = t
-        This step assigns source "weq" ($a) to target "wp"
-        ($f).  The source assertion requires the hypotheses
-        "tt" ($f, step 3) and "tr" ($f, step 4).  The parent
-        assertion of the target hypothesis is "mp" ($a,
-        step 34).
-        The source assertion before substitution was:
-            weq $a wff t = r
-        The following substitutions were made to the source
-        assertion:
-            Variable  Substituted with
-             t         ( t + 0 )
-             r         t
-        The target hypothesis before substitution was:
-            wp $f wff P
-        The following substitution was made to the target
-        hypothesis:
-            Variable  Substituted with
-             P         ( t + 0 ) = t
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show proof th1 /detailed_step 5
+Proof step 5:  wp=weq $a wff ( t + 0 ) = t
+This step assigns source "weq" ($a) to target "wp"
+($f).  The source assertion requires the hypotheses
+"tt" ($f, step 3) and "tr" ($f, step 4).  The parent
+assertion of the target hypothesis is "mp" ($a,
+step 34).
+The source assertion before substitution was:
+    weq $a wff t = r
+The following substitutions were made to the source
+assertion:
+    Variable  Substituted with
+     t         ( t + 0 )
+     r         t
+The target hypothesis before substitution was:
+    wp $f wff P
+The following substitution was made to the target
+hypothesis:
+    Variable  Substituted with
+     P         ( t + 0 ) = t
+\end{lstlisting}
 
 The full proof just shown is useful to understand what is going on in detail.
 However, most of the time you will just be interested in
 the ``essential'' or logical steps of a proof, i.e.\ those steps
 that correspond to an
 ordinary formal proof\index{formal proof}.  If you type
-\begin{verbatim}
-        MM> show proof th1 /essential /lemmon /renumber
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show proof th1 /essential /lemmon /renumber
+\end{lstlisting}
 you will see\label{demoproof}
-\begin{verbatim}
-        1 a2             $a |- ( t + 0 ) = t
-        2 a2             $a |- ( t + 0 ) = t
-        3 a1             $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
-                                             = t -> t = t ) )
-        4 2,3 mp         $a |- ( ( t + 0 ) = t -> t = t )
-        5 1,4 mp         $a |- t = t
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+1 a2             $a |- ( t + 0 ) = t
+2 a2             $a |- ( t + 0 ) = t
+3 a1             $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
+                                     = t -> t = t ) )
+4 2,3 mp         $a |- ( ( t + 0 ) = t -> t = t )
+5 1,4 mp         $a |- t = t
+\end{lstlisting}
 Compare this to the formal proof on p.~\pageref{zeroproof} and
 notice the resemblance.  The \texttt{/essential} qualifier in the \texttt{show
 proof} command tells Metamath to discard all \texttt{\$f}\index{\texttt{\$f}
@@ -3555,9 +3562,9 @@ the steps to correspond only to what is displayed.\index{\texttt{show proof}
 command}
 
 To exit Metamath, type\index{\texttt{exit} command}
-\begin{verbatim}
-        MM> exit
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> exit
+\end{lstlisting}
 
 \subsection{Some Hints for Using the Command Line Interface}
 
@@ -3571,13 +3578,13 @@ it unambiguous.  If you type too few characters, Metamath will tell you what
 the choices are.  In the case of the \texttt{read} command, only the \texttt{r} is
 needed to specify it unambiguously, so you could have typed\index{\texttt{read}
 command}
-\begin{verbatim}
-        MM> r demo0.mm
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> r demo0.mm
+\end{lstlisting}
 instead of
-\begin{verbatim}
-        MM> read demo0.mm
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> read demo0.mm
+\end{lstlisting}
 In our description, we always show the full command words.  When using the
 Metamath CLI commands in a command file (to be read with the \texttt{submit}
 command)\index{\texttt{submit} command}, it is good practice to use
@@ -3598,39 +3605,39 @@ If you are uncertain of a command's spelling, just type as many characters
 as you remember of the command.  If you have not typed enough characters to
 specify it unambiguously, Metamath will tell you what choices you have.
 
-\begin{verbatim}
-        MM> show s
-                 ^
-        ?Ambiguous keyword - please specify SETTINGS,
-        STATEMENT, or SOURCE.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show s
+         ^
+?Ambiguous keyword - please specify SETTINGS,
+STATEMENT, or SOURCE.
+\end{lstlisting}
 
 If you don't what know argument to use as part of a command, type a
 \texttt{?}\index{\texttt{]}@\texttt{?}\ in command lines}\ at the
 argument position.  Metamath will tell you what it expected there.
 
-\begin{verbatim}
-        MM> show ?
-                 ^
-        ?Expected SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
-        MEMORY, TRACE_BACK, or USAGE.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show ?
+         ^
+?Expected SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
+MEMORY, TRACE_BACK, or USAGE.
+\end{lstlisting}
 
 Finally, you may type just the first word or words of a command followed
 by {\em return}.  Metamath will prompt you for the remaining part of the
 command, showing you the choices at each step.  For example, instead of
 typing \texttt{show statement th1 /full} you could interact in the
 following manner:
-\begin{verbatim}
-        MM> show
-        SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
-        MEMORY, TRACE_BACK, or USAGE <SETTINGS>? st
-        What is the statement label <th1>?
-        / or nothing <nothing>? /
-        TEX, COMMENT_ONLY, or FULL <TEX>? f
-        / or nothing <nothing>?
-        19 th1 $p |- t = t $= ... $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+MM> show
+SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
+MEMORY, TRACE_BACK, or USAGE <SETTINGS>? st
+What is the statement label <th1>?
+/ or nothing <nothing>? /
+TEX, COMMENT_ONLY, or FULL <TEX>? f
+/ or nothing <nothing>?
+19 th1 $p |- t = t $= ... $.
+\end{lstlisting}
 After each \texttt{?}\ in this mode, you must give Metamath the
 information it requests.  Sometimes Metamath gives you a list of choices
 with the default choice indicated by brackets \texttt{< > }. Pressing
@@ -3689,43 +3696,43 @@ above.  The following dialog shows how the proof was developed.  For more
 details on what some of the commands do, refer to Section~\ref{pfcommands}.
 \index{\texttt{prove} command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> prove th1
 Entering the Proof Assistant.  Type HELP for help, EXIT
 to exit.  You will be working on the proof of statement th1:
   $p |- t = t
 Note:  The proof you are starting with is already complete.
 MM-PA>
-\end{verbatim}
+\end{lstlisting}
 
 The \verb/MM-PA>/ prompt means we are inside of the Proof
 Assistant.\index{Proof Assistant} Most of the regular Metamath commands
 (\texttt{show statement}, etc.) are still available if you need them.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> delete all
 The entire proof was deleted.
-\end{verbatim}
+\end{lstlisting}
 
 We have deleted the whole proof so we can start from scratch.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/lemmon/all
 1 ?              $? |- t = t
-\end{verbatim}
+\end{lstlisting}
 
 The \texttt{show new{\char`\_}proof} command\index{\texttt{show
 new{\char`\_}proof} command} is like \texttt{show proof} except that we
 don't specify a statement; instead, the proof we're working on is
 displayed.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> assign 1 mp
 To undo the assignment, DELETE STEP 5 and INITIALIZE, UNIFY
 if needed.
 3   min=?  $? |- $2
 4   maj=?  $? |- ( $2 -> t = t )
-\end{verbatim}
+\end{lstlisting}
 
 The \texttt{assign} command\index{\texttt{assign} command} above means
 ``assign step 1 with the statement whose label is \texttt{mp}.''  Note
@@ -3736,14 +3743,14 @@ step 1 is now step 5, because the (partial) proof now has five steps:
 the four hypotheses of the \texttt{mp} statement and the \texttt{mp}
 statement itself.  Let's look at all the steps in our partial proof:
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/lemmon/all
 1 ?              $? wff $2
 2 ?              $? wff t = t
 3 ?              $? |- $2
 4 ?              $? |- ( $2 -> t = t )
 5 1,2,3,4 mp     $a |- t = t
-\end{verbatim}
+\end{lstlisting}
 
 The symbol \texttt{\$2} is a temporary variable\index{temporary
 variable} that represents a symbol sequence not yet known.  In the final
@@ -3760,12 +3767,12 @@ out by itself, and we will not have to worry about them.  Therefore from
 here on we will display only the ``essential'' hypotheses, i.e.\ those
 steps that correspond to traditional formal proofs\index{formal proof}.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/lemmon/essential
 3 ?              $? |- $2
 4 ?              $? |- ( $2 -> t = t )
 5 3,4 mp         $a |- t = t
-\end{verbatim}
+\end{lstlisting}
 
 Unknown steps 3 and 4 are the ones we must focus on.  They correspond to the
 minor and major premises of the modus ponens rule.  We will assign them as
@@ -3773,14 +3780,14 @@ follows.  Notice that because of the step renumbering that takes place
 after an assignment, it is advantageous to assign unknown steps in reverse
 order, because earlier steps will not get renumbered.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> assign 4 mp
 To undo the assignment, DELETE STEP 8 and INITIALIZE, UNIFY
 if needed.
 3   min=?  $? |- $2
 6     min=?  $? |- $4
 7     maj=?  $? |- ( $4 -> ( $2 -> t = t ) )
-\end{verbatim}
+\end{lstlisting}
 
 We are now going to describe an obscure feature that you will probably
 never use but should be aware of.  The Metamath language allows empty
@@ -3792,10 +3799,10 @@ feature is turned off in the Proof Assistant.  (It is always allowed for
 {\tt verify proof}.)  Let us turn it on and see what
 happens.\index{\texttt{set empty{\char`\_}substitution} command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> set empty_substitution on
 Substitutions with empty symbol sequences is now allowed.
-\end{verbatim}
+\end{lstlisting}
 
 With this feature enabled, more unifications will be
 ambiguous\index{ambiguous unification}\index{unification!ambiguous} in
@@ -3804,7 +3811,7 @@ substitution\index{substitution!variable}\index{variable substitution}
 of variables with empty symbol sequences will become an additional
 possibility.  Let's see what happens when we make our next assignment.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> assign 3 a2
 There are 2 possible unifications.  Please select the correct
     one or Q if you want to UNIFY later.
@@ -3814,7 +3821,7 @@ Unification #1 of 2 (weight = 7):
   Replace "$6" with "( + 0 ) ="
   Replace "$9" with ""
   Accept (A), reject (R), or quit (Q) <A>? r
-\end{verbatim}
+\end{lstlisting}
 
 The first choice presented is the wrong one.  If we had selected it,
 temporary variable \texttt{\$6} would have been assigned a truncated
@@ -3824,7 +3831,7 @@ eventually we would reach a point where we would get stuck because
 we would end up with steps impossible to prove.  (You may want to
 try it.)  We typed \texttt{r} to reject the choice.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 Unification #2 of 2 (weight = 21):
   Replace "$6" with "( $9 + 0 ) = $9"
   Accept (A), reject (R), or quit (Q) <A>? q
@@ -3832,18 +3839,18 @@ To undo the assignment, DELETE STEP 4 and INITIALIZE, UNIFY
 if needed.
  7     min=?  $? |- $8
  8     maj=?  $? |- ( $8 -> ( $6 -> t = t ) )
-\end{verbatim}
+\end{lstlisting}
 
 The second choice is correct, and normally we would type \texttt{a}
 to accept it.  But instead we typed \texttt{q} to show what will happen:
 it will leave the step with an unknown unification, which can be
 seen as follows:
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/not_unified
  4   min    $a |- $6
         =a2  = |- ( $9 + 0 ) = $9
-\end{verbatim}
+\end{lstlisting}
 
 Later we can unify this with the \texttt{unify all/interactive} command.
 
@@ -3859,27 +3866,27 @@ above.
 
 Enough of this digression.  Let us go back to the default setting.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> set empty_substitution off
 The ability to substitute empty expressions for variables
 has been turned off.  Note that this may make the Proof
 Assistant too restrictive in some cases.
-\end{verbatim}
+\end{lstlisting}
 
 If we delete the proof, start over, and get to the point where
 we digressed above, there will no longer be an ambiguous unification.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> assign 3 a2
 To undo the assignment, DELETE STEP 4 and INITIALIZE, UNIFY
 if needed.
  7     min=?  $? |- $4
  8     maj=?  $? |- ( $4 -> ( ( $5 + 0 ) = $5 -> t = t ) )
-\end{verbatim}
+\end{lstlisting}
 
 Let us look at our proof so far, and continue.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/lemmon
  4 a2            $a |- ( $5 + 0 ) = $5
  7 ?             $? |- $4
@@ -3900,7 +3907,7 @@ MM-PA> show new_proof/lemmon
                                                     t = t ) )
 13 8,12 mp       $a |- ( ( t + 0 ) = t -> t = t )
 14 4,13 mp       $a |- t = t
-\end{verbatim}
+\end{lstlisting}
 
 Now all temporary variables and unknown steps have been eliminated from the
 ``essential'' part of the proof.  When this is achieved, the Proof
@@ -3912,7 +3919,7 @@ not the case for \texttt{mp}. Also it will not try to improve steps containing
 temporary variables.)  Let's look at the complete proof, then run
 the \texttt{improve} command, then look at it again.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/lemmon/all
  1 ?             $? wff ( t + 0 ) = t
  2 ?             $? wff t = t
@@ -3929,9 +3936,9 @@ MM-PA> show new_proof/lemmon/all
                                                     t = t ) )
 13 5,6,8,12 mp   $a |- ( ( t + 0 ) = t -> t = t )
 14 1,2,4,13 mp   $a |- t = t
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> improve all
 A proof of length 1 was found for step 11.
 A proof of length 1 was found for step 10.
@@ -3947,7 +3954,7 @@ CONGRATULATIONS!  The proof is complete.  Use SAVE
 NEW_PROOF to save it.  Note:  The Proof Assistant does
 not detect $d violations.  After saving the proof, you
 should verify it with VERIFY PROOF.
-\end{verbatim}
+\end{lstlisting}
 
 The \texttt{save new{\char`\_}proof} command\index{\texttt{save
 new{\char`\_}proof} command} will save the proof in the database.  Here
@@ -3955,14 +3962,14 @@ we will just display it in a form that can be clipped out of a log file
 and inserted manually into the database source file with a text
 editor.\index{normal proof}\index{proof!normal}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/normal
 ---------Clip out the proof below this line:
       tt tze tpl tt weq tt tt weq tt a2 tt tze tpl tt weq
       tt tze tpl tt weq tt tt weq wim tt a2 tt tze tpl tt
       tt a1 mp mp $.
 ---------The proof of 'th1' to clip out ends above this line.
-\end{verbatim}
+\end{lstlisting}
 
 There is another proof format called ``compressed''\index{compressed
 proof}\index{proof!compressed} that you will see in databases.  It is
@@ -3974,24 +3981,24 @@ commands\index{\texttt{show proof} command} work equally well with
 compressed proofs.  The compressed proof format is described in
 Appendix~\ref{compressed}.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> show new_proof/compressed
 ---------Clip out the proof below this line:
       ( tze tpl weq a2 wim a1 mp ) ABCZADZAADZAEZJJKFLIA
       AGHH $.
 ---------The proof of 'th1' to clip out ends above this line.
-\end{verbatim}
+\end{lstlisting}
 
 Now we will exit the Proof Assistant.  Since we made changes to the proof,
 it will warn us that we have not saved it.  In this case, we don't care.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM-PA> exit
 Warning:  You have not saved changes to the proof.
 Do you want to EXIT anyway (Y, N) <N>? y
 Exiting the Proof Assistant.
 Type EXIT again to exit Metamath.
-\end{verbatim}
+\end{lstlisting}
 
 The Proof Assistant\index{Proof Assistant} has several other commands
 that can help you while creating proofs.  See Section~\ref{pfcommands}
@@ -6966,24 +6973,24 @@ First run the Metamath program as described earlier.  You should see the
 \verb/MM>/ prompt.  Read in the \texttt{set.mm} file:\index{\texttt{read}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> read set.mm
 Reading source file "set.mm"...
 73689 lines (3543983 characters) were read from "set.mm".
 The source has 21443 statements; 417 are $a and 5989 are $p.
 No errors were found.  However, proofs were not checked.
 Type VERIFY PROOF * if you want to check them.
-\end{verbatim}
+\end{lstlisting}
 
 Let's check the database integrity.  This may take a minute or two to run if
 your computer is slow.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> verify proof *
 0 10%  20%  30%  40%  50%  60%  70%  80%  90% 100%
 ..................................................
 All proofs in the database were verified in 2.84 s.
-\end{verbatim}
+\end{lstlisting}
 
 No errors were reported, so every proof is correct.
 
@@ -7001,14 +7008,14 @@ Enderton's book because there is usually only one citation for a given
 theorem, which may appear in several textbooks.)\index{\texttt{search}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> search * "enderton" / comments
 3332 df-ral $a "...niversal quantification. Enderton, p. 22."
 3333 df-rex $a "...stential quantification. Enderton, p. 22."
 4828 df-tp $a "...of classes. Definition of Enderton, p. 19."
 5200 ssuniss $p "...nd union. Exercise 5 of Enderton, p. 26."
 5217 opeluu $p "...air belongs. Lemma 3D of Enderton, p. 41."
-\end{verbatim}
+\end{lstlisting}
 \begin{center}
 (etc.)
 \end{center}
@@ -7018,7 +7025,7 @@ conjunction (logical {\sc and}).  The quotes around the search
 string are optional when there's no ambiguity.\index{\texttt{search}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> search * conjunction / comments
 634 wa $a "...wff definition to include conjunction ('and')."
 636 df-an $a "Define conjunction ('and')."
@@ -7026,7 +7033,7 @@ MM> search * conjunction / comments
 655 annim $p "Express conjunction in terms of implication."
 687 pm3.2 $p "... antecedents with conjunction. Theorem *..."
 751 anor $p "Conjunction in terms of disjunction (de Morg..."
-\end{verbatim}
+\end{lstlisting}
 \begin{center}
 (etc.)
 \end{center}
@@ -7036,7 +7043,7 @@ Now we will start to look at some details.  Let's look at the first
 axiom of propositional calculus.\index{\texttt{show statement}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show statement ax-1/full
 MM> sh st ax-1/full
 Statement 19 is located on line 881 of the file "set.mm".
@@ -7050,7 +7057,7 @@ Its mandatory hypotheses in RPN order are:
 The statement and its hypotheses require the variables:  ph
       ps
 The variables it contains are:  ph ps
-\end{verbatim}
+\end{lstlisting}
 
 Compare this to \texttt{ax-1} on p.~\pageref{ax1}.  You can see that the
 symbol \texttt{ph} is the {\sc ascii} notation for $\varphi$, etc.  To
@@ -7066,7 +7073,7 @@ Identity, which is proved directly from the axioms.  We'll look at the
 statement then its proof.\index{\texttt{show statement}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show statement id1/full
 Statement 36 is located on line 968 of the file "set.mm".
 "Principle of identity.  Theorem *2.08 of Whitehead and
@@ -7080,7 +7087,7 @@ The statement and its hypotheses require the variables:  ph
 These additional variables are allowed in its proof:  ps ch
       th et
 The variables it contains are:  ph
-\end{verbatim}
+\end{lstlisting}
 
 The optional variables\index{optional variable} \texttt{ps}, \texttt{ch}, etc.\ are
 available for use in a proof of this statement if we wish, and were we to do
@@ -7098,7 +7105,7 @@ Let's look at the proof of statement \texttt{id1}.  We'll suppress the
 ``non-essential'' steps that construct the wffs.\index{\texttt{show proof}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show proof id1/essential/lemmon/renumber
 1 ax-2           $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
                      ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph )
@@ -7108,7 +7115,7 @@ MM> show proof id1/essential/lemmon/renumber
                                                           ) )
 4 ax-1           $a |- ( ph -> ( ph -> ph ) )
 5 3,4 ax-mp      $a |- ( ph -> ph )
-\end{verbatim}
+\end{lstlisting}
 
 If you have read Section~\ref{trialrun}, you'll know how to interpret this
 proof.  Step~2, for example, is an application of axiom \texttt{ax-1}.  This
@@ -7122,7 +7129,7 @@ know the ``real'' step number, so we'll display the proof again without
 the \texttt{renumber} qualifier.\index{\texttt{show proof}
 command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show proof id1/lemmon/essential
 18 ax-2          $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
                      ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph )
@@ -7132,11 +7139,11 @@ MM> show proof id1/lemmon/essential
                                                           ) )
 25 ax-1          $a |- ( ph -> ( ph -> ph ) )
 26 22,25 ax-mp   $a |- ( ph -> ph )
-\end{verbatim}
+\end{lstlisting}
 
 The ``real'' step number is 21.  Let's look at its details.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show proof id1 /detailed_step 21
 Proof step 21:  min=ax-1 $a |- ( ph -> ( ( ph -> ph ) -> ph )
   )
@@ -7156,7 +7163,7 @@ The target hypothesis before substitution was:
 The following substitution was made to the target hypothesis:
     Variable  Substituted with
      ph        ( ph -> ( ( ph -> ph ) -> ph ) )
-\end{verbatim}
+\end{lstlisting}
 
 This shows the substitutions\index{substitution!variable}\index{variable
 substitution} made to the variables in \texttt{ax-1}.  References are made to
@@ -7168,7 +7175,7 @@ that \verb+/\+ is the symbol for $\wedge$ (logical {\sc and}, also
 called conjunction).\index{conjunction ($\wedge$)}
 \index{logical {\sc and} ($\wedge$)}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show statement prth/full
 Statement 1521 is located on line 4730 of the file "set.mm".
 "Theorem *3.47 of Whitehead and Russell, called 'praeclarum
@@ -7200,12 +7207,12 @@ MM> show proof prth/essential/lemmon/renumber
                            ( ph -> ( ch -> ( ps /\ th ) ) ) )
 7 5,6 sylibr     $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) ->
                            ( ( ph /\ ch ) -> ( ps /\ th ) ) )
-\end{verbatim}
+\end{lstlisting}
 
 There are references to a lot of unfamiliar statements.  To see what they are,
 you may type the following:
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show proof prth/statement_summary/essential
 Summary of statements used in the proof of "prth":
 
@@ -7220,7 +7227,7 @@ Statement "syl3dt" is located on line 438 of the file
   syl3dt.1 $e |- ( ph -> ( ps -> ch ) ) $.
   syl3dt $p |- ( ph -> ( ( th -> ps ) -> ( th -> ch ) ) ) $=
       ... $.
-\end{verbatim}
+\end{lstlisting}
 \begin{center}
 (etc.)
 \end{center}
@@ -7236,7 +7243,7 @@ statements containing \verb@ph -> ps@ followed by \verb@ch -> th@.  The
 \texttt{SEARCH} is also a wildcard that in this case means ``match any label.''
 \index{\texttt{search} command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> SEARCH * "ph -> ps $* ch -> th"
 1521 prth $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( ( ph
     /\ ch ) -> ( ps /\ th ) ) )
@@ -7244,7 +7251,7 @@ MM> SEARCH * "ph -> ps $* ch -> th"
     ph \/ ch ) -> ( ps \/ th ) ) )
 1739 elimant $p |- ( ( ( ph -> ps ) /\ ( ( ps -> ch ) -> ( ph
     -> th ) ) ) -> ( ph -> ( ch -> th ) ) )
-\end{verbatim}
+\end{lstlisting}
 
 Three statements, \texttt{prth}, \texttt{pm3.48},
  and \texttt{elimant}, were found to match.
@@ -7254,12 +7261,12 @@ To see what axioms\index{axiom} and definitions\index{definition}
 program backtrack through the hierarchy\index{hierarchy} of theorems and
 definitions.\index{\texttt{show trace{\char`\_}back} command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show trace_back prth /essential/axioms
 Statement "prth" assumes the following axioms ($a
 statements):
   ax-1 ax-2 ax-3 ax-mp df-bi df-an
-\end{verbatim}
+\end{lstlisting}
 
 Note that the 3 axioms of propositional calculus and the modus ponens rule are
 needed (as expected); in addition, there are a couple of definitions that are used
@@ -7278,7 +7285,7 @@ You can also have the program compute how many steps a proof
 has\index{proof length} if we were to follow it all the way back to
 \texttt{\$a} statements.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show trace_back prth /essential/count_steps
 The statement's actual proof has 5 steps.  Backtracking, a
 total of 55 different subtheorems are used.  The statement
@@ -7290,7 +7297,7 @@ would have a total of 143 steps.  The maximum path length is
 imbi1i <- impbi <- bi3 <- expi <- expt <- pm3.2im <- con2d <-
 con2 <- nega <- pm2.18 <- pm2.43i <- pm2.43 <- pm2.27 <-
 com12 <- syl <- a1i <- a1i.1 .
-\end{verbatim}
+\end{lstlisting}
 
 This tells us that we would have to inspect 196 steps if we want to
 verify the proof completely starting from the axioms.  A few more
@@ -7304,12 +7311,12 @@ Finally, we might be curious about what proofs depend on the theorem
 redundant if it has no intrinsic interest by itself.\index{\texttt{show
 usage} command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show usage prth
 Statement "prth" is directly referenced in the proofs of 4
 statements:
   anim12d mo 2mo ssxp tfrlem5 climunii climadd
-\end{verbatim}
+\end{lstlisting}
 
 Thus \texttt{prth} is used by 7 proofs, and indirectly by many more that
 make use of {\em those} proofs, and so on.  (The \texttt{/recursive}
@@ -7325,7 +7332,7 @@ future version may eliminate this format from displays.)  For example,
 if you display the complete proof of theorem \texttt{id1} it will start
 off as follows:
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show proof id1 /lemmon/all
  1 wph           $f wff ph
  2 wph           $f wff ph
@@ -7333,7 +7340,7 @@ MM> show proof id1 /lemmon/all
  4 2,3 wi    @1: $a wff ( ph -> ph )
  5 1,4 wi    @2: $a wff ( ph -> ( ph -> ph ) )
  6 @1            $a wff ( ph -> ph )
-\end{verbatim}
+\end{lstlisting}
 
 \begin{center}
 {etc.}
@@ -7350,7 +7357,7 @@ reason that it is still displayed by the program.
 If you want to see the normal format with the ``true'' step numbers, you can
 use the following workaround:\index{\texttt{save proof} command}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> save proof id1 /normal
 The proof of "id1" has been reformatted and saved internally.
 Remember to use WRITE SOURCE to save it permanently.
@@ -7363,7 +7370,7 @@ MM> show proof id1 /lemmon/all
  6 wph           $f wff ph
  7 wph           $f wff ph
  8 6,7 wi        $a wff ( ph -> ph )
-\end{verbatim}
+\end{lstlisting}
 
 \begin{center}
 {etc.}
@@ -7443,10 +7450,10 @@ ascii}\index{ascii@{\sc ascii}} characters, which are digits, upper and lower
 case letters, and the following 32 special characters\index{special characters}
 \label{spec1chars}
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
         ` ~ ! @ # $ % ^ & * ( ) - _ = +
         [ ] { } ; : ' " , . < > / ? \ |
-\end{verbatim}
+\end{lstlisting}
 plus the following non-printable (white space) characters: space, tab,
 carriage return, line feed, and form feed.  We will use \texttt{typewriter}
 font to display the printable characters.
@@ -7945,16 +7952,16 @@ Appendix~\ref{ASCII} describes how to do this in more detail.
 
 Label tokens are used to identify Metamath\index{Metamath} statements for
 later reference. Label tokens may contain only letters, digits, and the three
-characters period, hyphen, and underscore:\begin{verbatim}
+characters period, hyphen, and underscore:\begin{lstlisting}[breaklines]
         . - _
-\end{verbatim}
+\end{lstlisting}
 
 A label is {\bf declared}\index{label declaration} by placing it immediately
 before the keyword of the statement it identifies.  For example, the label
 \texttt{axiom.1} might be declared as follows:
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
         axiom.1 $a |- x = x $.
-\end{verbatim}
+\end{lstlisting}
 
 Each \texttt{\$e}\index{\texttt{\$e} statement},
 \texttt{\$f}\index{\texttt{\$f} statement},
@@ -7969,10 +7976,10 @@ keyword} and \texttt{\$.}\index{\texttt{\$.}\ keyword}\ keywords in a \texttt{\$
 statement.  The sequence of labels\index{label sequence} between these two
 keywords is called a {\bf proof}\index{proof}.  An example of a statement with
 a proof that we will encounter later (Section~\ref{proof}) is
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
         wnew $p wff ( s -> ( r -> p ) )
              $= ws wr wp w2 w2 $.
-\end{verbatim}
+\end{lstlisting}
 
 You don't have to know what this means just yet, but you should know that the
 label \texttt{wnew} is declared by this \texttt{\$p} statement and that the labels
@@ -8247,11 +8254,11 @@ To illustrate how Metamath detects a missing \texttt{\$d}
 statement, we will look at the following example from the
 \texttt{set.mm} database.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 $d x z $.  $d y z $.
 $( Theorem to add distinct quantifier to atomic formula. $)
 ax17eq $p |- ( x = y -> A. z x = y ) $=...
-\end{verbatim}
+\end{lstlisting}
 
 This statement has the obvious requirement that $z$ must be
 distinct\index{distinct variables} from $x$ in theorem \texttt{ax17eq} that
@@ -8262,17 +8269,17 @@ false when free variables $x$ and $y$ are equal.).
 Let's look at what happens if we edit the database to comment out this
 requirement.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 $( $d x z $. $) $d y z $.
 $( Theorem to add distinct quantifier to atomic formula. $)
 ax17eq $p |- ( x = y -> A. z x = y ) $=...
-\end{verbatim}
+\end{lstlisting}
 
 When it tries to verify the proof, Metamath will tell you that \texttt{x} and
 \texttt{z} must be disjoint, because one of its steps references an axiom or
 theorem that has this requirement.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> verify proof ax17eq
 ax17eq ?Error at statement 1918, label "ax17eq", type "$p":
       vz wal wi vx vy vz ax-13 vx vy weq vz vx ax-c16 vx vy
@@ -8282,11 +8289,11 @@ Assertion "ax-c16" requires that variables "x" and "y" be
 disjoint.  But "x" was substituted with "z" and "y" was
 substituted with "x".  The assertion being proved, "ax17eq",
 does not require that variables "z" and "x" be disjoint.
-\end{verbatim}
+\end{lstlisting}
 
 We can see the substitutions into \texttt{ax-c16} with the following command.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show proof ax17eq / detailed_step 29
 Proof step 29:  pm2.61dd.2=ax-c16 $a |- ( A. z z = x -> ( x =
   y -> A. z x = y ) )
@@ -8310,14 +8317,14 @@ hypothesis:
     Variable  Substituted with
      ph        A. z z = x
      ch        ( x = y -> A. z x = y )
-\end{verbatim}
+\end{lstlisting}
 
 The disjoint variable restrictions of \texttt{ax-c16} can be seen from the
 \texttt{show state\-ment} command.  The line that begins ``\texttt{Its mandatory
 dis\-joint var\-i\-able pairs are:}\ldots'' lists any \texttt{\$d} variable
 pairs in brackets.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 MM> show statement ax-c16/full
 Statement 3033 is located on line 9338 of the file "set.mm".
 "Axiom of Distinct Variables. ..."
@@ -8330,7 +8337,7 @@ Its mandatory disjoint variable pairs are:  <x,y>
 The statement and its hypotheses require the variables:  x y
       ph
 The variables it contains are:  x y ph
-\end{verbatim}
+\end{lstlisting}
 
 Since Metamath will always detect when \texttt{\$d}\index{\texttt{\$d} statement}
 statements are needed for a proof, you don't have to worry too much about
@@ -8624,54 +8631,54 @@ makes parsing of the database easier.
 
 For our examples, we assume our database has the following declarations:
 
-\begin{verbatim}
-        $v P Q R $.
-        $c -> ( ) |- wff $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+$v P Q R $.
+$c -> ( ) |- wff $.
+\end{lstlisting}
 
 The following sequence of statements, describing the modus ponens inference
 rule, is an example of a frame:
 
-\begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $a |- Q $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+wp  $f wff P $.
+wq  $f wff Q $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $a |- Q $.
+\end{lstlisting}
 
 The following sequence of statements is not a frame because \texttt{R} does not
 occur in the \texttt{\$e}'s or the \texttt{\$a}:
 
-\begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        wr  $f wff R $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $a |- Q $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+wp  $f wff P $.
+wq  $f wff Q $.
+wr  $f wff R $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $a |- Q $.
+\end{lstlisting}
 
 The following sequence of statements is not a frame because \texttt{Q} does not
 occur in a \texttt{\$f}:
 
-\begin{verbatim}
-        wp  $f wff P $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $a |- Q $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+wp  $f wff P $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $a |- Q $.
+\end{lstlisting}
 
 The following sequence of statements is not a frame because the \texttt{\$a} statement is
 not the last one:
 
-\begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        maj $e |- ( P -> Q ) $.
-        mp  $a |- Q $.
-        min $e |- P $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+wp  $f wff P $.
+wq  $f wff Q $.
+maj $e |- ( P -> Q ) $.
+mp  $a |- Q $.
+min $e |- P $.
+\end{lstlisting}
 
 Associated with a frame is a sequence of {\bf mandatory
 hypotheses}\index{mandatory hypothesis}.  This is simply the set of all
@@ -8724,14 +8731,14 @@ of mandatory hypotheses in RPN order is still \texttt{wp}, \texttt{wq}, \texttt{
 \texttt{min} (i.e.\ \texttt{wr} is omitted), and this sequence is still assumed
 whenever assertion \texttt{mp} is referenced in a subsequent proof.
 
-\begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        wr  $f wff R $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $p |- Q $= ... $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+wp  $f wff P $.
+wq  $f wff Q $.
+wr  $f wff R $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $p |- Q $= ... $.
+\end{lstlisting}
 
 Every frame is an extended frame, but not every extended frame is a frame, as
 this example shows.  The underlying frame for an extended frame is
@@ -9232,16 +9239,16 @@ with a \texttt{\$f} statement ensures the uniqueness.
 
 We will illustrate this with an example.
 Consider the following Metamath source file:
-\begin{verbatim}
-        $c ( ) -> wff $.
-        $v p q r s $.
-        wp $f wff p $.
-        wq $f wff q $.
-        wr $f wff r $.
-        ws $f wff s $.
-        w2 $a wff ( p -> q ) $.
-        wnew $p wff ( s -> ( r -> p ) ) $= ws wr wp w2 w2 $.
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+$c ( ) -> wff $.
+$v p q r s $.
+wp $f wff p $.
+wq $f wff q $.
+wr $f wff r $.
+ws $f wff s $.
+w2 $a wff ( p -> q ) $.
+wnew $p wff ( s -> ( r -> p ) ) $= ws wr wp w2 w2 $.
+\end{lstlisting}
 This Metamath source example shows the definition and ``proof'' (i.e.,
 construction) of a well-formed formula (wff)\index{well-formed formula (wff)}
 in propositional calculus.  (You may wish to type this example into a file to
@@ -9344,13 +9351,13 @@ structure is displayed when the \texttt{/lemmon} qualifier is omitted.  You will
 probably find this display more convenient as you get used to it. The tree
 display of the proof in our example looks like
 this:\label{treeproof}\index{tree-style proof}\index{proof!tree-style}
-\begin{verbatim}
-        1     wp=ws    $f wff s
-        2        wp=wr    $f wff r
-        3        wq=wp    $f wff p
-        4     wq=w2    $a wff ( r -> p )
-        5  wnew=w2  $a wff ( s -> ( r -> p ) )
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+1     wp=ws    $f wff s
+2        wp=wr    $f wff r
+3        wq=wp    $f wff p
+4     wq=w2    $a wff ( r -> p )
+5  wnew=w2  $a wff ( s -> ( r -> p ) )
+\end{lstlisting}
 The number to the left of each line is the step number.  Following it is a
 {\bf hypothesis association}\index{hypothesis association}, consisting of two
 labels\index{label} separated by \texttt{=}.  To the left of the \texttt{=} (except
@@ -9640,21 +9647,21 @@ surrounding comment must be formatted as follows:
      \texttt{[}{\em author}\texttt{] p.} {\em number}
 \end{quote}
 for example
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
      Theorem 5.2 of [Monk] p. 223
-\end{verbatim}
+\end{lstlisting}
 The {\em keyword} is not case sensitive and must be one of the following:
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
      theorem lemma definition compare proposition corollary
      axiom rule remark exercise problem notation example
      property figure postulate equation scheme chapter
-\end{verbatim}
+\end{lstlisting}
 The optional {\em label} may consist of more than one
 (non-{\em keyword} and non-{\em noise-word}) word.
 The optional {\em noise-word} is one of:
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
      of in from on
-\end{verbatim}
+\end{lstlisting}
 and is  ignored when the cross-reference file is created.  The
 \texttt{write
 biblio\-graphy} command will perform error checking to verify the
@@ -10031,9 +10038,9 @@ For Windows, there is a pre-compiled version called
 \texttt{metamath.exe}.  For Unix, Linux, and Mac OS X
 (which we will refer to collectively as ``Unix''), the Metamath program
 can be compiled from its source code with the command
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   gcc *.c -o metamath
-\end{verbatim}
+\end{lstlisting}
 using the \texttt{gcc} {\sc c} compiler available on those systems.
 
 In the command syntax descriptions below, fields enclosed in square
@@ -10050,44 +10057,44 @@ have a command-line interface called the {\em
 bash shell}.  (In Mac OS X, select the Terminal application from
 Applications/Utilities.)  To invoke Metamath from the bash shell prompt,
 assuming that the Metamath program is in the current directory, type
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   bash$ ./metamath
-\end{verbatim}
+\end{lstlisting}
 
 To invoke Metamath from a Windows DOS or Command Prompt, assuming that
 the Metamath program is in the current directory (or in a directory
 included in the Path system environment variable), type
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   C:\metamath>metamath
-\end{verbatim}
+\end{lstlisting}
 
 To use command-line arguments at invocation, the command-line arguments
 should be a list of Metamath commands, surrounded by quotes if they
 contain spaces.  In Windows, the surrounding quotes must be double (not
 single) quotes.  For example, to read the database file \texttt{set.mm},
 verify all proofs, and exit the program, type (under Unix)
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   bash$ ./metamath 'read set.mm' 'verify proof *' exit
-\end{verbatim}
+\end{lstlisting}
 Note that in Unix, any directory path with \texttt{/}'s must be
 surrounded by quotes so Metamath will not interpret the \texttt{/} as a
 command qualifier.  So if \texttt{set.mm} is in the \texttt{/tmp}
 directory, use for the above example
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   bash$ ./metamath 'read "/tmp/set.mm"' 'verify proof *' exit
-\end{verbatim}
+\end{lstlisting}
 
 For convenience, if the command-line has one argument and no spaces in
 the argument, the command is implicitly assumed to be \texttt{read}.  In
 this one special case, \texttt{/}'s are not interpreted as command
 qualifiers, so you don't need quotes around a Unix file name.  Thus
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   bash$ ./metamath /tmp/set.mm
-\end{verbatim}
+\end{lstlisting}
 and
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
   bash$ ./metamath "read '/tmp/set.mm'"
-\end{verbatim}
+\end{lstlisting}
 are equivalent.
 
 
@@ -10673,9 +10680,9 @@ Before using the Proof Assistant, you must add a \texttt{\$p} to your
 source file (using a text editor) containing the statement you want to
 prove.  Its proof should consist of a single \texttt{?}, meaning
 ``unknown step.''  Example:
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
     equid $p x = x $= ? $.
-\end{verbatim}
+\end{lstlisting}
 
 To enter the Proof assistant, type \texttt{prove} {\em label}, e.g.
 \texttt{prove equid}.  Metamath will respond with the \texttt{MM-PA>}
@@ -11228,7 +11235,7 @@ edit by hand.)  Before you can use them, you must open a \LaTeX\ file to
 which to send their output.  A typical complete session will use this
 sequence of Metamath commands:
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
     read set.mm
     open tex example.tex
     show statement a1i /tex
@@ -11236,7 +11243,7 @@ sequence of Metamath commands:
     show statement uneq2 /tex
     show proof uneq2 /lemmon/renumber/tex
     close tex
-\end{verbatim}
+\end{lstlisting}
 
 See Section~\ref{mathcomments} for information on comment markup and
 Appendix~\ref{ASCII} for information on how math symbol translation is
@@ -11246,9 +11253,9 @@ To format and print the \LaTeX\ source, you will need the \LaTeX\
 program, which is standard on most Linux installations and available for
 Windows.  On Linux, in order to create a {\sc pdf} file, you will
 typically type at the shell prompt
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
     $ pdflatex example.tex
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{\texttt{open tex} Command}\index{\texttt{open tex} command}
 Syntax:  \texttt{open tex} {\em file-name} [\texttt{/no{\char`\_}header}]
@@ -11427,18 +11434,18 @@ respectively; their purpose is to provide cross-linking between the
 two versions in the generated web pages.
 
 The command
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
      show statement * /brief_html
-\end{verbatim}
+\end{lstlisting}
 invokes a special mode that just produces definition and theorem lists
 accompanied by their symbol strings, in a format suitable for copying and
 pasting into another web page (such as the tutorial pages on the
 Metamath web site).
 
 Finally, the command
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
      show statement * /brief_alt_html
-\end{verbatim}
+\end{lstlisting}
 does the same as \texttt{show statement * / brief{\char`\_}html}
 for the alternate {\sc html}
 symbol representation.
@@ -11681,7 +11688,7 @@ strings before and after each line, and display the lines on the screen.
 You can experiment with the various commands to gain experience with the
 \texttt{tools} utility.
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
     MM> tools
     Entering the Text Tools utilities.
     Type HELP for help, EXIT to exit.
@@ -11705,7 +11712,7 @@ You can experiment with the various commands to gain experience with the
     Exiting the Text Tools.
     Type EXIT again to exit Metamath.
     MM>
-\end{verbatim}
+\end{lstlisting}
 
 
 
@@ -13475,7 +13482,7 @@ The following is a listing of the file \texttt{miu.mm}.  It is self-explanatory.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines]
 $( The MIU-system:  A simple formal system $)
 
 $( Note:  This formal system is unusual in that it allows
@@ -13574,21 +13581,21 @@ $)
  theorem1  $p |- M U I I U $=
       we wM wU wI we wI wU we wU wI wU we wM we wI wU we wM
       wI wI wI we wI wI we wI ax II II I_ III II IV $.
-\end{verbatim}\index{well-formed formula (wff)}
+\end{lstlisting}\index{well-formed formula (wff)}
 
 The \texttt{show proof /essential/lemmon/renumber} command
 yields the following display.  It is very similar
 to the one in \cite[pp.~35--36]{Hofstadter}.\index{Hofstadter, Douglas R.}
 
-\begin{verbatim}
-        1 ax             $a |- M I
-        2 1 II           $a |- M I I
-        3 2 II           $a |- M I I I I
-        4 3 I_           $a |- M I I I I U
-        5 4 III          $a |- M U I U
-        6 5 II           $a |- M U I U U I U
-        7 6 IV           $a |- M U I I U
-\end{verbatim}
+\begin{lstlisting}[breaklines]
+1 ax             $a |- M I
+2 1 II           $a |- M I I
+3 2 II           $a |- M I I I I
+4 3 I_           $a |- M I I I I U
+5 4 III          $a |- M U I U
+6 5 II           $a |- M U I U U I U
+7 6 IV           $a |- M U I I U
+\end{lstlisting}
 
 We note that Hofstadter's ``MU-puzzle,'' which asks whether
 MU is a theorem of the MIU-system, cannot be answered using
