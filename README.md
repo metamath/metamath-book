@@ -31,6 +31,14 @@ To generate a PDF, you first need to install
 - The programs pdflatex, bibtex, makeindex
 - The style file anysize.sty
 
+On Ubuntu, you can install all prerequisites by installing these packages:
+
+- texlive-fonts-recommended
+- texlive-latex-extra
+- texlive-fonts-extra
+- dvipng
+- texlive-latex-recommended
+
 On Cygwin, you can install all prerequisites by installing these packages:
 
 - texlive
@@ -38,7 +46,12 @@ On Cygwin, you can install all prerequisites by installing these packages:
 - texlive-collection-bibtexextra
 - texlive-collection-latexrecommended
 
-See the file "metamath.tex" for how to generate a PDF file.
+On a Unix-like system you can simply run the script `./generate-pdf`
+to generate a normal PDF
+(or `./make-narrow` to generate a narrow version).
+
+See the file `metamath.tex` for detailed instructions
+how to generate a PDF file by hand.
 
 ## Citation
 
@@ -57,7 +70,7 @@ note = {{\tt http://us.metamath.org/downloads/metamath.pdf}},
 
 ## Narrow width screens
 
-You can run ./make-narrow to generate "metamath-narrow.pdf",
+You can run `./make-narrow` to generate "metamath-narrow.pdf",
 a version of the PDF formatted for
 narrow-width screens (such as mobile phones).
 The program erases metamath.pdf, so you'll need to regenerate metamath.pdf
