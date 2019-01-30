@@ -1271,18 +1271,26 @@ a computer to keep track of the complexity associated with each word or symbol
 with absolute rigor.  You can explore this complexity at your leisure, to
 whatever degree you desire.  Whether or not you believe that concepts such as
 infinity actually ``exist'' outside of the mind, Metamath lets you get to the
-foundation for what's really being said.  Its language is simple enough so that you
+foundation for what's really being said.
+
+Metamath also enables completely rigorous and thorough proof verification.
+Its language is simple enough so that you
 don't have to rely on the authority of experts but can verify the results
 yourself, step by step.  If you want to attempt to derive your own results,
 Metamath will not let you make a mistake in reasoning.
+Even professional mathematicians make mistakes; Metamath makes it possible
+to thoroughly verify that proofs are correct.
 
-``Metamath''\index{Metamath} is the name of a mathematical computer language
-that describes formal\index{formal system} mathematical
+Metamath\index{Metamath} is a computer language and an associated computer
+program for archiving, verifying, and studying mathematical proofs at a very
+detailed level.
+The Metamath language
+describes formal\index{formal system} mathematical
 systems and expresses proofs of theorems in those systems.  Such a language
-is called a metalanguage\index{metalanguage} by mathematicians.  ``Metamath''
-is also the name of a computer program that verifies
-proofs expressed in the language.  The Metamath program does not have
-the built-in
+is called a metalanguage\index{metalanguage} by mathematicians.
+The Metamath program is a computer program that verifies
+proofs expressed in the Metamath language.
+The Metamath program does not have the built-in
 ability to make logical inferences; it just makes a series of symbol
 substitutions according to instructions given to it in a proof
 and verifies that the result matches the expected theorem.  It makes logical
@@ -1342,10 +1350,14 @@ this reason, numbers in Metamath are best limited to specific constants that
 arise during the course of a theorem or its proof.  Numbers are only a tiny
 part of the world of abstract mathematics.  The exclusion of built-in numbers
 was a conscious decision to help achieve Metamath's simplicity, and there are
-other software tools such as the computer algebra
+other software tools if you have different mathematical needs.
+If you wish to quickly solve algebraic problems, the computer algebra
 programs\index{computer algebra system} {\sc
 macsyma}\index{macsyma@{\sc macsyma}}, Mathematica\index{Mathematica}, and
-Maple\index{Maple} specifically suited to handling numbers efficiently.
+Maple\index{Maple} are specifically suited to handling numbers and
+algebra efficiently.
+If you wish to simply calculate numeric or matrix expressions easily,
+tools such as Octave\index{Octave} may be a better choice.
 
 After learning Metamath's basic statement types, any
 tech\-ni\-cal\-ly ori\-ent\-ed person, mathematician or not, can
