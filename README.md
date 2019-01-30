@@ -10,7 +10,7 @@ other proof verifiers and automated theorem provers.
 
 This material is released to the public domain (no copyright) worldwide per the
 [Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
-This license has the SPDX license identidier CC0-1.0.
+This license has the SPDX license identifier CC0-1.0.
 However, although it is not a legal requirement, we do ask that you
 give credit.
 
