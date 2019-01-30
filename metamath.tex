@@ -2308,9 +2308,10 @@ definitions are available for inspection at any time because they are defined
 by the user; there are no hidden or built-in rules that may be prone to subtle
 bugs\index{computer program bugs}.  The basic algorithm at the heart of
 Metamath is simple and fixed, and it can be assumed to be bug-free and robust
-with a degree of confidence approaching certainty.  (An independently written
-implementation of Metamath could pretty much eliminate any residual doubt on
-the part of a skeptic.)
+with a degree of confidence approaching certainty.
+Independently written implementations of the Metamath verifier
+can reduce any residual doubt on the part of a skeptic even further;
+there are now over a dozen such implementations, written by many people.
 
 \subsection{Trusting the Mathematician}\label{trust}
 
@@ -2499,11 +2500,12 @@ involving concepts of ``order'' or ``continuity'') was discovered by Chinese
 mathematician Wu Wen-ts\"{u}n in 1977 \cite{Chou}\index{Chou,
 Shang-Ching}.}\index{Wen-ts{\"{u}}n, Wu}  But most theories, including
 elementary arithmetic, are undecidable.  This fact contributes to keeping
-mathematics alive and well, since mathematicians know that they will never be
-replaced by computers (providing one believes Roger Penrose's argument that a
-computer can never replace the brain \cite{Penrose}\index{Penrose, Roger}). In
-fact,  elementary geometry is often considered a ``dead'' field for the simple
-reason that it is decidable.
+mathematics alive and well, since many mathematicians believe
+that they will never be
+replaced by computers (if they believe Roger Penrose's argument that a
+computer can never replace the brain \cite{Penrose}\index{Penrose, Roger}).
+In fact,  elementary geometry is often considered a ``dead'' field
+for the simple reason that it is decidable.
 
 On the other hand, the undecidability of a theory does not mean that one cannot
 use a computer to search for proofs, providing one is willing to give up if a
@@ -2532,7 +2534,7 @@ directly because expressions can become very long.  Some automated theorem
 provers are experimental programs, limited in their use to very specialized
 areas, and the goal of many is simply research into the nature of automated
 theorem proving itself.  Finally, much research remains to be done to enable
-them to prove very deep theorems.  One significant recent result was a
+them to prove very deep theorems.  One significant result was a
 computer proof by Larry Wos\index{Wos, Larry} and colleagues that every Robbins
 algebra\index{Robbins algebra} is a Boolean  algebra\index{Boolean algebra}
 ({\em New York Times}, Dec. 10, 1996).\footnote{In 1933, E.~V.\
@@ -2562,8 +2564,8 @@ a theorem archiving system, storing both the theorem and its proof in a
 database for access and verification.  Metamath is one answer to ``what do you
 do with the output of a theorem prover?''  and could be viewed as the
 next step in the process.  Automated theorem provers could be useful tools for
-helping develop its database, although as of this writing there are no
-software translation tools that do this.  Note that very long, automatically
+helping develop its database.
+Note that very long, automatically
 generated proofs can make your database fat and ugly and cause Metamath's proof
 verification to take a long time to run.  Unless you have a particularly good
 program that generates very concise proofs, it might be best to consider the
