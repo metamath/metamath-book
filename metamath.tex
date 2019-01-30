@@ -177,6 +177,19 @@
   publisher = "White Star Software",
   address = "Box 51623, Palo Alto, CA 94303",
   year = 1991 }
+@article{DBLP:journals/corr/Carneiro14,
+  author    = {Mario Carneiro},
+  title     = {Conversion of {HOL} Light proofs into Metamath},
+  journal   = {CoRR},
+  volume    = {abs/1412.8091},
+  year      = {2014},
+  url       = {http://arxiv.org/abs/1412.8091},
+  archivePrefix = {arXiv},
+  eprint    = {1412.8091},
+  timestamp = {Mon, 13 Aug 2018 16:47:05 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/Carneiro14},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
 @inproceedings{Chou, author = "Shang-Ching Chou",
   title = "Proving Elementary Geometry Theorems Using {W}u's Algorithm",
   pages = "243--286",
@@ -615,6 +628,18 @@
   address = "Cambridge",
   year = "1927",
   note = "(3 vols.) [QA9.W592 1927]" }
+@article{DBLP:journals/corr/Whalen16,
+  author    = {Daniel Whalen},
+  title     = {Holophrasm: a neural Automated Theorem Prover for higher-order logic},
+  journal   = {CoRR},
+  volume    = {abs/1608.02644},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1608.02644},
+  archivePrefix = {arXiv},
+  eprint    = {1608.02644},
+  timestamp = {Mon, 13 Aug 2018 16:46:19 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/Whalen16},
+  bibsource = {dblp computer science bibliography, https://dblp.org} }
 @book{Wolfram,
   author = "Stephen Wolfram",
   title = "Mathematica:  A System for Doing Mathematics by Computer",
@@ -870,7 +895,11 @@ treats all mathematical statements as mere sequences of symbols.  You provide
 Metamath with certain special sequences (axioms) that tell it what rules
 of inference are allowed.  Metamath is not limited to any specific field of
 mathematics.  The Metamath language is simple and robust, with an
-almost total absence of hard-wired syntax, and I believe that it
+almost total absence of hard-wired syntax, and 
+I\footnote{Unless otherwise noted, the words
+``I,'' ``me,'' and ``my'' refer to Norman Megill, while
+``we,'' ``us,'' and ``our'' refer to Norman Megill and David A. Wheeler.}
+believe that it
 provides about the simplest possible framework that allows essentially all of
 mathematics to be expressed with absolute rigor.
 
@@ -946,9 +975,7 @@ has been verified by a computer, just as you would not completely trust a
 manual calculation until you have verified it on a
 calculator.
 
-My\footnote{Unless otherwise noted, the words
-``I,'' ``me,'' and ``my'' refer to Norman Megill, while
-``we,'' ``us,'' and ``our'' refer to Norman Megill and David A. Wheeler.} goal
+My goal
 for Metamath was a system for describing and verifying
 mathematics that is completely universal yet conceptually as simple as
 possible.  In approaching mathematics from an axiomatic, formal viewpoint, I
@@ -957,33 +984,67 @@ necessarily with ease, but at least in principle and hopefully in practice. I
 wanted it to verify proofs with absolute rigor, and for this reason Metamath
 is what might be thought of as a ``compile-only'' language rather than an
 algorithmic or Turing-machine language (Pascal, C, Prolog, Mathematica,
-etc.).  In other words, a ``program'' (database) written in the Metamath
+etc.).  In other words, a database written in the Metamath
 language doesn't ``do'' anything; it merely exhibits mathematical knowledge
 and permits this knowledge to be verified as being correct.  A program in an
 algorithmic language can potentially have hidden bugs\index{computer program
 bugs} as well as possibly being hard to understand.  But each token in a
 Metamath database must be consistent with the database's earlier
-contents according to simple, fixed rules, and if a database is syntactically
-correct,\footnote{Here the notion of verifying correctness of syntax includes
+contents according to simple, fixed rules.
+If a database is verified
+to be correct,\footnote{This includes
 verification that a sequential list of proof steps results in the specified
-theorem.} then the mathematical content is correct with absolute certainty (or
-at least to the certainty of the verification program, which is relatively
-simple).  The only ``bugs'' that can exist are in the statement of the axioms,
+theorem.} then the mathematical content is correct if the
+verifier is correct and the axioms are correct.
+The verification program could be incorrect, but the verification algorithm
+is relatively simple (making it unlikely to be implemented incorrectly
+by the Metamath program),
+and there are over a dozen Metamath database verifiers
+written by different people in different programming languages
+(so these different verifiers can act as multiple reviewers of a database).
+The most-used Metamath database, the Metamath Proof Explorer
+(aka \texttt{set.mm}\index{set theory database (\texttt{set.mm})}),
+is currently verified by four different Metamath verifiers written by
+four different people in four different languages, including the
+original Metamath program described in this book.
+The only ``bugs'' that can exist are in the statement of the axioms,
 for example if the axioms are inconsistent (a famous problem shown to be
 unsolvable by G\"{o}del's incompleteness theorem\index{G\"{o}del's
 incompleteness theorem}).
+However, real mathematical systems have very few axioms, and these can
+be carefully studied.
+All of this provides extraordinarily high confidence that the verified database
+is in fact correct.
 
-Metamath doesn't prove theorems automatically but is designed to verify proofs
-that you supply to it.  Metamath is completely general and has no built-in,
+The Metamath program
+doesn't prove theorems automatically but is designed to verify proofs
+that you supply to it.
+The underlying Metamath language is completely general and has no built-in,
 preconceived notions about your formal system\index{formal system}, its logic
-or its syntax, but the price for its generality is that it does not lend
-itself well to automated proofs in its most general form.  (In principle it
-could accept translated proofs from other, more specific theorem proving
-programs, although nothing along those lines has been done so far.)  For
-constructing proofs, the Metamath program has a Proof Assistant\index{Proof
+or its syntax.
+For constructing proofs, the Metamath program has a Proof Assistant\index{Proof
 Assistant} which helps you fill in some of a proof step's details, shows you
 what choices you have at any step, and verifies the proof as you build it; but
 you are still expected to provide the proof.
+
+There are many other programs that can process or generate information
+in the Metamath language, and more continue to be written.
+This is in part because the Metamath language itself is very simple
+and intentionally easy to automatically process.
+Some programs, such as \texttt{mmj2}\index{mmj2}, include a proof assistant
+that can automate some steps beyond what the Metamath program can do.
+Mario Carneiro has developed an algorithm for converting proofs from
+the OpenTheory interchange format, which can be translated to and from
+any of the HOL family of proof languages (HOL4, HOL Light, ProofPower,
+and Isabelle), into the
+Metamath language.\cite{DBLP:journals/corr/Carneiro14}\index{Carneiro, Mario}.
+Daniel Whalen has developed Holophrasm, which can automatically
+prove many Metamath proofs using
+machine learning\index{machine learning}\index{artificial intelligence}
+approaches
+(including multiple neural networks\index{neural networks})\cite{DBLP:journals/corr/Whalen16}\index{Whalen, Daniel}
+However,
+a discussion of these other programs is beyond the scope of this book.
 
 Like most computer languages, the Metamath\index{Metamath} language uses the
 standard ({\sc ascii}) characters on a computer keyboard, so it cannot
@@ -993,6 +1054,9 @@ into the \LaTeX\ typesetting language.\index{latex@{\LaTeX}}  This feature
 lets you convert the {\sc ascii} tokens you've defined into standard
 mathematical symbols, so you end up with symbols and formulas you are familiar
 with instead of somewhat cryptic {\sc ascii} representations of them.
+The Metamath program can also generate HTML\index{HTML}, making it easy
+to view results on the web and to see related information by using
+hypertext links.
 
 Metamath is probably conceptually different from anything you've seen
 before and some aspects may take some getting used to.  This book will
@@ -1000,7 +1064,8 @@ help you decide whether Metamath suits your specific needs.
 
 \subsubsection{Setting Your Expectations}
 It is important for you to understand what Metamath\index{Metamath} is and is
-not.  As mentioned, Metamath is {\em not} an automated theorem prover but
+not.  As mentioned, the Metamath program
+is {\em not} an automated theorem prover but
 rather a proof verifier.  Developing a database can be tedious, hard work,
 especially if you want to make the proofs as short as possible, but it becomes
 easier as you build up a collection of useful theorems.  The purpose of
@@ -1055,11 +1120,15 @@ that the proof is correct, since each step can be verified automatically.
 There are several other approaches besides Metamath to a project such
 as this.  Section~\ref{proofverifiers} discusses some of these.
 
-To me, a noble goal would be a {\sc cd rom} with hundreds of thousands of
+To us, a noble goal would be a database with hundreds of thousands of
 theorems and their computer-verifiable proofs, encompassing a significant
-fraction of known mathematics and available for instant access.  Whether or
-not Metamath is an appropriate choice remains to be seen, but in
-principle I believe it is sufficient.
+fraction of known mathematics and available for instant access.
+These would be fully verified by multiple independently-implemented verifiers,
+to provide extremely high confidence that the proofs are completely correct.
+The database would allow people to investigate whatever details they were
+interested in, so that they could confirm whatever portions they wished.
+Whether or not Metamath is an appropriate choice remains to be seen, but in
+principle we believe it is sufficient.
 
 \subsubsection{Formalism}
 
@@ -1209,6 +1278,8 @@ Thanks to Jerry James for correcting 16 typos.
 
 \subsubsection{Note Added January 27, 2019}\label{note2019}
 
+David A. Wheeler made a large number of improvements and updates,
+in coordination with Norman Megill.
 The predicate calculus axioms were renumbered, and the text makes
 it clear that they are based on Tarski's system S2;
 the one slight deviation in axiom ax-6 is explained and justified.
@@ -1222,7 +1293,7 @@ the in-book explanations unintentionally contradicted the spec).
 We now have a system for automatically generating narrow PDFs,
 so that those with smartphones can have easy access to the current
 version of this document.
-Many minor corrections were also made.
+Many minor corrections (too numerous to list here) were also made.
 
 \chapter{Introduction}
 \pagenumbering{arabic}
