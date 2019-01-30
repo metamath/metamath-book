@@ -23,3 +23,6 @@ bibtex metamath
 makeindex metamath
 do_pdflatex metamath
 do_pdflatex metamath
+
+# Print errors not already allowed; return error code if there are any
+! grep -Ei 'error|warn' metamath.log | grep -vF -f allowed-errors
