@@ -4446,10 +4446,15 @@ For example, we define:
   (this is disjunction\index{disjunction ($\vee$)}
   aka logical {\sc or}\index{logical {\sc or} ($\vee$)}).
 
-\item $\varphi \vee \psi$
+\item $\varphi \wedge \psi$
   is true if both $\varphi$ and $\psi$ are true
-  (this is conjunction ({\sc and}).\index{conjunction ($\wedge$)}
-  aka \index{logical {\sc and} ($\wedge$)}).
+  (this is conjunction\index{conjunction ($\wedge$)}
+  aka logical {\sc and}\index{logical {\sc and} ($\wedge$)}).
+
+\item $\varphi \leftrightarrow \psi$
+  is true if $\varphi$ and $\psi$ have the same value, that is,
+  they are both true or both false
+  (this is the biconditional\index{biconditional ($\leftrightarrow$)}).
 \end{itemize}
 
 \subsection{Predicate Calculus}
@@ -4467,11 +4472,6 @@ respectively.  We will represent variables with the letters $x$, $y$, $z$, and
 $w$, as is common practice in the literature.
 For example, $\forall x \varphi$ means ``for all possible values of
 $x$, $\varphi$ is true.''
-Similarly,
-For example, $\forall x \varphi$ means ``for all possible values of
-$x$, $\varphi$ is true.''
-Similarly, $\exists x \varphi$ means
-``there exists at least one possible value of $x$ where $\varphi$ is true.''
 
 In predicate calculus, we extend the definition of a wff\index{well-formed
 formula (wff)}.  If $\varphi$ is a wff and $x$ and $y$ are variables, then
@@ -4497,6 +4497,12 @@ calculus.  Much of the work in the field of automated theorem
 proving\index{automated theorem proving} has been dedicated to coming up with
 clever heuristics for proving theorems of predicate calculus, but they can
 never be guaranteed to work always.
+
+Section \ref{metadefpred} discusses various definitions
+that make predicate calculus easier to use.
+For example, we define
+$\exists x \varphi$ to mean
+``there exists at least one possible value of $x$ where $\varphi$ is true.''
 
 We now turn to looking at how predicate calculus can be formally
 represented.
