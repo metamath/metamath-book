@@ -640,6 +640,11 @@
   timestamp = {Mon, 13 Aug 2018 16:46:19 +0200},
   biburl    = {https://dblp.org/rec/bib/journals/corr/Whalen16},
   bibsource = {dblp computer science bibliography, https://dblp.org} }
+@article{Wiedijk-revisited,
+  author = {Freek Wiedijk},
+  title = {The QED Manifesto Revisited},
+  year = {2007},
+  url = {http://mizar.org/trybulec65/8.pdf} }
 @book{Wolfram,
   author = "Stephen Wolfram",
   title = "Mathematica:  A System for Doing Mathematics by Computer",
@@ -1003,7 +1008,8 @@ and there are over a dozen Metamath database verifiers
 written by different people in different programming languages
 (so these different verifiers can act as multiple reviewers of a database).
 The most-used Metamath database, the Metamath Proof Explorer
-(aka \texttt{set.mm}\index{set theory database (\texttt{set.mm})}),
+(aka \texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}),
 is currently verified by four different Metamath verifiers written by
 four different people in four different languages, including the
 original Metamath program described in this book.
@@ -1284,7 +1290,8 @@ The predicate calculus axioms were renumbered, and the text makes
 it clear that they are based on Tarski's system S2;
 the one slight deviation in axiom ax-6 is explained and justified.
 The real and complex number axioms were modified to be consistent with
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})}.
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}.
 Long-awaited specification changes ``1-8'' were made,
 which clarified previously ambiguous points.
 Some errors in the text involving \texttt{\$f} and
@@ -2083,8 +2090,9 @@ archiving and preserving this information.
 The length of a proof can, to a certain extent, be considered an
 objective measure of its ``beauty,'' since shorter proofs are usually
 considered more elegant.  In the set theory database
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})} provided
-with Metamath, one goal was to make all proofs as short as possible.
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}
+provided with Metamath, one goal was to make all proofs as short as possible.
 
 \subsection{Simplicity}
 
@@ -2655,21 +2663,23 @@ program that generates very concise proofs, it might be best to consider the
 use of automatically generated proofs as a quick-and-dirty approach, to be
 manually rewritten at some later date.
 
-If you are interested in automatic theorem provers, three well-regarded
-programs are
-Isabelle\index{Isabelle}%
-\footnote{\url{http://www.cl.cam.ac.uk/Research/HVG/Isabelle}.},
-{\sc hol}\index{hol@{\sc hol}}%
-\footnote{\url{http://cs.anu.edu.au/student/comp8033/hol.html}.},
-and {\sc otter}\index{otter@{\sc otter}}%
-%\footnote{\url{http://www-unix.mcs.anl.gov/AR/otter}}.
-\footnote{\url{http://www.cs.unm.edu/\string~mccune/otter/}.}.
+The program {\sc otter}\index{otter@{\sc otter}}\footnote{\url{http://www.cs.unm.edu/\~mccune/otter/}.}, later succeeded by
+prover9\index{prover9}\footnote{\url{https://www.cs.unm.edu/~mccune/mace4/}.},
+have been historically influential.
+The E prover\index{E prover}\footnote{\url{https://github.com/eprover/eprover}.}
+is a maintained automated theorem prover
+for full first-order logic with equality.
+There are many other automated theorem provers as well.
 
-{\sc otter} is also available on a disk included
-with the book {\em Automated Reasoning:  Introduction and Applications}
-\cite{Wos}\index{Wos, Larry}.  This program not only is able to generate
+If you want to combine automated theorem provers with Metamath
+consider investigating
+the book {\em Automated Reasoning:  Introduction and Applications}
+\cite{Wos}\index{Wos, Larry}.  This book discusses
+how to use {\sc otter} in a way that can
+not only able to generate
 relatively efficient proofs, it can even be instructed to search for
-shorter proofs.  The effective use of {\sc otter} does require a certain
+shorter proofs.  The effective use of {\sc otter} (and similar tools)
+does require a certain
 amount of experience, skill, and patience.  The axiom system used in the
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})} set theory
 database can be expressed to {\sc otter} using a method described in
@@ -2685,6 +2695,40 @@ Reference \cite{Bledsoe}\index{Bledsoe, W. W.} surveys a number of approaches
 people have explored in the field of automated theorem proving\index{automated
 theorem proving}.
 
+\subsection{Interactive Theorem Provers}\label{interactivetheoremprovers}
+
+Finding proofs completely automatically is difficult, so there
+are some interactive theorem provers that allow a human to guide the
+computer to find a proof.
+Examples include
+HOL Light\index{HOL light}%
+\footnote{\url{https://www.cl.cam.ac.uk/~jrh13/hol-light/}.},
+Isabelle\index{Isabelle}%
+\footnote{\url{http://www.cl.cam.ac.uk/Research/HVG/Isabelle}.},
+{\sc hol}\index{hol@{\sc hol}}%
+\footnote{\url{https://hol-theorem-prover.org/}.},
+and
+Coq\index{Coq}\footnote{\url{https://coq.inria.fr/}.}.
+
+A major difference between most of these tools and Metamath is that the
+``proofs'' are actually programs that guide the program to find a proof,
+and not the proof itself.
+For example, an Isabelle/HOL proof might apply a step
+\texttt{apply (blast dest: rearrange reduction)}. The \texttt{blast}
+instruction applies
+an automatic tableux prover and returns if it found a sequence of proof
+steps that work... but the sequence is not considered part of the proof.
+
+A good overview of
+higher-level proof verification languages (such as {\sc lcf}\index{lcf@{\sc
+lcf}} and {\sc hol};\index{hol@{\sc hol}})
+is given in \cite{Harrison}.  All of these languages are fundamentally
+different from Metamath in that much of the mathematical foundational
+knowledge is embedded in the underlying proof-verification program, rather
+than placed directly in the database that is being verified.
+These can have a steep learning curve for those without a mathematical
+background.  For example, one usually must have a fair understanding of
+mathematical logic in order to follow their proofs.
 
 \subsection{Proof Verifiers}\label{proofverifiers}
 
@@ -2704,26 +2748,14 @@ Automated theorem provers are usually concerned with attacking one theorem at
 time rather than making a large, organized database easily available to the
 user.  Metamath is one way to help close this gap.
 
-Besides Metamath, there are several other on-going projects with the goal of
-formalizing mathematics into computer-verifiable databases. One such project
-is {\sc qed},\index{qed project@{\sc qed} project} and several mathematicians
-are currently working to agree on the requirements for a universal language.
-Information on this project is available
-at \url{http://www-unix.mcs.anl.gov/qed}.  One
-specific proof-verification language is Mizar,\index{Mizar} which can display
+By itself Metamath is a mostly a proof verifier.
+This does not mean that other approaches can't be used; the difference
+is that in Metamath, the results of various provers must be recorded
+step-by-step so that they can be verified.
+
+Another proof-verification language is Mizar,\index{Mizar} which can display
 its proofs in the informal language that mathematicians are accustomed to.
 Information on the Mizar language is available at \url{http://mizar.org}.
-
-Other higher-level proof verification languages are {\sc lcf}\index{lcf@{\sc
-lcf}} and {\sc hol};\index{hol@{\sc hol}} a good overview of these and others
-is given in \cite{Harrison}.  All of these languages are fundamentally
-different from Metamath in that much of the mathematical foundational
-knowledge is embedded in the underlying proof-verification program, rather
-than placed directly in the database that is being verified.  For the working
-mathematician these languages are often more practical to use than Metamath,
-but they can have a steep learning curve for those without a mathematical
-background.  For example, one usually must have a fair understanding of
-mathematical logic in order to follow their proofs.
 
 For the working mathematician, Mizar is an excellent tool for rigorously
 documenting proofs. Mizar typesets its proofs in the informal English used by
@@ -2732,17 +2764,104 @@ laypersons!). A price paid for Mizar is a relatively steep learning curve of a
 couple of weeks.  Several mathematicians are actively formalizing different
 areas of mathematics using Mizar and publishing the proofs in a dedicated
 journal. Unfortunately the task of formalizing mathematics is still looked
-down upon to a certain extent since it doesn't involve the creation of new
+down upon to a certain extent since it doesn't involve the creation of ``new''
 mathematics.
+
+\subsection{Creating a database of formalized mathematics}\label{mathdatabase}
+
+Besides Metamath, there are several other on-going projects with the goal of
+formalizing mathematics into computer-verifiable databases.
+Understanding some history will help.
+
+The {\sc qed}\index{qed project@{\sc qed} project}%
+\footnote{\url{http://www-unix.mcs.anl.gov/qed}.}
+project arose in 1993 and its goals were outlined in the
+{\sc qed} manifesto.
+The {\sc qed} manifesto was a
+a proposal for a computer-based database of all mathematical knowledge,
+trictly formalized and with all proofs having been checked automatically.
+The project had a conference in 1994 and another in 1995;
+there was also a ``twenty years of the {\sc qed} manifesto'' workshop
+in 2014.
+Its ideals are regularly reraised.
+
+In a 2007 paper, Freek Wiedijk identified two reasons
+for the failure of the {\sc qed} project as originally envisioned:%
+\cite{Wiedijk-revisited}\index{Wiedijk, Freek}
+
+\begin{itemize}
+\item Very few people are working on formalization of mathematics. There is no compelling application for fully mechanized mathematics.
+\item Formalized mathematics does not yet resemble traditional mathematics. This is partly due to the complexity of mathematical notation, and partly to the limitations of existing theorem provers and proof assistants.
+\end{itemize}
+
+But this did not end the dream of
+formalizing mathematics into computer-verifiable databases.
+The problems that led to the {\sc qed} manifesto are still with us,
+even though the challenges were harder than originally considered.
+What has happened instead is that various independent projects have
+worked towards formalizing mathematics into computer-verifiable databases,
+each simultaneously competing and cooperating with each other.
+
+A concrete way to see this is
+Freek Wiedijk's ``Formalizing 100 Theorems'' list%
+\footnote{\url{http://www.cs.ru.nl/\%7Efreek/100/}.}
+which shows the progress different systems have made on a challenge list
+of 100 mathematical theorems.
+The top systems as of 2019 (in terms of number of challenges completed) are
+HOL Light, Isabelle, Coq, Mizar, and Metamath.
+
+Each of these systems has different strengths and weaknesses, depending
+on what you value.
+Key aspects that differentiate Metamath from the other top systems are:
+
+\begin{itemize}
+\item Metamath is not tied to any particular set of axioms.
+\item Metamath can shows every step of every proof, no exceptions.
+  Most other provers only assert that a proof can be found, and do not
+  show every step. This also makes verification fast, because
+  the system does not need to rediscover proof details.
+\item The Metamath verifier has been re-implemented in many different
+  programming languages, so verification can (and is) be done by multiple
+  implementations.  This greatly reduces the risk of accepting an invalid
+  proof due to an error in the verifier.
+\item Proofs stay proven.  In some systems, changes to the system's
+  syntax or how a tactic works causes proofs to fail in later versions,
+  causing older work to become essentially lost.
+  Metamath's language is
+  extremely small and fixed, so once a proof is added to a database,
+  the database can be rechecked with later versions of the Metamath program
+  and with other verifiers of Metamath databases.
+  If an axiom or key definition needs to be changed, it is easy to
+  manipulate the database as a whole to handle the change
+  without touching the underlying verifier.
+  Since re-verification of an entire database takes seconds, there
+  is never a reason to delay complete verification.
+  This aspect is especially compelling if your
+  goal is to have a long-term database of proofs.
+\item Licensing is generous.  The main Metamath databases are released to
+  the public domain, and the main Metamath program is open source software
+  under a standard, widely-used license.
+\item Substitutions are easy to understand, even by those who are not
+  professional mathematicians.
+\end{itemize}
+
+Of course, other systems may have advantages over Metamath
+that are more compelling, depending on what you value.
+In any case, we hope this helps you understand Metamath
+within a wider context.
+
+\subsection{In summary}\label{computers-summary}
 
 To summarize our discussions of computers and mathematics, computer algebra
 systems can be viewed as theorem generators focusing on a narrow realm of
 mathematics (numbers and their properties), automated theorem provers as proof
 generators for specific theorems in a much broader realm covered by a built-in
-formal system such as first-order logic, proof verifiers in general as proof
-documentors usually restricted to first-order logic, and Metamath in
-particular as a proof documentor whose realm is essentially unlimited.
-
+formal system such as first-order logic, interactive theorem
+provers require human guidance, proof verifiers verify proofs but
+historically they have been
+restricted to first-order logic.
+Metamath, in contrast,
+is a proof verifier and documentor whose realm is essentially unlimited.
 
 \section{Mathematics and Metamath}
 
@@ -2752,8 +2871,10 @@ There are a number of ways that Metamath\index{Metamath} can be used with
 standard mathematics.  The most satisfying way philosophically is to start at
 the very beginning, and develop the desired mathematics from the axioms of
 logic and set theory.\index{set theory}  This is the approach taken in the
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})} module provided with
-the Metamath software.  Among other things, this module builds up to the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}
+database (also known as the Metamath Proof Explorer).
+Among other things, this database builds up to the
 axioms of real and complex numbers\index{analysis}\index{real and complex
 numbers} (see Section~\ref{real}), and a standard development of analysis, for
 example, could start at that point, using it as a basis.   Besides this
@@ -2776,8 +2897,8 @@ notation will be consistent with it.
 Unlike some programs, Metamath\index{Metamath} is not limited to any specific
 area of mathematics, nor committed to any particular mathematical philosophy
 such as classical logic versus intuitionism, nor limited, say, to expressions
-in first-order logic.  Although the database \texttt{set.mm} included with the
-Metamath software package describes standard logic and set theory, Meta\-math
+in first-order logic.  Although the database \texttt{set.mm}
+describes standard logic and set theory, Meta\-math
 is actually a general-purpose language for describing a wide variety of formal
 systems.\index{formal system}  Non-standard systems such as modal
 logic,\index{modal logic} intuitionist logic\index{intuitionism}, higher-order
@@ -2789,6 +2910,36 @@ from those axioms and rules.  A simple example of a non-standard formal system
 is Hofstadter's\index{Hofstadter, Douglas R.} MIU system,\index{MIU-system}
 whose Metamath description is presented in Appendix~\ref{MIU}.
 
+This is not hypothetical.
+The largest Metamath database is
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}), aka the Metamath Proof Explorer,
+which uses the most common axioms for mathematical foundations
+(specifically classical logic combined with Zermelo-Fraenkel
+set theory\index{Zermelo-Fraenkel set theory} with the Axiom of Choice).
+But other Metamath databases are available:
+
+\begin{itemize}
+\item The database
+  \texttt{iset.mm}\index{intuitionistic logic database (\texttt{iset.mm})},
+  aka the
+  Intuitionistic Logic Explorer\index{Intuitionistic Logic Explorer},
+  uses intuitionistic logic (a constructivist point of view)
+  instead of classical logic.
+\item The database
+  \texttt{nf.mm}\index{New Foundations database (\texttt{nf.mm})},
+  aka the
+  New Foundations Explorer\index{New Foundations Explorer},
+  constructs mathematics from scratch,
+  starting from Quine's New Foundations (NF) set theory axioms. 
+\item The database
+  \texttt{hol.mm}\index{Higher-order Logic database (\texttt{hol.mm})},
+  aka the
+  Higher-Order Logic (HOL) Explorer\index{Higher-Order Logic (HOL) Explorer},
+  starts with HOL (also called simple type theory) and derives
+  equivalents to ZFC axioms, connecting the two approaches. 
+\end{itemize}
+
 Since the days of David Hilbert,\index{Hilbert, David} mathematicians have
 been concerned with the fact that the metalanguage\index{metalanguage} used to
 describe mathematics may be stronger than the mathematics being described.
@@ -2796,19 +2947,23 @@ Metamath\index{Metamath}'s underlying finitary\index{finitary proof},
 constructive nature provides a good philosophical basis for studying even the
 weakest logics.\index{weak logic}
 
-Actually, the usual treatment of many non-standard formal systems\index{formal
+The usual treatment of many non-standard formal systems\index{formal
 system} uses model theory\index{model theory} or proof theory\index{proof
 theory} to describe these systems; these theories, in turn, are based on
 standard set theory.  In other words, a non-standard formal system is defined
 as a set with certain properties, and standard set theory is used to derive
 additional properties of this set.  The standard set theory database provided
-with Metamath can be used for this purpose, and the development of a special
+with Metamath can be used for this purpose, and when used this way
+the development of a special
 axiom system for the non-standard formal system becomes unnecessary.  The
 model- or proof-theoretic approach often allows you to prove much deeper
 results with less effort.
 
-%\section{Additional Remarks}
+Metamath supports both approaches.  You can define the non-standard
+formal system directly, or define the non-standard formal system as
+a set with certain properties, whichever you find most helpful.
 
+%\section{Additional Remarks}
 
 \subsection{Metamath and Its Philosophy}
 
@@ -2922,8 +3077,8 @@ For more information, see
 One of the things that makes Metamath\index{Metamath} more practical for
 first-order theories is a set of axioms for first-order logic designed
 specifically with Metamath's approach in mind.  These are included in a
-standard database called \texttt{set.mm}\index{set theory database (\texttt{set.mm})}
-which comes with the Metamath software.  See Chapter~\ref{fol} for a detailed
+the database \texttt{set.mm}\index{set theory database (\texttt{set.mm})}.
+See Chapter~\ref{fol} for a detailed
 description; the axioms are shown in Section~\ref{metaaxioms}.  While
 logically equivalent to standard axiom systems, our axiom system breaks
 up the standard axioms into smaller pieces such that from them, you can
