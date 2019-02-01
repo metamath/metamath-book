@@ -23,6 +23,10 @@ found in Appendix 8 of the Metamath Proof Explorer Home Page.
 
 To edit the text, simply edit file metamath.tex.
 
+If you generate example displays from the Metamath program,
+use 61 characters per line
+(you can use the command `set width 61` to do this).
+
 ## Generating a PDF
 
 The source is in LaTeX format.
