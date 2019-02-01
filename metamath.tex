@@ -12433,7 +12433,7 @@ A complete list is available at \url{http://metamath.org}.
 % NOTE: Each row is on its own line, making for long rows, so we can
 % easily sort later if we want to sort by token.
 % NOTE: Not put in a (floating) table, because this may be >1 page.
-\begin{tabularx}{\textwidth}{lllX}
+\noindent\begin{tabularx}{\textwidth}{@{} l l l X}
 \textbf{Token} & \textbf{Symbol} & \textbf{Label} & \textbf{Description} \\
 \texttt{-.} & $\lnot$ & \texttt{wn} & Logical not. E.g., if $\varphi$ is true, then $\lnot \varphi$ is false. \\
 \texttt{->} & $\rightarrow$ & \texttt{wi} & Implies, also known as material implication. The expression $\varphi \rightarrow \psi$ is true if either $\varphi$ is false or $\psi$ is true (or both), that is, in classical logic  $\varphi \rightarrow \psi$ has the same meaning as $\lnot \varphi \lor \psi$ (as proven in \texttt{imor}). \\
