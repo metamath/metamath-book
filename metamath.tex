@@ -702,6 +702,7 @@
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
+\usepackage{tabularx}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment the next 3 lines to suppress boxes and colors on the hyperlinks
@@ -12417,6 +12418,28 @@ to keep all symbol definitions up to date.
 \end{center}
 }% End of \samepage
 % End of metamathl.tex
+
+SAMPLE OF PROPOSED CHANGE:
+
+This Appendix provides a sample of key tokens (math symbols)
+used for basic set theory development in the \texttt{set.mm} database, in
+order of appearance.
+For each token we show the displayed mathematical symbol
+that corresponds to it, the label of its (primary) definition,
+and in some cases a description about it.
+This is only a partial list, and new definitions are routinely added.
+A complete list is available at \url{http://metamath.org}.
+
+% NOTE: Each row is on its own line, making for long rows, so we can
+% easily sort later if we want to sort by token.
+% NOTE: Not put in a (floating) table, because this may be >1 page.
+\begin{tabularx}{\textwidth}{lllX}
+\textbf{Token} & \textbf{Symbol} & \textbf{Label} & \textbf{Description} \\
+\texttt{-.} & $\lnot$ & \texttt{wn} & Logical not. E.g., if $\varphi$ is true, then $\lnot \varphi$ is false. \\
+\texttt{->} & $\rightarrow$ & \texttt{wi} & Implies, also known as material implication. The expression $\varphi \rightarrow \psi$ is true if either $\varphi$ is false or $\psi$ is true (or both), that is, in classical logic  $\varphi \rightarrow \psi$ has the same meaning as $\lnot \varphi \lor \psi$ (as proven in \texttt{imor}). \\
+\texttt{<->} & $\leftrightarrow$ & \texttt{df-bi} & Biconditional (aka is-equals for boolean values).  $\varphi \leftrightarrow \psi$ is true if and only if $\varphi$ and $\psi$ have the same value. \\
+\texttt{\char`\\/} & $\lor$ & \texttt{df-or} & Disjunction (logical ``or''). $\varphi \lor \psi$ is true if and only if $\varphi$, $\psi$, or both are true. \\
+\end{tabularx}
 
 \chapter{Compressed Proofs}
 \label{compressed}\index{compressed proof}\index{proof!compressed}
