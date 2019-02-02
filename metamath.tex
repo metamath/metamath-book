@@ -702,6 +702,26 @@
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
+
+% Packages for flexible tables.  We need to be able to 
+% wrap text within a cell (with automatically-determined widths) AND
+% split a table automatically across multiple pages.
+% * "tabularx" wraps text in cells but only 1 page
+% * "longtable" goes across pages but by itself is incompatible with tabularx
+% * "ltxtable" combines longtable and tabularx, but table contents
+%    must be in a separate file.
+% * "ltablex" combines tabularx and longtable - must install specially
+% * "booktabs" is recommended as a way to improve the look of tables,
+%   but doesn't add these capabilities.
+% * "tabu" much more capable and seems to be recommended. So use that.
+
+\usepackage{makecell}      % Enable forced line splits within a table cell
+\usepackage{longtable}     % Enable multi-page tables
+\usepackage{tabu}          % Multi-page tables with wrapped text in a cell
+
+% You can find more Tex packages using commands like:
+% tlmgr search --file tabu.sty
+% find /usr/share/texmf-dist/ -name '*tab*'
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment the next 3 lines to suppress boxes and colors on the hyperlinks
@@ -5432,7 +5452,7 @@ itself.  The $\leftrightarrow$ symbol can be eliminated from a formula
 using theorem \texttt{bii}, which is derived later.
 
 \vskip 2ex
-\noindent Define the biconditional connective.
+\noindent Define the biconditional connective.\label{df-bi}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-bi\ \$a\ }
@@ -5472,8 +5492,9 @@ wff.
 \vskip 1ex
 
 
-\noindent Define disjunction ({\sc or}).\index{disjunction ($\vee$)}
-\index{logical {\sc or} ($\vee$)}
+\noindent Define disjunction ({\sc or}).\index{disjunction ($\vee$)}%
+\index{logical or (vee)@logical {\sc or} ($\vee$)}%
+\index{df-or@\texttt{df-or}}\label{df-or}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-or\ \$a\ }
@@ -5486,8 +5507,9 @@ wff.
 \noindent\verb?  df-or $a |- ( ( ph \/ ps ) <-> ( -. ph -> ps ) ) $.?
 \vskip 1ex
 
-\noindent Define conjunction ({\sc and}).\index{conjunction ($\wedge$)}
-\index{logical {\sc and} ($\wedge$)}
+\noindent Define conjunction ({\sc and}).\index{conjunction ($\wedge$)}%
+\index{logical {\sc and} ($\wedge$)}%
+\index{df-an@\texttt{df-an}}\label{df-an}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-an\ \$a\ }
@@ -5500,7 +5522,8 @@ wff.
 \noindent\verb?  df-an $a |- ( ( ph /\ ps ) <-> -. ( ph -> -. ps ) ) $.?
 \vskip 1ex
 
-\noindent Define disjunction ({\sc or}) of 3 wffs.
+\noindent Define disjunction ({\sc or}) of 3 wffs.%
+\index{df-3or@\texttt{df-3or}}\label{df-3or}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-3or\ \$a\ }
@@ -5516,7 +5539,8 @@ wff.
 \noindent\verb?      ) ) $.?
 \vskip 1ex
 
-\noindent Define conjunction ({\sc and}) of 3 wffs.
+\noindent Define conjunction ({\sc and}) of 3 wffs.%
+\index{df-3an}\label{df-3an}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-3an\ \$a\ }
@@ -5541,7 +5565,7 @@ mentioned.
 
 \vskip 2ex
 \noindent Define existential quantification.\index{existential quantifier
-($\exists$)}
+($\exists$)}\label{df-ex}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-ex\ \$a\ }
@@ -5555,7 +5579,8 @@ mentioned.
 \vskip 1ex
 
 \noindent Define proper substitution.\index{proper
-substitution}\index{substitution!proper}  Note that this
+substitution}\index{substitution!proper}\label{df-sb}
+Note that this
 definition is valid even when
 $x$ and $y$ are the same variable.  The first conjunct is a ``trick'' used to
 achieve this property, making the definition look somewhat peculiar at
@@ -5598,7 +5623,7 @@ no explicit indication of what is being substituted.
 
 \noindent Define existential uniqueness\index{existential uniqueness
 quantifier ($\exists "!$)} (``there exists exactly one'').  Note that $y$ is a
-variable distinct from $x$ and not occurring in $\varphi$.
+variable distinct from $x$ and not occurring in $\varphi$.\label{df-eu}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-eu\ \$a\ }
@@ -5645,7 +5670,7 @@ elementary set theory.
 
 \vskip 2ex
 \noindent Define the abstraction class.\index{abstraction class}\index{class
-abstraction}  $x$ and $y$
+abstraction}\label{df-clab}  $x$ and $y$
 need not be distinct.  Definition 2.1 of Quine, p.~16.  This definition may
 seem puzzling since it is shorter than the expression being defined and does not
 buy us anything in terms of brevity.  The reason we introduce this definition
@@ -5664,7 +5689,7 @@ provided by \texttt{df-clel}.
 \vskip 1ex
 
 \noindent Define the equality connective between classes\index{class
-equality}.  See Quine or Chapter 4 of Takeuti and Zaring for its
+equality}\label{df-cleq}.  See Quine or Chapter 4 of Takeuti and Zaring for its
 justification and methods for eliminating it.  This is an example of a
 somewhat ``dangerous'' definition, because it extends the use of the
 existing equality symbol rather than introducing a new symbol, allowing
@@ -5708,7 +5733,7 @@ we retain the ``dangerous'' definition.
 membership}.  Theorem 6.3 of Quine, p.~41, which we adopt as a definition.
 Note that it extends the use of the existing membership symbol, but unlike
 {\tt df-cleq} it does not extend the set of valid wffs of logic when the class
-metavariables are replaced with set variables.\label{dfclel}
+metavariables are replaced with set variables.\label{dfclel}\label{df-clel}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-clel\ \$a\ }
@@ -5777,7 +5802,7 @@ quantifier ($\exists$)!restricted}  Enderton, p.~22.
 
 \noindent Define the subclass\index{subclass}\index{subset} relationship
 between two classes (called the subset relation if the classes are sets i.e.\
-are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.
+are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.\label{df-ss}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-ss\ \$a\ }
@@ -5787,11 +5812,11 @@ are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.
 \m{x}\m{\in}\m{A}\m{\rightarrow}\m{x}\m{\in}\m{B}\m{)}\m{)}
 \endm
 
-\noindent\verb?  df-ss $a |- ( A (_ B <-> A. x ( x e. A -> x e. B ) ) $.?
+\noindent\verb?  df-ss $a |- ( A C_ B <-> A. x ( x e. A -> x e. B ) ) $.?
 \vskip 1ex
 
 \noindent Define the union\index{union} of two classes.  Definition 5.6 of Takeuti and Zaring,
-p.~16.
+p.~16.\label{df-un}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-un\ \$a\ }
@@ -5805,7 +5830,7 @@ p.~16.
 \vskip 1ex
 
 \noindent Define the intersection\index{intersection} of two classes.  Definition 5.6 of
-Takeuti and Zaring, p.~16.
+Takeuti and Zaring, p.~16.\label{df-in}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-in\ \$a\ }
@@ -5821,7 +5846,7 @@ Takeuti and Zaring, p.~16.
 \noindent Define class difference\index{class difference}\index{set difference}.
 Definition 5.12 of Takeuti and Zaring, p.~20.  Several notations are used in
 the literature; we chose the $\setminus$ convention instead of a minus sign to
-reserve the latter for later use in, e.g., arithmetic.
+reserve the latter for later use in, e.g., arithmetic.\label{df-dif}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-dif\ \$a\ }
@@ -5835,7 +5860,7 @@ reserve the latter for later use in, e.g., arithmetic.
 \vskip 1ex
 
 \noindent Define the empty or null set\index{empty set}\index{null set}.
-Compare  Definition 5.14 of Takeuti and Zaring, p.~20.
+Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-nul\ \$a\ }
@@ -5909,7 +5934,7 @@ Enderton, p.~19.
 pair} definition.  Definition 9.1 of Quine, p.~58. For proper classes it is
 not meaningful but is well-defined for convenience.  (Note that \verb$<.$
 stands for $\langle$ whereas \verb$<$ stands for $<$, and similarly for
-\verb$>.$\,.)
+\verb$>.$\,.)\label{df-op}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-op\ \$a\ }
@@ -6370,7 +6395,7 @@ Takeuti and Zaring, p.~27.
 definition applies to any class and evaluates to the empty set when it is not
 meaningful. Note that $ F`A$ means the same thing as the more familiar $ F(A)$
 notation for a function's value at $A$.  The $ F`A$ notation is common in
-formal set theory.
+formal set theory.\label{df-fv}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-fv\ \$a\ }
@@ -12063,17 +12088,8 @@ You can experiment with the various commands to gain experience with the
 
 
 \appendix
-\chapter{Math Symbol Tokens for Set Theory}
+\chapter{Sample Representations}
 \label{ASCII}
-
-This Appendix lists the tokens (math symbols) used for basic set theory
-development (up to complex numbers) in the \texttt{set.mm} database, in
-order of appearance.  Next to each token we show the mathematical symbol
-that corresponds to it.  The
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})} file has an
-explanation of the meaning of each symbol.  (New definitions are added
-to \texttt{set.mm} over time.  Consult the latest version at
-\url{http://metamath.org} for the most recent additions.)
 
 These symbols are defined in the \texttt{set.mm} database file inside of
 a special comment, which is indicated by the appearance of the
@@ -12148,278 +12164,130 @@ whenever you add a \texttt{latexdef} statement, you should also add a
 new \texttt{htmldef} statement and a new \texttt{althtmldef} statement
 to keep all symbol definitions up to date.
 
-%\begin{quote}
-%  {\em
-%As you crack your eyes one morning your reason is assaulted by
-%a strange sight.  Over your head, humming quietly, there floats
-%a monitor, an ethereal otherworldly screen on which is written a
-%curious message.  ``I am the Screen of ultimate Truth.  I am bulging
-%with information and ask nothing better than to be allowed to impart
-%it.''
-%}
-%  \flushright\sc  John Baez\footnote{John Baez ({\em baez @ guitar.ucr.edu}),
-%Internet newsgroup {\em sci.math}, 1995}\\
-%\end{quote}\index{Baez, John}
+-
 
+This Appendix provides a sample of {\sc ASCII} representations,
+their corresponding traditional mathematical symbols,
+and a discussion of their meanings
+in the \texttt{set.mm} database.
+These are provided in order of appearance.
+This is only a partial list, and new definitions are routinely added.
+A complete list is available at \url{http://metamath.org}.
 
+In the following table the ``{\sc ASCII}'' column shows the {\sc ASCII}
+representation,
+``Symbol'' shows the mathematical symbolic display
+that corresponds to that {\sc ASCII} representation, ``Labels'' shows
+the key label(s) that define the representation, and
+``Description'' provides a description about the symbol.
+As usual, ``iff'' is short for ``if and only if.''\index{iff}
+In most cases the ``{\sc ASCII}'' column only shows
+the key token, but it will sometimes show a sequence of tokens
+if that is necessary for clarity.
 
-%\input{metamaths.tex}
-% Start of metamaths.tex
-\newpage
-{\samepage
-\begin{center}
-\begin{tabular}
-{|l|lr||l|lr||l|lr|}
-\hline
-{\small Token}&\multicolumn{2}{l||}{\small Symbol}&
-{\small Token}&\multicolumn{2}{l||}{\small Symbol}&
-{\small Token}&\multicolumn{2}{l|}{\small Symbol}\\
- \hline \hline
-\verb$($&\multicolumn{2}{l||}{$($}&
-\verb$B$&\multicolumn{2}{l||}{$B$}&
-\verb$dom$&\multicolumn{2}{l|}{${\rm dom}$}\\ \hline
-\verb$)$&\multicolumn{2}{l||}{$)$}&
-\verb$C$&\multicolumn{2}{l||}{$C$}&
-\verb$ran$&\multicolumn{2}{l|}{${\rm ran}$}\\ \hline
-\verb$->$&\multicolumn{2}{l||}{$\rightarrow$}&
-\verb$D$&\multicolumn{2}{l||}{$D$}&
-\verb$|`$&\multicolumn{2}{l|}{$\restriction$}\\ \hline
-\verb$-.$&\multicolumn{2}{l||}{$\lnot$}&
-\verb$R$&\multicolumn{2}{l||}{$R$}&
-\verb$"$&\multicolumn{2}{l|}{$``$}\\ \hline
-\verb$wff$&\multicolumn{2}{l||}{${\rm wff}$}&
-\verb$S$&\multicolumn{2}{l||}{$S$}&
-\verb$o.$&\multicolumn{2}{l|}{$\circ$}\\ \hline
-\verb$|-$&\multicolumn{2}{l||}{$\vdash$}&
-\verb$=/=$&\multicolumn{2}{l||}{$\ne$}&
-\verb$Rel$&\multicolumn{2}{l|}{${\rm Rel}$}\\ \hline
-\verb$ph$&\multicolumn{2}{l||}{$\varphi$}&
-\verb$e/$&\multicolumn{2}{l||}{$\notin$}&
-\verb/Fun/&\multicolumn{2}{l|}{${\rm Fun}$}\\ \hline
-\verb$ps$&\multicolumn{2}{l||}{$\psi$}&
-\verb$V$&\multicolumn{2}{l||}{$V$}&
-\verb/Fn/&\multicolumn{2}{l|}{${\rm Fn}$}\\ \hline
-\verb$ch$&\multicolumn{2}{l||}{$\chi$}&
-\verb/F/&\multicolumn{2}{l||}{$ F$}&
-\verb$:$&\multicolumn{2}{l|}{$:$}\\ \hline
-\verb/th/&\multicolumn{2}{l||}{$\theta$}&
-\verb$G$&\multicolumn{2}{l||}{$G$}&
-\verb$-->$&\multicolumn{2}{l|}{$\longrightarrow$}\\ \hline
-\verb/ta/&\multicolumn{2}{l||}{$\tau$}&
-\verb$(_$&\multicolumn{2}{l||}{$\subseteq$}&
-\verb$-1-1->$&\multicolumn{2}{l|}{$
-  \raisebox{.5ex}{${\textstyle{\:}_{\mbox{\footnotesize\rm 1
-  \tt -\rm 1}}}\atop{\textstyle{
-  \longrightarrow}\atop{\textstyle{}^{\mbox{\footnotesize\rm {\ }}}}}$}
-  $}\\ \hline
-\verb$<->$&\multicolumn{2}{l||}{$\leftrightarrow$}&
-\verb$(.$&\multicolumn{2}{l||}{$\subset$}&
-\verb$-onto->$&\multicolumn{2}{l|}{$
-  \raisebox{.5ex}{${\textstyle{\:}_{\mbox{\footnotesize\rm {\ }}}}
-  \atop{\textstyle{
-  \longrightarrow}\atop{\textstyle{}^{\mbox{\footnotesize\rm onto}}}}$}
-  $}\\ \hline
-\verb$\/$&\multicolumn{2}{l||}{$\vee$}&
-\verb$\$&\multicolumn{2}{l||}{$\setminus$}&
-\verb$-1-1-onto->$&\multicolumn{2}{l|}{$
-  \raisebox{.5ex}{${\textstyle{\:}_{\mbox{\footnotesize\rm 1
-  \tt -\rm 1}}}\atop{\textstyle{
-  \longrightarrow}\atop{\textstyle{}^{\mbox{\footnotesize\rm onto}}}}$}
-  $}\\ \hline
-\verb$/\$&\multicolumn{2}{l||}{$\wedge$}&
-\verb$u.$&\multicolumn{2}{l||}{$\cup$}&
-\verb$`$&\multicolumn{2}{l|}{$`$}\\ \hline
-\verb$et$&\multicolumn{2}{l||}{$\eta$}&
-\verb$i^i$&\multicolumn{2}{l||}{$\cap$}&
-\verb/h/&\multicolumn{2}{l|}{$ h$}\\ \hline
-\verb$ze$&\multicolumn{2}{l||}{$\zeta$}&
-\verb$(/)$&\multicolumn{2}{l||}{$\varnothing$}&
-\verb/H/&\multicolumn{2}{l|}{$ H$}\\ \hline
-\verb$A.$&\multicolumn{2}{l||}{$\forall$}&
-\verb$P~$&\multicolumn{2}{l||}{${\cal P}$}&
-\verb$rec$&\multicolumn{2}{l|}{${\rm rec}$}\\ \hline
-\verb$set$&\multicolumn{2}{l||}{${\rm set}$}&
-\verb$,$&\multicolumn{2}{l||}{$,$}&
-\verb$+_o$&\multicolumn{2}{l|}{$+_o$}\\ \hline
-\verb$x$&\multicolumn{2}{l||}{$x$}&
-\verb$<.$&\multicolumn{2}{l||}{$\langle$}&
-\verb$._o$&\multicolumn{2}{l|}{$\cdot_o$}\\ \hline
-\verb$y$&\multicolumn{2}{l||}{$y$}&
-\verb$>.$&\multicolumn{2}{l||}{$\rangle$}&
-\verb$^_o$&\multicolumn{2}{l|}{$\hat{\ }_o$}\\ \hline
-\verb$z$&\multicolumn{2}{l||}{$z$}&
-\verb$U.$&\multicolumn{2}{l||}{$\bigcup$}&
-\verb$1_o$&\multicolumn{2}{l|}{$1_o$}\\ \hline
-\verb$w$&\multicolumn{2}{l||}{$w$}&
-\verb$|^|$&\multicolumn{2}{l||}{$\bigcap$}&
-\verb$Er$&\multicolumn{2}{l|}{${\rm Er}$}\\ \hline
-\verb$v$&\multicolumn{2}{l||}{$v$}&
-\verb/Tr/&\multicolumn{2}{l||}{${\rm Tr}$}&
-\verb$[$&\multicolumn{2}{l|}{$[$}\\ \hline
-\verb$E.$&\multicolumn{2}{l||}{$\exists$}&
-\verb$E$&\multicolumn{2}{l||}{$E$}&
-\verb$]$&\multicolumn{2}{l|}{$]$}\\ \hline
-\verb$=$&\multicolumn{2}{l||}{$=$}&
-\verb$I$&\multicolumn{2}{l||}{$I$}&
-\verb$/.$&\multicolumn{2}{l|}{$\diagup$}\\ \hline
-\verb$e.$&\multicolumn{2}{l||}{$\in$}&
-\verb$Po$&\multicolumn{2}{l||}{${\rm Po}$}&
-\verb$Q$&\multicolumn{2}{l|}{$Q$}\\ \hline
-\verb$|$&\multicolumn{2}{l||}{$|$}&
-\verb$Or$&\multicolumn{2}{l||}{${\rm Or}$}&
-\verb/t/&\multicolumn{2}{l|}{$ t$}\\ \hline
-\verb$u$&\multicolumn{2}{l||}{$u$}&
-\verb/Fr/&\multicolumn{2}{l||}{${\rm Fr}$}&
-\verb$s$&\multicolumn{2}{l|}{$s$}\\ \hline
-\verb/f/&\multicolumn{2}{l||}{$ f$}&
-\verb$We$&\multicolumn{2}{l||}{${\rm We}$}&
-\verb$r$&\multicolumn{2}{l|}{$r$}\\ \hline
-\verb$g$&\multicolumn{2}{l||}{$g$}&
-\verb$Ord$&\multicolumn{2}{l||}{${\rm Ord}$}&
-\verb$a$&\multicolumn{2}{l|}{$a$}\\ \hline
-\verb$E!$&\multicolumn{2}{l||}{$\exists{!}$}&
-\verb$On$&\multicolumn{2}{l||}{${\rm On}$}&
-\verb$b$&\multicolumn{2}{l|}{$b$}\\ \hline
-\verb$E*$&\multicolumn{2}{l||}{$\exists^\ast$}&
-\verb$Lim$&\multicolumn{2}{l||}{${\rm Lim}$}&
-\verb$c$&\multicolumn{2}{l|}{$c$}\\ \hline
-\verb${$&\multicolumn{2}{l||}{$\{$}&
-\verb$suc$&\multicolumn{2}{l||}{${\rm suc}$}&
-\verb$d$&\multicolumn{2}{l|}{$d$}\\ \hline
-\verb$}$&\multicolumn{2}{l||}{$\}$}&
-\verb$om$&\multicolumn{2}{l||}{$\omega$}&
-\verb$j$&\multicolumn{2}{l|}{$j$}\\ \hline
-\verb$class$&\multicolumn{2}{l||}{${\rm class}$}&
-\verb$X.$&\multicolumn{2}{l||}{$\times$}&
-\verb$k$&\multicolumn{2}{l|}{$k$}\\ \hline
-\verb$A$&\multicolumn{2}{l||}{$A$}&
-\verb$`'$&\multicolumn{2}{l||}{$\breve{\ }$}&
-\verb$m$&\multicolumn{2}{l|}{$m$}\\ \hline
-\end{tabular}
-\end{center}
-}% End of \samepage
-\newpage
-{\samepage
-\begin{center}
-\begin{tabular}
-{|l|lr||l|lr||l|lr|}
-\hline
-{\small Token}&\multicolumn{2}{l||}{\small Symbol}&
-{\small Token}&\multicolumn{2}{l||}{\small Symbol}&
-{\small Token}&\multicolumn{2}{l|}{\small Symbol}\\
- \hline \hline
-\verb$n$&\multicolumn{2}{l||}{$n$}&
-\verb$+R$&\multicolumn{2}{l||}{$+_{\cal R}$}&
- & &\\ \hline
-\verb$q$&\multicolumn{2}{l||}{$q$}&
-\verb$.R$&\multicolumn{2}{l||}{$\cdot_{\cal R}$}&
- & &\\ \hline
-\verb$J$&\multicolumn{2}{l||}{$J$}&
-\verb$<R$&\multicolumn{2}{l||}{$<_{\cal R}$}&
- & &\\ \hline
-\verb$K$&\multicolumn{2}{l||}{$K$}&
-\verb$CC$&\multicolumn{2}{l||}{$\mathbb{C}$}&
- & &\\ \hline
-\verb$L$&\multicolumn{2}{l||}{$L$}&
-\verb$RR$&\multicolumn{2}{l||}{$\mathbb{R}$}&
- & &\\ \hline
-\verb$M$&\multicolumn{2}{l||}{$M$}&
-\verb$0$&\multicolumn{2}{l||}{$0$}&
- & &\\ \hline
-\verb$N$&\multicolumn{2}{l||}{$N$}&
-\verb$1$&\multicolumn{2}{l||}{$1$}&
- & &\\ \hline
-\verb$W$&\multicolumn{2}{l||}{$W$}&
-\verb$i$&\multicolumn{2}{l||}{$i$}&
- & &\\ \hline
-\verb$X$&\multicolumn{2}{l||}{$X$}&
-\verb$+$&\multicolumn{2}{l||}{$+$}&
- & &\\ \hline
-\verb$Y$&\multicolumn{2}{l||}{$Y$}&
-\verb$-$&\multicolumn{2}{l||}{$-$}&
- & &\\ \hline
-\verb$Z$&\multicolumn{2}{l||}{$Z$}&
-\verb$x.$&\multicolumn{2}{l||}{$\cdot$}&
- & &\\ \hline
-\verb$N.$&\multicolumn{2}{l||}{${\cal N}$}&
-\verb$<$&\multicolumn{2}{l||}{$<$}&
- & &\\ \hline
-\verb$+N$&\multicolumn{2}{l||}{$+_{\cal N}$}&
-\verb$/$&\multicolumn{2}{l||}{$/$}&
- & &\\ \hline
-\verb$.N$&\multicolumn{2}{l||}{$\cdot_{\cal N}$}&
-\verb$>$&\multicolumn{2}{l||}{$>$}&
- & &\\ \hline
-\verb$<N$&\multicolumn{2}{l||}{$<_{\cal N}$}&
-\verb$<_$&\multicolumn{2}{l||}{$\le$}&
- & &\\ \hline
-\verb$+pQ$&\multicolumn{2}{l||}{$+_{p{\cal Q}}$}&
-\verb$>_$&\multicolumn{2}{l||}{$\ge$}&
- & &\\ \hline
-\verb$.pQ$&\multicolumn{2}{l||}{$\cdot_{p{\cal Q}}$}&
-\verb$NN$&\multicolumn{2}{l||}{$\mathbb{N}$}&
- & &\\ \hline
-\verb$~Q$&\multicolumn{2}{l||}{$\sim_{\cal Q}$}&
-\verb$ZZ$&\multicolumn{2}{l||}{$\mathbb{Z}$}&
- & &\\ \hline
-\verb$Q.$&\multicolumn{2}{l||}{${\cal Q}$}&
-\verb$QQ$&\multicolumn{2}{l||}{$\mathbb{Q}$}&
- & &\\ \hline
-\verb$1Q$&\multicolumn{2}{l||}{$1_{\cal Q}$}&
-\verb$2$&\multicolumn{2}{l||}{$2$}&
- & &\\ \hline
-\verb$+Q$&\multicolumn{2}{l||}{$+_{\cal Q}$}&
-\verb$3$&\multicolumn{2}{l||}{$3$}&
- & &\\ \hline
-\verb$.Q$&\multicolumn{2}{l||}{$\cdot_{\cal Q}$}&
-\verb$4$&\multicolumn{2}{l||}{$4$}&
- & &\\ \hline
-\verb$*Q$&\multicolumn{2}{l||}{$\ast_{\cal Q}$}&
-\verb$5$&\multicolumn{2}{l||}{$5$}&
- & &\\ \hline
-\verb$<Q$&\multicolumn{2}{l||}{$<_{\cal Q}$}&
-\verb$6$&\multicolumn{2}{l||}{$6$}&
- & &\\ \hline
-\verb$P.$&\multicolumn{2}{l||}{${\cal P}$}&
-\verb$7$&\multicolumn{2}{l||}{$7$}&
- & &\\ \hline
-\verb$1P$&\multicolumn{2}{l||}{$1_{\cal P}$}&
-\verb$8$&\multicolumn{2}{l||}{$8$}&
- & &\\ \hline
-\verb$+P$&\multicolumn{2}{l||}{$+_{\cal P}$}&
-\verb$9$&\multicolumn{2}{l||}{$9$}&
- & &\\ \hline
-\verb$.P$&\multicolumn{2}{l||}{$\cdot_{\cal P}$}&
-\verb$ $&\multicolumn{2}{l||}{${}$}&  % was .
- & &\\ \hline
-\verb$<P$&\multicolumn{2}{l||}{$<_{\cal P}$}&
-\verb$ $&\multicolumn{2}{l||}{${}$}&  % was .
- & &\\ \hline
-\verb$+pR$&\multicolumn{2}{l||}{$+_{p{\cal R}}$}&
-\verb$ $&\multicolumn{2}{l||}{${}$}&   % was digit
- & &\\ \hline
-\verb$.pR$&\multicolumn{2}{l||}{$._{p{\cal R}}$}&
-\verb$ $&\multicolumn{2}{l||}{${}$}&  % was digit-string
- & &\\ \hline
-\verb$~R$&\multicolumn{2}{l||}{$\sim_{\cal R}$}&
- & &&
- & &\\ \hline
-\verb$R.$&\multicolumn{2}{l||}{${\cal R}$}&
- & &&
- & &\\ \hline
-\verb$0R$&\multicolumn{2}{l||}{$0_{\cal R}$}&
- & &&
- & &\\ \hline
-\verb$1R$&\multicolumn{2}{l||}{$1_{\cal R}$}&
- & &&
- & &\\ \hline
-\verb$-1R$&\multicolumn{2}{l||}{$-1_{\cal R}$}&
- & &&
- & &\\ \hline
-\end{tabular}
-\end{center}
-}% End of \samepage
-% End of metamathl.tex
+{\setlength{\extrarowsep}{4pt} % Keep rows from being too close together
+\begin{longtabu}   { @{} c c l X }
+\textbf{ASCII} & \textbf{Symbol} & \textbf{Labels} & \textbf{Description} \\
+\endhead
+\texttt{|-} & $\vdash$ & &
+  ``It is provable that...'' \\
+\texttt{ph} & $\varphi$ & \texttt{wph} &
+  The wff (boolean) variable phi,
+  conventionally the first wff variable. \\
+\texttt{ps} & $\psi$ & \texttt{wps} &
+  The wff (boolean) variable psi,
+  conventionally the second wff variable. \\
+\texttt{ch} & $\chi$ & \texttt{wch} &
+  The wff (boolean) variable chi,
+  conventionally the third wff variable. \\
+\texttt{-.} & $\lnot$ & \texttt{wn} &
+  Logical not. E.g., if $\varphi$ is true, then $\lnot \varphi$ is false. \\
+\texttt{->} & $\rightarrow$ & \texttt{wi} &
+  Implies, also known as material implication.
+  In classical logic the expression $\varphi \rightarrow \psi$ is true
+  if either $\varphi$ is false or $\psi$ is true (or both), that is,
+  $\varphi \rightarrow \psi$ has the same meaning as
+  $\lnot \varphi \lor \psi$ (as proven in theorem \texttt{imor}). \\
+\texttt{<->} & $\leftrightarrow$ &
+  \hyperref[df-bi]{\texttt{df-bi}} &
+  Biconditional (aka is-equals for boolean values).
+  $\varphi \leftrightarrow \psi$ is true iff
+  $\varphi$ and $\psi$ have the same value. \\
+\texttt{\char`\\/} & $\lor$ &
+  \makecell[tl]{{\hyperref[df-or]{\texttt{df-or}}}, \\
+	         \hyperref[df-3or]{\texttt{df-3or}}} &
+  Disjunction (logical ``or''). $\varphi \lor \psi$ is true iff
+  $\varphi$, $\psi$, or both are true. \\
+\texttt{/\char`\\} & $\land$ &
+  \makecell[tl]{{\hyperref[df-an]{\texttt{df-an}}}, \\
+                 \hyperref[df-3an]{\texttt{df-3an}}} &
+  Conjunction (logical ``and''). $\varphi \land \psi$ is true iff
+  both $\varphi$ and $\psi$ are true. \\
+\texttt{A.} & $\forall$ &
+  \texttt{wal} &
+  For all; the wff $\forall x \varphi$ is true iff
+  $\varphi$ is true for all values of $x$. \\
+\texttt{E.} & $\exists$ &
+  \hyperref[df-ex]{\texttt{df-ex}} &
+  There exists; the wff
+  $\exists x \varphi$ is true iff
+  there is at least one $x$ where $\varphi$ is true. \\
+\texttt{[ y / x ]} & $[ y / x ]$ &
+  \hyperref[df-sb]{\texttt{df-sb}} &
+  The wff $[ y / x ] \varphi$ produces
+  the result when $y$ is properly substituted with its replacement $x$
+  in $\varphi$. \\
+\texttt{E!} & $\exists !$ &
+  \hyperref[df-eu]{\texttt{df-eu}} &
+  There exists exactly one;
+  $\exists ! x \varphi$ is true iff
+  there is at least one $x$ where $\varphi$ is true. \\
+\texttt{\{ y | phi \}}  & $ \{ y | \varphi \}$ &
+  \hyperref[df-clab]{\texttt{df-clab}} &
+  The class of all sets where $\varphi$ is true. \\
+\texttt{=} & $ = $ &
+  \hyperref[df-cleq]{\texttt{df-cleq}} &
+  Class equality; $A = B$ iff $A$ equals $B$. \\
+\texttt{e.} & $ \in $ &
+  \hyperref[df-clel]{\texttt{df-clel}} &
+  Class membership; $A \in B$ if $A$ is a member of $B$. \\
+\texttt{C\_} & $ \subseteq $ &
+  \hyperref[df-ss]{\texttt{df-ss}} &
+  Subclass (subset); $A \subseteq B$ is true iff 
+  $A$ is a subclass of $B$. \\
+\texttt{u.} & $ \cup $ &
+  \hyperref[df-un]{\texttt{df-un}} &
+  $A \cup B$ is the union of classes $A$ and $B$. \\
+\texttt{i^i} & $ \cap $ &
+  \hyperref[df-in]{\texttt{df-in}} &
+  $A \cap B$ is the intersection of classes $A$ and $B$. \\
+\texttt{\char`\\} & $ \setminus $ &
+  \hyperref[df-dif]{\texttt{df-dif}} &
+  $A \setminus B$ (set difference)
+  is the class of all sets in $A$ except for those in $B$. \\
+\texttt{(/)} & $ \varnothing $ &
+  \hyperref[df-nul]{\texttt{df-nul}} &
+  $ \varnothing $ is the empty set (aka null set). \\
+\texttt{<.\ A , B >.} & $\langle A , B \rangle$ &
+  \hyperref[df-op]{\texttt{df-op}} &
+  The ordered pair $\langle A , B \rangle$. \\
+\texttt{( F ` A )} & $ ( F ` A ) $ &
+  \hyperref[df-fv]{\texttt{df-fv}} &
+  The value of function $F$ when applied to $A$. \\
+\texttt{\_i} & $ i $ &
+  \texttt{df-i} &
+  The square root of negative one. \\
+\texttt{x.} & $ \cdot $ &
+  \texttt{df-mul} &
+  Complex number multiplication; $2~\cdot~3~=~6$. \\
+\texttt{CC} & $ \mathbb{C} $ &
+  \texttt{df-c} &
+  The set of complex numbers. \\
+\texttt{RR} & $ \mathbb{R} $ &
+  \texttt{df-r} &
+  The set of real numbers. \\
+\end{longtabu}
+} % end of extrarowsep
 
 \chapter{Compressed Proofs}
 \label{compressed}\index{compressed proof}\index{proof!compressed}

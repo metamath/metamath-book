@@ -47,6 +47,7 @@ On Cygwin, you can install all prerequisites by installing these packages:
 
 - texlive
 - texlive-collection-latex
+- texlive-collection-latexextra
 - texlive-collection-bibtexextra
 - texlive-collection-latexrecommended
 
