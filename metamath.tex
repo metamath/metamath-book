@@ -3297,17 +3297,16 @@ theorem being proved.
 The theorem we will prove for our example is very simple:  $ t=t$.  The proof of
 our theorem follows.  Study it carefully until you feel sure you
 understand it.\label{zeroproof}
-\\[\baselineskip]
-\begin{tabular}{lll}
-1.&$(t+0)=t$&(by axiom A2)\\
-2.&$(t+0)=t$&(by axiom A2)\\
-3.&$((t+0)=t\rightarrow ((t+0)=t\rightarrow t=t))$&(by axiom A1)\\
-4.&$((t+0)=t\rightarrow t=t)$&(by MP applied to\\
-{}&{}&steps 2 and 3)\\
-5.&$ t=t$&(by MP applied to\\
-{}&{}&steps 1 and 4)
-\end{tabular}
-\\[\baselineskip]
+
+% Use tabu so that lines will wrap automatically as needed.
+\begin{tabu} { l X X }
+1. & $(t+0)=t$ & (by axiom A2) \\
+2. & $(t+0)=t$ & (by axiom A2) \\
+3. & $((t+0)=t \rightarrow ((t+0)=t\rightarrow t=t))$ & (by axiom A1) \\
+4. & $((t+0)=t\rightarrow t=t)$ & (by MP applied to steps 2 and 3) \\
+5. & $t=t$ & (by MP applied to steps 1 and 4) \\
+\end{tabu}
+
 (You may wonder why step 1 is repeated twice.  This is not necessary in the
 formal language we have defined, but in Metamath's ``reverse Polish
 notation''\index{reverse Polish notation (RPN)} for proofs, a previous step
