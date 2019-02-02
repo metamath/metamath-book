@@ -10041,6 +10041,258 @@ above format.\index{error checking}
 A good way to become familiar with the markup notation is to look at
 the extensive examples in the \texttt{set.mm} database.
 
+\subsection{The Typesetting Comment (\texttt{\$t})}\label{tcomment}
+
+The typesetting comment \texttt{\$t} in the input database file
+provides the information necessary to produce good-looking results
+in {\sc html} or \LaTeX.
+It provides {\sc html} and \LaTeX\ definitions for math symbols,
+as well supporting as some
+customization of the generated web page.
+
+The typesetting comment is identified by the token
+\texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting comment} in
+the comment, and the typesetting statements run until the next
+\texttt{\$)}:
+\[
+  \mbox{\tt \$(\ }
+  \mbox{\tt \$t\ }
+  \underbrace{
+    \mbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+    \cdots
+    \mbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
+  }_{\mbox{{\sc html} definitions go here}}
+  \mbox{\tt \ \$)}
+\]
+
+In version 0.07.30\index{Metamath!limitations of version 0.07.30} of the
+Metamath program, there may be only one \texttt{\$t} comment in a
+database.  See the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})} database
+file for an extensive example of a \texttt{\$t} comment illustrating all
+of the features described below.  In the {\sc html} definition section,
+{\sc c}-style comments \texttt{/*}\ldots\texttt{*/} are recognized.  The
+main {\sc html} specification statements are:
+
+\vskip 1ex
+    \texttt{htmldef "}{\em math-token}\texttt{" as "}{\em
+    {\sc html}-code}\texttt{" ;}\index{\texttt{htmldef} statement}
+
+                    \ \ \ \ \ \ldots
+
+    \texttt{htmldef "}{\em math-token}\texttt{" as "}{\em {\sc
+    html}-code}\texttt{" ;}
+
+    \texttt{htmltitle "}{\em {\sc html}-code}\texttt{"
+    ;}\index{\texttt{htmltitle} statement}
+
+    \texttt{htmlhome "}{\em {\sc html}-code}\texttt{"
+    ;}\index{\texttt{htmlhome} statement}
+
+    \texttt{htmlvarcolors "}{\em {\sc html}-code}\texttt{"
+    ;}\index{\texttt{htmlvarcolors} statement}
+
+    \texttt{htmlbibliography "}{\em filename}\texttt{"
+    ;}\index{\texttt{htmlbibliography} statement}
+
+\vskip 1ex
+
+\noindent The \texttt{htmltitle} is the {\sc html} code for a common
+title, such as ``Metamath Proof Explorer.''  The \texttt{htmlhome} is
+code for a link back to the home page.  The \texttt{htmlvarcolors} is
+code for a color key that appears at the bottom of each proof.  The file
+specified by {\em filename} is an {\sc html} file that is assumed to
+have a \texttt{<A NAME=}\ldots\texttt{>} tag for each bibiographic
+reference in the database comments.  For example, if
+\texttt{[Monk]}\index{\texttt{\char`\[}\ldots\texttt{]} inside comments}
+occurs in the comment for a theorem, then \texttt{<A NAME='Monk'>} must
+be present in the file; if not, a warning message is given.
+
+Single or double quotes surround the {\em {\sc html}-code} strings and
+the {\em filename} string.  Strings too long for a line may be broken up
+as descibed for the \texttt{latexdef} statement in Appendix~\ref{ASCII}.
+That Appendix also describes how to handle strings containing quote
+characters.
+
+The \texttt{\$t} comment may also contain \LaTeX\ definitions (with
+\texttt{latexdef} statements---see Appendix~\ref{ASCII}) that are
+ignored for {\sc html} output.
+
+Several other {\sc html}-related qualifiers exist for the
+\texttt{show statement} command.  The command
+\begin{quote}
+    \texttt{show statement} {\em label} \texttt{/alt{\char`\_}html}
+\end{quote}
+does the same as \texttt{show statement} {\em label} \texttt{/html},
+except that the {\sc html} code for the symbols is taken from
+\texttt{althtmldef} statements instead of \texttt{htmldef} statements in
+the \texttt{\$t} comment.
+
+\vskip 1ex
+    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
+{\sc html}-code}\texttt{" ;}\index{\texttt{althtmldef} statement}
+
+                    \ \ \ \ \ \ldots
+
+    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
+{\sc html}-code}\texttt{" ;}
+
+\vskip 1ex
+This feature is useful when
+an alternate representation of symbols is desired, for example one that
+uses Unicode entities instead of {\sc gif} images.  Associated with
+\texttt{althtmldef}
+are the statements
+\vskip 1ex
+
+    \texttt{htmldir "}{\em
+      directoryname}\texttt{" ;}\index{\texttt{htmldir} statement}
+
+    \texttt{althtmldir "}{\em
+     directoryname}\texttt{" ;}\index{\texttt{althtmldir} statement}
+
+\vskip 1ex
+\noindent giving the directories of the {\sc gif} and Unicode versions
+respectively; their purpose is to provide cross-linking between the
+two versions in the generated web pages.
+
+The command
+\begin{verbatim}
+     show statement * /brief_html
+\end{verbatim}
+invokes a special mode that just produces definition and theorem lists
+accompanied by their symbol strings, in a format suitable for copying and
+pasting into another web page (such as the tutorial pages on the
+Metamath web site).
+
+Finally, the command
+\begin{verbatim}
+     show statement * /brief_alt_html
+\end{verbatim}
+does the same as \texttt{show statement * / brief{\char`\_}html}
+for the alternate {\sc html}
+symbol representation.
+
+When two different types of pages need to be produced from a single
+database, such as the Hilbert Space Explorer that extends the Metamath
+Proof Explorer, ``extended'' variables may be declared in the
+\texttt{\$t} comment:
+\vskip 1ex
+
+    \texttt{exthtmltitle "}{\em {\sc html}-code}\texttt{"
+    ;}\index{\texttt{exthtmltitle} statement}
+
+    \texttt{exthtmlhome "}{\em {\sc html}-code}\texttt{"
+    ;}\index{\texttt{exthtmlhome} statement}
+
+    \texttt{exthtmlbibliography "}{\em filename}\texttt{"
+    ;}\index{\texttt{exthtmlbibliography} statement}
+
+\vskip 1ex
+\noindent When these are declared, you also must declare
+\vskip 1ex
+
+    \texttt{exthtmllabel "}{\em label}\texttt{"
+    ;}\index{\texttt{exthtmllabel} statement}
+
+\vskip 1ex \noindent that identifies the database statement where the
+``extended'' section of the database starts (in our example, where the
+Hilbert Space Explorer starts).  During the generation of web pages for
+that starting statement and the statements after it, the {\sc html} code
+assigned to \texttt{exthtmltitle} and \texttt{exthtmlhome} is used
+instead of that assigned to \texttt{htmltitle} and \texttt{htmlhome},
+respectively.
+
+If you want to become familiar with these features, you should study
+them in conjunction with the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}
+database example, in order
+to understand the details that aren't precisely specified above, such as
+exactly what the {\sc html} code snippets should look like.
+
+
+\subsection{Additional Information Comment (\texttt{\$j})} \label{jcomment}
+
+The additional information comment, aka the
+\texttt{\$j}\index{\texttt{\$j} comment}\index{additional information comment}
+comment,
+provides a way to add additional structured information that can
+be optionally parsed by systems.
+
+The additional information comment is parsed the same way as the
+typesetting comment (\texttt{\$t}) (see section \ref{tcomment}).
+That is,
+the additional information comment begins with the token
+\texttt{\$j} within a comment,
+and continues until the comment close \texttt{\$)}.
+Within an additional information comment is a sequence of one or more
+commands of the form \texttt{command arg arg ... ;}
+where each of the zero or more \texttt{arg} values
+can be either a quoted string or a keyword.
+Note that every command ends in an unquoted semicolon.
+If a verifier is parsing an additional information comment, but
+doesn't recognize a particular command, it must skip the command
+by finding the end of the command (an unquoted semicolon).
+
+A database may have 0 or more additional information comments.
+Note, however, that a verifier may ignore these comments entirely or only
+process certain commands in an additional information comment.
+The \texttt{mmj2} verifier supports many commands in additional information
+comments.
+We encourage systems that process additional information comments
+to coordinate so that they will use the same command for the same effect.
+
+Examples of additional information comments with various commands
+(from the \texttt{set.mm} database) are:
+
+\begin{itemize}
+   \item Define the syntax and logical typecodes,
+     and declare that our grammar is
+     unambiguous (verifiable using the KLR parser, with compositing depth 5).
+\begin{verbatim}
+  $( $j
+    syntax 'wff';
+    syntax '|-' as 'wff';
+    unambiguous 'klr 5';
+  $)
+\end{verbatim}
+
+   \item Register $\lnot$ and $\rightarrow$ as primitive expressions
+           (lacking definitions).
+\begin{verbatim}
+  $( $j primitive 'wn' 'wi'; $)
+\end{verbatim}
+
+   \item There is a special justification for \texttt{df-bi}.
+\begin{verbatim}
+  $( $j justification 'bijust' for 'df-bi'; $)
+\end{verbatim}
+
+   \item Register $\leftrightarrow$ as an equality for its type (wff).
+\begin{verbatim}
+  $( $j
+    equality 'wb' from 'biid' 'bicomi' 'bitri';
+    definition 'dfbi1' for 'wb';
+  $)
+\end{verbatim}
+
+   \item Theorem \texttt{notbii} is the congruence law for negation.
+\begin{verbatim}
+  $( $j congruence 'notbii'; $)
+\end{verbatim}
+
+   \item Add \texttt{set} as a typecode.
+\begin{verbatim}
+  $( $j syntax 'set'; $)
+\end{verbatim}
+
+   \item Register $=$ as an equality for its type (\texttt{class}).
+\begin{verbatim}
+  $( $j equality 'wceq' from 'eqid' 'eqcomi' 'eqtri'; $)
+\end{verbatim}
+
+\end{itemize}
+
 
 \subsection{Including Other Files in a Metamath Source File} \label{include}
 \index{\texttt{\$[} and \texttt{\$]} auxiliary keywords}
@@ -10185,7 +10437,7 @@ if desired.  In this case, you will see one or more \texttt{?}'s in the
 {\em compressed-proof} part.\index{compressed
 proof}\index{proof!compressed}
 
-\section{Appendix:  Axioms vs.\ Definitions}\label{definitions}
+\section{Axioms vs.\ Definitions}\label{definitions}
 
 Metamath\index{Metamath} makes no distinction\index{axiom vs.\
 definition} between axioms\index{axiom} and
@@ -11692,173 +11944,6 @@ commands, which are described below, provide as a side effect complete
 error checking for all of the features described in this section.
 (Currently there is no separate command to check for these
 errors.)\index{error checking}
-
-\subsection{The Typesetting Comment (\texttt{\$t})}\label{tcomment}
-
-The {\sc html} definitions for math symbols, as well as some
-customization of the generated web page, are specified by statements in
-a special typesetting comment in the input database file.  The
-typesetting comment is identified by the token
-\texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting comment} in
-the comment, and the typesetting statements run until the next
-\texttt{\$)}:
-\[
-  \mbox{\tt \$(\ }
-  \mbox{\tt \$t\ }
-  \underbrace{
-    \mbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-    \cdots
-    \mbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-  }_{\mbox{{\sc html} definitions go here}}
-  \mbox{\tt \ \$)}
-\]
-
-In version 0.07.30\index{Metamath!limitations of version 0.07.30} of the
-Metamath program, there may be only one \texttt{\$t} comment in a
-database.  See the
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})} database
-file for an extensive example of a \texttt{\$t} comment illustrating all
-of the features described below.  In the {\sc html} definition section,
-{\sc c}-style comments \texttt{/*}\ldots\texttt{*/} are recognized.  The
-main {\sc html} specification statements are:
-
-\vskip 1ex
-    \texttt{htmldef "}{\em math-token}\texttt{" as "}{\em
-    {\sc html}-code}\texttt{" ;}\index{\texttt{htmldef} statement}
-
-                    \ \ \ \ \ \ldots
-
-    \texttt{htmldef "}{\em math-token}\texttt{" as "}{\em {\sc
-    html}-code}\texttt{" ;}
-
-    \texttt{htmltitle "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{htmltitle} statement}
-
-    \texttt{htmlhome "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{htmlhome} statement}
-
-    \texttt{htmlvarcolors "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{htmlvarcolors} statement}
-
-    \texttt{htmlbibliography "}{\em filename}\texttt{"
-    ;}\index{\texttt{htmlbibliography} statement}
-
-\vskip 1ex
-
-\noindent The \texttt{htmltitle} is the {\sc html} code for a common
-title, such as ``Metamath Proof Explorer.''  The \texttt{htmlhome} is
-code for a link back to the home page.  The \texttt{htmlvarcolors} is
-code for a color key that appears at the bottom of each proof.  The file
-specified by {\em filename} is an {\sc html} file that is assumed to
-have a \texttt{<A NAME=}\ldots\texttt{>} tag for each bibiographic
-reference in the database comments.  For example, if
-\texttt{[Monk]}\index{\texttt{\char`\[}\ldots\texttt{]} inside comments}
-occurs in the comment for a theorem, then \texttt{<A NAME='Monk'>} must
-be present in the file; if not, a warning message is given.
-
-Single or double quotes surround the {\em {\sc html}-code} strings and
-the {\em filename} string.  Strings too long for a line may be broken up
-as descibed for the \texttt{latexdef} statement in Appendix~\ref{ASCII}.
-That Appendix also describes how to handle strings containing quote
-characters.
-
-The \texttt{\$t} comment may also contain \LaTeX\ definitions (with
-\texttt{latexdef} statements---see Appendix~\ref{ASCII}) that are
-ignored for {\sc html} output.
-
-Several other {\sc html}-related qualifiers exist for the
-\texttt{show statement} command.  The command
-\begin{quote}
-    \texttt{show statement} {\em label} \texttt{/alt{\char`\_}html}
-\end{quote}
-does the same as \texttt{show statement} {\em label} \texttt{/html},
-except that the {\sc html} code for the symbols is taken from
-\texttt{althtmldef} statements instead of \texttt{htmldef} statements in
-the \texttt{\$t} comment.
-
-\vskip 1ex
-    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
-{\sc html}-code}\texttt{" ;}\index{\texttt{althtmldef} statement}
-
-                    \ \ \ \ \ \ldots
-
-    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
-{\sc html}-code}\texttt{" ;}
-
-\vskip 1ex
-This feature is useful when
-an alternate representation of symbols is desired, for example one that
-uses Unicode entities instead of {\sc gif} images.  Associated with
-\texttt{althtmldef}
-are the statements
-\vskip 1ex
-
-    \texttt{htmldir "}{\em
-      directoryname}\texttt{" ;}\index{\texttt{htmldir} statement}
-
-    \texttt{althtmldir "}{\em
-     directoryname}\texttt{" ;}\index{\texttt{althtmldir} statement}
-
-\vskip 1ex
-\noindent giving the directories of the {\sc gif} and Unicode versions
-respectively; their purpose is to provide cross-linking between the
-two versions in the generated web pages.
-
-The command
-\begin{verbatim}
-     show statement * /brief_html
-\end{verbatim}
-invokes a special mode that just produces definition and theorem lists
-accompanied by their symbol strings, in a format suitable for copying and
-pasting into another web page (such as the tutorial pages on the
-Metamath web site).
-
-Finally, the command
-\begin{verbatim}
-     show statement * /brief_alt_html
-\end{verbatim}
-does the same as \texttt{show statement * / brief{\char`\_}html}
-for the alternate {\sc html}
-symbol representation.
-
-When two different types of pages need to be produced from a single
-database, such as the Hilbert Space Explorer that extends the Metamath
-Proof Explorer, ``extended'' variables may be declared in the
-\texttt{\$t} comment:
-\vskip 1ex
-
-    \texttt{exthtmltitle "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{exthtmltitle} statement}
-
-    \texttt{exthtmlhome "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{exthtmlhome} statement}
-
-    \texttt{exthtmlbibliography "}{\em filename}\texttt{"
-    ;}\index{\texttt{exthtmlbibliography} statement}
-
-\vskip 1ex
-\noindent When these are declared, you also must declare
-\vskip 1ex
-
-    \texttt{exthtmllabel "}{\em label}\texttt{"
-    ;}\index{\texttt{exthtmllabel} statement}
-
-\vskip 1ex \noindent that identifies the database statement where the
-``extended'' section of the database starts (in our example, where the
-Hilbert Space Explorer starts).  During the generation of web pages for
-that starting statement and the statements after it, the {\sc html} code
-assigned to \texttt{exthtmltitle} and \texttt{exthtmlhome} is used
-instead of that assigned to \texttt{htmltitle} and \texttt{htmlhome},
-respectively.
-
-If you want to become familiar with these features, you should study
-them in conjunction with the
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})}
-database example, in order
-to understand the details that aren't precisely specified above, such as
-exactly what the {\sc html} code snippets should look like.
-
-
 
 \subsection{\texttt{write theorem\_list}
 Command}\index{\texttt{write theorem{\char`\_}list} command}
