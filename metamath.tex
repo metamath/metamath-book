@@ -340,6 +340,10 @@
   address = "Princeton, New Jersey",
   note = "[QA93.K89 1981]",
   year = 1981 }
+@article{Knill, author = "Oliver Knill",
+  title = "Some Fundamental Theorems in Mathematics",
+  year = "2018",
+  url = "https://arxiv.org/abs/1807.08416" }
 @book{Landau, author = "Edmund Landau",
   title = "Foundations of Analysis",
   publisher = "Chelsea Publishing Company",
@@ -2826,12 +2830,24 @@ A concrete way to see this is
 Freek Wiedijk's ``Formalizing 100 Theorems'' list%
 \footnote{\url{http://www.cs.ru.nl/\%7Efreek/100/}.}
 which shows the progress different systems have made on a challenge list
-of 100 mathematical theorems.
+of 100 mathematical theorems.%
+\footnote{ This is not the only list of ``interesting'' theorems.
+Another interesting list was posted by Oliver Knill's list
+\cite{Knill}\index{Knill, Oliver}.}
 The top systems as of 2019 (in terms of number of challenges completed) are
 HOL Light, Isabelle, Coq, Mizar, and Metamath.
+
 The Metamath 100%
 \footnote{\url{http://us.metamath.org/mm\_100.html}}
-page shows the progress of Metamath against this challenge list.
+page (maintained by David A. Wheeler\index{Wheeler, David A.})
+shows the progress of Metamath (specifically its \texttt{set.mm} database)
+against this challenge list  maintained by Freek Wiedijk.
+The Metamath \texttt{set.mm} database
+has made a lot of progress over the years,
+in part because working to prove those challenge theorems required
+defining various terms and proving their properties as a prerequisite.
+We encourage others to work on proving theorems not yet proven in Metamath,
+since doing so improves the work as a whole.
 
 Each of these systems has different strengths and weaknesses, depending
 on what you value.
