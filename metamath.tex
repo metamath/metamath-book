@@ -3424,38 +3424,37 @@ Here, without further ado, is our example converted to the
 Metamath\index{Metamath} language:\index{metavariable}\label{demo0}
 
 \begin{verbatim}
-
-        $( Declare the constant symbols we will use $)
-            $c 0 + = -> ( ) term wff |- $.
-        $( Declare the metavariables we will use $)
-            $v t r s P Q $.
-        $( Specify properties of the metavariables $)
-            tt $f term t $.
-            tr $f term r $.
-            ts $f term s $.
-            wp $f wff P $.
-            wq $f wff Q $.
-        $( Define "term" and "wff" $)
-            tze $a term 0 $.
-            tpl $a term ( t + r ) $.
-            weq $a wff t = r $.
-            wim $a wff ( P -> Q ) $.
-        $( State the axioms $)
-            a1 $a |- ( t = r -> ( t = s -> r = s ) ) $.
-            a2 $a |- ( t + 0 ) = t $.
-        $( Define the modus ponens inference rule $)
-            ${
-               min $e |- P $.
-               maj $e |- ( P -> Q ) $.
-               mp  $a |- Q $.
-            $}
-        $( Prove a theorem $)
-            th1 $p |- t = t $=
-          $( Here is its proof: $)
-               tt tze tpl tt weq tt tt weq tt a2 tt tze tpl
-               tt weq tt tze tpl tt weq tt tt weq wim tt a2
-               tt tze tpl tt tt a1 mp mp
-             $.
+$( Declare the constant symbols we will use $)
+    $c 0 + = -> ( ) term wff |- $.
+$( Declare the metavariables we will use $)
+    $v t r s P Q $.
+$( Specify properties of the metavariables $)
+    tt $f term t $.
+    tr $f term r $.
+    ts $f term s $.
+    wp $f wff P $.
+    wq $f wff Q $.
+$( Define "term" and "wff" $)
+    tze $a term 0 $.
+    tpl $a term ( t + r ) $.
+    weq $a wff t = r $.
+    wim $a wff ( P -> Q ) $.
+$( State the axioms $)
+    a1 $a |- ( t = r -> ( t = s -> r = s ) ) $.
+    a2 $a |- ( t + 0 ) = t $.
+$( Define the modus ponens inference rule $)
+    ${
+       min $e |- P $.
+       maj $e |- ( P -> Q ) $.
+       mp  $a |- Q $.
+    $}
+$( Prove a theorem $)
+    th1 $p |- t = t $=
+  $( Here is its proof: $)
+       tt tze tpl tt weq tt tt weq tt a2 tt tze tpl
+       tt weq tt tze tpl tt weq tt tt weq wim tt a2
+       tt tze tpl tt tt a1 mp mp
+     $.
 \end{verbatim}\index{metavariable}
 
 A ``database''\index{database} is a set of one or more {\sc ascii} source
@@ -3639,9 +3638,9 @@ alternate ways of invoking the Metamath program.)
 When you first enter Metamath\index{Metamath}, it will be at the CLI, waiting
 for your input. You will see something the following on your screen:
 \begin{verbatim}
-	Metamath - Version 0.172 25-Jan-2019
-        Type HELP for help, EXIT to exit.
-        MM>
+Metamath - Version 0.172 25-Jan-2019
+Type HELP for help, EXIT to exit.
+MM>
 \end{verbatim}
 The \texttt{MM>} prompt means that Metamath is waiting for a command.
 (The help message line suggests that commands should be typed in upper
@@ -3658,7 +3657,7 @@ that the \texttt{/} in the path name is a command qualifier, e.g.,
 \texttt{read \char`\"db/set.mm\char`\"}.  Quotes are optional when there
 is no ambiguity.}
 \begin{verbatim}
-        MM> read demo0.mm
+MM> read demo0.mm
 \end{verbatim}
 Remember to press the {\em return} key after entering this command.  If
 you omit the file name, Metamath will prompt you for one.   The syntax for
@@ -3674,7 +3673,7 @@ a database you are making changes to.  To do this, use the following command
 (and do it for your \texttt{demo0.mm} file now).  Note that the \texttt{*} is a
 ``wild card'' meaning all proofs in the file.\index{\texttt{verify proof} command}
 \begin{verbatim}
-        MM> verify proof *
+MM> verify proof *
 \end{verbatim}
 Metamath will report any proofs that are incorrect.
 
@@ -3683,13 +3682,13 @@ on the screen. You can save everything that happens on the screen by opening a
 log file. You may want to do this before you read in a database so that you
 can examine any errors later on.  To open a log file, type
 \begin{verbatim}
-        MM> open log abc.log
+MM> open log abc.log
 \end{verbatim}
 This will open a file called \texttt{abc.log}, and everything that appears on the
 screen from this point on will be stored in this file.  The name of the log file
 is arbitrary. To close the log file, type
 \begin{verbatim}
-        MM> close log
+MM> close log
 \end{verbatim}
 
 Several commands let you examine what's inside of your database.
@@ -3702,13 +3701,13 @@ is a ``command qualifier''\index{command qualifier} that tells Metamath
 to include labels of hypotheses.  (To see the syntax explained, type
 \texttt{help show labels}.)  Type
 \begin{verbatim}
-        MM> show labels t* /all
+MM> show labels t* /all
 \end{verbatim}
 Metamath will respond with
 \begin{verbatim}
-        The statement number, label, and type are shown.
-        3 tt $f       4 tr $f       5 ts $f       8 tze $a
-        9 tpl $a      19 th1 $p
+The statement number, label, and type are shown.
+3 tt $f       4 tr $f       5 ts $f       8 tze $a
+9 tpl $a      19 th1 $p
 \end{verbatim}
 
 You can use the \texttt{show statement} command to get information about a
@@ -3716,22 +3715,22 @@ particular statement.\index{\texttt{show statement} command}
 For example, you can get information about the statement with label \texttt{mp}
 by typing
 \begin{verbatim}
-        MM> show statement mp /full
+MM> show statement mp /full
 \end{verbatim}
 Metamath will respond with
 \begin{verbatim}
-        Statement 17 is located on line 43 of the file
-        "demo0.mm".
-        "Define the modus ponens inference rule"
-        17 mp $a |- Q $.
-        Its mandatory hypotheses in RPN order are:
-          wp $f wff P $.
-          wq $f wff Q $.
-          min $e |- P $.
-          maj $e |- ( P -> Q ) $.
-        The statement and its hypotheses require the
-              variables:  Q P
-        The variables it contains are:  Q P
+Statement 17 is located on line 43 of the file
+"demo0.mm".
+"Define the modus ponens inference rule"
+17 mp $a |- Q $.
+Its mandatory hypotheses in RPN order are:
+  wp $f wff P $.
+  wq $f wff Q $.
+  min $e |- P $.
+  maj $e |- ( P -> Q ) $.
+The statement and its hypotheses require the
+      variables:  Q P
+The variables it contains are:  Q P
 \end{verbatim}
 The mandatory hypotheses\index{mandatory hypothesis} and their
 order\index{RPN order} are
@@ -3743,46 +3742,46 @@ ordinary formal proof\index{formal proof}, but also the ones that build up the
 formulas that appear in each ordinary formal proof step.\index{\texttt{show
 proof} command}
 \begin{verbatim}
-        MM> show proof th1 /lemmon /all
+MM> show proof th1 /lemmon /all
 \end{verbatim}
 
 This will display the proof on the screen in the following format:
 \begin{verbatim}
-         1 tt            $f term t
-         2 tze           $a term 0
-         3 1,2 tpl       $a term ( t + 0 )
-         4 tt            $f term t
-         5 3,4 weq       $a wff ( t + 0 ) = t
-         6 tt            $f term t
-         7 tt            $f term t
-         8 6,7 weq       $a wff t = t
-         9 tt            $f term t
-        10 9 a2          $a |- ( t + 0 ) = t
-        11 tt            $f term t
-        12 tze           $a term 0
-        13 11,12 tpl     $a term ( t + 0 )
-        14 tt            $f term t
-        15 13,14 weq     $a wff ( t + 0 ) = t
-        16 tt            $f term t
-        17 tze           $a term 0
-        18 16,17 tpl     $a term ( t + 0 )
-        19 tt            $f term t
-        20 18,19 weq     $a wff ( t + 0 ) = t
-        21 tt            $f term t
-        22 tt            $f term t
-        23 21,22 weq     $a wff t = t
-        24 20,23 wim     $a wff ( ( t + 0 ) = t -> t = t )
-        25 tt            $f term t
-        26 25 a2         $a |- ( t + 0 ) = t
-        27 tt            $f term t
-        28 tze           $a term 0
-        29 27,28 tpl     $a term ( t + 0 )
-        30 tt            $f term t
-        31 tt            $f term t
-        32 29,30,31 a1   $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
-                                             = t -> t = t ) )
-        33 15,24,26,32 mp  $a |- ( ( t + 0 ) = t -> t = t )
-        34 5,8,10,33 mp  $a |- t = t
+ 1 tt            $f term t
+ 2 tze           $a term 0
+ 3 1,2 tpl       $a term ( t + 0 )
+ 4 tt            $f term t
+ 5 3,4 weq       $a wff ( t + 0 ) = t
+ 6 tt            $f term t
+ 7 tt            $f term t
+ 8 6,7 weq       $a wff t = t
+ 9 tt            $f term t
+10 9 a2          $a |- ( t + 0 ) = t
+11 tt            $f term t
+12 tze           $a term 0
+13 11,12 tpl     $a term ( t + 0 )
+14 tt            $f term t
+15 13,14 weq     $a wff ( t + 0 ) = t
+16 tt            $f term t
+17 tze           $a term 0
+18 16,17 tpl     $a term ( t + 0 )
+19 tt            $f term t
+20 18,19 weq     $a wff ( t + 0 ) = t
+21 tt            $f term t
+22 tt            $f term t
+23 21,22 weq     $a wff t = t
+24 20,23 wim     $a wff ( ( t + 0 ) = t -> t = t )
+25 tt            $f term t
+26 25 a2         $a |- ( t + 0 ) = t
+27 tt            $f term t
+28 tze           $a term 0
+29 27,28 tpl     $a term ( t + 0 )
+30 tt            $f term t
+31 tt            $f term t
+32 29,30,31 a1   $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
+                                     = t -> t = t ) )
+33 15,24,26,32 mp  $a |- ( ( t + 0 ) = t -> t = t )
+34 5,8,10,33 mp  $a |- t = t
 \end{verbatim}
 
 The \texttt{/lemmon} command qualifier specifies what is known as a Lemmon-style
@@ -3809,26 +3808,26 @@ itself tell us in detail what is happening in step 5.  Note that the
 ``target hypothesis'' refers to where step 5 is eventually used, i.e., in step
 34.
 \begin{verbatim}
-        MM> show proof th1 /detailed_step 5
-        Proof step 5:  wp=weq $a wff ( t + 0 ) = t
-        This step assigns source "weq" ($a) to target "wp"
-        ($f).  The source assertion requires the hypotheses
-        "tt" ($f, step 3) and "tr" ($f, step 4).  The parent
-        assertion of the target hypothesis is "mp" ($a,
-        step 34).
-        The source assertion before substitution was:
-            weq $a wff t = r
-        The following substitutions were made to the source
-        assertion:
-            Variable  Substituted with
-             t         ( t + 0 )
-             r         t
-        The target hypothesis before substitution was:
-            wp $f wff P
-        The following substitution was made to the target
-        hypothesis:
-            Variable  Substituted with
-             P         ( t + 0 ) = t
+MM> show proof th1 /detailed_step 5
+Proof step 5:  wp=weq $a wff ( t + 0 ) = t
+This step assigns source "weq" ($a) to target "wp"
+($f).  The source assertion requires the hypotheses
+"tt" ($f, step 3) and "tr" ($f, step 4).  The parent
+assertion of the target hypothesis is "mp" ($a,
+step 34).
+The source assertion before substitution was:
+    weq $a wff t = r
+The following substitutions were made to the source
+assertion:
+    Variable  Substituted with
+     t         ( t + 0 )
+     r         t
+The target hypothesis before substitution was:
+    wp $f wff P
+The following substitution was made to the target
+hypothesis:
+    Variable  Substituted with
+     P         ( t + 0 ) = t
 \end{verbatim}
 
 The full proof just shown is useful to understand what is going on in detail.
@@ -3837,16 +3836,16 @@ the ``essential'' or logical steps of a proof, i.e.\ those steps
 that correspond to an
 ordinary formal proof\index{formal proof}.  If you type
 \begin{verbatim}
-        MM> show proof th1 /essential /lemmon /renumber
+MM> show proof th1 /essential /lemmon /renumber
 \end{verbatim}
 you will see\label{demoproof}
 \begin{verbatim}
-        1 a2             $a |- ( t + 0 ) = t
-        2 a2             $a |- ( t + 0 ) = t
-        3 a1             $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
-                                             = t -> t = t ) )
-        4 2,3 mp         $a |- ( ( t + 0 ) = t -> t = t )
-        5 1,4 mp         $a |- t = t
+1 a2             $a |- ( t + 0 ) = t
+2 a2             $a |- ( t + 0 ) = t
+3 a1             $a |- ( ( t + 0 ) = t -> ( ( t + 0 )
+                                     = t -> t = t ) )
+4 2,3 mp         $a |- ( ( t + 0 ) = t -> t = t )
+5 1,4 mp         $a |- t = t
 \end{verbatim}
 Compare this to the formal proof on p.~\pageref{zeroproof} and
 notice the resemblance.  The \texttt{/essential} qualifier in the \texttt{show
@@ -3860,7 +3859,7 @@ command}
 
 To exit Metamath, type\index{\texttt{exit} command}
 \begin{verbatim}
-        MM> exit
+MM> exit
 \end{verbatim}
 
 \subsection{Some Hints for Using the Command Line Interface}
@@ -3876,11 +3875,11 @@ the choices are.  In the case of the \texttt{read} command, only the \texttt{r} 
 needed to specify it unambiguously, so you could have typed\index{\texttt{read}
 command}
 \begin{verbatim}
-        MM> r demo0.mm
+MM> r demo0.mm
 \end{verbatim}
 instead of
 \begin{verbatim}
-        MM> read demo0.mm
+MM> read demo0.mm
 \end{verbatim}
 In our description, we always show the full command words.  When using the
 Metamath CLI commands in a command file (to be read with the \texttt{submit}
@@ -3903,10 +3902,10 @@ as you remember of the command.  If you have not typed enough characters to
 specify it unambiguously, Metamath will tell you what choices you have.
 
 \begin{verbatim}
-        MM> show s
-                 ^
-        ?Ambiguous keyword - please specify SETTINGS,
-        STATEMENT, or SOURCE.
+MM> show s
+         ^
+?Ambiguous keyword - please specify SETTINGS,
+STATEMENT, or SOURCE.
 \end{verbatim}
 
 If you don't what know argument to use as part of a command, type a
@@ -3914,10 +3913,10 @@ If you don't what know argument to use as part of a command, type a
 argument position.  Metamath will tell you what it expected there.
 
 \begin{verbatim}
-        MM> show ?
-                 ^
-        ?Expected SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
-        MEMORY, TRACE_BACK, or USAGE.
+MM> show ?
+         ^
+?Expected SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
+MEMORY, TRACE_BACK, or USAGE.
 \end{verbatim}
 
 Finally, you may type just the first word or words of a command followed
@@ -3926,14 +3925,14 @@ command, showing you the choices at each step.  For example, instead of
 typing \texttt{show statement th1 /full} you could interact in the
 following manner:
 \begin{verbatim}
-        MM> show
-        SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
-        MEMORY, TRACE_BACK, or USAGE <SETTINGS>? st
-        What is the statement label <th1>?
-        / or nothing <nothing>? /
-        TEX, COMMENT_ONLY, or FULL <TEX>? f
-        / or nothing <nothing>?
-        19 th1 $p |- t = t $= ... $.
+MM> show
+SETTINGS, LABELS, STATEMENT, SOURCE, PROOF,
+MEMORY, TRACE_BACK, or USAGE <SETTINGS>? st
+What is the statement label <th1>?
+/ or nothing <nothing>? /
+TEX, COMMENT_ONLY, or FULL <TEX>? f
+/ or nothing <nothing>?
+19 th1 $p |- t = t $= ... $.
 \end{verbatim}
 After each \texttt{?}\ in this mode, you must give Metamath the
 information it requests.  Sometimes Metamath gives you a list of choices
@@ -7822,8 +7821,8 @@ case letters, and the following 32 special characters\index{special characters}
 \label{spec1chars}
 
 \begin{verbatim}
-        ` ~ ! @ # $ % ^ & * ( ) - _ = +
-        [ ] { } ; : ' " , . < > / ? \ |
+` ~ ! @ # $ % ^ & * ( ) - _ = +
+[ ] { } ; : ' " , . < > / ? \ |
 \end{verbatim}
 plus the following non-printable characters which are
 defined as ``white space'' characters: space, tab,
@@ -8325,15 +8324,16 @@ Appendix~\ref{ASCII} describes how to do this in more detail.
 
 Label tokens are used to identify Metamath\index{Metamath} statements for
 later reference. Label tokens may contain only letters, digits, and the three
-characters period, hyphen, and underscore:\begin{verbatim}
-        . - _
+characters period, hyphen, and underscore:
+\begin{verbatim}
+. - _
 \end{verbatim}
 
 A label is {\bf declared}\index{label declaration} by placing it immediately
 before the keyword of the statement it identifies.  For example, the label
 \texttt{axiom.1} might be declared as follows:
 \begin{verbatim}
-        axiom.1 $a |- x = x $.
+axiom.1 $a |- x = x $.
 \end{verbatim}
 
 Each \texttt{\$e}\index{\texttt{\$e} statement},
@@ -8350,8 +8350,8 @@ statement.  The sequence of labels\index{label sequence} between these two
 keywords is called a {\bf proof}\index{proof}.  An example of a statement with
 a proof that we will encounter later (Section~\ref{proof}) is
 \begin{verbatim}
-        wnew $p wff ( s -> ( r -> p ) )
-             $= ws wr wp w2 w2 $.
+wnew $p wff ( s -> ( r -> p ) )
+     $= ws wr wp w2 w2 $.
 \end{verbatim}
 
 You don't have to know what this means just yet, but you should know that the
@@ -9005,52 +9005,52 @@ makes parsing of the database easier.
 For our examples, we assume our database has the following declarations:
 
 \begin{verbatim}
-        $v P Q R $.
-        $c -> ( ) |- wff $.
+$v P Q R $.
+$c -> ( ) |- wff $.
 \end{verbatim}
 
 The following sequence of statements, describing the modus ponens inference
 rule, is an example of a frame:
 
 \begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $a |- Q $.
+wp  $f wff P $.
+wq  $f wff Q $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $a |- Q $.
 \end{verbatim}
 
 The following sequence of statements is not a frame because \texttt{R} does not
 occur in the \texttt{\$e}'s or the \texttt{\$a}:
 
 \begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        wr  $f wff R $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $a |- Q $.
+wp  $f wff P $.
+wq  $f wff Q $.
+wr  $f wff R $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $a |- Q $.
 \end{verbatim}
 
 The following sequence of statements is not a frame because \texttt{Q} does not
 occur in a \texttt{\$f}:
 
 \begin{verbatim}
-        wp  $f wff P $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $a |- Q $.
+wp  $f wff P $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $a |- Q $.
 \end{verbatim}
 
 The following sequence of statements is not a frame because the \texttt{\$a} statement is
 not the last one:
 
 \begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        maj $e |- ( P -> Q ) $.
-        mp  $a |- Q $.
-        min $e |- P $.
+wp  $f wff P $.
+wq  $f wff Q $.
+maj $e |- ( P -> Q ) $.
+mp  $a |- Q $.
+min $e |- P $.
 \end{verbatim}
 
 Associated with a frame is a sequence of {\bf mandatory
@@ -9105,12 +9105,12 @@ of mandatory hypotheses in RPN order is still \texttt{wp}, \texttt{wq}, \texttt{
 whenever assertion \texttt{mp} is referenced in a subsequent proof.
 
 \begin{verbatim}
-        wp  $f wff P $.
-        wq  $f wff Q $.
-        wr  $f wff R $.
-        maj $e |- ( P -> Q ) $.
-        min $e |- P $.
-        mp  $p |- Q $= ... $.
+wp  $f wff P $.
+wq  $f wff Q $.
+wr  $f wff R $.
+maj $e |- ( P -> Q ) $.
+min $e |- P $.
+mp  $p |- Q $= ... $.
 \end{verbatim}
 
 Every frame is an extended frame, but not every extended frame is a frame, as
@@ -9613,14 +9613,14 @@ with a \texttt{\$f} statement ensures the uniqueness.
 We will illustrate this with an example.
 Consider the following Metamath source file:
 \begin{verbatim}
-        $c ( ) -> wff $.
-        $v p q r s $.
-        wp $f wff p $.
-        wq $f wff q $.
-        wr $f wff r $.
-        ws $f wff s $.
-        w2 $a wff ( p -> q ) $.
-        wnew $p wff ( s -> ( r -> p ) ) $= ws wr wp w2 w2 $.
+$c ( ) -> wff $.
+$v p q r s $.
+wp $f wff p $.
+wq $f wff q $.
+wr $f wff r $.
+ws $f wff s $.
+w2 $a wff ( p -> q ) $.
+wnew $p wff ( s -> ( r -> p ) ) $= ws wr wp w2 w2 $.
 \end{verbatim}
 This Metamath source example shows the definition and ``proof'' (i.e.,
 construction) of a well-formed formula (wff)\index{well-formed formula (wff)}
@@ -9725,11 +9725,11 @@ probably find this display more convenient as you get used to it. The tree
 display of the proof in our example looks like
 this:\label{treeproof}\index{tree-style proof}\index{proof!tree-style}
 \begin{verbatim}
-        1     wp=ws    $f wff s
-        2        wp=wr    $f wff r
-        3        wq=wp    $f wff p
-        4     wq=w2    $a wff ( r -> p )
-        5  wnew=w2  $a wff ( s -> ( r -> p ) )
+1     wp=ws    $f wff s
+2        wp=wr    $f wff r
+3        wq=wp    $f wff p
+4     wq=w2    $a wff ( r -> p )
+5  wnew=w2  $a wff ( s -> ( r -> p ) )
 \end{verbatim}
 The number to the left of each line is the step number.  Following it is a
 {\bf hypothesis association}\index{hypothesis association}, consisting of two
@@ -10750,7 +10750,7 @@ For Windows, there is a pre-compiled version called
 (which we will refer to collectively as ``Unix''), the Metamath program
 can be compiled from its source code with the command
 \begin{verbatim}
-  gcc *.c -o metamath
+gcc *.c -o metamath
 \end{verbatim}
 using the \texttt{gcc} {\sc c} compiler available on those systems.
 
@@ -10769,14 +10769,14 @@ bash shell}.  (In Mac OS X, select the Terminal application from
 Applications/Utilities.)  To invoke Metamath from the bash shell prompt,
 assuming that the Metamath program is in the current directory, type
 \begin{verbatim}
-  bash$ ./metamath
+bash$ ./metamath
 \end{verbatim}
 
 To invoke Metamath from a Windows DOS or Command Prompt, assuming that
 the Metamath program is in the current directory (or in a directory
 included in the Path system environment variable), type
 \begin{verbatim}
-  C:\metamath>metamath
+C:\metamath>metamath
 \end{verbatim}
 
 To use command-line arguments at invocation, the command-line arguments
@@ -10785,14 +10785,14 @@ contain spaces.  In Windows, the surrounding quotes must be double (not
 single) quotes.  For example, to read the database file \texttt{set.mm},
 verify all proofs, and exit the program, type (under Unix)
 \begin{verbatim}
-  bash$ ./metamath 'read set.mm' 'verify proof *' exit
+bash$ ./metamath 'read set.mm' 'verify proof *' exit
 \end{verbatim}
 Note that in Unix, any directory path with \texttt{/}'s must be
 surrounded by quotes so Metamath will not interpret the \texttt{/} as a
 command qualifier.  So if \texttt{set.mm} is in the \texttt{/tmp}
 directory, use for the above example
 \begin{verbatim}
-  bash$ ./metamath 'read "/tmp/set.mm"' 'verify proof *' exit
+bash$ ./metamath 'read "/tmp/set.mm"' 'verify proof *' exit
 \end{verbatim}
 
 For convenience, if the command-line has one argument and no spaces in
@@ -10800,11 +10800,11 @@ the argument, the command is implicitly assumed to be \texttt{read}.  In
 this one special case, \texttt{/}'s are not interpreted as command
 qualifiers, so you don't need quotes around a Unix file name.  Thus
 \begin{verbatim}
-  bash$ ./metamath /tmp/set.mm
+bash$ ./metamath /tmp/set.mm
 \end{verbatim}
 and
 \begin{verbatim}
-  bash$ ./metamath "read '/tmp/set.mm'"
+bash$ ./metamath "read '/tmp/set.mm'"
 \end{verbatim}
 are equivalent.
 
@@ -11392,7 +11392,7 @@ source file (using a text editor) containing the statement you want to
 prove.  Its proof should consist of a single \texttt{?}, meaning
 ``unknown step.''  Example:
 \begin{verbatim}
-    equid $p x = x $= ? $.
+equid $p x = x $= ? $.
 \end{verbatim}
 
 To enter the Proof assistant, type \texttt{prove} {\em label}, e.g.
@@ -11951,13 +11951,13 @@ which to send their output.  A typical complete session will use this
 sequence of Metamath commands:
 
 \begin{verbatim}
-    read set.mm
-    open tex example.tex
-    show statement a1i /tex
-    show proof a1i /lemmon/renumber/tex
-    show statement uneq2 /tex
-    show proof uneq2 /lemmon/renumber/tex
-    close tex
+read set.mm
+open tex example.tex
+show statement a1i /tex
+show proof a1i /lemmon/renumber/tex
+show statement uneq2 /tex
+show proof uneq2 /lemmon/renumber/tex
+close tex
 \end{verbatim}
 
 See Section~\ref{mathcomments} for information on comment markup and
@@ -11969,7 +11969,7 @@ program, which is standard on most Linux installations and available for
 Windows.  On Linux, in order to create a {\sc pdf} file, you will
 typically type at the shell prompt
 \begin{verbatim}
-    $ pdflatex example.tex
+$ pdflatex example.tex
 \end{verbatim}
 
 \subsection{\texttt{open tex} Command}\index{\texttt{open tex} command}
@@ -12040,7 +12040,7 @@ the \texttt{\$t} comment.
 
 The command
 \begin{verbatim}
-     show statement * /brief_html
+show statement * /brief_html
 \end{verbatim}
 invokes a special mode that just produces definition and theorem lists
 accompanied by their symbol strings, in a format suitable for copying and
@@ -12049,7 +12049,7 @@ Metamath web site).
 
 Finally, the command
 \begin{verbatim}
-     show statement * /brief_alt_html
+show statement * /brief_alt_html
 \end{verbatim}
 does the same as \texttt{show statement * / brief{\char`\_}html}
 for the alternate {\sc html}
@@ -12266,29 +12266,29 @@ You can experiment with the various commands to gain experience with the
 \texttt{tools} utility.
 
 \begin{verbatim}
-    MM> tools
-    Entering the Text Tools utilities.
-    Type HELP for help, EXIT to exit.
-    TOOLS> number
-    Output file <n.tmp>? n.txt
-    First number <1>?
-    Last number <10>? 3
-    Increment <1>?
-    TOOLS> add
-    Input/output file? n.txt
-    String to add to beginning of each line <>? This is line
-    String to add to end of each line <>? .
-    The file n.txt has 3 lines; 3 were changed.
-    First change is on line 1:
-    This is line 1.
-    TOOLS> type n.txt
-    This is line 1.
-    This is line 2.
-    This is line 3.
-    TOOLS> exit
-    Exiting the Text Tools.
-    Type EXIT again to exit Metamath.
-    MM>
+MM> tools
+Entering the Text Tools utilities.
+Type HELP for help, EXIT to exit.
+TOOLS> number
+Output file <n.tmp>? n.txt
+First number <1>?
+Last number <10>? 3
+Increment <1>?
+TOOLS> add
+Input/output file? n.txt
+String to add to beginning of each line <>? This is line
+String to add to end of each line <>? .
+The file n.txt has 3 lines; 3 were changed.
+First change is on line 1:
+This is line 1.
+TOOLS> type n.txt
+This is line 1.
+This is line 2.
+This is line 3.
+TOOLS> exit
+Exiting the Text Tools.
+Type EXIT again to exit Metamath.
+MM>
 \end{verbatim}
 
 
@@ -13945,13 +13945,13 @@ yields the following display.  It is very similar
 to the one in \cite[pp.~35--36]{Hofstadter}.\index{Hofstadter, Douglas R.}
 
 \begin{verbatim}
-        1 ax             $a |- M I
-        2 1 II           $a |- M I I
-        3 2 II           $a |- M I I I I
-        4 3 I_           $a |- M I I I I U
-        5 4 III          $a |- M U I U
-        6 5 II           $a |- M U I U U I U
-        7 6 IV           $a |- M U I I U
+1 ax             $a |- M I
+2 1 II           $a |- M I I
+3 2 II           $a |- M I I I I
+4 3 I_           $a |- M I I I I U
+5 4 III          $a |- M U I U
+6 5 II           $a |- M U I U U I U
+7 6 IV           $a |- M U I I U
 \end{verbatim}
 
 We note that Hofstadter's ``MU-puzzle,'' which asks whether
