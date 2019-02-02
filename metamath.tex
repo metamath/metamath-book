@@ -4377,8 +4377,9 @@ called sentential logic\index{sentential logic}) and predicate calculus
 theory}\index{predicate calculus} or quantifier theory).  Propositional
 calculus is a prerequisite for predicate calculus, and predicate calculus is a
 prerequisite for set theory.  The version of set theory most commonly used is
-Zermelo-Fraenkel set theory.\index{Zermelo-Fraenkel set theory}\index{set
-theory}
+Zermelo-Fraenkel set theory\index{Zermelo-Fraenkel set theory}\index{set theory}
+with the axiom of choice,
+often abbreviated as ZFC\index{ZFC}.
 
 Here in a nutshell is what the axioms are all about in an informal way. The
 connection between this description and symbols we will show you won't be
@@ -4386,17 +4387,28 @@ immediately apparent and in principle needn't ever be.  Our description just
 tries to summarize what mathematicians think about when they work with the
 axioms.
 
-Logic is more or less the translation of what we would consider common sense
+Logic is a set of rules that allow us determine truths given other truths.
+Put another way,
+logic is more or less the translation of what we would consider common sense
 into a rigorous set of axioms.\index{axioms of logic}  Suppose $\varphi$,
 $\psi$, and $\chi$ (the Greek letters phi, psi, and chi) represent statements
 that are either true or false, and $x$ is a variable\index{variable!in predicate
 calculus} ranging over some group of mathematical objects (sets, integers,
 real numbers, etc.). In mathematics, a ``statement'' really means a formula,
-and $\psi$ could be for example ``$x = 2$.'' Logic makes assertions such as
+and $\psi$ could be for example ``$x = 2$.''
+Propositional calculus\index{propositional calculus}
+allows us to use variables that are either true or false
+and make deductions such as
 ``if $\varphi$ implies $\psi$ and $\psi$ implies $\chi$, then $\varphi$
-implies $\chi$'' (propositional calculus)\index{propositional calculus} and
-``if $\varphi$ is true for all $x$, then $\varphi$ is true for some $x$''
-(predicate calculus).\index{predicate calculus}
+implies $\chi$.''
+Predicate calculus\index{predicate calculus}
+extends propositional calculus by also allowing us
+to discuss statements about objects (not just true and false values), including
+statements about ``all'' or ``at least one'' object.
+For example, predicate calculus allows to say,
+``if $\varphi$ is true for all $x$, then $\varphi$ is true for some $x$.''
+The logic used in \texttt{set.mm} is standard classical logic
+(as opposed to other logic systems like intuitionistic logic).
 
 Set theory\index{set theory} has to do with the manipulation of objects and
 collections of objects, specifically the abstract, imaginary objects that
@@ -4616,6 +4628,27 @@ result can sometimes be very long.  In the Metamath \texttt{set.mm}\index{set
 theory database (\texttt{set.mm})} database, most
 or all proofs were created manually.
 
+Section \ref{metadefprop} discusses various definitions
+that make propositional calculus easier to use.
+For example, we define:
+
+\begin{itemize}
+\item $\varphi \vee \psi$
+  is true if either $\varphi$ or $\psi$ (or both) are true
+  (this is disjunction\index{disjunction ($\vee$)}
+  aka logical {\sc or}\index{logical {\sc or} ($\vee$)}).
+
+\item $\varphi \wedge \psi$
+  is true if both $\varphi$ and $\psi$ are true
+  (this is conjunction\index{conjunction ($\wedge$)}
+  aka logical {\sc and}\index{logical {\sc and} ($\wedge$)}).
+
+\item $\varphi \leftrightarrow \psi$
+  is true if $\varphi$ and $\psi$ have the same value, that is,
+  they are both true or both false
+  (this is the biconditional\index{biconditional ($\leftrightarrow$)}).
+\end{itemize}
+
 \subsection{Predicate Calculus}
 
 Predicate calculus\index{predicate calculus} introduces the concept of
@@ -4657,10 +4690,16 @@ proving\index{automated theorem proving} has been dedicated to coming up with
 clever heuristics for proving theorems of predicate calculus, but they can
 never be guaranteed to work always.
 
+Section \ref{metadefpred} discusses various definitions
+that make predicate calculus easier to use.
+For example, we define
+$\exists x \varphi$ to mean
+``there exists at least one possible value of $x$ where $\varphi$ is true.''
+
 We now turn to looking at how predicate calculus can be formally
 represented.
 
-\subsection{Common Axioms}
+\subsubsection{Common Axioms}
 
 There is a new rule of inference in predicate calculus:  if $\varphi$ is
 an axiom or a theorem, then $\forall x \,\varphi$ is also a
@@ -4707,7 +4746,7 @@ The first equality axiom is simple, but again,
 the condition on the second one is
 somewhat awkward to implement on a computer.
 
-\subsection{Tarski System S2}
+\subsubsection{Tarski System S2}
 
 Of course, we are not the first to notice the complications of these
 predicate calculus axioms when being rigorous.
@@ -4728,7 +4767,7 @@ this is clearly experienced both in teaching an elementary course of
 mathematical logic and in formalizing the syntax of predicate logic for
 some theoretical purposes''\cite[p.~61]{Tarski1965}\index{Tarski, Alfred}.
 
-\subsection{Developing a Metamath Representation}
+\subsubsection{Developing a Metamath Representation}
 
 The standard textbook axioms of predicate calculus are somewhat
 cumbersome to implement on a computer because of the complex notions of
@@ -4758,7 +4797,7 @@ with the same variable.  The statement \texttt{\$d} $ x\, \varphi$ means
 variable $x$ must not occur in wff $\varphi$.  For the precise
 definition of \texttt{\$d}, see Section~\ref{dollard}.
 
-\subsection{Metamath representation}
+\subsubsection{Metamath representation}
 
 The Metamath axiom system for predicate calculus
 defined in set.mm uses Tarski's system S2.
@@ -4853,7 +4892,8 @@ We later add these.
 \subsection{Set Theory}
 
 Traditional Zermelo-Fraenkel set theory\index{Zermelo-Fraenkel set
-theory}\index{set theory} has 10 axioms, which can be expressed in the
+theory}\index{set theory} with the Axiom of Choice
+has 10 axioms, which can be expressed in the
 language of predicate calculus.  In this section, we will list only the
 names and brief English descriptions of these axioms, since we will give
 you the precise formulas used by the Metamath\index{Metamath} set theory
@@ -4938,8 +4978,15 @@ the Null Set}
 The Axiom of Choice is usually considered an extension of ZF set theory rather
 than a proper part of it.  It is sometimes considered philosophically
 controversial because it specifies the existence of a set without specifying
-what the set is.  ZF set theory that includes the Axiom of Choice is
-called ZFC.\index{ZFC set theory}
+what the set is. Constructive logics, including intuitionistic logic,
+do not accept the axiom of choice.
+Since there is some lingering controversy, we often prefer proofs that do
+not use the axiom of choice (where there is a known alternative), and
+in some cases we will use weaker axioms than the full axiom of choice.
+That said, the axiom of choice is a powerful and widely-accepted tool,
+so we do use it when needed.
+ZF set theory that includes the Axiom of Choice is
+called Zermelo-Fraenkel set theory with choice (ZFC\index{ZFC set theory}).
 
 When expressed symbolically, the Axiom of Separation and the Axiom of
 Replacement contain wff symbols and therefore each represent infinitely many
@@ -4951,7 +4998,37 @@ Axiom of Separation can be derived from the other axioms and are therefore
 unnecessary, although they tend to be included in standard texts for various
 reasons (historical, philosophical, and possibly because some authors may not
 know this).  In the Metamath\index{Metamath} set theory database, these
-redundant axioms are derived from the other ones.
+redundant axioms are derived from the other ones instead of truly
+being considered axioms.
+This is in keeping with our general goal of minimizing the number of
+axioms we must depend on.
+
+\subsection{Other axioms}
+
+Above we qualified the phrase "all of mathematics" with "essentially."
+The main important missing piece is the ability to do category theory,
+which requires huge sets (inaccessible cardinals) larger than those
+postulated by the ZFC axioms. The Tarski-Grothendieck Axiom postulates
+the existence of such sets.
+Note that this is the same axiom used by Mizar for supporting
+category theory.
+The Tarski-Grothendieck axiom
+can be viewed as a very strong replacement of the Axiom of Infinity,
+the Axiom of Choice, and the Axiom of Power Sets.
+The \texttt{set.mm} database includes this axiom; see the database
+for details about it.
+Again, we only use this axiom when we need to.
+You are only likely to encounter or use this axiom if you are doing
+category theory, since its use is highly specialized,
+so we will not list the Tarsky-Grothendieck axiom
+in the short list of axioms below.
+
+Can there be even more axioms?
+Of course.
+G\"{o}del showed that no finite set of axioms or axiom schemes can completely
+describe any consistent theory strong enough to include arithmetic.
+But practically speaking, the ones above are the accepted foundation that
+almost all mathematicians explicitly or implicitly base their work on.
 
 \section{The Axioms in the Metamath Language}\label{metaaxioms}
 
