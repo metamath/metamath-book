@@ -5931,7 +5931,7 @@ Enderton, p.~19.
 pair} definition.  Definition 9.1 of Quine, p.~58. For proper classes it is
 not meaningful but is well-defined for convenience.  (Note that \verb$<.$
 stands for $\langle$ whereas \verb$<$ stands for $<$, and similarly for
-\verb$>.$\,.)
+\verb$>.$\,.)\label{df-op}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-op\ \$a\ }
@@ -12163,8 +12163,9 @@ to keep all symbol definitions up to date.
 
 -
 
-This Appendix provides a sample of ``{\sc ASCII}'' representations,
-their corresponding mathematical symbols, and a discussion of their meanings
+This Appendix provides a sample of {\sc ASCII} representations,
+their corresponding traditional mathematical symbols,
+and a discussion of their meanings
 in the \texttt{set.mm} database.
 These are provided in order of appearance.
 This is only a partial list, and new definitions are routinely added.
@@ -12176,7 +12177,7 @@ representation,
 that corresponds to that {\sc ASCII} representation, ``Labels'' shows
 the key label(s) that define the representation, and
 ``Description'' provides a description about the symbol.
-As usual, ``iff'' stands for ``if and only if.''\index{iff}
+As usual, ``iff'' is short for ``if and only if.''\index{iff}
 In most cases the ``{\sc ASCII}'' column only shows
 the key token, but it will sometimes show a sequence of tokens
 if that is necessary for clarity.
@@ -12185,13 +12186,15 @@ if that is necessary for clarity.
 \begin{longtabu}   { @{} c c l X }
 \textbf{ASCII} & \textbf{Symbol} & \textbf{Labels} & \textbf{Description} \\
 \endhead
-\texttt{ph} & $\varphi $ & \texttt{wph} &
+\texttt{|-} & $\vdash$ & &
+  ``It is provable that...'' \\
+\texttt{ph} & $\varphi$ & \texttt{wph} &
   The wff (boolean) variable phi,
   conventionally the first wff variable. \\
-\texttt{ps} & $\psi $ & \texttt{wps} &
+\texttt{ps} & $\psi$ & \texttt{wps} &
   The wff (boolean) variable psi,
   conventionally the second wff variable. \\
-\texttt{ch} & $\chi $ & \texttt{wch} &
+\texttt{ch} & $\chi$ & \texttt{wch} &
   The wff (boolean) variable chi,
   conventionally the third wff variable. \\
 \texttt{-.} & $\lnot$ & \texttt{wn} &
@@ -12262,14 +12265,23 @@ if that is necessary for clarity.
 \texttt{(/)} & $ \varnothing $ &
   \hyperref[df-nul]{\texttt{df-nul}} &
   $ \varnothing $ is the empty set (aka null set). \\
+\texttt{<.\ A , B >.} & $\langle A , B \rangle$ &
+  \hyperref[df-op]{\texttt{df-op}} &
+  The ordered pair $\langle A , B \rangle$. \\
 \texttt{( F ` A )} & $ ( F ` A ) $ &
   \hyperref[df-fv]{\texttt{df-fv}} &
-  The value of function $F$ applied to $A$. \\
+  The value of function $F$ when applied to $A$. \\
+\texttt{\_i} & $ i $ &
+  \texttt{df-i} &
+  The square root of negative one. \\
+\texttt{x.} & $ \cdot $ &
+  \texttt{df-mul} &
+  Complex number multiplication; $2~\cdot~3~=~6$. \\
 \texttt{CC} & $ \mathbb{C} $ &
-  df-c &
+  \texttt{df-c} &
   The set of complex numbers. \\
 \texttt{RR} & $ \mathbb{R} $ &
-  df-r &
+  \texttt{df-r} &
   The set of real numbers. \\
 \end{longtabu}
 } % end of extrarowsep
