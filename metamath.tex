@@ -5884,7 +5884,7 @@ suggesting ``curly;'' see Appendix~\ref{ASCII}.)
 \m{\vdash}\m{{\cal P}}\m{A}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{\subseteq}\m{A}\m{\}}
 \endm
 
-\noindent\verb?  df-pw $a |- P~ A = { x | x (_ A } $.?
+\noindent\verb?  df-pw $a |- P~ A = { x | x C_ A } $.?
 \vskip 1ex
 
 \noindent Define the singleton of a class\index{singleton}.  Definition 7.1 of
@@ -5987,7 +5987,7 @@ concept.  Definition from p.~71 of Enderton, extended to classes.
 \subseteq}\m{A}\m{)}
 \endm
 
-\noindent\verb?  df-tr $a |- ( Tr A <-> U. A (_ A ) $.?
+\noindent\verb?  df-tr $a |- ( Tr A <-> U. A C_ A ) $.?
 \vskip 1ex
 
 \noindent Define a notation for a general binary relation\index{binary
@@ -6057,7 +6057,7 @@ Takeuti and Zaring.
 \m{)}\m{)}
 \endm
 
-\noindent\verb?  df-fr $a |- ( R Fr A <-> A. x ( ( x (_ A /\ -. x = (/) ) ->?
+\noindent\verb?  df-fr $a |- ( R Fr A <-> A. x ( ( x C_ A /\ -. x = (/) ) ->?
 
 \noindent\verb?      E. y ( y e. x /\ ( x i^i { z | z R y } ) = (/) ) ) ) $.?
 \vskip 1ex
@@ -6262,7 +6262,7 @@ Zaring, p.~23.
 \m{(}\m{V}\m{\times}\m{V}\m{)}\m{)}
 \endm
 
-\noindent\verb?  df-rel $a |- ( Rel A <-> A (_ ( V X. V ) ) $.?
+\noindent\verb?  df-rel $a |- ( Rel A <-> A C_ ( V X. V ) ) $.?
 \vskip 1ex
 
 \noindent Define a function\index{function}.  Definition 6.4(4) of Takeuti and
@@ -6311,7 +6311,7 @@ of Takeuti and Zaring, p.~27.
 \mbox{\rm ran}}\m{\,F}\m{\subseteq}\m{B}\m{)}\m{)}
 \endm
 
-\noindent\verb?  df-f $a |- ( F : A --> B <-> ( F Fn A /\ ran F (_ B ) ) $.?
+\noindent\verb?  df-f $a |- ( F : A --> B <-> ( F Fn A /\ ran F C_ B ) ) $.?
 \vskip 1ex
 
 \noindent Define a one-to-one function\index{one-to-one function}.  Compare
@@ -7825,8 +7825,10 @@ case letters, and the following 32 special characters\index{special characters}
         ` ~ ! @ # $ % ^ & * ( ) - _ = +
         [ ] { } ; : ' " , . < > / ? \ |
 \end{verbatim}
-plus the following non-printable (white space) characters: space, tab,
-carriage return, line feed, and form feed.  We will use \texttt{typewriter}
+plus the following non-printable characters which are
+defined as ``white space'' characters: space, tab,
+carriage return, line feed, and form feed.\label{whitespace}
+We will use \texttt{typewriter}
 font to display the printable characters.
 
 A Metamath database consists of a sequence of three kinds of {\bf
@@ -10044,15 +10046,36 @@ the extensive examples in the \texttt{set.mm} database.
 \subsection{The Typesetting Comment (\texttt{\$t})}\label{tcomment}
 
 The typesetting comment \texttt{\$t} in the input database file
-provides the information necessary to produce good-looking results
-in {\sc html} or \LaTeX.
-It provides {\sc html} and \LaTeX\ definitions for math symbols,
+provides the information necessary to produce good-looking results.
+It provides \LaTeX\ and {\sc html}
+definitions for math symbols,
 as well supporting as some
 customization of the generated web page.
+If you add a new token to a database, you should also
+update the \texttt{\$t} comment information if you want to eventually
+create output in \LaTeX\ or {\sc HTML}.
+See the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})} database
+file for an extensive example of a \texttt{\$t} comment illustrating
+many of the features described below.
+
+Programs that do not need to generate good-looking presentation results,
+such as programs that only verify Metamath databases,
+can completely ignore typesetting comments
+and just treat them as normal comments.
+Even the Metamath program only consults the
+\texttt{\$t} comment information when it needs to generate typeset output
+in \LaTeX\ or {\sc HTML}
+(e.g., when you open a \LaTeX\ output file with the \texttt{open tex} command).
+
+We will first discuss the syntax of typesetting comments, and then
+briefly discuss how this can be used within the Metamath program.
+
+\subsubsection{Typesetting Comment Syntax Overview}
 
 The typesetting comment is identified by the token
 \texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting comment} in
-the comment, and the typesetting statements run until the next
+the comment, and the typesetting comment ends at the matching
 \texttt{\$)}:
 \[
   \mbox{\tt \$(\ }
@@ -10061,39 +10084,160 @@ the comment, and the typesetting statements run until the next
     \mbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
     \cdots
     \mbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
-  }_{\mbox{{\sc html} definitions go here}}
+  }_{\mbox{Typesetting definitions go here}}
   \mbox{\tt \ \$)}
 \]
 
+There must be one or more white space characters, and only white space
+characters, between the \texttt{\$(} that starts the comment
+and the \texttt{\$t} symbol,
+and the \texttt{\$t} must be followed by one
+or more white space characters
+(see section \ref{whitespace} for the definition of white space characters).
+The typesetting comment continues until the comment end token \texttt{\$)}
+(which must be preceded by one or more white space characters).
+
 In version 0.07.30\index{Metamath!limitations of version 0.07.30} of the
 Metamath program, there may be only one \texttt{\$t} comment in a
-database.  See the
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})} database
-file for an extensive example of a \texttt{\$t} comment illustrating all
-of the features described below.  In the {\sc html} definition section,
-{\sc c}-style comments \texttt{/*}\ldots\texttt{*/} are recognized.  The
-main {\sc html} specification statements are:
+database.  This restriction may be lifted in the future to allow
+many \texttt{\$t} comments in a database.
+
+Between the \texttt{\$t} symbol (and its following white space) and the
+comment end token \texttt{\$)} (and its preceding white space)
+is a sequence of one or more typesetting definitions, where
+each definition has the form
+\textit{definition-type arg arg ... ;}.
+Each of the zero or more \textit{arg} values
+can be either a typesetting data or a keyword
+(what keywords are allowed, and where, depends on the specific
+\textit{definition-type}).
+The \textit{definition-type}, and each argument \textit{arg},
+are separated by one or more white space characters.
+Every definition ends in an unquoted semicolon;
+white space is not required before the terminating semicolon of a definition.
+Each definition should start on a new line.\footnote{This
+restriction of the current version of Metamath
+(0.07.30)\index{Metamath!limitations of version 0.07.30} may be removed
+in a future version, but you should do it anyway for readability.} 
+
+For example, this typesetting definition:
+\begin{center}
+ \verb$latexdef "C_" as "\subseteq";$
+\end{center}
+defines the token \verb$C_$ as the \LaTeX\ symbol $\subseteq$ (which means
+``subset'').
+
+Typesetting data is a sequence of one or more quoted strings
+(if there is more than one, they are connected by \texttt{\char`\+}).
+Often a single quoted string is used to provide data for a definition, using
+either double (\texttt{\char`\"}) or single (\texttt{'}) quotation marks.
+However,
+{\em a quoted string (enclosed in quotation marks) may not include
+line breaks.}
+A quoted string
+may include a quotation mark that matches the enclosing quotes by repeating
+the quotation mark twice.  Here are some examples:
+
+\begin{tabu}   { l l }
+\textbf{Example} & \textbf{Meaning} \\
+\texttt{\char`\"a\char`\"\char`\"b\char`\"} & \texttt{a\char`\"b} \\
+\texttt{'c''d'} & \texttt{c'd} \\
+\texttt{\char`\"e''f\char`\"} & \texttt{e''f} \\
+\texttt{'g\char`\"\char`\"h'} & \texttt{g\char`\"\char`\"h} \\
+\end{tabu}
+
+Finally, a long quoted string
+may be broken up into multiple quoted strings (considered, as a whole,
+a single quoted string) and joined with \texttt{\char`\+}.
+You can even use multiple lines as long as a
+'+' is at the end of every line except the last one.
+The \texttt{\char`\+} should be preceded and followed by at least one
+white space character.
+Thus, for example,
+\begin{center}
+ \texttt{\char`\"ab\char`\"\ \char`\+\ \char`\"cd\char`\"
+    \ \char`\+\ \\ 'ef'}
+\end{center}
+is the same as
+\begin{center}
+ \texttt{\char`\"abcdef\char`\"}
+\end{center}
+
+{\sc c}-style comments \texttt{/*}\ldots\texttt{*/} are also supported.
+
+In practice, whenever you add a new math token you will often want to add
+typesetting definitions using
+\texttt{latexdef}, \texttt{htmldef}, and
+\texttt{althtmldef}, as described below.
+That way, they will all be up to date.
+Of course, whether or not you want to use all three definitions will
+depend on how the database is intended to be used.
+
+Below we discuss the different possible \textit{definition-kind} options.
+We will show data surrounded by double quotes (in practice they can also use
+single quotes and/or be a sequence joined by \texttt{+}s).
+we will use specific names for the \textit{data} to make clear what
+the data is used for, such as
+{\em math-token} (for a Metamath math token,
+{\em latex-string} (for string to be placed in a \LaTeX\ stream),
+{\em {\sc html}-code} (for {\sc html} code),
+and {\em filename} (for a filename).
+
+\subsubsection{Typesetting Comment - \LaTeX}
+
+The syntax for a \LaTeX\ definition is:
+\begin{center}
+ \texttt{latexdef "}{\em math-token}\texttt{" as "}{\em latex-string}\texttt{";}
+\end{center}
+\index{latex definitions@\LaTeX\ definitions}%
+\index{\texttt{latexdef} statement}
+
+The {\em token-string} and {\em latex-string} are the data
+(character strings) for
+the token and the \LaTeX\ definition of the token, respectively,
+
+These \LaTeX\ definitions are used by the Metamath program
+when it is asked to product \LaTeX output using
+the \texttt{write tex} command.
+
+\subsubsection{Typesetting Comment - {\sc html}}
+
+The key kinds of {\sc HTML} definitions have the following syntax:
 
 \vskip 1ex
     \texttt{htmldef "}{\em math-token}\texttt{" as "}{\em
-    {\sc html}-code}\texttt{" ;}\index{\texttt{htmldef} statement}
+    {\sc html}-code}\texttt{";}\index{\texttt{htmldef} statement}
+                    \ \ \ \ \ \ldots
+
+    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
+{\sc html}-code}\texttt{";}\index{\texttt{althtmldef} statement}
 
                     \ \ \ \ \ \ldots
 
+Note that in {\sc HTML} there are two possible definitions for math tokens.
+This feature is useful when
+an alternate representation of symbols is desired, for example one that
+uses Unicode entities and another uses {\sc gif} images.
+
+There are many other typesetting definitions that can control {\sc HTML}.
+These include:
+
+\vskip 1ex
+
     \texttt{htmldef "}{\em math-token}\texttt{" as "}{\em {\sc
-    html}-code}\texttt{" ;}
+    html}-code}\texttt{";}
 
-    \texttt{htmltitle "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{htmltitle} statement}
+    \texttt{htmltitle "}{\em {\sc html}-code}\texttt{";}%
+\index{\texttt{htmltitle} statement}
 
-    \texttt{htmlhome "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{htmlhome} statement}
+    \texttt{htmlhome "}{\em {\sc html}-code}\texttt{";}%
+\index{\texttt{htmlhome} statement}
 
-    \texttt{htmlvarcolors "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{htmlvarcolors} statement}
+    \texttt{htmlvarcolors "}{\em {\sc html}-code}\texttt{";}%
+\index{\texttt{htmlvarcolors} statement}
 
-    \texttt{htmlbibliography "}{\em filename}\texttt{"
-    ;}\index{\texttt{htmlbibliography} statement}
+    \texttt{htmlbibliography "}{\em filename}\texttt{";}%
+\index{\texttt{htmlbibliography} statement}
 
 \vskip 1ex
 
@@ -10108,70 +10252,21 @@ reference in the database comments.  For example, if
 occurs in the comment for a theorem, then \texttt{<A NAME='Monk'>} must
 be present in the file; if not, a warning message is given.
 
-Single or double quotes surround the {\em {\sc html}-code} strings and
-the {\em filename} string.  Strings too long for a line may be broken up
-as descibed for the \texttt{latexdef} statement in Appendix~\ref{ASCII}.
-That Appendix also describes how to handle strings containing quote
-characters.
-
-The \texttt{\$t} comment may also contain \LaTeX\ definitions (with
-\texttt{latexdef} statements---see Appendix~\ref{ASCII}) that are
-ignored for {\sc html} output.
-
-Several other {\sc html}-related qualifiers exist for the
-\texttt{show statement} command.  The command
-\begin{quote}
-    \texttt{show statement} {\em label} \texttt{/alt{\char`\_}html}
-\end{quote}
-does the same as \texttt{show statement} {\em label} \texttt{/html},
-except that the {\sc html} code for the symbols is taken from
-\texttt{althtmldef} statements instead of \texttt{htmldef} statements in
-the \texttt{\$t} comment.
-
-\vskip 1ex
-    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
-{\sc html}-code}\texttt{" ;}\index{\texttt{althtmldef} statement}
-
-                    \ \ \ \ \ \ldots
-
-    \texttt{althtmldef "}{\em math-token}\texttt{" as "}{\em
-{\sc html}-code}\texttt{" ;}
-
-\vskip 1ex
-This feature is useful when
-an alternate representation of symbols is desired, for example one that
-uses Unicode entities instead of {\sc gif} images.  Associated with
+Associated with
 \texttt{althtmldef}
 are the statements
 \vskip 1ex
 
     \texttt{htmldir "}{\em
-      directoryname}\texttt{" ;}\index{\texttt{htmldir} statement}
+      directoryname}\texttt{";}\index{\texttt{htmldir} statement}
 
     \texttt{althtmldir "}{\em
-     directoryname}\texttt{" ;}\index{\texttt{althtmldir} statement}
+     directoryname}\texttt{";}\index{\texttt{althtmldir} statement}
 
 \vskip 1ex
 \noindent giving the directories of the {\sc gif} and Unicode versions
 respectively; their purpose is to provide cross-linking between the
 two versions in the generated web pages.
-
-The command
-\begin{verbatim}
-     show statement * /brief_html
-\end{verbatim}
-invokes a special mode that just produces definition and theorem lists
-accompanied by their symbol strings, in a format suitable for copying and
-pasting into another web page (such as the tutorial pages on the
-Metamath web site).
-
-Finally, the command
-\begin{verbatim}
-     show statement * /brief_alt_html
-\end{verbatim}
-does the same as \texttt{show statement * / brief{\char`\_}html}
-for the alternate {\sc html}
-symbol representation.
 
 When two different types of pages need to be produced from a single
 database, such as the Hilbert Space Explorer that extends the Metamath
@@ -10179,21 +10274,21 @@ Proof Explorer, ``extended'' variables may be declared in the
 \texttt{\$t} comment:
 \vskip 1ex
 
-    \texttt{exthtmltitle "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{exthtmltitle} statement}
+    \texttt{exthtmltitle "}{\em {\sc html}-code}\texttt{";}%
+\index{\texttt{exthtmltitle} statement}
 
-    \texttt{exthtmlhome "}{\em {\sc html}-code}\texttt{"
-    ;}\index{\texttt{exthtmlhome} statement}
+    \texttt{exthtmlhome "}{\em {\sc html}-code}\texttt{";}%
+\index{\texttt{exthtmlhome} statement}
 
-    \texttt{exthtmlbibliography "}{\em filename}\texttt{"
-    ;}\index{\texttt{exthtmlbibliography} statement}
+    \texttt{exthtmlbibliography "}{\em filename}\texttt{";}%
+\index{\texttt{exthtmlbibliography} statement}
 
 \vskip 1ex
 \noindent When these are declared, you also must declare
 \vskip 1ex
 
-    \texttt{exthtmllabel "}{\em label}\texttt{"
-    ;}\index{\texttt{exthtmllabel} statement}
+    \texttt{exthtmllabel "}{\em label}\texttt{";}%
+\index{\texttt{exthtmllabel} statement}
 
 \vskip 1ex \noindent that identifies the database statement where the
 ``extended'' section of the database starts (in our example, where the
@@ -10202,13 +10297,6 @@ that starting statement and the statements after it, the {\sc html} code
 assigned to \texttt{exthtmltitle} and \texttt{exthtmlhome} is used
 instead of that assigned to \texttt{htmltitle} and \texttt{htmlhome},
 respectively.
-
-If you want to become familiar with these features, you should study
-them in conjunction with the
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})}
-database example, in order
-to understand the details that aren't precisely specified above, such as
-exactly what the {\sc html} code snippets should look like.
 
 
 \subsection{Additional Information Comment (\texttt{\$j})} \label{jcomment}
@@ -11847,8 +11935,12 @@ Optional command qualifiers:
         (See Appendix~\ref{compressed}.)
 
 
-
 \section{Creating \LaTeX\ Output}\label{texout}\index{latex@{\LaTeX}}
+
+You can generate \LaTeX\ output given the
+information in a database.
+The database must already include the necessary typesetting information
+(see section \ref{tcomment} for how to provide this information).
 
 The \texttt{show statement} and \texttt{show proof} commands each have a
 special \texttt{/tex} command qualifier that produces \LaTeX\ output.
@@ -11892,8 +11984,7 @@ new{\char`\_}proof}, and \texttt{show statement} commands using the
 The mapping to \LaTeX\ symbols is defined in a special comment
 containing a \texttt{\$t} token, described in Appendix~\ref{ASCII}.
 
-
-Optional command qualifier:
+There is an optional command qualifier:
 
     \texttt{/no{\char`\_}header} - This qualifier prevents a standard
         \LaTeX\ header and trailer
@@ -11911,6 +12002,10 @@ the \LaTeX\ file.
 
 \section{Creating HTML Output}\label{htmlout}
 
+You can generate {\sc html} web pages given the
+information in a database.
+The database must already include the necessary typesetting information
+(see section \ref{tcomment} for how to provide this information).
 The ability to produce {\sc html} web pages was added in Metamath version
 0.07.30.
 
@@ -11933,6 +12028,32 @@ generate {\sc HTML} code.  These are \texttt{/alt{\char`\_}html},
 \texttt{/brief{\char`\_}html}, and
 \texttt{/brief{\char`\_}alt{\char`\_}html}, and are described in the
 next section.
+
+The command
+\begin{quote}
+    \texttt{show statement} {\em label} \texttt{/alt{\char`\_}html}
+\end{quote}
+does the same as \texttt{show statement} {\em label} \texttt{/html},
+except that the {\sc html} code for the symbols is taken from
+\texttt{althtmldef} statements instead of \texttt{htmldef} statements in
+the \texttt{\$t} comment.
+
+The command
+\begin{verbatim}
+     show statement * /brief_html
+\end{verbatim}
+invokes a special mode that just produces definition and theorem lists
+accompanied by their symbol strings, in a format suitable for copying and
+pasting into another web page (such as the tutorial pages on the
+Metamath web site).
+
+Finally, the command
+\begin{verbatim}
+     show statement * /brief_alt_html
+\end{verbatim}
+does the same as \texttt{show statement * / brief{\char`\_}html}
+for the alternate {\sc html}
+symbol representation.
 
 A statement's comment can include a special notation that provides a
 certain amount of control over the {\sc HTML} version of the comment.  See
@@ -12176,81 +12297,6 @@ You can experiment with the various commands to gain experience with the
 \chapter{Sample Representations}
 \label{ASCII}
 
-These symbols are defined in the \texttt{set.mm} database file inside of
-a special comment, which is indicated by the appearance of the
-two-character string \texttt{\$t} at the beginning of the comment
-(see Section~\ref{tcomment}, p.~\pageref{tcomment}).  This
-special comment is called a \texttt{\$t} {\em
-comment}\index{\texttt{\$t} comment} or {\em typesetting
-comment.}\index{typesetting comment}
-
-The definitions in the \texttt{\$t} comment are referenced
-by the \texttt{write tex} command to produce \LaTeX\ output.  If you add a new
-token to the set theory database (or your own database), you should also
-update the \texttt{\$t} comment if you want to create a \LaTeX\
-output file.  The \texttt{\$t} comment is not needed for normal
-operation of the Metamath program, but is referenced only when you open a
-\LaTeX\ output file with the \texttt{open tex} command.  The
-\texttt{\$t} comment consists of a series of \LaTeX\ definitions with
-the following syntax:
-\begin{center}
- \texttt{latexdef} {\em token-string} \texttt{as} {\em latex-string}
- \texttt{;}
-\end{center}
-\index{latex definitions@\LaTeX\ definitions}%
-\index{\texttt{latexdef} statement}
-The fields are separated by white space (blanks, carriage returns,
-etc.), although white space is not needed before the \texttt{;}
-terminator.  Each definition should start on a new line.\footnote{This
-restriction of the current version of Metamath
-(0.07.30)\index{Metamath!limitations of version 0.07.30} may be removed
-in a future version, but you should do it anyway for readability.} For
-example,
-\begin{center}
- \verb$latexdef "(_" as "\subseteq";$
-\end{center}
-defines the token \verb$(_$ as the \LaTeX\ symbol $\subseteq$ (which means
-``subset'').
-
-The {\em token-string} and {\em latex-string} are the character strings for
-the token and the \LaTeX\ definition of the token, respectively, enclosed in
-either double (\texttt{\char`\"}) or single (\texttt{'}) quotation
-marks.  {\em The string enclosed in quotation marks may not include
-line breaks.}  A {\em token-string} or {\em latex-string}
-may include a quotation mark that matches the enclosing quotes by repeating
-the quotation mark twice; for example the {\em token-string}\,s
-\begin{center}
- \texttt{\char`\"a\char`\"\char`\"b\char`\"}\\
- \texttt{'c''d'}\\
- \texttt{\char`\"e''f\char`\"}\\
- \texttt{'g\char`\"\char`\"h'}
-\end{center}
-specify the tokens \texttt{a\char`\"b}, \texttt{c'd}, \texttt{e''f}, and
-\texttt{g\char`\"\char`\"h} respectively.  Finally, a long {\em
-latex-string} may be broken up into multiple quote-enclosed strings
-joined by \texttt{\char`\+} in order to fit them on several lines; thus
-\begin{center}
- \texttt{\char`\"ab\char`\"\ \char`\+\ \char`\"cd\char`\"
-    \ \char`\+\ 'ef'}
-\end{center}
-is the same as
-\begin{center}
- \texttt{\char`\"abcdef\char`\"}
-\end{center}
-
-The \texttt{\$t} comment may also contain \texttt{htmldef}
-statements,\index{\texttt{htmldef} statement} \texttt{althtmldef}
-statements,\index{\texttt{althtmldef} statement} and some other types of
-statements related to the generation of {\sc html} pages for the
-Metamath web site.\index{html generation@{\sc html} generation} The
-syntax for these is not yet final, and for current information you
-should consult \texttt{help html} in the Metamath program.  Importantly,
-whenever you add a \texttt{latexdef} statement, you should also add a
-new \texttt{htmldef} statement and a new \texttt{althtmldef} statement
-to keep all symbol definitions up to date.
-
--
-
 This Appendix provides a sample of {\sc ASCII} representations,
 their corresponding traditional mathematical symbols,
 and a discussion of their meanings
@@ -12258,6 +12304,18 @@ in the \texttt{set.mm} database.
 These are provided in order of appearance.
 This is only a partial list, and new definitions are routinely added.
 A complete list is available at \url{http://metamath.org}.
+
+These {\sc ASCII} representations, along
+with information on how to display them,
+are defined in the \texttt{set.mm} database file inside of
+a special comment called a \texttt{\$t} {\em
+comment}\index{\texttt{\$t} comment} or {\em typesetting
+comment.}\index{typesetting comment}
+A typesetting comment
+is indicated by the appearance of the
+two-character string \texttt{\$t} at the beginning of the comment.
+For more information,
+see Section~\ref{tcomment}, p.~\pageref{tcomment}.
 
 In the following table the ``{\sc ASCII}'' column shows the {\sc ASCII}
 representation,
