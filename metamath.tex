@@ -5620,7 +5620,7 @@ no explicit indication of what is being substituted.
 
 \noindent Define existential uniqueness\index{existential uniqueness
 quantifier ($\exists "!$)} (``there exists exactly one'').  Note that $y$ is a
-variable distinct from $x$ and not occurring in $\varphi$.
+variable distinct from $x$ and not occurring in $\varphi$.\label{df-eu}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-eu\ \$a\ }
@@ -5667,7 +5667,7 @@ elementary set theory.
 
 \vskip 2ex
 \noindent Define the abstraction class.\index{abstraction class}\index{class
-abstraction}  $x$ and $y$
+abstraction}\label{df-clab}  $x$ and $y$
 need not be distinct.  Definition 2.1 of Quine, p.~16.  This definition may
 seem puzzling since it is shorter than the expression being defined and does not
 buy us anything in terms of brevity.  The reason we introduce this definition
@@ -5686,7 +5686,7 @@ provided by \texttt{df-clel}.
 \vskip 1ex
 
 \noindent Define the equality connective between classes\index{class
-equality}.  See Quine or Chapter 4 of Takeuti and Zaring for its
+equality}\label{df-cleq}.  See Quine or Chapter 4 of Takeuti and Zaring for its
 justification and methods for eliminating it.  This is an example of a
 somewhat ``dangerous'' definition, because it extends the use of the
 existing equality symbol rather than introducing a new symbol, allowing
@@ -5730,7 +5730,7 @@ we retain the ``dangerous'' definition.
 membership}.  Theorem 6.3 of Quine, p.~41, which we adopt as a definition.
 Note that it extends the use of the existing membership symbol, but unlike
 {\tt df-cleq} it does not extend the set of valid wffs of logic when the class
-metavariables are replaced with set variables.\label{dfclel}
+metavariables are replaced with set variables.\label{dfclel}\label{df-clel}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-clel\ \$a\ }
@@ -5799,7 +5799,7 @@ quantifier ($\exists$)!restricted}  Enderton, p.~22.
 
 \noindent Define the subclass\index{subclass}\index{subset} relationship
 between two classes (called the subset relation if the classes are sets i.e.\
-are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.
+are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.\label{df-ss}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-ss\ \$a\ }
@@ -5809,11 +5809,11 @@ are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.
 \m{x}\m{\in}\m{A}\m{\rightarrow}\m{x}\m{\in}\m{B}\m{)}\m{)}
 \endm
 
-\noindent\verb?  df-ss $a |- ( A (_ B <-> A. x ( x e. A -> x e. B ) ) $.?
+\noindent\verb?  df-ss $a |- ( A C_ B <-> A. x ( x e. A -> x e. B ) ) $.?
 \vskip 1ex
 
 \noindent Define the union\index{union} of two classes.  Definition 5.6 of Takeuti and Zaring,
-p.~16.
+p.~16.\label{df-un}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-un\ \$a\ }
@@ -5827,7 +5827,7 @@ p.~16.
 \vskip 1ex
 
 \noindent Define the intersection\index{intersection} of two classes.  Definition 5.6 of
-Takeuti and Zaring, p.~16.
+Takeuti and Zaring, p.~16.\label{df-in}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-in\ \$a\ }
@@ -5843,7 +5843,7 @@ Takeuti and Zaring, p.~16.
 \noindent Define class difference\index{class difference}\index{set difference}.
 Definition 5.12 of Takeuti and Zaring, p.~20.  Several notations are used in
 the literature; we chose the $\setminus$ convention instead of a minus sign to
-reserve the latter for later use in, e.g., arithmetic.
+reserve the latter for later use in, e.g., arithmetic.\label{df-dif}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-dif\ \$a\ }
@@ -5857,7 +5857,7 @@ reserve the latter for later use in, e.g., arithmetic.
 \vskip 1ex
 
 \noindent Define the empty or null set\index{empty set}\index{null set}.
-Compare  Definition 5.14 of Takeuti and Zaring, p.~20.
+Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-nul\ \$a\ }
@@ -6392,7 +6392,7 @@ Takeuti and Zaring, p.~27.
 definition applies to any class and evaluates to the empty set when it is not
 meaningful. Note that $ F`A$ means the same thing as the more familiar $ F(A)$
 notation for a function's value at $A$.  The $ F`A$ notation is common in
-formal set theory.
+formal set theory.\label{df-fv}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-fv\ \$a\ }
@@ -12085,17 +12085,8 @@ You can experiment with the various commands to gain experience with the
 
 
 \appendix
-\chapter{Math Symbol Tokens for Set Theory}
+\chapter{Sample Representations}
 \label{ASCII}
-
-This Appendix lists the tokens (math symbols) used for basic set theory
-development (up to complex numbers) in the \texttt{set.mm} database, in
-order of appearance.  Next to each token we show the mathematical symbol
-that corresponds to it.  The
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})} file has an
-explanation of the meaning of each symbol.  (New definitions are added
-to \texttt{set.mm} over time.  Consult the latest version at
-\url{http://metamath.org} for the most recent additions.)
 
 These symbols are defined in the \texttt{set.mm} database file inside of
 a special comment, which is indicated by the appearance of the
@@ -12458,11 +12449,24 @@ representation,
 that corresponds to that {\sc ASCII} representation, ``Labels'' shows
 the key label(s) that define the representation, and
 ``Description'' provides a description about the symbol.
+As usual, ``iff'' stands for ``if and only if.''\index{iff}
+In most cases the ``{\sc ASCII}'' column only shows
+the key token, but it will sometimes show a sequence of tokens
+if that is necessary for clarity.
 
 {\setlength{\extrarowsep}{4pt} % Keep rows from being too close together
 \begin{longtabu}   { @{} c c l X }
 \textbf{ASCII} & \textbf{Symbol} & \textbf{Labels} & \textbf{Description} \\
 \endhead
+\texttt{ph} & $\varphi $ & \texttt{wph} &
+  The wff (boolean) variable phi,
+  conventionally the first wff variable. \\
+\texttt{ps} & $\psi $ & \texttt{wps} &
+  The wff (boolean) variable psi,
+  conventionally the second wff variable. \\
+\texttt{ch} & $\chi $ & \texttt{wch} &
+  The wff (boolean) variable chi,
+  conventionally the third wff variable. \\
 \texttt{-.} & $\lnot$ & \texttt{wn} &
   Logical not. E.g., if $\varphi$ is true, then $\lnot \varphi$ is false. \\
 \texttt{->} & $\rightarrow$ & \texttt{wi} &
@@ -12474,33 +12478,72 @@ the key label(s) that define the representation, and
 \texttt{<->} & $\leftrightarrow$ &
   \hyperref[df-bi]{\texttt{df-bi}} &
   Biconditional (aka is-equals for boolean values).
-  $\varphi \leftrightarrow \psi$ is true if and only if
+  $\varphi \leftrightarrow \psi$ is true iff
   $\varphi$ and $\psi$ have the same value. \\
 \texttt{\char`\\/} & $\lor$ &
   \makecell[tl]{{\hyperref[df-or]{\texttt{df-or}}}, \\
 	         \hyperref[df-3or]{\texttt{df-3or}}} &
-  Disjunction (logical ``or''). $\varphi \lor \psi$ is true if and only if
+  Disjunction (logical ``or''). $\varphi \lor \psi$ is true iff
   $\varphi$, $\psi$, or both are true. \\
 \texttt{/\char`\\} & $\land$ &
   \makecell[tl]{{\hyperref[df-an]{\texttt{df-an}}}, \\
                  \hyperref[df-3an]{\texttt{df-3an}}} &
-  Conjunction (logical ``and''). $\varphi \land \psi$ is true if and only if
+  Conjunction (logical ``and''). $\varphi \land \psi$ is true iff
   both $\varphi$ and $\psi$ are true. \\
 \texttt{A.} & $\forall$ &
   \texttt{wal} &
-  For all. The wff $\forall x \varphi$ is true if and only if
+  For all; the wff $\forall x \varphi$ is true iff
   $\varphi$ is true for all values of $x$. \\
 \texttt{E.} & $\exists$ &
   \hyperref[df-ex]{\texttt{df-ex}} &
-  There exists;
-  $\exists x \varphi$ is true if and only if
+  There exists; the wff
+  $\exists x \varphi$ is true iff
   there is at least one $x$ where $\varphi$ is true. \\
 \texttt{[ y / x ]} & $[ y / x ]$ &
   \hyperref[df-sb]{\texttt{df-sb}} &
   The wff $[ y / x ] \varphi$ produces
   the result when $y$ is properly substituted with its replacement $x$
-  in $\varphi$.
-
+  in $\varphi$. \\
+\texttt{E!} & $\exists !$ &
+  \hyperref[df-eu]{\texttt{df-eu}} &
+  There exists exactly one;
+  $\exists ! x \varphi$ is true iff
+  there is at least one $x$ where $\varphi$ is true. \\
+\texttt{\{ y | phi \}}  & $ \{ y | \varphi \}$ &
+  \hyperref[df-clab]{\texttt{df-clab}} &
+  The class of all sets where $\varphi$ is true. \\
+\texttt{=} & $ = $ &
+  \hyperref[df-cleq]{\texttt{df-cleq}} &
+  Class equality; $A = B$ iff $A$ equals $B$. \\
+\texttt{e.} & $ \in $ &
+  \hyperref[df-clel]{\texttt{df-clel}} &
+  Class membership; $A \in B$ if $A$ is a member of $B$. \\
+\texttt{C\_} & $ \subseteq $ &
+  \hyperref[df-ss]{\texttt{df-ss}} &
+  Subclass (subset); $A \subseteq B$ is true iff 
+  $A$ is a subclass of $B$. \\
+\texttt{u.} & $ \cup $ &
+  \hyperref[df-un]{\texttt{df-un}} &
+  $A \cup B$ is the union of classes $A$ and $B$. \\
+\texttt{i^i} & $ \cap $ &
+  \hyperref[df-in]{\texttt{df-in}} &
+  $A \cap B$ is the intersection of classes $A$ and $B$. \\
+\texttt{\char`\\} & $ \setminus $ &
+  \hyperref[df-dif]{\texttt{df-dif}} &
+  $A \setminus B$ (set difference)
+  is the class of all sets in $A$ except for those in $B$. \\
+\texttt{(/)} & $ \varnothing $ &
+  \hyperref[df-nul]{\texttt{df-nul}} &
+  $ \varnothing $ is the empty set (aka null set). \\
+\texttt{( F ` A )} & $ ( F ` A ) $ &
+  \hyperref[df-fv]{\texttt{df-fv}} &
+  The value of function $F$ applied to $A$. \\
+\texttt{CC} & $ \mathbb{C} $ &
+  df-c &
+  The set of complex numbers. \\
+\texttt{RR} & $ \mathbb{R} $ &
+  df-r &
+  The set of real numbers. \\
 \end{longtabu}
 } % end of extrarowsep
 
