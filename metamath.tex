@@ -702,7 +702,26 @@
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
-\usepackage{tabularx}
+
+% Packages for flexible tables.  We need to be able to 
+% wrap text within a cell (with automatically-determined widths) AND
+% split a table automatically across multiple pages.
+% * "tabularx" wraps text in cells but only 1 page
+% * "longtable" goes across pages but by itself is incompatible with tabularx
+% * "ltxtable" combines longtable and tabularx, but table contents
+%    must be in a separate file.
+% * "ltablex" combines tabularx and longtable - must install specially
+% * "booktabs" is recommended as a way to improve the look of tables,
+%   but doesn't add these capabilities.
+% * "tabu" much more capable and seems to be recommended. So use that.
+
+\usepackage{makecell}      % Enable forced line splits within a table cell
+\usepackage{longtable}     % Enable multi-page tables
+\usepackage{tabu}          % Multi-page tables with wrapped text in a cell
+
+% You can find more Tex packages using commands like:
+% tlmgr search --file tabu.sty
+% find /usr/share/texmf-dist/ -name '*tab*'
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment the next 3 lines to suppress boxes and colors on the hyperlinks
@@ -5430,7 +5449,7 @@ itself.  The $\leftrightarrow$ symbol can be eliminated from a formula
 using theorem \texttt{bii}, which is derived later.
 
 \vskip 2ex
-\noindent Define the biconditional connective.
+\noindent Define the biconditional connective.\label{df-bi}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-bi\ \$a\ }
@@ -5470,8 +5489,9 @@ wff.
 \vskip 1ex
 
 
-\noindent Define disjunction ({\sc or}).\index{disjunction ($\vee$)}
-\index{logical {\sc or} ($\vee$)}
+\noindent Define disjunction ({\sc or}).\index{disjunction ($\vee$)}%
+\index{logical or (vee)@logical {\sc or} ($\vee$)}%
+\index{df-or@\texttt{df-or}}\label{df-or}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-or\ \$a\ }
@@ -5484,8 +5504,9 @@ wff.
 \noindent\verb?  df-or $a |- ( ( ph \/ ps ) <-> ( -. ph -> ps ) ) $.?
 \vskip 1ex
 
-\noindent Define conjunction ({\sc and}).\index{conjunction ($\wedge$)}
-\index{logical {\sc and} ($\wedge$)}
+\noindent Define conjunction ({\sc and}).\index{conjunction ($\wedge$)}%
+\index{logical {\sc and} ($\wedge$)}%
+\index{df-an@\texttt{df-an}}\label{df-an}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-an\ \$a\ }
@@ -5498,7 +5519,8 @@ wff.
 \noindent\verb?  df-an $a |- ( ( ph /\ ps ) <-> -. ( ph -> -. ps ) ) $.?
 \vskip 1ex
 
-\noindent Define disjunction ({\sc or}) of 3 wffs.
+\noindent Define disjunction ({\sc or}) of 3 wffs.%
+\index{df-3or@\texttt{df-3or}}\label{df-3or}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-3or\ \$a\ }
@@ -5514,7 +5536,8 @@ wff.
 \noindent\verb?      ) ) $.?
 \vskip 1ex
 
-\noindent Define conjunction ({\sc and}) of 3 wffs.
+\noindent Define conjunction ({\sc and}) of 3 wffs.%
+\index{df-3an}\label{df-3an}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-3an\ \$a\ }
@@ -5539,7 +5562,7 @@ mentioned.
 
 \vskip 2ex
 \noindent Define existential quantification.\index{existential quantifier
-($\exists$)}
+($\exists$)}\label{df-ex}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-ex\ \$a\ }
@@ -5553,7 +5576,8 @@ mentioned.
 \vskip 1ex
 
 \noindent Define proper substitution.\index{proper
-substitution}\index{substitution!proper}  Note that this
+substitution}\index{substitution!proper}\label{df-sb}
+Note that this
 definition is valid even when
 $x$ and $y$ are the same variable.  The first conjunct is a ``trick'' used to
 achieve this property, making the definition look somewhat peculiar at
@@ -12421,25 +12445,60 @@ to keep all symbol definitions up to date.
 
 SAMPLE OF PROPOSED CHANGE:
 
-This Appendix provides a sample of key tokens (math symbols)
-used for basic set theory development in the \texttt{set.mm} database, in
-order of appearance.
-For each token we show the displayed mathematical symbol
-that corresponds to it, the label of its (primary) definition,
-and in some cases a description about it.
+This Appendix provides a sample of ``{\sc ASCII}'' representations,
+their corresponding mathematical symbols, and a discussion of their meanings
+in the \texttt{set.mm} database.
+These are provided in order of appearance.
 This is only a partial list, and new definitions are routinely added.
 A complete list is available at \url{http://metamath.org}.
 
-% NOTE: Each row is on its own line, making for long rows, so we can
-% easily sort later if we want to sort by token.
-% NOTE: Not put in a (floating) table, because this may be >1 page.
-\noindent\begin{tabularx}{\textwidth}{@{} l l l X}
-\textbf{Token} & \textbf{Symbol} & \textbf{Label} & \textbf{Description} \\
-\texttt{-.} & $\lnot$ & \texttt{wn} & Logical not. E.g., if $\varphi$ is true, then $\lnot \varphi$ is false. \\
-\texttt{->} & $\rightarrow$ & \texttt{wi} & Implies, also known as material implication. The expression $\varphi \rightarrow \psi$ is true if either $\varphi$ is false or $\psi$ is true (or both), that is, in classical logic  $\varphi \rightarrow \psi$ has the same meaning as $\lnot \varphi \lor \psi$ (as proven in \texttt{imor}). \\
-\texttt{<->} & $\leftrightarrow$ & \texttt{df-bi} & Biconditional (aka is-equals for boolean values).  $\varphi \leftrightarrow \psi$ is true if and only if $\varphi$ and $\psi$ have the same value. \\
-\texttt{\char`\\/} & $\lor$ & \texttt{df-or} & Disjunction (logical ``or''). $\varphi \lor \psi$ is true if and only if $\varphi$, $\psi$, or both are true. \\
-\end{tabularx}
+In the following table the ``{\sc ASCII}'' column shows the {\sc ASCII}
+representation,
+``Symbol'' shows the mathematical symbolic display
+that corresponds to that {\sc ASCII} representation, ``Labels'' shows
+the key label(s) that define the representation, and
+``Description'' provides a description about the symbol.
+
+{\setlength{\extrarowsep}{4pt} % Keep rows from being too close together
+\begin{longtabu}   { @{} c c l X }
+\textbf{ASCII} & \textbf{Symbol} & \textbf{Labels} & \textbf{Description} \\
+\endhead
+\texttt{-.} & $\lnot$ & \texttt{wn} &
+  Logical not. E.g., if $\varphi$ is true, then $\lnot \varphi$ is false. \\
+\texttt{->} & $\rightarrow$ & \texttt{wi} &
+  Implies, also known as material implication.
+  In classical logic the expression $\varphi \rightarrow \psi$ is true
+  if either $\varphi$ is false or $\psi$ is true (or both), that is,
+  $\varphi \rightarrow \psi$ has the same meaning as
+  $\lnot \varphi \lor \psi$ (as proven in theorem \texttt{imor}). \\
+\texttt{<->} & $\leftrightarrow$ &
+  \hyperref[df-bi]{\texttt{df-bi}} &
+  Biconditional (aka is-equals for boolean values).
+  $\varphi \leftrightarrow \psi$ is true if and only if
+  $\varphi$ and $\psi$ have the same value. \\
+\texttt{\char`\\/} & $\lor$ &
+  \makecell[tl]{{\hyperref[df-or]{\texttt{df-or}}}, \\
+	         \hyperref[df-3or]{\texttt{df-3or}}} &
+  Disjunction (logical ``or''). $\varphi \lor \psi$ is true if and only if
+  $\varphi$, $\psi$, or both are true. \\
+\texttt{/\char`\\} & $\land$ &
+  \makecell[tl]{{\hyperref[df-an]{\texttt{df-an}}}, \\
+                 \hyperref[df-3an]{\texttt{df-3an}}} &
+  Conjunction (logical ``and''). $\varphi \land \psi$ is true if and only if
+  both $\varphi$ and $\psi$ are true. \\
+\texttt{E.} & $\exists$ &
+  \hyperref[df-ex]{\texttt{df-ex}} &
+  There exists;
+  $\exists x \varphi$ is true if and only if
+  there is at least one $x$ where $\varphi$ is true. \\
+\texttt{[ y / x ]} & $[ y / x ]$ &
+  \hyperref[df-sb]{\texttt{df-sb}} &
+  The wff $[ y / x ] \varphi$ produces
+  the result when $y$ is properly substituted with its replacement $x$
+  in $\varphi$.
+
+\end{longtabu}
+} % end of extrarowsep
 
 \chapter{Compressed Proofs}
 \label{compressed}\index{compressed proof}\index{proof!compressed}
