@@ -55,6 +55,13 @@ On Cygwin, you can install all prerequisites by installing these packages:
 On a Unix-like system you can simply run the script `./generate-pdf`
 to generate a normal PDF
 (or `./make-narrow` to generate a narrow version).
+To generate both, run the commands sequentially in this order
+(you have to run make-narrow *first*):
+
+~~~~
+./make-narrow
+./generate-pdf
+~~~~
 
 See the file `metamath.tex` for detailed instructions
 how to generate a PDF file by hand.
@@ -81,15 +88,18 @@ You can run `./make-narrow` to generate "metamath-narrow.pdf",
 a version of the PDF formatted for
 narrow-width screens such as mobile phones.
 The program erases metamath.pdf, so you'll need to regenerate metamath.pdf
-afterwards if you want it.
+afterwards if you want it also.
+The program also manipulates some files, so you need to run these
+programs sequentially (one at a time) if you are running them in the
+same directory.
 
-That work is based on
+The narrow version is based on
 an old version of this book that was generated specifically for
 narrow-width screens called the "Kindle version"
 by John D. Baker in 2011.
 The changes that implemented the Kindle version are in
 file kindle-changes.patch.  We keep the .patch file around so that
-we can borrow some of its ideas in the future.
+we might be able to borrow more of its ideas in the future.
 
 ## Contributions
 
