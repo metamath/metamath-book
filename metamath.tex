@@ -531,6 +531,10 @@
   volume = 4,
   year = 1901,
   pages = "84"}
+@article{Schmidt, author = "Eric Schmidt",
+  title = "Reductions in Norman Megill's axiom system for complex numbers",
+  url = "http://us.metamath.org/downloads/schmidt-cnaxioms.pdf",
+  year = "2012" }
 @book{Shoenfield, author = "Joseph R. Shoenfield",
   title = "Mathematical Logic",
   publisher = "Addison-Wesley Publishing Company, Inc.",
@@ -7305,14 +7309,50 @@ None these axioms is unique individually, but this carefully worked out
 collection of axioms is the result of years of work
 by the Metamath community.
 
-We once had more axioms for real and complex numbers, but over time
-we have found ways to eliminate them (by proving them from other axioms),
-and in some cases we have found ways to weaken them.
-we could eliminate 0 as an axiomatic object by defining it as
+\subsubsection{Eliminating Unnecessary Complex Number Axioms}
+
+We once had more axioms for real and complex numbers, but over years of time
+we (the Metamath community)
+have found ways to eliminate them (by proving them from other axioms)
+or weakened them (by making weaker claims without reducing what
+can be proved).
+In particular, here are statements that used to be complex number
+axioms but have since been formally proven (with Metamath) to be redundant:
+
+\begin{itemize}
+\item
+  $\mathbb{C} \in V$.
+  Proven redundant by Mario Carneiro\index{Carneiro, Mario} on 18-Feb-2014.
+\item
+  $((A \in \mathbb{C} \land B \in \mathbb{C}$) $\rightarrow$
+  $(A + B) = (B + A))$.
+  Proved redundant by Eric Schmidt\index{Schmidt, Eric} on 19-Jun-2012,
+  and formalized by Scott Fenton\index{Fenton, Scott} on 4-Jan-2013.
+\item
+  $(A \in \mathbb{C} \rightarrow (A + 0) = A)$.
+  Proved redundant by Eric Schmidt on 19-Jun-2012,
+  and formalized by Scott Fenton on 4-Jan-2013.
+\item
+  $(A \in \mathbb{C} \rightarrow \exists x \in \mathbb{C} (A + x) = 0)$.
+Proved redundant by Eric Schmidt, 21-May-2007.
+\item
+  $((A \in \mathbb{C} \land A \ne 0) \rightarrow \exists x \in \mathbb{C} (A \cdot x) = 1)$.
+  Proved redundant by Eric Schmidt on 21-May-2007.
+\item
+  $0 \in \mathbb{R}$.
+  Proved redundant by Eric Schmidt on 19-Feb-2005.
+\end{itemize}
+
+We could eliminate 0 as an axiomatic object by defining it as
 $( ( i \cdot i ) + 1 )$
 and replacing it with this expression throughout the axioms. If this
 is done, axiom ax-i2m1 becomes redundant. However, the remaining axioms
 would become longer and less intuitive.
+
+Eric Schmidt's paper analyzing this axiom system \cite{Schmidt}
+presented a proof that these remaining axioms,
+with the possible exception of ax-mulcom, are independent of the others.
+It is currently an open question if ax-mulcom is independent of the others.
 
 \section{Two Plus Two Equals Four}\label{2p2e4}
 
