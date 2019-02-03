@@ -3,6 +3,17 @@
 
 \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 
+\usepackage{fancyhdr}   % headers and footers
+\pagestyle{fancy}
+\fancyhead{}                   % clear page header
+\fancyfoot{}                  % clear page footer
+
+\setlength{\abovecaptionskip}{2pt} % space above captions
+\setlength{\belowcaptionskip}{0pt} % space below captions
+\setlength{\textfloatsep}{2pt} % space between last top float or first bottom float and the text
+\setlength{\floatsep}{2pt} % space left between floats
+\setlength{\intextsep}{2pt} % space left on top and bottom of an in-text float
+
 % Use "listings" package.  This lets us have automatic line breaking.
 % In the future we might use syntax highlighting, but that's not necessary
 % for now.
