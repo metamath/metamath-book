@@ -7,6 +7,9 @@ dist: trusty
 before_install:
 - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 script:
+# Make the narrow and normal width PDFs, fail if either fail to generate.
+# We need to make the narrow one first, because it overwrites metamath.pdf.
+- ./make-narrow
 - ./generate-pdf
 # deploy:
 #   provider: releases
