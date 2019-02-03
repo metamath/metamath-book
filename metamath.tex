@@ -13438,6 +13438,28 @@ theory is introduced.
 \subsection{Free Variables and Proper Substitution}\index{free variable}
 \index{proper substitution}\index{substitution!proper}
 
+Typical representations of mathematical axioms use concepts such
+as ``free variable,'' ``bound variable,'' and ``proper substitution''
+as primitive notions.
+A free variable is a variable that
+is not a parameter of any container expression.
+A bound variable is the opposite of a free variable; it is a
+a variable that has been bound in a container expression.
+For example, in the expression $\forall x \varphi$ (for all $x$, $\varphi$
+is true), the variable $x$
+is bound within the for-all ($\forall$) expression.
+It is possible to change one variable to another, and that process is called
+``proper substitution.''
+In most books, proper substitution has a somewhat complicated recursive
+definition with multiple cases based on the occurrences of free and
+bound variables.
+You may consult
+\cite[ch.\ 3--4]{Hamilton}\index{Hamilton, Alan G.} (as well as
+many other texts) for more formal details about these terms.
+
+Using these concepts as \texttt{primitives} creates complications
+for computer implementations.
+
 In the system of Example~2, there are no primitive notions of free variable
 and proper substitution.  Tarski \cite{Tarski1965} shows that this system is
 logically equivalent to the more typical textbook systems that do have these
