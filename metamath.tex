@@ -934,8 +934,9 @@ of inference are allowed.  Metamath is not limited to any specific field of
 mathematics.  The Metamath language is simple and robust, with an
 almost total absence of hard-wired syntax, and 
 I\footnote{Unless otherwise noted, the words
-``I,'' ``me,'' and ``my'' refer to Norman Megill, while
-``we,'' ``us,'' and ``our'' refer to Norman Megill and David A. Wheeler.}
+``I,'' ``me,'' and ``my'' refer to Norman Megill\index{Megill, Norman}, while
+``we,'' ``us,'' and ``our'' refer to Norman Megill and
+David A. Wheeler\index{Wheeler, David A.}.}
 believe that it
 provides about the simplest possible framework that allows essentially all of
 mathematics to be expressed with absolute rigor.
@@ -1316,7 +1317,8 @@ Thanks to Jerry James for correcting 16 typos.
 
 \subsubsection{Note Added January 27, 2019}\label{note2019}
 
-David A. Wheeler made a large number of improvements and updates,
+David A. Wheeler\index{Wheeler, David A.}
+made a large number of improvements and updates,
 in coordination with Norman Megill.
 The predicate calculus axioms were renumbered, and the text makes
 it clear that they are based on Tarski's system S2;
@@ -2868,8 +2870,13 @@ Key aspects that differentiate Metamath from the other top systems are:
   show every step. This also makes verification fast, because
   the system does not need to rediscover proof details.
 \item The Metamath verifier has been re-implemented in many different
-  programming languages, so verification can (and is) be done by multiple
-  implementations.  This greatly reduces the risk of accepting an invalid
+  programming languages, so verification can be done by multiple
+  implementations.  In particular, the
+  \texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+  \index{Metamath Proof Explorer} database is verified by
+  four different verifiers
+  written in four different languages by four different authors.
+  This greatly reduces the risk of accepting an invalid
   proof due to an error in the verifier.
 \item Proofs stay proven.  In some systems, changes to the system's
   syntax or how a tactic works causes proofs to fail in later versions,
