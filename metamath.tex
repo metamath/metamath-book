@@ -11022,7 +11022,9 @@ proof}\index{proof!compressed}
 
 \section{Axioms vs.\ Definitions}\label{definitions}
 
-Metamath\index{Metamath} makes no distinction\index{axiom vs.\
+The \textit{basic}
+Metamath\index{Metamath} language and program
+make no distinction\index{axiom vs.\
 definition} between axioms\index{axiom} and
 definitions.\index{definition} The \texttt{\$a}\index{\texttt{\$a}
 statement} statement is used for both.  At first, this may seem
@@ -11232,6 +11234,41 @@ correct.  However, it was felt that direct definition in \texttt{set.mm}
 maximizes rigor by minimizing metalogic.  It can be eliminated effortlessly,
 something difficult to do with a recursive definition.)
 
+% On February 11, 2019 8:32:32 PM EST, saueran@oregonstate.edu wrote:
+% The following addition to the end of set.mm is accepted by the mmj2
+% parser and definition checker and the metamath verifier(at least it was
+% when I checked, you should check it too), and creates a contradiction by
+% proving the theorem |- ph.
+% ${
+% wleftp $a wff ( ( ph ) $.
+% wbothp $a wff ( ph ) $.
+% df-leftp $a |- ( ( ( ph ) <-> -. ph ) $.
+% df-bothp $a |- ( ( ph ) <-> ph ) $.
+% anything $p |- ph $=
+%   ( wbothp wn wi wleftp df-leftp biimpi df-bothp mpbir mpbi simplim ax-mp)
+%   ABZAMACZDZCZMOEZOCQAEZNDZRNAFGSHIOFJMNKLAHJ $.
+% $}
+% 
+% This particular problem is countered by enabling, within mmj2,
+% SetParser,mmj.verify.LRParser
+
+This discussion applies to the basic Metamath language and the
+Metamath program.
+However, nothing prevents a verification system from verifying
+additional rules to impose further limitations on definitions.
+For example, the \texttt{mmj2}\index{mmj2} program
+supports various kinds of 
+additional information comments (see section \ref{jcomment}).
+One of their uses is to optionally verify additional constraints,
+including constraints to verify that definitions meet certain
+requirements.
+These additional checks are required by the continuous integration (CI)
+checks of the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}).
+This approach enables us to optionally impose additional requirements
+on definitions if we wish, without necessarily imposing those rules on
+all databases or requiring all verification systems to implement them.
 
 \chapter{The Metamath Program}\label{commands}
 
