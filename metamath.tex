@@ -378,6 +378,12 @@
   year = 1958,
   note = "[B18.P6.S933]",
   pages = "189--208" }
+@book{Levy, author = "Azriel Levy",
+  title = "Basic Set Theory",
+  publisher = "Dover Publications",
+  address = "Mineola, NY",
+  year = "2002"
+}
 @book{Margaris, author = "Angelo Margaris",
   title = "First Order Mathematical Logic",
   publisher = "Blaisdell Publishing Company",
@@ -5757,8 +5763,10 @@ variable distinct from $x$ and not occurring in $\varphi$.\label{df-eu}
 \subsection{Definitions for Set Theory}\label{setdefinitions}
 
 The symbols $x$, $y$, $z$, and $w$ represent individual variables of
-predicate calculus, which in set theory are understood to be sets.  To
-make set theory more practical, we introduce the notion of a ``class.''
+predicate calculus, which in set theory are understood to be sets.
+However, using only the constructs shown so far would be very inconvenient.
+
+To make set theory more practical, we introduce the notion of a ``class.''
 A class\index{class} is either a set variable (such as $x$) or an
 expression of the form $\{ x | \varphi\}$ (called an ``abstraction
 class''\index{abstraction class}\index{class abstraction}).  Note that
@@ -5776,7 +5784,32 @@ over classes.  A class metavariable $A$ may be eliminated from a wff by
 replacing it with $\{ x|\varphi\}$ where neither $x$ nor $\varphi$ occur in
 the wff.
 
-In this section, individual variables are always assumed to be distinct from
+The theory of classes can be shown to be an eliminable and conservative
+extension of set theory. The \textbf{eliminability}
+property shows that for every
+formula in the extended language we can build a logically equivalent
+formula in the basic language; so that even if the extended language
+provides more ease to convey and formulate mathematical ideas for set
+theory, its expressive power does not in fact strengthen the basic
+language's expressive power.
+The \textbf{conservation} property shows that for
+every proof of a formula of the basic language in the extended system
+we can build another proof of the same formula in the basic system;
+so that, concerning theorems on sets only, the deductive powers of
+the extended system and of the basic system are identical. Together,
+these properties mean that the extended language can be treated as a
+definitional extension that is \textbf{sound}.
+
+A rigorous justification, which we will not give here, can be found in
+Levy \cite[pp.~357-366]{Levy} supplementing his informal introduction to class
+theory on pp.~7-17. Two other good treatments of class theory are provided
+by Quine \cite[pp.~15-21]{Quine}\index{Quine, Willard Van Orman}
+and also \cite[pp.~10-14]{Takeuti}\index{Takeuti, Gaisi}.
+Quine's exposition (he calls them virtual classes)
+is nicely written and very readable.
+
+In the rest of this
+section, individual variables are always assumed to be distinct from
 each other unless otherwise indicated.  In addition, dummy variables on the
 right-hand side of a definition do not occur in the class and wff
 metavariables in the definition.
