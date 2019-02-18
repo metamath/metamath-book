@@ -11042,6 +11042,8 @@ to be precise then one should say that a theorem\index{theorem} is a
 consequence of the axioms {\em and} the definitions that are used in the
 formulation of the theorem \cite[p.~20]{Behnke}.\index{Behnke, H.}
 
+\subsection{What is a Definition?}
+
 What is a definition?  In its simplest form, a definition introduces a new
 symbol and provides an unambiguous rule to transform an expression containing
 the new symbol to one without it.  The concept of a ``proper
@@ -11154,6 +11156,8 @@ systems that make the transition from intuitionistic and other weak
 fragments to classical logic just by adding axioms are given in
 \cite{Robinsont}\index{Robinson, T. Thacher}.}
 
+\subsection{The Approach to Definitions in set.mm}
+
 In set theory, recursive definitions define a newly introduced symbol in
 terms of itself.  The justification of recursive definitions, using
 several ``recursion theorems,'' is usually one of the first
@@ -11173,8 +11177,10 @@ $=$, where the thing being defined does not appear on the right hand
 side.  Quine calls this form ``a genuine or direct definition'' \cite[p.
 174]{Quine}\index{Quine, Willard Van Orman}, which makes the definitions
 very easy to eliminate and the metalogic\index{metalogic} needed to
-justify them as simple as possible.  We achieved this goal in almost all
-cases.  Sometimes this makes the definitions more complex and less
+justify them as simple as possible.
+
+We achieved this goal in almost all cases in \texttt{set.mm}.
+Sometimes this makes the definitions more complex and less
 intuitive.  For example, the traditional way to define addition of
 natural numbers is to define an operation called {\em
 successor}\index{successor} (which means ``plus one'' and is denoted by
@@ -11240,6 +11246,37 @@ correct.  However, it was felt that direct definition in \texttt{set.mm}
 maximizes rigor by minimizing metalogic.  It can be eliminated effortlessly,
 something difficult to do with a recursive definition.)
 
+\subsection{Adding Constraints on Definitions}
+
+The basic Metamath language and the Metamath program do
+not have any built-in constraints on definitions, since they are just
+\$a statements.
+
+However, nothing prevents a verification system from verifying
+additional rules to impose further limitations on definitions.
+For example, the \texttt{mmj2}\index{mmj2} program
+supports various kinds of 
+additional information comments (see section \ref{jcomment}).
+One of their uses is to optionally verify additional constraints,
+including constraints to verify that definitions meet certain
+requirements.
+These additional checks are required by the continuous integration (CI)
+checks of the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}).
+This approach enables us to optionally impose additional requirements
+on definitions if we wish, without necessarily imposing those rules on
+all databases or requiring all verification systems to implement them.
+In addition, this allows us to impose specialized constraints tailored
+to one database while not requiring other systems to implement
+those specialized constraints.
+
+We impose two constraints on the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer} database
+via the \texttt{mmj2}\index{mmj2} program that are worth discussing here:
+a parse check and a definition soundness check.
+
 % On February 11, 2019 8:32:32 PM EST, saueran@oregonstate.edu wrote:
 % The following addition to the end of set.mm is accepted by the mmj2
 % parser and definition checker and the metamath verifier(at least it was
@@ -11258,23 +11295,59 @@ something difficult to do with a recursive definition.)
 % This particular problem is countered by enabling, within mmj2,
 % SetParser,mmj.verify.LRParser
 
-This discussion applies to the basic Metamath language and the
-Metamath program.
-However, nothing prevents a verification system from verifying
-additional rules to impose further limitations on definitions.
-For example, the \texttt{mmj2}\index{mmj2} program
-supports various kinds of 
-additional information comments (see section \ref{jcomment}).
-One of their uses is to optionally verify additional constraints,
-including constraints to verify that definitions meet certain
-requirements.
-These additional checks are required by the continuous integration (CI)
-checks of the
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
-\index{Metamath Proof Explorer}).
-This approach enables us to optionally impose additional requirements
-on definitions if we wish, without necessarily imposing those rules on
-all databases or requiring all verification systems to implement them.
+First,
+we enable a parse check in \texttt{mmj2} (through its
+\texttt{SetParser} command) that requires that all new definitions
+must \textit{not} create an ambiguous parse for a KLR(5) parser.
+This prevents some errors such as definitions with imbalanced parentheses.
+
+Second, we run a definition soundness check specific to
+\texttt{set.mm} or databases similar to it.
+(through the \texttt{definitionCheck} macro).
+Some \$a statements (including all ax-* statemnets)
+are excluded from these checks, as they will
+always fail this simple check,
+but they are appropriate for most definitions.
+This check imposes a set of additional rules:
+
+\begin{enumerate}
+
+\item New definitions must be introduced using $=$ or $\leftrightarrow$.
+
+\item No \$a statement introduced before this one is allowed to use the
+symbol being defined in this definition, and the definition is not
+allowed to use itself (except once, in the definiendum).
+
+\item Every variable in the definiens should not be distinct
+
+\item Every dummy variable in the definiendum
+are required to be distinct from each other and from variables in
+the definiendum.
+To determine this, the system will look for a "justification" theorem
+in the database, and if it is not there, attempt to briefly prove
+$( \varphi \rightarrow \forall x \varphi )$  for each dummy variable x.
+
+\item Every dummy variable should be a set variable,
+unless there is a justification theorem available.
+
+\item Every dummy variable must be bound
+(if the system cannot determine this a justification theorem must be
+provided).
+
+\end{enumerate}
+
+\subsection{Summary of Approach to Definitions}
+
+In short, when being rigorous it turns out that
+definitions can be subtle, sometimes requiring difficult
+metatheorems to establish that they are not creative.
+
+Instead of building such complications into the Metamath language itself,
+the basic Metmath language and program simply treat traditional
+axioms and definitions as the same kind of \$a statement.
+We have then built various tools to enable people to
+verify additional conditions as their creators believe is appropriate
+for those specific databases, without complicating the Metamath foundations.
 
 \chapter{The Metamath Program}\label{commands}
 
