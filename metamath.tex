@@ -721,6 +721,8 @@
 \documentclass[leqno]{book} % LaTeX 2e. 10pt. Use [leqno,12pt] for 12pt
 % hyperref 2002/05/27 v6.72r  (couldn't get pagebackref to work)
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
+
+\usepackage{needspace}     % Enable control over page breaks
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
 
@@ -5106,6 +5108,7 @@ typeset them.
   \box\mlinebox
 }
 
+\needspace{4\baselineskip}
 \subsection{Propositional Calculus}\label{propcalc}\index{axioms of
 propositional calculus}
 
@@ -5138,6 +5141,7 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
+\needspace{5\baselineskip}
 \noindent Rule of Modus Ponens.\label{axmp}\index{modus ponens}
 
 \setbox\startprefix=\hbox{\tt \ \ maj\ \$e\ }
@@ -5159,6 +5163,7 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
+\needspace{7\baselineskip}
 \subsection{Axioms of Predicate Calculus with equality - Tarski's S2}\index{axioms of predicate calculus}
 
 \noindent Rule of Generalization.\index{rule of generalization}
@@ -5175,6 +5180,7 @@ Axiom of Simplification.\label{ax1}
 \m{\vdash}\m{\forall}\m{x}\m{\varphi}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Quantified Implication.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-4\ \$a\ }
@@ -5185,6 +5191,7 @@ Axiom of Simplification.\label{ax1}
 \forall}\m{x}\m{\psi}\m{)}\m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Distinctness.
 
 % Aka: Add $d x ph $.
