@@ -5120,6 +5120,28 @@ typeset them.
   \box\mlinebox
 }
 
+% Macro to output metamath raw text.
+% This assumes \startprefix and \contprefix are set.  See:
+% https://stackoverflow.com/questions/4073674/
+% how-to-disable-indentation-in-particular-section-in-latex/4075706
+\newlength\mystoreparindent
+\newlength\mystorehangindent
+\newenvironment{mmraw}{%
+\setlength{\mystoreparindent}{\the\parindent}
+\setlength{\mystorehangindent}{\the\hangindent}
+\setlength{\parindent}{0pt} % TODO - we'll put in the \startprefix instead
+\setlength{\hangindent}{\wd\the\contprefix}
+\begin{flushleft}
+\begin{tt}
+{\unhcopy\startprefix}%
+}{%
+\end{tt}
+\end{flushleft}
+\setlength{\parindent}{\mystoreparindent}
+\setlength{\hangindent}{\mystorehangindent}
+\vskip 1ex
+}
+
 \subsection{Propositional Calculus}\label{propcalc}\index{axioms of
 propositional calculus}
 
@@ -5603,13 +5625,11 @@ using theorem \texttt{bii}, which is derived later.
 \psi}\m{)}\m{\rightarrow}\m{\lnot}\m{(}\m{\psi}\m{\rightarrow}\m{\varphi}\m{)}%
 \m{)}\m{\rightarrow}\m{(}\m{\varphi}\m{\leftrightarrow}\m{\psi}\m{)}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-bi $a |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) ->?
-
-\noindent\verb?      -. ( ps -> ph ) ) ) -> -. ( -. ( ( ph -> ps ) -> -. (?
-
-\noindent\verb?      ps -> ph ) ) -> ( ph <-> ps ) ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) ->
+-. ( ps -> ph ) ) ) -> -. ( -. ( ( ph -> ps ) -> -. (
+ps -> ph ) ) -> ( ph <-> ps ) ) ) \$.
+\end{mmraw}
 
 \noindent This theorem relates the biconditional connective to primitive
 connectives and can be used to eliminate the $\leftrightarrow$ symbol from any
