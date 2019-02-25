@@ -7645,8 +7645,9 @@ proving the theorem directly instead of first proving the deduction form.
 
 We have developed
 a more efficient method for proving a theorem from a deduction
-that can be used in many (but not all) cases.
-We call it the
+that can be used instead of the Standard Deduction Theorem
+in many (but not all) cases.
+We call this more efficient method the
 Weak Deduction Theorem\index{Weak Deduction Theorem}.\footnote{
 There is also an unrelated ``Weak Deduction Theorem''
 in the field of relevance logic, so to avoid confusion we could call
@@ -7655,7 +7656,47 @@ Unlike the Standard Deduction Theorem, the Weak Deduction Theorem produces the
 theorem directly from a special substitution instance of the deduction,
 using a small, fixed number of steps roughly proportional to the length
 of the final theorem.
-You can see its details in theorem \texttt{dedth}.
+
+If you come to a proof referencing the Weak Deduction Theorem
+\texttt{dedth} (or one of its variants \texttt{dedthxx}),
+here is how to follow the proof without getting into the details:
+just click on the theorem referenced in the step
+just before the reference to \texttt{dedth} and ignore everything else.
+Theorem \texttt{dedth} simply turns a hypothesis into an antecedent
+(i.e. the hypothesis followed by $\rightarrow$
+is placed in front of the assertion, and the hypothesis
+itself is eliminated) given certain conditions.
+
+For example, look at the proof of \texttt{renegcl}, which proves that
+$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $.
+In \texttt{renegcl} step 5,
+there is a reference to the deduction \texttt{renegcli}, which proves that
+$ \vdash A \in \mathbb{R} \Rightarrow\, \vdash - A \in \mathbb{R}$.
+A special substitution instance of \texttt{renegcli} is used
+to feed the last hypothesis of the deduction theorem \texttt{dedth}, which in
+turn converts the deduction into the theorem
+$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $
+in \texttt{renegcl} step 6.
+The somewhat strange-looking steps in \texttt{renegcl} before step 5 are just
+some technical stuff that makes this magic work, and they can be ignored
+for a quick overview of the proof. To continue following the "important"
+part of the proof of \texttt{renegcl},
+click on the reference to \texttt{renegcli} at step 5.
+We now turn to a brief discussion of the Weak Deduction Theorem itself.
+
+The Weak Deduction Theorem
+eliminates a hypothesis $\varphi$, making it become an antecedent.
+It does this by proving an expression
+$ \varphi \rightarrow \psi $ given two hypotheses:
+(1)
+$ ( A = if ( \varphi , A , B ) \rightarrow ( \varphi \leftrightarrow \chi ) ) $
+and
+(2) $\chi$.
+This requires that a proof exists for $\varphi$ when the class variable
+$A$ is replaced with a specific class $B$. The hypothesis $\chi$
+should be assigned to the inference.
+You can see the proof details in theorem \texttt{dedth}; you should also
+study proofs like \texttt{renegcl} that make use of it.
 
 The weak deduction theorem has limitations.
 Specifically, we must be able to prove a special case of the deduction's
