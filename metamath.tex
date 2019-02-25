@@ -2876,8 +2876,9 @@ of 100 mathematical theorems.%
 \footnote{ This is not the only list of ``interesting'' theorems.
 Another interesting list was posted by Oliver Knill's list
 \cite{Knill}\index{Knill, Oliver}.}
-The top systems as of 2019 (in terms of number of challenges completed) are
-HOL Light, Isabelle, Coq, Mizar, and Metamath.
+The top systems as of February 2019
+(in order of the number of challenges completed) are
+HOL Light, Isabelle, Metamath, Coq, and Mizar.
 
 The Metamath 100%
 \footnote{\url{http://us.metamath.org/mm\_100.html}}
@@ -2888,7 +2889,30 @@ The Metamath \texttt{set.mm} database
 has made a lot of progress over the years,
 in part because working to prove those challenge theorems required
 defining various terms and proving their properties as a prerequisite.
-We thank all of those who developed at least one of the Metamath 100
+Here are just a few of the many statements that have been
+formally proven with Metamath:
+
+% The entries of this cause the narrow display to break poorly,
+% since the short amount of text means LaTeX doesn't get a lot to work with
+% and the itemize format gives it even *less* margin than usual.
+% No one will mind if we make just this list flushleft, since this list
+% will be internally consistent.
+\begin{flushleft}
+\begin{itemize}
+\item 1. The Irrationality of the Square Root of 2
+  (\texttt{sqr2irr}, by Norman Megill, 2001-08-20)
+\item 2. The Fundamental Theorem of Algebra
+  (\texttt{fta}, by Mario Carneiro, 2014-09-15)
+\item 22. The Non-Denumerability of the Continuum
+  (\texttt{ruc}, by Norman Megill, 2004-08-13)
+\item 54. The Konigsberg Bridge Problem
+  (\texttt{konigsberg}, by Mario Carneiro, 2015-04-16)
+\item 83. The Friendship Theorem
+  (\texttt{friendship}, by Alexander van der Vekens, 2018-10-09)
+\end{itemize}
+\end{flushleft}
+
+We thank all of those who have developed at least one of the Metamath 100
 proofs, and we particularly thank
 Mario Carneiro\index{Carneiro, Mario}
 who has contributed the most Metamath 100 proofs as of 2019.
@@ -2897,8 +2921,8 @@ proof, and links to graphs and charts showing progress over time.
 We encourage others to work on proving theorems not yet proven in Metamath,
 since doing so improves the work as a whole.
 
-Each of these systems has different strengths and weaknesses, depending
-on what you value.
+Each of the math formalization systems (including Metamath)
+has different strengths and weaknesses, depending on what you value.
 Key aspects that differentiate Metamath from the other top systems are:
 
 \begin{itemize}
