@@ -5120,10 +5120,21 @@ typeset them.
   \box\mlinebox
 }
 
+% \SLASH for \ , \TOR for \/ (text OR), \TAND for /\ (text and)
+% This embeds a following forced space to force the space.
+\newcommand\SLASH{\char`\\~}
+\newcommand\TOR{\char`\\/~}
+\newcommand\TAND{/\char`\\~}
+%
 % Macro to output metamath raw text.
-% This assumes \startprefix and \contprefix are set.  See:
+% This assumes \startprefix and \contprefix are set.
+% NOTE: "\" is tricky to escape, use \SLASH, \TOR, and \TAND inside.
+% Any use of "$ { ~ ^" must be escaped; ~ and ^ must be escaped specially.
+% We escape { and } for consistency.
+% For more about how this macro written, see:
 % https://stackoverflow.com/questions/4073674/
 % how-to-disable-indentation-in-particular-section-in-latex/4075706
+% Use frenchspacing, or "e." will get an extra space after it.
 \newlength\mystoreparindent
 \newlength\mystorehangindent
 \newenvironment{mmraw}{%
@@ -5132,10 +5143,12 @@ typeset them.
 \setlength{\parindent}{0pt} % TODO - we'll put in the \startprefix instead
 \setlength{\hangindent}{\wd\the\contprefix}
 \begin{flushleft}
+\begin{frenchspacing}
 \begin{tt}
 {\unhcopy\startprefix}%
 }{%
 \end{tt}
+\end{frenchspacing}
 \end{flushleft}
 \setlength{\parindent}{\mystoreparindent}
 \setlength{\hangindent}{\mystorehangindent}
@@ -5643,12 +5656,9 @@ wff.
 \m{\lnot}\m{(}\m{(}\m{\varphi}\m{\rightarrow}\m{\psi}\m{)}\m{\rightarrow}\m{\lnot}
 \m{(}\m{\psi}\m{\rightarrow}\m{\varphi}\m{)}\m{)}\m{)}
 \endm
-
-\noindent\verb?  bii $p |- ( ( ph <-> ps ) <-> -. ( ( ph -> ps ) -> -. ( ps?
-
-\noindent\verb?      -> ph ) ) ) $= ... $.?
-\vskip 1ex
-
+\begin{mmraw}%
+|- ( ( ph <-> ps ) <-> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) ) \$= ... \$.
+\end{mmraw}
 
 \noindent Define disjunction ({\sc or}).\index{disjunction ($\vee$)}%
 \index{logical or (vee)@logical {\sc or} ($\vee$)}%
@@ -5661,9 +5671,9 @@ wff.
 \m{\vdash}\m{(}\m{(}\m{\varphi}\m{\vee}\m{\psi}\m{)}\m{\leftrightarrow}\m{(}\m{
 \lnot}\m{\varphi}\m{\rightarrow}\m{\psi}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-or $a |- ( ( ph \/ ps ) <-> ( -. ph -> ps ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( ( ph \TOR ps ) <-> ( -. ph -> ps ) ) \$.
+\end{mmraw}
 
 \noindent Define conjunction ({\sc and}).\index{conjunction ($\wedge$)}%
 \index{logical {\sc and} ($\wedge$)}%
@@ -5676,9 +5686,9 @@ wff.
 \m{\vdash}\m{(}\m{(}\m{\varphi}\m{\wedge}\m{\psi}\m{)}\m{\leftrightarrow}\m{\lnot}
 \m{(}\m{\varphi}\m{\rightarrow}\m{\lnot}\m{\psi}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-an $a |- ( ( ph /\ ps ) <-> -. ( ph -> -. ps ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( ( ph \TAND ps ) <-> -. ( ph -> -. ps ) ) \$.
+\end{mmraw}
 
 \noindent Define disjunction ({\sc or}) of 3 wffs.%
 \index{df-3or@\texttt{df-3or}}\label{df-3or}
@@ -5691,11 +5701,9 @@ wff.
 \leftrightarrow}\m{(}\m{(}\m{\varphi}\m{\vee}\m{\psi}\m{)}\m{\vee}\m{\chi}\m{)}
 \m{)}
 \endm
-
-\noindent\verb?  df-3or $a |- ( ( ph \/ ps \/ ch ) <-> ( ( ph \/ ps ) \/ ch?
-
-\noindent\verb?      ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( ( ph \TOR ps \TOR ch ) <-> ( ( ph \TOR ps ) \TOR ch ) ) \$.
+\end{mmraw}
 
 \noindent Define conjunction ({\sc and}) of 3 wffs.%
 \index{df-3an}\label{df-3an}
@@ -5709,10 +5717,9 @@ wff.
 \m{)}\m{)}
 \endm
 
-\noindent\verb?  df-3an $a |- ( ( ph /\ ps /\ ch ) <-> ( ( ph /\ ps ) /\ ch?
-
-\noindent\verb?      ) ) $.?
-%\vskip 1ex
+\begin{mmraw}%
+|- ( ( ph \TAND ps \TAND ch ) <-> ( ( ph \TAND ps ) \TAND ch ) ) \$.
+\end{mmraw}
 
 \subsection{Definitions for Predicate Calculus}\label{metadefpred}
 
@@ -5732,9 +5739,9 @@ mentioned.
 \m{\vdash}\m{(}\m{\exists}\m{x}\m{\varphi}\m{\leftrightarrow}\m{\lnot}\m{\forall}
 \m{x}\m{\lnot}\m{\varphi}\m{)}
 \endm
-
-\noindent\verb?  df-ex $a |- ( E. x ph <-> -. A. x -. ph ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( E. x ph <-> -. A. x -. ph ) \$.
+\end{mmraw}
 
 \noindent Define proper substitution.\index{proper
 substitution}\index{substitution!proper}\label{df-sb}
@@ -5772,11 +5779,9 @@ no explicit indication of what is being substituted.
 \m{(}\m{x}\m{=}\m{y}\m{\rightarrow}\m{\varphi}\m{)}\m{\wedge}\m{\exists}\m{x}%
 \m{(}\m{x}\m{=}\m{y}\m{\wedge}\m{\varphi}\m{)}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-sb $a |- ( [ y / x ] ph <-> ( ( x = y -> ph ) /\ E. x (?
-
-\noindent\verb?      x = y /\ ph ) ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( [ y / x ] ph <-> ( ( x = y -> ph ) \TAND E. x ( x = y \TAND ph ) ) ) \$.
+\end{mmraw}
 
 
 \noindent Define existential uniqueness\index{existential uniqueness
@@ -5791,8 +5796,9 @@ variable distinct from $x$ and not occurring in $\varphi$.\label{df-eu}
 \m{y}\m{\forall}\m{x}\m{(}\m{\varphi}\m{\leftrightarrow}\m{x}\m{=}\m{y}\m{)}\m{)}
 \endm
 
-\noindent\verb?  df-eu $a |- ( E! x ph <-> E. y A. x ( ph <-> x = y ) ) $.?
-%\vskip 1ex
+\begin{mmraw}%
+|- ( E! x ph <-> E. y A. x ( ph <-> x = y ) ) \$.
+\end{mmraw}
 
 \subsection{Definitions for Set Theory}\label{setdefinitions}
 
@@ -5842,9 +5848,9 @@ provided by \texttt{df-clel}.
 \m{\vdash}\m{(}\m{x}\m{\in}\m{\{}\m{y}\m{|}\m{\varphi}\m{\}}\m{%
 \leftrightarrow}\m{[}\m{x}\m{/}\m{y}\m{]}\m{\varphi}\m{)}
 \endm
-
-\noindent\verb?  df-clab $a |- ( x e. { y | ph } <-> [ x / y ] ph ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( x e. \{ y | ph \} <-> [ x / y ] ph ) \$.
+\end{mmraw}
 
 \noindent Define the equality connective between classes\index{class
 equality}\label{df-cleq}.  See Quine or Chapter 4 of Takeuti and Zaring for its
@@ -5880,12 +5886,17 @@ we retain the ``dangerous'' definition.
 \m{\vdash}\m{(}\m{A}\m{=}\m{B}\m{\leftrightarrow}\m{\forall}\m{x}\m{(}\m{x}\m{
 \in}\m{A}\m{\leftrightarrow}\m{x}\m{\in}\m{B}\m{)}\m{)}
 \endm
-
-\vskip 1ex
-\noindent\verb?  df-cleq.1 $e |- ( A. x ( x e. y <-> x e. z ) -> y = z ) $.?
-
-\noindent\verb?  df-cleq $a |- ( A = B <-> A. x ( x e. A <-> x e. B ) ) $.?
-\vskip 1ex
+% We need to reset the startprefix and contprefix.
+\setbox\startprefix=\hbox{\tt \ \ df-cleq.1\ \$e\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\begin{mmraw}%
+|- ( A. x ( x e. y <-> x e. z ) -> y = z ) \$.
+\end{mmraw}
+\setbox\startprefix=\hbox{\tt \ \ df-cleq\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\begin{mmraw}%
+|- ( A = B <-> A. x ( x e. A <-> x e. B ) ) \$.
+\end{mmraw}
 
 \noindent Define the membership connective between classes\index{class
 membership}.  Theorem 6.3 of Quine, p.~41, which we adopt as a definition.
@@ -5900,9 +5911,9 @@ metavariables are replaced with set variables.\label{dfclel}\label{df-clel}
 \m{\vdash}\m{(}\m{A}\m{\in}\m{B}\m{\leftrightarrow}\m{\exists}\m{x}\m{(}\m{x}
 \m{=}\m{A}\m{\wedge}\m{x}\m{\in}\m{B}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-clel $a |- ( A e. B <-> E. x ( x = A /\ x e. B ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A e. B <-> E. x ( x = A \TAND x e. B ) ) \$.?
+\end{mmraw}
 
 \noindent Define inequality.
 
@@ -5913,9 +5924,9 @@ metavariables are replaced with set variables.\label{dfclel}\label{df-clel}
 \m{\vdash}\m{(}\m{A}\m{\ne}\m{B}\m{\leftrightarrow}\m{\lnot}\m{A}\m{=}\m{B}%
 \m{)}
 \endm
-
-\noindent\verb?  df-ne $a |- ( A =/= B <-> -. A = B ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A =/= B <-> -. A = B ) \$.
+\end{mmraw}
 
 \noindent Define restricted universal quantification.\index{universal
 quantifier ($\forall$)!restricted}  Enderton, p.~22.
@@ -5927,9 +5938,9 @@ quantifier ($\forall$)!restricted}  Enderton, p.~22.
 \m{\vdash}\m{(}\m{\forall}\m{x}\m{\in}\m{A}\m{\varphi}\m{\leftrightarrow}\m{%
 \forall}\m{x}\m{(}\m{x}\m{\in}\m{A}\m{\rightarrow}\m{\varphi}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-ral $a |- ( A. x e. A ph <-> A. x ( x e. A -> ph ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A. x e. A ph <-> A. x ( x e. A -> ph ) ) \$.
+\end{mmraw}
 
 \noindent Define restricted existential quantification.\index{existential
 quantifier ($\exists$)!restricted}  Enderton, p.~22.
@@ -5941,9 +5952,9 @@ quantifier ($\exists$)!restricted}  Enderton, p.~22.
 \m{\vdash}\m{(}\m{\exists}\m{x}\m{\in}\m{A}\m{\varphi}\m{\leftrightarrow}\m{%
 \exists}\m{x}\m{(}\m{x}\m{\in}\m{A}\m{\wedge}\m{\varphi}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-rex $a |- ( E. x e. A ph <-> E. x ( x e. A /\ ph ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( E. x e. A ph <-> E. x ( x e. A \TAND ph ) ) \$.
+\end{mmraw}
 
 \noindent Define the universal class\index{universal class ($V$)}.  Definition
 5.20, p.~21, of Takeuti and Zaring.
@@ -5954,9 +5965,9 @@ quantifier ($\exists$)!restricted}  Enderton, p.~22.
 \startm
 \m{\vdash}\m{V}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{=}\m{x}\m{\}}
 \endm
-
-\noindent\verb?  df-v $a |- V = { x | x = x } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- V = \{ x | x = x \} \$.
+\end{mmraw}
 
 \noindent Define the subclass\index{subclass}\index{subset} relationship
 between two classes (called the subset relation if the classes are sets i.e.\
@@ -5969,9 +5980,9 @@ are not proper).  Definition 5.9 of Takeuti and Zaring, p.~17.\label{df-ss}
 \m{\vdash}\m{(}\m{A}\m{\subseteq}\m{B}\m{\leftrightarrow}\m{\forall}\m{x}\m{(}
 \m{x}\m{\in}\m{A}\m{\rightarrow}\m{x}\m{\in}\m{B}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-ss $a |- ( A C_ B <-> A. x ( x e. A -> x e. B ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A C\_ B <-> A. x ( x e. A -> x e. B ) ) \$.
+\end{mmraw}
 
 \noindent Define the union\index{union} of two classes.  Definition 5.6 of Takeuti and Zaring,
 p.~16.\label{df-un}
@@ -5983,9 +5994,9 @@ p.~16.\label{df-un}
 \m{\vdash}\m{(}\m{A}\m{\cup}\m{B}\m{)}\m{=}\m{\{}\m{x}\m{|}\m{(}\m{x}\m{\in}
 \m{A}\m{\vee}\m{x}\m{\in}\m{B}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-un $a |- ( A u. B ) = { x | ( x e. A \/ x e. B ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+( A u. B ) = \{ x | ( x e. A \TOR x e. B ) \} \$.
+\end{mmraw}
 
 \noindent Define the intersection\index{intersection} of two classes.  Definition 5.6 of
 Takeuti and Zaring, p.~16.\label{df-in}
@@ -5997,9 +6008,10 @@ Takeuti and Zaring, p.~16.\label{df-in}
 \m{\vdash}\m{(}\m{A}\m{\cap}\m{B}\m{)}\m{=}\m{\{}\m{x}\m{|}\m{(}\m{x}\m{\in}
 \m{A}\m{\wedge}\m{x}\m{\in}\m{B}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-in $a |- ( A i^i B ) = { x | ( x e. A /\ x e. B ) } $.?
-\vskip 1ex
+% Caret ^ requires special treatment
+\begin{mmraw}%
+|- ( A i\^{}i B ) = \{ x | ( x e. A \TAND x e. B ) \} \$.
+\end{mmraw}
 
 \noindent Define class difference\index{class difference}\index{set difference}.
 Definition 5.12 of Takeuti and Zaring, p.~20.  Several notations are used in
@@ -6013,9 +6025,9 @@ reserve the latter for later use in, e.g., arithmetic.\label{df-dif}
 \m{\vdash}\m{(}\m{A}\m{\setminus}\m{B}\m{)}\m{=}\m{\{}\m{x}\m{|}\m{(}\m{x}\m{
 \in}\m{A}\m{\wedge}\m{\lnot}\m{x}\m{\in}\m{B}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-dif $a |- ( A \ B ) = { x | ( x e. A /\ -. x e. B ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+( A \SLASH B ) = \{ x | ( x e. A \TAND -. x e. B ) \} \$.
+\end{mmraw}
 
 \noindent Define the empty or null set\index{empty set}\index{null set}.
 Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
@@ -6026,9 +6038,9 @@ Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
 \startm
 \m{\vdash}\m{\varnothing}\m{=}\m{(}\m{V}\m{\setminus}\m{V}\m{)}
 \endm
-
-\noindent\verb?  df-nul $a |- (/) = ( V \ V ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- (/) = ( V \SLASH V ) \$.
+\end{mmraw}
 
 \noindent Define power class\index{power set}\index{power class}.  Definition 5.10 of
 Takeuti and Zaring, p.~17, but we also let it apply to proper classes.  (Note
@@ -6041,9 +6053,10 @@ suggesting ``curly;'' see Appendix~\ref{ASCII}.)
 \startm
 \m{\vdash}\m{{\cal P}}\m{A}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{\subseteq}\m{A}\m{\}}
 \endm
-
-\noindent\verb?  df-pw $a |- P~ A = { x | x C_ A } $.?
-\vskip 1ex
+% Special incantation required to put ~ into the text
+\begin{mmraw}%
+|- P\char`\~~A = \{ x | x C\_ A \} \$.
+\end{mmraw}
 
 \noindent Define the singleton of a class\index{singleton}.  Definition 7.1 of
 Quine, p.~48.  It is well-defined for proper classes, although
@@ -6056,9 +6069,9 @@ set.
 \startm
 \m{\vdash}\m{\{}\m{A}\m{\}}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{=}\m{A}\m{\}}
 \endm
-
-\noindent\verb?  df-sn $a |- { A } = { x | x = A } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- \{ A \} = \{ x | x = A \} \$.
+\end{mmraw}%
 
 \noindent Define an unordered pair of classes\index{unordered pair}\index{pair}.  Definition
 7.1 of Quine, p.~48.
@@ -6070,9 +6083,9 @@ set.
 \m{\vdash}\m{\{}\m{A}\m{,}\m{B}\m{\}}\m{=}\m{(}\m{\{}\m{A}\m{\}}\m{\cup}\m{\{}
 \m{B}\m{\}}\m{)}
 \endm
-
-\noindent\verb?  df-pr $a |- { A , B } = ( { A } u. { B } ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- \{ A , B \} = ( \{ A \} u. \{ B \} ) \$.
+\end{mmraw}
 
 \noindent Define an unordered triple of classes\index{unordered triple}.  Definition of
 Enderton, p.~19.
@@ -6084,9 +6097,9 @@ Enderton, p.~19.
 \m{\vdash}\m{\{}\m{A}\m{,}\m{B}\m{,}\m{C}\m{\}}\m{=}\m{(}\m{\{}\m{A}\m{,}\m{B}
 \m{\}}\m{\cup}\m{\{}\m{C}\m{\}}\m{)}
 \endm
-
-\noindent\verb?  df-tp $a |- { A , B , C } = ( { A , B } u. { C } ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- \{ A , B , C \} = ( \{ A , B \} u. \{ C \} ) \$.
+\end{mmraw}%
 
 \noindent Kuratowski's\index{Kuratowski, Kazimierz} ordered pair\index{ordered
 pair} definition.  Definition 9.1 of Quine, p.~58. For proper classes it is
@@ -6101,9 +6114,9 @@ stands for $\langle$ whereas \verb$<$ stands for $<$, and similarly for
 \m{\vdash}\m{\langle}\m{A}\m{,}\m{B}\m{\rangle}\m{=}\m{\{}\m{\{}\m{A}\m{\}}
 \m{,}\m{\{}\m{A}\m{,}\m{B}\m{\}}\m{\}}
 \endm
-
-\noindent\verb?  df-op $a |- <. A , B >. = { { A } , { A , B } } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- <. A , B >. = \{ \{ A \} , \{ A , B \} \} \$.
+\end{mmraw}
 
 \noindent Define the union of a class\index{union}.  Definition 5.5, p.~16,
 of Takeuti and Zaring.
@@ -6115,9 +6128,9 @@ of Takeuti and Zaring.
 \m{\vdash}\m{\bigcup}\m{A}\m{=}\m{\{}\m{x}\m{|}\m{\exists}\m{y}\m{(}\m{x}\m{
 \in}\m{y}\m{\wedge}\m{y}\m{\in}\m{A}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-uni $a |- U. A = { x | E. y ( x e. y /\ y e. A ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- U. A = \{ x | E. y ( x e. y \TAND y e. A ) \} \$.
+\end{mmraw}
 
 \noindent Define the intersection\index{intersection} of a class.  Definition 7.35,
 p.~44, of Takeuti and Zaring.
@@ -6129,9 +6142,9 @@ p.~44, of Takeuti and Zaring.
 \m{\vdash}\m{\bigcap}\m{A}\m{=}\m{\{}\m{x}\m{|}\m{\forall}\m{y}\m{(}\m{y}\m{
 \in}\m{A}\m{\rightarrow}\m{x}\m{\in}\m{y}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-int $a |- |^| A = { x | A. y ( y e. A -> x e. y ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- |\^{}| A = \{ x | A. y ( y e. A -> x e. y ) \} \$.
+\end{mmraw}
 
 \noindent Define a transitive class\index{transitive class}\index{transitive
 set}.  This should not be confused with a transitive relation, which is a different
@@ -6144,9 +6157,9 @@ concept.  Definition from p.~71 of Enderton, extended to classes.
 \m{\vdash}\m{(}\m{\mbox{\rm Tr}}\m{A}\m{\leftrightarrow}\m{\bigcup}\m{A}\m{
 \subseteq}\m{A}\m{)}
 \endm
-
-\noindent\verb?  df-tr $a |- ( Tr A <-> U. A C_ A ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( Tr A <-> U. A C\_ A ) \$.
+\end{mmraw}
 
 \noindent Define a notation for a general binary relation\index{binary
 relation}.  Definition 6.18, p.~29, of Takeuti and Zaring, generalized to
@@ -6162,9 +6175,9 @@ an atomic wff.
 \m{\vdash}\m{(}\m{A}\m{\,R}\m{\,B}\m{\leftrightarrow}\m{\langle}\m{A}\m{,}\m{B}
 \m{\rangle}\m{\in}\m{R}\m{)}
 \endm
-
-\noindent\verb?  df-br $a |- ( A R B <-> <. A , B >. e. R ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A R B <-> <. A , B >. e. R ) \$.
+\end{mmraw}
 
 \noindent Define an abstraction class of ordered pairs\index{abstraction
 class!of ordered
@@ -6180,10 +6193,10 @@ that $x$, $y$, and $z$ must be distinct but that $x$ and $y$ may occur in $\varp
 \m{,}\m{y}\m{\rangle}\m{\wedge}\m{\varphi}\m{)}\m{\}}
 \endm
 
-\noindent\verb?  df-opab $a |- { <. x , y >. | ph } = { z | E. x E. y ( z =?
-
-\noindent\verb?      <. x , y >. /\ ph ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- \{ <. x , y >. | ph \} = \{ z | E. x E. y ( z =
+<. x , y >. /\ ph ) \} \$.
+\end{mmraw}
 
 \noindent Define the epsilon relation\index{epsilon relation}.  Similar to Definition
 6.22, p.~30, of Takeuti and Zaring.
@@ -6195,9 +6208,9 @@ that $x$, $y$, and $z$ must be distinct but that $x$ and $y$ may occur in $\varp
 \m{\vdash}\m{E}\m{=}\m{\{}\m{\langle}\m{x}\m{,}\m{y}\m{\rangle}\m{|}\m{x}\m{
 \in}\m{y}\m{\}}
 \endm
-
-\noindent\verb?  df-eprel $a |- _E = { <. x , y >. | x e. y } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- \_E = \{ <. x , y >. | x e. y \} \$.
+\end{mmraw}
 
 \noindent Define a founded relation\index{founded relation}.  $R$ is a founded
 relation on $A$ iff\index{iff} (if and only if) each nonempty subset of $A$
@@ -6214,11 +6227,10 @@ Takeuti and Zaring.
 \m{\cap}\m{\{}\m{z}\m{|}\m{z}\m{\,R}\m{\,y}\m{\}}\m{)}\m{=}\m{\varnothing}\m{)}
 \m{)}\m{)}
 \endm
-
-\noindent\verb?  df-fr $a |- ( R Fr A <-> A. x ( ( x C_ A /\ -. x = (/) ) ->?
-
-\noindent\verb?      E. y ( y e. x /\ ( x i^i { z | z R y } ) = (/) ) ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( R Fr A <-> A. x ( ( x C\_ A \TAND -. x = (/) ) ->
+E. y ( y e. x \TAND ( x i\^{}i \{ z | z R y \} ) = (/) ) ) ) \$.
+\end{mmraw}
 
 \noindent Define a well-ordering\index{well-ordering}.  $R$ is a well-ordering of $A$ iff
 it is founded on $A$ and the elements of $A$ are pairwise $R$-comparable.
@@ -6233,11 +6245,10 @@ Similar to Definition 6.24(2), p.~30, of Takeuti and Zaring.
 \in}\m{A}\m{\wedge}\m{y}\m{\in}\m{A}\m{)}\m{\rightarrow}\m{(}\m{x}\m{\,R}\m{\,y}
 \m{\vee}\m{x}\m{=}\m{y}\m{\vee}\m{y}\m{\,R}\m{\,x}\m{)}\m{)}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-we $a |- ( R We A <-> ( R Fr A /\ A. x A. y ( ( x e.?
-
-\noindent\verb?      A /\ y e. A ) -> ( x R y \/ x = y \/ y R x ) ) ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+( R We A <-> ( R Fr A \TAND A. x A. y ( ( x e.
+A \TAND y e. A ) -> ( x R y \TOR x = y \TOR y R x ) ) ) ) \$.
+\end{mmraw}
 
 \noindent Define the ordinal predicate\index{ordinal predicate}, which is true for a class
 that is transitive and is well-ordered by the epsilon relation.  Similar to
@@ -6250,9 +6261,9 @@ definition on p.~468, Bell and Machover.
 \m{\vdash}\m{(}\m{\mbox{\rm Ord}}\m{\,A}\m{\leftrightarrow}\m{(}
 \m{\mbox{\rm Tr}}\m{\,A}\m{\wedge}\m{E}\m{\,\mbox{\rm We}}\m{\,A}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-ord $a |- ( Ord A <-> ( Tr A /\ E We A ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( Ord A <-> ( Tr A \TAND E We A ) ) \$.
+\end{mmraw}
 
 \noindent Define class of all ordinal numbers\index{ordinal number}.  An ordinal number is
 a set that satisfies the ordinal predicate.  Definition 7.11 of Takeuti and
@@ -6265,9 +6276,9 @@ Zaring, p.~38.
 \m{\vdash}\m{\,\mbox{\rm On}}\m{=}\m{\{}\m{x}\m{|}\m{\mbox{\rm Ord}}\m{\,x}
 \m{\}}
 \endm
-
-\noindent\verb?  df-on $a |- On = { x | Ord x } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- On = \{ x | Ord x \} \$.
+\end{mmraw}
 
 \noindent Define the limit ordinal predicate\index{limit ordinal}, which is true for a
 non-empty ordinal that is not a successor (i.e.\ that is the union of itself).
@@ -6282,11 +6293,9 @@ Zaring.
 \rm Ord}}\m{\,A}\m{\wedge}\m{\lnot}\m{A}\m{=}\m{\varnothing}\m{\wedge}\m{A}
 \m{=}\m{\bigcup}\m{A}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-lim $a |- ( Lim A <-> ( Ord A /\ -. A = (/) /\ A = U.?
-
-\noindent\verb?      A ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( Lim A <-> ( Ord A \TAND -. A = (/) \TAND A = U. A ) ) \$.
+\end{mmraw}
 
 \noindent Define the successor\index{successor} of a class.  Definition 7.22 of Takeuti
 and Zaring, p.~41.  Our definition is a generalization to classes, although it
@@ -6299,9 +6308,9 @@ is meaningless when classes are proper.
 \m{\vdash}\m{\,\mbox{\rm suc}}\m{\,A}\m{=}\m{(}\m{A}\m{\cup}\m{\{}\m{A}\m{\}}
 \m{)}
 \endm
-
-\noindent\verb?  df-suc $a |- suc A = ( A u. { A } ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- suc A = ( A u. \{ A \} ) \$.
+\end{mmraw}
 
 \noindent Define the class of natural numbers\index{natural number}\index{omega
 ($\omega$)}.  Compare Bell and Machover, p.~471.\label{dfom}
@@ -6314,11 +6323,9 @@ is meaningless when classes are proper.
 \wedge}\m{\forall}\m{y}\m{(}\m{\mbox{\rm Lim}}\m{\,y}\m{\rightarrow}\m{x}\m{
 \in}\m{y}\m{)}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-om $a |- om = { x | ( Ord x /\ A. y ( Lim y -> x e. y )?
-
-\noindent\verb?      ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- om = \{ x | ( Ord x \TAND A. y ( Lim y -> x e. y ) ) \} \$.
+\end{mmraw}
 
 \noindent Define the cross product\index{cross product} of two classes.  Definition 9.11
 of Quine, p.~64.
@@ -6330,11 +6337,9 @@ of Quine, p.~64.
 \m{\vdash}\m{(}\m{A}\m{\times}\m{B}\m{)}\m{=}\m{\{}\m{\langle}\m{x}\m{,}\m{y}
 \m{\rangle}\m{|}\m{(}\m{x}\m{\in}\m{A}\m{\wedge}\m{y}\m{\in}\m{B}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-xp $a |- ( A X. B ) = { <. x , y >. | ( x e. A /\ y e. B?
-
-\noindent\verb?      ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A X. B ) = \{ <. x , y >. | ( x e. A \TAND y e. B) \} \$.
+\end{mmraw}
 
 \noindent Define the domain\index{domain} of a class.  Definition 6.5(1) of
 Takeuti and Zaring, p.~24.
@@ -6346,9 +6351,9 @@ Takeuti and Zaring, p.~24.
 \m{\vdash}\m{\,\mbox{\rm dom}}\m{A}\m{=}\m{\{}\m{x}\m{|}\m{\exists}\m{y}\m{
 \langle}\m{x}\m{,}\m{y}\m{\rangle}\m{\in}\m{A}\m{\}}
 \endm
-
-\noindent\verb?  df-dm $a |- dom A = { x | E. y <. x , y >. e. A } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- dom A = \{ x | E. y <. x , y >. e. A \} \$.
+\end{mmraw}
 
 \noindent Define the range\index{range} of a class.  Definition 6.5(2) of
 Takeuti and Zaring, p.~24.
@@ -6360,9 +6365,9 @@ Takeuti and Zaring, p.~24.
 \m{\vdash}\m{\,\mbox{\rm ran}}\m{A}\m{=}\m{\{}\m{y}\m{|}\m{\exists}\m{x}\m{
 \langle}\m{x}\m{,}\m{y}\m{\rangle}\m{\in}\m{A}\m{\}}
 \endm
-
-\noindent\verb?  df-rn $a |- ran A = { y | E. x <. x , y >. e. A } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ran A = \{ y | E. x <. x , y >. e. A \} \$.
+\end{mmraw}
 
 \noindent Define the restriction\index{restriction} of a class.  Definition
 6.6(1) of Takeuti and Zaring, p.~24.
@@ -6374,9 +6379,9 @@ Takeuti and Zaring, p.~24.
 \m{\vdash}\m{(}\m{A}\m{\restriction}\m{B}\m{)}\m{=}\m{(}\m{A}\m{\cap}\m{(}\m{B}
 \m{\times}\m{V}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-res $a |- ( A |` B ) = ( A i^i ( B X. V ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A |` B ) = ( A i\^{}i ( B X. V ) ) \$.
+\end{mmraw}
 
 \noindent Define the image\index{image} of a class.  Definition 6.6(2) of
 Takeuti and Zaring, p.~24.
@@ -6388,9 +6393,9 @@ Takeuti and Zaring, p.~24.
 \m{\vdash}\m{(}\m{A}\m{``}\m{B}\m{)}\m{=}\m{\,\mbox{\rm ran}}\m{\,(}\m{A}\m{
 \restriction}\m{B}\m{)}
 \endm
-
-\noindent\verb?  df-ima $a |- ( A " B ) = ran ( A |` B ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A " B ) = ran ( A |` B ) \$.
+\end{mmraw}
 
 \noindent Define the composition\index{composition} of two classes.  Definition 6.6(3) of
 Takeuti and Zaring, p.~24.
@@ -6403,11 +6408,10 @@ Takeuti and Zaring, p.~24.
 \rangle}\m{|}\m{\exists}\m{z}\m{(}\m{\langle}\m{x}\m{,}\m{z}\m{\rangle}\m{\in}
 \m{B}\m{\wedge}\m{\langle}\m{z}\m{,}\m{y}\m{\rangle}\m{\in}\m{A}\m{)}\m{\}}
 \endm
-
-\noindent\verb?  df-co $a |- ( A o. B ) = { <. x , y >. | E. z ( <. x , z?
-
-\noindent\verb?      >. e. B /\ <. z , y >. e. A ) } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A o. B ) = \{ <. x , y >. | E. z ( <. x , z
+>. e. B \TAND <. z , y >. e. A ) \} \$.
+\end{mmraw}
 
 \noindent Define a relation\index{relation}.  Definition 6.4(1) of Takeuti and
 Zaring, p.~23.
@@ -6419,9 +6423,9 @@ Zaring, p.~23.
 \m{\vdash}\m{(}\m{\mbox{\rm Rel}}\m{\,A}\m{\leftrightarrow}\m{A}\m{\subseteq}
 \m{(}\m{V}\m{\times}\m{V}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-rel $a |- ( Rel A <-> A C_ ( V X. V ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( Rel A <-> A C\_ ( V X. V ) ) \$.
+\end{mmraw}
 
 \noindent Define a function\index{function}.  Definition 6.4(4) of Takeuti and
 Zaring, p.~24.
@@ -6436,11 +6440,10 @@ Zaring, p.~24.
 \m{\langle}\m{x}\m{,}\m{y}\m{\rangle}\m{\in}\m{A}\m{\rightarrow}\m{y}\m{=}\m{z}
 \m{)}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-fun $a |- ( Fun A <-> ( Rel A /\ A. x E. z A. y ( <. x?
-
-\noindent\verb?      , y >. e. A -> y = z ) ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( Fun A <-> ( Rel A /\ A. x E. z A. y ( <. x
+   , y >. e. A -> y = z ) ) ) \$.
+\end{mmraw}
 
 \noindent Define a function with domain.  Definition 6.15(1) of Takeuti and
 Zaring, p.~27.
@@ -6453,9 +6456,9 @@ Zaring, p.~27.
 \m{\mbox{\rm Fun}}\m{\,A}\m{\wedge}\m{\mbox{\rm dom}}\m{\,A}\m{=}\m{B}\m{)}
 \m{)}
 \endm
-
-\noindent\verb?  df-fn $a |- ( A Fn B <-> ( Fun A /\ dom A = B ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( A Fn B <-> ( Fun A \TAND dom A = B ) ) \$.
+\end{mmraw}
 
 \noindent Define a function with domain and co-domain.  Definition 6.15(3)
 of Takeuti and Zaring, p.~27.
@@ -6468,9 +6471,9 @@ of Takeuti and Zaring, p.~27.
 \leftrightarrow}\m{(}\m{F}\m{\,\mbox{\rm Fn}}\m{\,A}\m{\wedge}\m{
 \mbox{\rm ran}}\m{\,F}\m{\subseteq}\m{B}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-f $a |- ( F : A --> B <-> ( F Fn A /\ ran F C_ B ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( F : A --> B <-> ( F Fn A \TAND ran F C\_ B ) ) \$.
+\end{mmraw}
 
 \noindent Define a one-to-one function\index{one-to-one function}.  Compare
 Definition 6.15(5) of Takeuti and Zaring, p.~27.
@@ -6488,11 +6491,10 @@ Definition 6.15(5) of Takeuti and Zaring, p.~27.
 \m{\wedge}\m{\forall}\m{y}\m{\exists}\m{z}\m{\forall}\m{x}\m{(}\m{\langle}\m{x}
 \m{,}\m{y}\m{\rangle}\m{\in}\m{F}\m{\rightarrow}\m{x}\m{=}\m{z}\m{)}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-f1 $a |- ( F : A -1-1-> B <-> ( F : A --> B /\?
-
-\noindent\verb?      A. y E. z A. x ( <. x , y >. e. F -> x = z ) ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( F : A -1-1-> B <-> ( F : A --> B \TAND
+   A. y E. z A. x ( <. x , y >. e. F -> x = z ) ) ) \$.
+\end{mmraw}
 
 \noindent Define an onto function\index{onto function}.  Definition 6.15(4) of Takeuti and
 Zaring, p.~27.
@@ -6509,11 +6511,9 @@ Zaring, p.~27.
 \m{\leftrightarrow}\m{(}\m{F}\m{\,\mbox{\rm Fn}}\m{\,A}\m{\wedge}
 \m{\mbox{\rm ran}}\m{\,F}\m{=}\m{B}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-fo $a |- ( F : A -onto-> B <-> ( F Fn A /\ ran F?
-
-\noindent\verb?      = B ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( F : A -onto-> B <-> ( F Fn A /\ ran F = B ) ) \$.
+\end{mmraw}
 
 \noindent Define a one-to-one, onto function.  Compare Definition 6.15(6) of
 Takeuti and Zaring, p.~27.
@@ -6543,11 +6543,9 @@ Takeuti and Zaring, p.~27.
 }
 \m{B}\m{)}\m{)}
 \endm
-
-\noindent\verb?  df-f1o $a |- ( F : A -1-1-onto-> B <-> ( F : A -1-1-> B?
-
-\noindent\verb?      /\ F : A -onto-> B ) ) $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( F : A -1-1-onto-> B <-> ( F : A -1-1-> B? \TAND F : A -onto-> B ) ) \$.?
+\end{mmraw}
 
 \noindent Define the value of a function\index{function value}.  This
 definition applies to any class and evaluates to the empty set when it is not
@@ -6562,9 +6560,9 @@ formal set theory.\label{df-fv}
 \m{\vdash}\m{(}\m{F}\m{`}\m{A}\m{)}\m{=}\m{\bigcup}\m{\{}\m{x}\m{|}\m{(}\m{F}%
 \m{``}\m{\{}\m{A}\m{\}}\m{)}\m{=}\m{\{}\m{x}\m{\}}\m{\}}
 \endm
-
-\noindent\verb?  df-fv $a |- ( F ` A ) = U. { x | ( F " { A } ) = { x } } $.?
-\vskip 1ex
+\begin{mmraw}%
+|- ( F ` A ) = U. \{ x | ( F " \{ A \} ) = \{ x \} \} \$.
+\end{mmraw}
 
 \noindent Define the result of an operation.\index{operation}  Here, $F$ is
      an operation on two
@@ -6579,9 +6577,9 @@ formal set theory.\label{df-fv}
 \m{\vdash}\m{(}\m{A}\m{\,F}\m{\,B}\m{)}\m{=}\m{(}\m{F}\m{`}\m{\langle}\m{A}%
 \m{,}\m{B}\m{\rangle}\m{)}
 \endm
-
-\noindent\verb?  df-opr $a |- ( A F B ) = ( F ` <. A , B >. ) $.?
-%\vskip 1ex
+\begin{mmraw}%
+|- ( A F B ) = ( F ` <. A , B >. ) \$.
+\end{mmraw}
 
 \section{Tricks of the Trade}\label{tricks}
 
