@@ -727,6 +727,8 @@
 \documentclass[leqno]{book} % LaTeX 2e. 10pt. Use [leqno,12pt] for 12pt
 % hyperref 2002/05/27 v6.72r  (couldn't get pagebackref to work)
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
+
+\usepackage{needspace}     % Enable control over page breaks
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
 
@@ -5161,9 +5163,11 @@ typeset them.
 \vskip 1ex
 }
 
+\needspace{4\baselineskip}
 \subsection{Propositional Calculus}\label{propcalc}\index{axioms of
 propositional calculus}
 
+\needspace{2\baselineskip}
 Axiom of Simplification.\label{ax1}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-1\ \$a\ }
@@ -5173,6 +5177,7 @@ Axiom of Simplification.\label{ax1}
 \m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Distribution.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-2\ \$a\ }
@@ -5183,6 +5188,7 @@ Axiom of Simplification.\label{ax1}
 \rightarrow}\m{(}\m{\varphi}\m{\rightarrow}\m{\chi}\m{)}\m{)}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Contraposition.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-3\ \$a\ }
@@ -5193,6 +5199,7 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
+\needspace{4\baselineskip}
 \noindent Rule of Modus Ponens.\label{axmp}\index{modus ponens}
 
 \setbox\startprefix=\hbox{\tt \ \ maj\ \$e\ }
@@ -5214,8 +5221,10 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
+\needspace{7\baselineskip}
 \subsection{Axioms of Predicate Calculus with equality - Tarski's S2}\index{axioms of predicate calculus}
 
+\needspace{3\baselineskip}
 \noindent Rule of Generalization.\index{rule of generalization}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-g.1\ \$e\ }
@@ -5230,6 +5239,7 @@ Axiom of Simplification.\label{ax1}
 \m{\vdash}\m{\forall}\m{x}\m{\varphi}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Quantified Implication.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-4\ \$a\ }
@@ -5240,6 +5250,7 @@ Axiom of Simplification.\label{ax1}
 \forall}\m{x}\m{\psi}\m{)}\m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Distinctness.
 
 % Aka: Add $d x ph $.
@@ -5249,6 +5260,7 @@ Axiom of Simplification.\label{ax1}
 \m{\vdash}\m{(}\m{\varphi}\m{\rightarrow}\m{\forall}\m{x}\m{\varphi}\m{)}\m{where}\m{ }\m{\$d}\m{ }\m{x}\m{ }\m{\varphi}\m{ }\m{(}\m{x}\m{ }\m{does}\m{ }\m{not}\m{ }\m{occur}\m{ }\m{in}\m{ }\m{\varphi}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Existence.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-6\ \$a\ }
@@ -5258,6 +5270,7 @@ Axiom of Simplification.\label{ax1}
 \m{x}\m{\varphi}\m{)}\m{\rightarrow}\m{\varphi}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Equality.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-7\ \$a\ }
@@ -5267,6 +5280,7 @@ Axiom of Simplification.\label{ax1}
 \rightarrow}\m{y}\m{=}\m{z}\m{)}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Left Equality for Binary Predicate.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-8\ \$a\ }
@@ -5276,6 +5290,7 @@ Axiom of Simplification.\label{ax1}
 \rightarrow}\m{y}\m{\in}\m{z}\m{)}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Right Equality for Binary Predicate.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-9\ \$a\ }
@@ -5286,8 +5301,10 @@ Axiom of Simplification.\label{ax1}
 \endm
 
 
+\needspace{4\baselineskip}
 \subsection{Axioms of Predicate Calculus with Equality - Auxiliary}\index{axioms of predicate calculus - auxiliary}
 
+\needspace{2\baselineskip}
 \noindent Axiom of Quantified Negation.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-10\ \$a\ }
@@ -5297,6 +5314,7 @@ Axiom of Simplification.\label{ax1}
 \rightarrow}\m{\varphi}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Quantifier Commutation.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-11\ \$a\ }
@@ -5306,7 +5324,7 @@ Axiom of Simplification.\label{ax1}
 \forall}\m{y}\m{\forall}\m{x}\m{\varphi}\m{)}
 \endm
 
-
+\needspace{3\baselineskip}
 \noindent Axiom of Substitution.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-12\ \$a\ }
@@ -5317,6 +5335,7 @@ Axiom of Simplification.\label{ax1}
 \m{x}\m{=}\m{y}\m{\rightarrow}\m{\varphi}\m{)}\m{)}\m{)}\m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Quantified Equality.
 
 \setbox\startprefix=\hbox{\tt \ \ ax-13\ \$a\ }
@@ -5401,6 +5420,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
   \texttt{\$d }$x\,y\,z\,w$
 \end{center}
 
+\needspace{2\baselineskip}
 \noindent Axiom of Extensionality.\index{Axiom of Extensionality}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-ext\ \$a\ }
@@ -5410,6 +5430,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \m{\in}\m{z}\m{)}\m{\rightarrow}\m{y}\m{=}\m{z}\m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Replacement.\index{Axiom of Replacement}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-rep\ \$a\ }
@@ -5422,6 +5443,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \m{)}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Union.\index{Axiom of Union}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-un\ \$a\ }
@@ -5431,6 +5453,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \in}\m{x}\m{\wedge}\m{x}\m{\in}\m{z}\m{)}\m{\rightarrow}\m{y}\m{\in}\m{x}\m{)}
 \endm
 
+\needspace{2\baselineskip}
 \noindent Axiom of Power Sets.\index{Axiom of Power Sets}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-pow\ \$a\ }
@@ -5441,6 +5464,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Regularity.\index{Axiom of Regularity}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-reg\ \$a\ }
@@ -5451,6 +5475,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \rightarrow}\m{\lnot}\m{z}\m{\in}\m{y}\m{)}\m{)}\m{)}
 \endm
 
+\needspace{3\baselineskip}
 \noindent Axiom of Infinity.\index{Axiom of Infinity}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-inf\ \$a\ }
@@ -5461,6 +5486,7 @@ p.~\pageref{nodd}.}\index{\texttt{\$d} statement} thus we also assume:
 \wedge}\m{z}\m{\in}\m{x}\m{)}\m{)}\m{)}
 \endm
 
+\needspace{4\baselineskip}
 \noindent Axiom of Choice.\index{Axiom of Choice}
 
 \setbox\startprefix=\hbox{\tt \ \ ax-ac\ \$a\ }
@@ -7911,7 +7937,9 @@ is relatively simple, and for our Deduction Theorem alternatives,
 we primarily use just the direct substitution of expressions for
 metavariables.
 
-\section{Exploring the Set Theory Database}\label{exploring}
+\begin{sloppy}
+\section{Exploring the Set The\-o\-ry Data\-base}\label{exploring}
+\end{sloppy}
 
 At this point you may wish to study the \texttt{set.mm}\index{set theory
 database (\texttt{set.mm})} file in more detail.  Pay particular
@@ -10552,11 +10580,13 @@ placed in the \LaTeX\ output file.
 labels for correct output of {\sc html}, described in the next section,
 and error messages will be issued during that output if they aren't.)
 
-\subsection{Comment Markup Notation for HTML}\label{htmlmkup}
+\begin{sloppy}
+\subsection{Comment Markup No\-ta\-tion for HTML}\label{htmlmkup}
 \index{\texttt{`} inside comments}
 \index{\texttt{\char`\~} inside comments}
 \index{markup notation}
 \index{comments!markup notation}
+\end{sloppy}
 
 The automated generation of {\sc html}\index{html generation@{\sc html}
 generation} web pages
@@ -10905,8 +10935,9 @@ assigned to \texttt{exthtmltitle} and \texttt{exthtmlhome} is used
 instead of that assigned to \texttt{htmltitle} and \texttt{htmlhome},
 respectively.
 
-
-\subsection{Additional Information Comment (\texttt{\$j})} \label{jcomment}
+\begin{sloppy}
+\subsection{Additional Information Com\-ment (\texttt{\$j})} \label{jcomment}
+\end{sloppy}
 
 The additional information comment, aka the
 \texttt{\$j}\index{\texttt{\$j} comment}\index{additional information comment}
@@ -13900,8 +13931,10 @@ and would have allowed us to prove nonsense.  Note that there is no
 concept of operator binding precedence built into our formal system.
 \end{quotation}}
 
+\begin{sloppy}
 \subsection{Example~2---Predicate Calculus with Equality}\index{predicate
 calculus}
+\end{sloppy}
 
 Here we extend Example~1 to include predicate calculus with equality,
 illustrating the use of distinct-variable restrictions.  This system is the
@@ -14158,9 +14191,11 @@ metatheorems are (directly) provable statements. The precise definition of
 Example~3 is found in Remark 9.6 and Theorem 9.7 of \cite{Megill}.\index{Megill,
 Norman}
 
+\begin{sloppy}
 \subsection{Example~3---Metalogically Complete Predicate
 Calculus with
 Equality}
+\end{sloppy}
 
 For simplicity we will assume there is one binary predicate $R$;
 this system suffices for set theory, where the $R$ is of course the $\in$
