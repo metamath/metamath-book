@@ -4060,16 +4060,27 @@ your starting point.  Whenever the \texttt{verify proof} command encounters
 a proof with a \texttt{?}\ in place of a proof step, the statement is
 identified as not proved.
 
-Before you start, you should write down on a piece of paper the complete
+When I first started creating Metamath proofs, I would write down
+on a piece of paper the complete
 formal proof\index{formal proof} as it would appear with the \texttt{/essential}
 qualifier in a \texttt{show proof} command\index{\texttt{show proof} command}; see
 the display of \texttt{show proof th1 /essential /lemmon /re\-num\-ber} above as an
 example.  After you get used to using the Proof Assistant\index{Proof
 Assistant} you may get to a point where you can ``see'' the proof in your mind
 and let the Proof Assistant guide you in filling in the details, at least for
-simpler proofs, but until you gain that experience it is important to write
-down all the details in advance.  Otherwise you may waste a lot of time as you
-let it take you down a wrong path.
+simpler proofs, but until you gain that experience you may find it very useful
+to write down all the details in advance.
+Otherwise you may waste a lot of time as you let it take you down a wrong path.
+However, others do not find this approach as helpful.
+For example, Thomas Brendan Leahy\index{Leahy, Thomas Brendan}
+finds that it is more helpful to him to interactively
+work backward from a machine-readable statement.
+David A. Wheeler\index{Wheeler, David A.}
+writes down a general approach, but develops the proof
+interactively by switching between
+working forwards (from hypotheses and facts likely to be useful) and
+backwards (from the goal) until the forwards and backwards approaches meet.
+In the end, use whatever approach works for you.
 
 A proof is developed with the Proof Assistant by working backwards, starting
 with the theorem\index{theorem} to be proved, and assigning each unknown step
