@@ -4246,7 +4246,8 @@ MM-PA> show new_proof/not_unified
         =a2  = |- ( $9 + 0 ) = $9
 \end{verbatim}
 
-Later we can unify this with the \texttt{unify all/interactive} command.
+Later we can unify this with the \texttt{unify}
+\texttt{all/interactive} command.
 
 The important point to remember is that occasionally you will be
 presented with several unification choices while entering a proof, when
@@ -12355,12 +12356,14 @@ you want Metamath to try harder (and you're willing to wait longer) you
 may increase this parameter.  \texttt{show settings} will show you the
 current value.
 
-
-
 \subsection{\texttt{set empty\_substitution} Command}\index{\texttt{set
 empty{\char`\_}substitution} command}
+% These long names can't break well in narrow mode, and even "sloppy"
+% is not enough. Work around this by not demanding justification.
+\begin{flushleft}
 Syntax:  \texttt{set empty{\char`\_}substitution on} or \texttt{set
 empty{\char`\_}substitution off}
+\end{flushleft}
 
 (This command is available outside the Proof Assistant but affects the
 Proof Assistant\index{Proof Assistant} only.)
@@ -12645,6 +12648,7 @@ proofs of \texttt{\$f}\index{\texttt{\$f} statement} hypotheses.  The
 search will be restricted to statements having no
 \texttt{\$e}\index{\texttt{\$e} statement} hypotheses.
 
+\begin{sloppypar} % narrow
 Note:  If memory is limited, \texttt{improve all} on a large proof may
 overflow memory.  If you use \texttt{set unification{\char`\_}timeout 1}
 before \texttt{improve all}, there will usually be sufficient
@@ -12653,6 +12657,7 @@ later on a larger computer.  Warning:  Once memory has overflowed, there
 is no recovery.  If in doubt, save the intermediate proof (\texttt{save
 new{\char`\_}proof} then \texttt{write source}) before \texttt{improve
 all}.
+\end{sloppypar}
 
 If \texttt{last} is specified instead of {\em step} number, the last
 step that is shown by \texttt{show new{\char`\_}proof /unknown} will be
@@ -14487,8 +14492,11 @@ unordered pair.  Many other such definitions can be found in the
 Metamath set theory database,
 \texttt{set.mm}.\index{set theory database (\texttt{set.mm})}
 
-We extend $\mbox{\em CN}$ of Example~5 with new symbols $\{\mbox{class}, \{,
-|, \}, \varnothing, \cup, , \}$ where the inner braces and last comma are
+% We intentionally break up the sequence of math symbols here
+% because otherwise the overlong line goes beyond the page in narrow mode.
+We extend $\mbox{\em CN}$ of Example~5 with new symbols $\{$
+$\mbox{class},$ $\{,$ $|,$ $\},$ $\varnothing,$ $\cup,$ $,$ $\}$
+where the inner braces and last comma are
 constant symbols. (As before,
 our dual use of some mathematical symbols for both our expository
 language and as primitives of the formal system should be clear from context.)
