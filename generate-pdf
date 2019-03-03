@@ -18,8 +18,6 @@ do_pdflatex () {
 style_special="${1:-wide.sty}"
 cp -p "$style_special" special-settings.sty
 
-bash
-
 # Try to remove metamath.pdf first - if we can't, no point in going further.
 rm -f metamath.pdf
 
