@@ -8752,8 +8752,9 @@ proof.
 
 \vskip 1ex
 
-This ends the specification of the Metamath language.
-
+This ends the specification of the Metamath language;
+see Appendix \ref{BNF} for its syntax in
+Extended Backus--Naur Form (EBNF)\index{Extended Backus--Naur Form}\index{EBNF}.
 
 \section{The Basic Keywords}\label{tut1}
 
@@ -14791,6 +14792,148 @@ a much more elaborate system is needed, namely one that
 models the MIU-system within set theory.  (Incidentally, the
 answer to the MU-puzzle is no.)
 
+\chapter{Metamath Language EBNF}%
+\label{BNF}%
+\index{Metamath Language EBNF}
+
+The following is a formal description of the basic Metamath language syntax
+(with compressed proofs and support for unknown proof steps).
+It is defined using the
+Extended Backus--Naur Form (EBNF)\index{Extended Backus--Naur Form}\index{EBNF}
+notation from W3C\index{W3C}
+\textit{Extensible Markup Language (XML) 1.0 (Fifth Edition)}
+(W3C Recommendation 26 November 2008) at
+\url{https://www.w3.org/TR/xml/#sec-notation}.
+
+The \texttt{database}
+rule is processed until the end of the file (\texttt{EOF}).
+The rules eventually require reading whitespace-separated tokens.
+A token has an uppercase definition (see below)
+or is a string constant in a non-token (such as \texttt{'\$a'}).
+We intend for this to be correct, but if there is a conflict the
+rules of section \ref{spec} govern. That section also discusses
+non-syntax restrictions not shown here
+(e.g., that each label token must be unique).
+
+\begin{verbatim}
+database ::= toplevel-stmt*
+
+toplevel-stmt ::= include-stmt | constant-stmt | stmt
+
+stmt ::= variable-stmt | disjoint-stmt | hypothesis-stmt |
+  assert-stmt | block
+
+/* File inclusion command.  The file is processed as a database.
+   Databases should NOT have a comment in the filename. */
+include-stmt ::= '\$[' filename '\$]'
+
+/* Constant symbols declaration. */
+constant-stmt ::= '\$c' constant+ '\$.'
+
+/* A block. You can have 0 statements in a block. */
+block ::= '\${' stmt* '\$}'
+
+/* Variable symbols declaration. */
+variable-stmt ::= '\$v' variable+ '\$.'
+
+/* Disjoint variables. Simple disjoint statements only have
+   2 variables, i.e., "variable*" is empty for them. */
+disjoint-stmt ::= '\$d' variable variable variable* '\$.'
+
+hypothesis-stmt ::= floating-stmt | essential-stmt
+
+/* Floating (variable-type) hypotheses. */
+floating-stmt ::= LABEL '\$f' typecode variable '\$.'
+
+/* Essential (logical) hypotheses.
+   Cannot occur in the outermost scope. */
+essential-stmt ::= LABEL '\$e' typecode MATH-SYMBOL* '\$.'
+
+assert-stmt ::= axiom-stmt | proof-stmt
+
+/* Axiomatic assertion */
+axiom-stmt ::= LABEL '\$a' typecode MATH-SYMBOL* '\$.'
+
+/* Provable assertion */
+p-statement ::= LABEL '\$p' typecode MATH-SYMBOL* '\$=' proof '\$.'
+
+/* A proof. Note that proofs may be interspersed by comments.
+   If '?' is anywhere in a proof then it is an "incomplete" proof. */
+proof ::= uncompressed-proof | compressed-proof
+
+uncompressed-proof ::= (label | '?')+
+
+compressed-proof ::= '(' label* ')' COMPRESSED-PROOF-BLOCK+
+
+/* Certain constants are used specially as "typecodes" in many
+   databases; for convenience we note that here. */
+typecode ::= constant
+
+filename ::= PRINTABLE-SEQUENCE
+
+constant ::= MATH-SYMBOL
+
+variable ::= MATH-SYMBOL
+\end{verbatim}
+
+\needspace{3\baselineskip}
+Here are the rules for lexical processing (tokenization) beyond
+the constant tokens shown above.
+By convention these tokenization rules have names in upper case.
+Every token is read for the longest possible length.
+Whitespace-separated tokens are read sequentially;
+note that the separating whitespace and \texttt{\$(} ... \texttt{\$)}
+comments are skipped.
+
+If a token definition uses another token definition, the whole thing
+is considered a single token.
+A pattern that is only part of a full token has a name beginning
+with an underscore (``\_'').
+An implementation could tokenize many tokens as a
+\texttt{PRINTABLE-SEQUENCE}
+and then check if it meets the more specific rule shown here.
+
+Comments do not nest, and both \texttt{\$(} and \texttt{\$)}
+have to be surrounded
+by at least one whitespace character (\texttt{\_WHITECHAR}).
+Technically comments end without consuming the trailing
+\texttt{\_WHITECHAR}, but the trailing
+\texttt{\_WHITECHAR} gets ignored anyway so we ignore that detail here.
+Metamath language processors
+are not required to support \texttt{\$)} followed
+immediately by a bare end-of-file, because the closing
+comment symbol is supposed to be followed by a
+\texttt{\_WHITECHAR} such as a newline.
+
+\begin{verbatim}
+PRINTABLE-SEQUENCE ::= _PRINTABLE-CHARACTER+
+
+MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '\$')+
+
+_PRINTABLE-CHARACTER ::= [#x21-#x7e] /* ASCII printable characters */
+
+LABEL ::= ( _LETTER-OR-DIGIT | '.' | '-' | '_' )+
+
+_LETTER-OR-DIGIT ::= [A-Za-z0-9]
+
+COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
+
+/* Define whitespace between tokens. The -> SKIP means that when
+   whitespace is seen, it is skipped and we simply read again. */
+WHITESPACE ::= (_WHITECHAR+ | _COMMENT) -> SKIP
+
+/* Comments, which have the form \$( ... \$) and do not nest. */
+_COMMENT ::= '\$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '\$)')*
+  _WHITECHAR+ '\$)' _WHITECHAR
+
+/* Whitespace character: (' ' | '\t' | '\r' | '\n' | '\f') */
+_WHITECHAR ::= [#x20#x09#x0d#x0a#x0c]
+\end{verbatim}
+% This EBNF was developed as a collaboration between
+% David A. Wheeler\index{Wheeler, David A.},
+% Mario Carneiro\index{Carneiro, Mario}, and
+% Benoit Jubin\index{Jubin, Benoit}, inspired by a request
+% (and a lot of initial work) by Benoit Jubin.
 %
 % \chapter{Disclaimer and Trademarks}
 %
@@ -14807,7 +14950,6 @@ answer to the MU-puzzle is no.)
 % their respective owners.  The name ``Metamath'' is a trademark of
 % Norman Megill.
 %
-
 \cleardoublepage
 \phantomsection  % fixes the link anchor
 \addcontentsline{toc}{chapter}{\bibname}
