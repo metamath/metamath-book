@@ -1,6 +1,6 @@
 # metamath-book
 
-[![Build Status](https://api.travis-ci.com/metamath/metamath-book.svg)](https://api.travis-ci.com/metamath/metamath-book)
+[![Build Status](https://api.travis-ci.com/metamath/metamath-book.svg)](https://travis-ci.com/metamath/metamath-book)
 
 This is the LaTeX editable source of the book
 _Metamath: A Computer Language for Pure Mathematics_,
