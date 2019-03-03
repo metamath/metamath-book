@@ -801,18 +801,6 @@
 % \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 \usepackage{special-settings}
 
-
-% DEBUG: This is a TEMPORARY debug hack from:
-% https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning
-% Hopefully it will help debug problems we've had
-\def\@testdef #1#2#3{%
-  \def\reserved@a{#3}\expandafter \ifx \csname #1@#2\endcsname
- \reserved@a  \else
-\typeout{^^Jlabel #2 changed:^^J%
-\meaning\reserved@a^^J%
-\expandafter\meaning\csname #1@#2\endcsname^^J}%
-\@tempswatrue \fi}
-
 \raggedbottom
 \makeindex
 
