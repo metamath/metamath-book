@@ -737,7 +737,7 @@
 % hyperref 2002/05/27 v6.72r  (couldn't get pagebackref to work)
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
 
-\usepackage{upquote}       % Use straight quotes in verbatim environments
+% \usepackage{upquote}       % Use straight quotes in verbatim environments
 \usepackage{needspace}     % Enable control over page breaks
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
@@ -14822,63 +14822,59 @@ or is a string constant in a non-token (such as \texttt{'\$a'}).
 We intend for this to be correct, but if there is a conflict the
 rules of section \ref{spec} govern. That section also discusses
 non-syntax restrictions not shown here
-(e.g., that each label token must be unique).
+(e.g., that each new label token
+defined in a \texttt{hypothesis-stmt} or \texttt{assert-stmt}
+must be unique).
 
 \begin{verbatim}
 database ::= outermost-scope-stmt*
 
-outermost-scope-stmt ::= include-stmt | constant-stmt |
-  any-scope-stmt
+outermost-scope-stmt ::= include-stmt | constant-stmt | stmt
 
 /* File inclusion command.  The file is processed as a database.
    Databases should NOT have a comment in the filename. */
-include-stmt ::= '\$[' filename '\$]'
+include-stmt ::= '$[' filename '$]'
 
 /* Constant symbols declaration. */
-constant-stmt ::= '\$c' constant+ '\$.'
+constant-stmt ::= '$c' constant+ '$.'
 
-/* Statements allowed in any scope (outermost or not) */
-any-scope-stmt ::= variable-stmt | disjoint-stmt |
-  floating-stmt | assert-stmt | block
+/* A normal statement can occur in any scope. */
+stmt ::= block | variable-stmt | disjoint-stmt |
+  hypothesis-stmt | assert-stmt
 
 /* A block. You can have 0 statements in a block. */
-block ::= '\${' inner-scope-stmt* '\$}'
-
-/* Statements allowed in an inner (non-outer) block */
-inner-scope-stmt ::= any-scope-stmt | essential-stmt
+block ::= '${' stmt* '$}'
 
 /* Variable symbols declaration. */
-variable-stmt ::= '\$v' variable+ '\$.'
+variable-stmt ::= '$v' variable+ '$.'
 
 /* Disjoint variables. Simple disjoint statements only have
    2 variables, i.e., "variable*" is empty for them. */
-disjoint-stmt ::= '\$d' variable variable variable* '\$.'
+disjoint-stmt ::= '$d' variable variable variable* '$.'
 
-/* Define for clarity */
 hypothesis-stmt ::= floating-stmt | essential-stmt
 
 /* Floating (variable-type) hypothesis. */
-floating-stmt ::= LABEL '\$f' typecode variable '\$.'
+floating-stmt ::= LABEL '$f' typecode variable '$.'
 
 /* Essential (logical) hypothesis. */
-essential-stmt ::= LABEL '\$e' typecode MATH-SYMBOL* '\$.'
+essential-stmt ::= LABEL '$e' typecode MATH-SYMBOL* '$.'
 
-assert-stmt ::= axiom-stmt | proof-stmt
+assert-stmt ::= axiom-stmt | provable-stmt
 
 /* Axiomatic assertion */
-axiom-stmt ::= LABEL '\$a' typecode MATH-SYMBOL* '\$.'
+axiom-stmt ::= LABEL '$a' typecode MATH-SYMBOL* '$.'
 
 /* Provable assertion */
-p-statement ::= LABEL '\$p' typecode MATH-SYMBOL* '\$=' proof '\$.'
+provable-stmt ::= LABEL '$p' typecode MATH-SYMBOL*
+  '$=' proof '$.'
 
 /* A proof. Note that proofs may be interspersed by comments.
    If '?' is anywhere in a proof then it is an "incomplete" proof. */
 proof ::= uncompressed-proof | compressed-proof
-uncompressed-proof ::= (label | '?')+
-compressed-proof ::= '(' label* ')' COMPRESSED-PROOF-BLOCK+
+uncompressed-proof ::= (LABEL | '?')+
+compressed-proof ::= '(' LABEL* ')' COMPRESSED-PROOF-BLOCK+
 
-/* Certain constants are used specially as "typecodes" in many
-   databases; for convenience we note that here. */
 typecode ::= constant
 
 filename ::= PRINTABLE-SEQUENCE
@@ -14887,9 +14883,9 @@ variable ::= MATH-SYMBOL
 \end{verbatim}
 
 \needspace{2\baselineskip}
-Given these definitions, a \texttt{frame} is a sequence of 0 more
-\texttt{disjoint-stmt} and \texttt{hypotheses-stmt} expressions
-(possibly interleaved with other statements)
+Given these definitions, a \texttt{frame} is a sequence of 0 or more
+\texttt{disjoint-stmt} and \texttt{hypotheses-stmt} statements
+(possibly interleaved with other non-\texttt{assert-stmt} statements)
 followed by one \texttt{assert-stmt}.
 
 \needspace{3\baselineskip}
@@ -14924,7 +14920,7 @@ comment symbol is supposed to be followed by a
 \begin{verbatim}
 PRINTABLE-SEQUENCE ::= _PRINTABLE-CHARACTER+
 
-MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '\$')+
+MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
 
 _PRINTABLE-CHARACTER ::= [#x21-#x7e] /* ASCII printable characters */
 
@@ -14938,9 +14934,9 @@ COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
    whitespace is seen, it is skipped and we simply read again. */
 WHITESPACE ::= (_WHITECHAR+ | _COMMENT) -> SKIP
 
-/* Comments, which have the form \$( ... \$) and do not nest. */
-_COMMENT ::= '\$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '\$)')*
-  _WHITECHAR+ '\$)' _WHITECHAR
+/* Comments, which have the form $( ... $) and do not nest. */
+_COMMENT ::= '$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')*
+  _WHITECHAR+ '$)' _WHITECHAR
 
 /* Whitespace character: (' ' | '\t' | '\r' | '\n' | '\f') */
 _WHITECHAR ::= [#x20#x09#x0d#x0a#x0c]
