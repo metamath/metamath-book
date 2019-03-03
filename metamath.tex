@@ -742,7 +742,7 @@
 \usepackage{breqn}         % automatic equation breaking
 \usepackage{microtype}     % microtypography, reduces hyphenation
 
-% Packages for flexible tables.  We need to be able to 
+% Packages for flexible tables.  We need to be able to
 % wrap text within a cell (with automatically-determined widths) AND
 % split a table automatically across multiple pages.
 % * "tabularx" wraps text in cells but only 1 page
@@ -962,7 +962,7 @@ treats all mathematical statements as mere sequences of symbols.  You provide
 Metamath with certain special sequences (axioms) that tell it what rules
 of inference are allowed.  Metamath is not limited to any specific field of
 mathematics.  The Metamath language is simple and robust, with an
-almost total absence of hard-wired syntax, and 
+almost total absence of hard-wired syntax, and
 I\footnote{Unless otherwise noted, the words
 ``I,'' ``me,'' and ``my'' refer to Norman Megill\index{Megill, Norman}, while
 ``we,'' ``us,'' and ``our'' refer to Norman Megill and
@@ -3063,13 +3063,13 @@ But other Metamath databases are available:
   aka the
   New Foundations Explorer\index{New Foundations Explorer},
   constructs mathematics from scratch,
-  starting from Quine's New Foundations (NF) set theory axioms. 
+  starting from Quine's New Foundations (NF) set theory axioms.
 \item The database
   \texttt{hol.mm}\index{Higher-order Logic database (\texttt{hol.mm})},
   aka the
   Higher-Order Logic (HOL) Explorer\index{Higher-Order Logic (HOL) Explorer},
   starts with HOL (also called simple type theory) and derives
-  equivalents to ZFC axioms, connecting the two approaches. 
+  equivalents to ZFC axioms, connecting the two approaches.
 \end{itemize}
 
 Since the days of David Hilbert,\index{Hilbert, David} mathematicians have
@@ -8544,7 +8544,7 @@ conventions may be ignored for the purpose of parsing.
 A {\bf file inclusion command} consists of \texttt{\$[} followed by a file name
 followed by \texttt{\$]}.\index{\texttt{\$[} and \texttt{\$]} auxiliary
 keywords}\index{included file}\index{file inclusion}
-It is only allowed in the outermost scope (i.e., not between 
+It is only allowed in the outermost scope (i.e., not between
 \texttt{\$\char`\{} and \texttt{\$\char`\}})
 and must not be inside of a statement (e.g., it may not occur
 between the label of a \texttt{\$a} statement and its \texttt{\$.}).
@@ -8594,7 +8594,10 @@ of the outermost block is the end of the database.
 
 A {\bf \$v} or {\bf \$c statement}\index{\texttt{\$v} statement}\index{\texttt{\$c}
 statement} consists of the keyword token \texttt{\$v} or \texttt{\$c} respectively,
-followed by one or more math symbols, followed by \texttt{\$.}\,.  These
+followed by one or more math symbols,
+% The word "token" is used to distinguish "$." from the sentence-ending period.
+followed by the \texttt{\$.} token.
+These
 statements {\bf declare}\index{declaration} the math symbols to be {\bf
 variables}\index{variable!Metamath} or {\bf constants}\index{constant}
 respectively. The same math symbol may not occur twice in a given \texttt{\$v} or
@@ -8615,25 +8618,26 @@ become more general in the future;
 see p.~\pageref{redeclarationf}.}\index{redeclaration of symbols}
 
 A {\bf \$f statement}\index{\texttt{\$f} statement} consists of a label,
-followed by \texttt{\$f}, followed by an active constant (its type), followed by an
-active variable, followed by \texttt{\$.}\,.  A {\bf \$e
+followed by \texttt{\$f}, followed by its typecode (an active constant),
+followed by an
+active variable, followed by the \texttt{\$.} token.  A {\bf \$e
 statement}\index{\texttt{\$e} statement} consists of a label, followed
-by \texttt{\$e}, followed by an active constant, followed by zero or more
-active math symbols, followed by \texttt{\$.}\,.  A {\bf
+by \texttt{\$e}, followed by its typecode (an active constant),
+followed by zero or more
+active math symbols, followed by the \texttt{\$.} token.  A {\bf
 hypothesis}\index{hypothesis} is a \texttt{\$f} or \texttt{\$e}
 statement.
 The type declared by a \texttt{\$f} statement for a given label
 is global even if the variable is not
 (e.g., a database may not have \texttt{wff P} in one local scope
 nd \texttt{class P} in another).
-A \texttt{\$e} statement may not occur in the outermost scope.
 
 A {\bf simple \$d statement}\index{\texttt{\$d} statement!simple}
 consists of \texttt{\$d}, followed by two different active variables,
-followed by \texttt{\$.}\,.  A {\bf compound \$d
+followed by the \texttt{\$.} token.  A {\bf compound \$d
 statement}\index{\texttt{\$d} statement!compound} consists of
 \texttt{\$d}, followed by three or more variables (all different),
-followed by \texttt{\$.}\,.  The order of the variables in a
+followed by the \texttt{\$.} token.  The order of the variables in a
 \texttt{\$d} statement is unimportant.  A compound \texttt{\$d}
 statement is equivalent to a set of simple \texttt{\$d} statements, one
 for each possible pair of variables occurring in the compound
@@ -8643,12 +8647,14 @@ is also called a {\bf disjoint} (or {\bf distinct}) {\bf variable
 restriction}.\index{disjoint-variable restriction}
 
 A {\bf \$a statement}\index{\texttt{\$a} statement} consists of a label,
-followed by \texttt{\$a}, followed by an active constant, followed by
-zero or more active math symbols, followed by \texttt{\$.}\,.  A {\bf
+followed by \texttt{\$a}, followed by its typecode (an active constant),
+followed by
+zero or more active math symbols, followed by the \texttt{\$.} token.  A {\bf
 \$p statement}\index{\texttt{\$p} statement} consists of a label,
-followed by \texttt{\$p}, followed by an active constant, followed by
+followed by \texttt{\$p}, followed by its typecode (an active constant),
+followed by
 zero or more active math symbols, followed by \texttt{\$=}, followed by
-a sequence of labels, followed by \texttt{\$.}\,.  An {\bf
+a sequence of labels, followed by the \texttt{\$.} token.  An {\bf
 assertion}\index{assertion} is a \texttt{\$a} or \texttt{\$p} statement.
 
 A \texttt{\$f}, \texttt{\$e}, or \texttt{\$d} statement is {\bf active}\index{active
@@ -9465,14 +9471,15 @@ when we discuss frames in
 Section~\ref{frames} and scoping in Section~\ref{scoping}. The syntax of these
 are as follows:
 \begin{center}
-  {\em label} \texttt{\$f} {\em constant} {\em variable} \texttt{\$.}\\
-  {\em label} \texttt{\$e} {\em constant}
+  {\em label} \texttt{\$f} {\em typecode} {\em variable} \texttt{\$.}\\
+  {\em label} \texttt{\$e} {\em typecode}
       {\em math-symbol}\ \,$\cdots$\ {\em math-symbol} \texttt{\$.}\\
 \end{center}
 \index{\texttt{\$e} statement}
 \index{\texttt{\$f} statement}
 A hypothesis must have a {\em label}\index{label}.  The expression in a
-\texttt{\$e} hypothesis consists of a constant math symbol followed by a sequence
+\texttt{\$e} hypothesis consists of a typecode (an active constant math symbol)
+followed by a sequence
 of zero or more math symbols. Each math symbol (including {\em constant}
 and {\em variable}) must be a previously declared constant or variable.  (In
 addition, each math symbol must be active, which will be covered when we
@@ -9537,12 +9544,40 @@ established by the proof).  The meaning of ``associated'' (which we will call
 {\bf mandatory} in Section~\ref{frames}) will become clear when we discuss
 scoping later.
 
-The initial constant after the \texttt{\$f}, \texttt{\$e},
-\texttt{\$a}, or \texttt{\$p},
-tokens is sometimes called its \textit{typecode}\index{typecode},
-because many databases use this constant to enforce types.
+Note that after any \texttt{\$f}, \texttt{\$e},
+\texttt{\$a}, or \texttt{\$p} token there is a required
+\textit{typecode}\index{typecode}.
+The typecode is a constant used to enforce types of expressions.
 This will become clearer once we learn more about
 assertions (\texttt{\$a} and \texttt{\$p} statements).
+An example may also clarify their purpose.
+In the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
+\index{Metamath Proof Explorer}
+database,
+the following typecodes are used:
+
+\begin{itemize}
+\item \texttt{wff} :
+  Well-formed formula (wff) symbol
+  (read: ``the following symbol sequence is a wff'').
+% The *textual* typecode for turnstile is "|-", but when read it's a little
+% confusing, so I intentionally display the mathematical symbol here instead
+% (I think it's clearer in this context).
+\item \texttt{$\vdash$} :
+  Turnstile (read: ``the following symbol sequence is provable'' or
+  ``a proof exists for'').
+\item \texttt{set} :
+  Individual set variable type (read: ``the following is an
+  individual (set) variable'').
+  Note that this is \textit{not} the type of an arbitrary set expression,
+  instead, it is used to ensure that there is only a single symbol used
+  after quantiers like for-all ($\forall$) and there-exists ($\exists$).
+\item \texttt{class} :
+  An expression that is a syntactically valid class expresion.
+  All valid set expressions are also valid class expression, so expressions
+  of sets normally have the \texttt{class} typecode.
+\end{itemize}
 
 \subsection{Assertions (\texttt{\$a} and \texttt{\$p} Statements)}
 \index{\texttt{\$a} statement}
@@ -9553,17 +9588,18 @@ There are two types of assertions, \texttt{\$a}\index{\texttt{\$a} statement}
 statements ({\bf axiomatic assertions}) and \texttt{\$p} statements ({\bf
 provable assertions}).  Their syntax is as follows:
 \begin{center}
-  {\em label} \texttt{\$a} {\em constant} {\em math-symbol} \ldots
+  {\em label} \texttt{\$a} {\em typecode} {\em math-symbol} \ldots
          {\em math-symbol} \texttt{\$.}\\
-  {\em label} \texttt{\$p} {\em constant} {\em math-symbol} \ldots
+  {\em label} \texttt{\$p} {\em typecode} {\em math-symbol} \ldots
         {\em math-symbol} \texttt{\$=} {\em proof} \texttt{\$.}
 \end{center}
 \index{\texttt{\$a} statement}
 \index{\texttt{\$p} statement}
 \index{\texttt{\$=} keyword}
 An assertion always requires a {\em label}\index{label}. The expression in an
-assertion consists of a constant followed by a sequence of zero
-or more math symbols.  Each math symbol, including {\em constant}, must be a
+assertion consists of a typecode (an active constant)
+followed by a sequence of zero
+or more math symbols.  Each math symbol, including any {\em constant}, must be a
 previously declared constant or variable.  (In addition, each math symbol
 must be active, which will be covered when we discuss scoping statements in
 Section~\ref{scoping}.)
@@ -10328,7 +10364,8 @@ Statement \texttt{wnew} claims that \texttt{( s -> ( r -> p ) )} is a wff given
 three wffs \texttt{s}, \texttt{r}, and \texttt{p}.  More precisely, \texttt{wnew} claims
 that the sequence of ten symbols \texttt{wff ( s -> ( r -> p ) )} is provable from
 previous assertions and the hypotheses of \texttt{wnew}.  Metamath does not know
-or care what a wff is, and as far as it is concerned \texttt{wff} is just an
+or care what a wff is, and as far as it is concerned
+the typecode \texttt{wff} is just an
 arbitrary constant symbol in a math symbol sequence.  The mandatory hypotheses
 of \texttt{wnew} are \texttt{wp}, \texttt{wr}, and \texttt{ws}; \texttt{wq} is an optional
 hypothesis.  In our particular proof, the optional hypothesis is not
@@ -10486,8 +10523,8 @@ pushed on the proof stack in the order in which they appear.
 In addition, each variable must have its type specified
 with a \texttt{\$f} hypothesis before it is used
 and that each \texttt{\$f} hypothesis
-have the restricted syntax of a constant followed by a variable.
-The constant in the \texttt{\$f} hypothesis must match the first symbol of
+have the restricted syntax of a typecode (a constant) followed by a variable.
+The typecode in the \texttt{\$f} hypothesis must match the first symbol of
 the corresponding RPN stack entry (which will also be a constant), so
 the only possible match for the variable in the \texttt{\$f} hypothesis is
 the sequence of symbols in the stack entry after the initial constant.
@@ -10813,7 +10850,7 @@ white space is not required before the terminating semicolon of a definition.
 Each definition should start on a new line.\footnote{This
 restriction of the current version of Metamath
 (0.07.30)\index{Metamath!limitations of version 0.07.30} may be removed
-in a future version, but you should do it anyway for readability.} 
+in a future version, but you should do it anyway for readability.}
 
 For example, this typesetting definition:
 \begin{center}
@@ -11450,15 +11487,17 @@ not have any built-in constraints on definitions, since they are just
 However, nothing prevents a verification system from verifying
 additional rules to impose further limitations on definitions.
 For example, the \texttt{mmj2}\index{mmj2} program
-supports various kinds of 
+supports various kinds of
 additional information comments (see section \ref{jcomment}).
 One of their uses is to optionally verify additional constraints,
 including constraints to verify that definitions meet certain
 requirements.
-These additional checks are required by the continuous integration (CI)
+These additional checks are required by the
+continuous integration (CI)\index{continuous integration (CI)}
 checks of the
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
-\index{Metamath Proof Explorer}).
+\index{Metamath Proof Explorer}
+database.
 This approach enables us to optionally impose additional requirements
 on definitions if we wish, without necessarily imposing those rules on
 all databases or requiring all verification systems to implement them.
@@ -11486,7 +11525,7 @@ a parse check and a definition soundness check.
 %   ( wbothp wn wi wleftp df-leftp biimpi df-bothp mpbir mpbi simplim ax-mp)
 %   ABZAMACZDZCZMOEZOCQAEZNDZRNAFGSHIOFJMNKLAHJ $.
 % $}
-% 
+%
 % This particular problem is countered by enabling, within mmj2,
 % SetParser,mmj.verify.LRParser
 
@@ -13206,7 +13245,7 @@ if that is necessary for clarity.
   Class membership; $A \in B$ if $A$ is a member of $B$. \\
 \texttt{C\_} & $ \subseteq $ &
   \hyperref[df-ss]{\texttt{df-ss}} &
-  Subclass (subset); $A \subseteq B$ is true iff 
+  Subclass (subset); $A \subseteq B$ is true iff
   $A$ is a subclass of $B$. \\
 \texttt{u.} & $ \cup $ &
   \hyperref[df-un]{\texttt{df-un}} &
