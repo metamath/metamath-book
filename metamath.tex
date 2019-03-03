@@ -57,7 +57,16 @@
 % Search for "Uncomment" below if you want to suppress hyperlink boxes
 % in the PDF output file
 %
-
+% TYPOGRAPHICAL NOTES:
+% * It is customary to use an en dash (--) to "connect" names of different
+%   people (and to denote ranges), and use a hyphen (-) for a
+%   single compound name. Examples of connected multiple people are
+%   Zermelo--Fraenkel, Schr\"{o}der--Bernstein, Tarski--Grothendieck,
+%   Hewlett--Packard, and Backus--Naur.  Examples of a single person with
+%   a compound name include Levi-Civita, Mittag-Leffler, and Burali-Forti.
+% * Use non-breaking spaces after page abbreviations, e.g.,
+%   p.~\pageref{note2002}.
+%
 % --------------------------- Start of realref.sty -----------------------------
 \begin{filecontents}{realref.sty}
 % Save the following as realref.sty.
@@ -1328,7 +1337,7 @@ the Poincar\'{e} conjecture has been proved (p.~\pageref{poincare}).
 
 \subsubsection{Note Added Nov. 17, 2014}\label{note2014}
 
-The statement of the Schr\"{o}der-Bernstein theorem was corrected in
+The statement of the Schr\"{o}der--Bernstein theorem was corrected in
 Section~\ref{trust}.  Thanks to Bob Solovay for pointing out the error.
 
 \subsubsection{Note Added May 25, 2016}\label{note2016}
@@ -1789,7 +1798,7 @@ very elementary books on set theory.  A lot of it seems pretty obvious, like
 intersections, subsets, and Venn diagrams.  You thumb through one of the
 books; nowhere is anything about axioms mentioned. The other book relegates to
 an appendix a brief discussion that mentions a set of axioms called
-``Zermelo-Fraenkel set theory''\index{Zermelo-Fraenkel set theory} and states
+``Zermelo--Fraenkel set theory''\index{Zermelo--Fraenkel set theory} and states
 them in English.  You look at them and have no idea what they really mean or
 what you can do with them.  The comments in this appendix say that the purpose
 of mentioning them is to expose you to the idea, but imply that they are not
@@ -2513,8 +2522,8 @@ intersect another side, provided that it does not touch any of the triangle's
 vertices.  The omission of Pasch's axiom went unnoticed for 2000
 years \cite[p.~160]{Davis}, in spite of (one presumes) the thousands of
 students, instructors, and mathematicians who studied Euclid.
-  \item The first published proof of the famous Schr\"{o}der-Bernstein
-theorem\index{Schr\"{o}der-Bernstein theorem} in set theory was incorrect
+  \item The first published proof of the famous Schr\"{o}der--Bernstein
+theorem\index{Schr\"{o}der--Bernstein theorem} in set theory was incorrect
 \cite[p.~148]{Enderton}\index{Enderton, Herbert B.}.  This theorem states
 that if there exists a 1-to-1 function\footnote{A {\em set}\index{set} is any
 collection of objects. A {\em function}\index{function} or {\em
@@ -3037,8 +3046,8 @@ The largest Metamath database is
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
 \index{Metamath Proof Explorer}), aka the Metamath Proof Explorer,
 which uses the most common axioms for mathematical foundations
-(specifically classical logic combined with Zermelo-Fraenkel
-set theory\index{Zermelo-Fraenkel set theory} with the Axiom of Choice).
+(specifically classical logic combined with Zermelo--Fraenkel
+set theory\index{Zermelo--Fraenkel set theory} with the Axiom of Choice).
 But other Metamath databases are available:
 
 \begin{itemize}
@@ -3222,8 +3231,8 @@ logics.''\index{free logic} For a discussion of these systems, see
 \cite{Leblanc}\index{Leblanc, Hugues}.  Since our use for logic is as a basis
 for set theory, which has a non-empty domain, it is more convenient (and more
 traditional) to use a less general system.  An interesting curiosity is that,
-using a free logic as a basis for Zermelo-Fraenkel set
-theory\index{Zermelo-Fraenkel set theory} (with the redundant Axiom of the
+using a free logic as a basis for Zermelo--Fraenkel set
+theory\index{Zermelo--Fraenkel set theory} (with the redundant Axiom of the
 Null Set omitted),\index{Axiom of the Null Set} we cannot even prove the
 existence of a single set without assuming the axiom of infinity!\index{Axiom
 of Infinity}} whether or not $x$ and $y$ are distinct variables\index{distinct
@@ -4486,7 +4495,7 @@ called sentential logic\index{sentential logic}) and predicate calculus
 theory}\index{predicate calculus} or quantifier theory).  Propositional
 calculus is a prerequisite for predicate calculus, and predicate calculus is a
 prerequisite for set theory.  The version of set theory most commonly used is
-Zermelo-Fraenkel set theory\index{Zermelo-Fraenkel set theory}\index{set theory}
+Zermelo--Fraenkel set theory\index{Zermelo--Fraenkel set theory}\index{set theory}
 with the axiom of choice,
 often abbreviated as ZFC\index{ZFC}.
 
@@ -5000,7 +5009,7 @@ We later add these.
 
 \subsection{Set Theory}
 
-Traditional Zermelo-Fraenkel set theory\index{Zermelo-Fraenkel set
+Traditional Zermelo--Fraenkel set theory\index{Zermelo--Fraenkel set
 theory}\index{set theory} with the Axiom of Choice
 has 10 axioms, which can be expressed in the
 language of predicate calculus.  In this section, we will list only the
@@ -5095,7 +5104,7 @@ in some cases we will use weaker axioms than the full axiom of choice.
 That said, the axiom of choice is a powerful and widely-accepted tool,
 so we do use it when needed.
 ZF set theory that includes the Axiom of Choice is
-called Zermelo-Fraenkel set theory with choice (ZFC\index{ZFC set theory}).
+called Zermelo--Fraenkel set theory with choice (ZFC\index{ZFC set theory}).
 
 When expressed symbolically, the Axiom of Separation and the Axiom of
 Replacement contain wff symbols and therefore each represent infinitely many
@@ -5117,11 +5126,11 @@ axioms we must depend on.
 Above we qualified the phrase "all of mathematics" with "essentially."
 The main important missing piece is the ability to do category theory,
 which requires huge sets (inaccessible cardinals) larger than those
-postulated by the ZFC axioms. The Tarski-Grothendieck Axiom postulates
+postulated by the ZFC axioms. The Tarski--Grothendieck Axiom postulates
 the existence of such sets.
 Note that this is the same axiom used by Mizar for supporting
 category theory.
-The Tarski-Grothendieck axiom
+The Tarski--Grothendieck axiom
 can be viewed as a very strong replacement of the Axiom of Infinity,
 the Axiom of Choice, and the Axiom of Power Sets.
 The \texttt{set.mm} database includes this axiom; see the database
@@ -10256,7 +10265,7 @@ mandatory\index{mandatory hypothesis} and the optional hypotheses of the
 
 The label sequence in a proof specifies a construction in {\bf reverse Polish
 notation}\index{reverse Polish notation (RPN)} (RPN).  You may be familiar
-with RPN if you have used Hewlett-Packard or similar hand-held calculators.
+with RPN if you have used Hewlett--Packard or similar hand-held calculators.
 In the calculator analogy, a hypothesis label\index{hypothesis label} is like
 a number and an assertion label\index{assertion label} is like an operation.
 On an RPN calculator, an operation takes one or more previous numbers in an
@@ -14416,7 +14425,7 @@ three use ``$\leftrightarrow$'' to effectively mean ``is defined as.''
 
 \subsection{Example~5---ZFC Set Theory}\index{ZFC set theory}
 
-Here we add to the system of Example~4 the axioms of Zermelo-Fraenkel set
+Here we add to the system of Example~4 the axioms of Zermelo--Fraenkel set
 theory with Choice.  For convenience we make use of the
 definitions in Example~4.
 
