@@ -1,6 +1,11 @@
 #!/bin/sh
 # Generate metamath.pdf from source file metamath.tex.
 
+# $1 = special-settings file to copy from, wide.sty by default
+
+# WARNING: We manipulate the "special-setting.sty" file, so don't
+# run this in parallel.
+
 # Stop processing if error occurs (-e) and show what we're doing (-x)
 set -ex
 
@@ -9,6 +14,9 @@ set -ex
 do_pdflatex () {
   pdflatex -halt-on-error -interaction=nonstopmode "$1"
 }
+
+style_special="${1:-wide.sty}"
+cp -p "$style_special" special-settings.sty
 
 # Try to remove metamath.pdf first - if we can't, no point in going further.
 rm -f metamath.pdf
@@ -23,6 +31,10 @@ bibtex metamath
 makeindex metamath
 do_pdflatex metamath
 do_pdflatex metamath
+
+# Clean up temporary "special-settings.sty" file
+rm -f special-settings.sty
+touch special-settings.sty
 
 # Print errors not already allowed; return error code if there are any
 if ! grep -Ei '(Error|Warning):' metamath.log | grep -vF -f allowed-errors
