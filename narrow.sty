@@ -1,6 +1,10 @@
 % Settings to generate PDF for a narrow display (e.g. a smartphone).
 % Copy this file to special-settings.sty to use it.
 
+% TODO: Ideally listings should show single quotes as straight
+% (not curly). HOwever We can't set upquote=true because we can't be
+% sure we have the font.  So we document where it WOULD go below.
+
 \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 
 % Use "listings" package.  This lets us have automatic line breaking.
@@ -11,6 +15,7 @@
   basicstyle=\ttfamily\footnotesize,      % print size
   breaklines=true,                        % sets automatic line breaking
   breakatwhitespace=true,                 % sets if automatic breaks should only happen at whitespace
+  % upquote=true, % Make single quotes upright.
 }
 
 % Override definition of "verbatim" with a "listings" block.
