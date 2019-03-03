@@ -14825,12 +14825,10 @@ non-syntax restrictions not shown here
 (e.g., that each label token must be unique).
 
 \begin{verbatim}
-database ::= toplevel-stmt*
+database ::= outermost-scope-stmt*
 
-toplevel-stmt ::= include-stmt | constant-stmt | stmt
-
-stmt ::= variable-stmt | disjoint-stmt | hypothesis-stmt |
-  assert-stmt | block
+outermost-scope-stmt ::= include-stmt | constant-stmt |
+  any-scope-stmt
 
 /* File inclusion command.  The file is processed as a database.
    Databases should NOT have a comment in the filename. */
@@ -14839,8 +14837,15 @@ include-stmt ::= '\$[' filename '\$]'
 /* Constant symbols declaration. */
 constant-stmt ::= '\$c' constant+ '\$.'
 
+/* Statements allowed in any scope (outermost or not) */
+any-scope-stmt ::= variable-stmt | disjoint-stmt |
+  floating-stmt | assert-stmt | block
+
 /* A block. You can have 0 statements in a block. */
-block ::= '\${' stmt* '\$}'
+block ::= '\${' inner-scope-stmt* '\$}'
+
+/* Statements allowed in an inner (non-outer) block */
+inner-scope-stmt ::= any-scope-stmt | essential-stmt
 
 /* Variable symbols declaration. */
 variable-stmt ::= '\$v' variable+ '\$.'
@@ -14849,13 +14854,13 @@ variable-stmt ::= '\$v' variable+ '\$.'
    2 variables, i.e., "variable*" is empty for them. */
 disjoint-stmt ::= '\$d' variable variable variable* '\$.'
 
+/* Define for clarity */
 hypothesis-stmt ::= floating-stmt | essential-stmt
 
-/* Floating (variable-type) hypotheses. */
+/* Floating (variable-type) hypothesis. */
 floating-stmt ::= LABEL '\$f' typecode variable '\$.'
 
-/* Essential (logical) hypotheses.
-   Cannot occur in the outermost scope. */
+/* Essential (logical) hypothesis. */
 essential-stmt ::= LABEL '\$e' typecode MATH-SYMBOL* '\$.'
 
 assert-stmt ::= axiom-stmt | proof-stmt
@@ -14869,9 +14874,7 @@ p-statement ::= LABEL '\$p' typecode MATH-SYMBOL* '\$=' proof '\$.'
 /* A proof. Note that proofs may be interspersed by comments.
    If '?' is anywhere in a proof then it is an "incomplete" proof. */
 proof ::= uncompressed-proof | compressed-proof
-
 uncompressed-proof ::= (label | '?')+
-
 compressed-proof ::= '(' label* ')' COMPRESSED-PROOF-BLOCK+
 
 /* Certain constants are used specially as "typecodes" in many
@@ -14879,11 +14882,15 @@ compressed-proof ::= '(' label* ')' COMPRESSED-PROOF-BLOCK+
 typecode ::= constant
 
 filename ::= PRINTABLE-SEQUENCE
-
 constant ::= MATH-SYMBOL
-
 variable ::= MATH-SYMBOL
 \end{verbatim}
+
+\needspace{2\baselineskip}
+Given these definitions, a \texttt{frame} is a sequence of 0 more
+\texttt{disjoint-stmt} and \texttt{hypotheses-stmt} expressions
+(possibly interleaved with other statements)
+followed by one \texttt{assert-stmt}.
 
 \needspace{3\baselineskip}
 Here are the rules for lexical processing (tokenization) beyond
