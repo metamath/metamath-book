@@ -218,6 +218,10 @@
   note = "[QA76.9.A96.S64 1983]",
   publisher = "American Mathematical Society",
   address = "Providence, Rhode Island" }
+@book{Clemente, author = "Daniel Clemente Laboreo",
+  title = "Introduction to natural deduction",
+  year = 2014,
+  url = "http://www.danielclemente.com/logica/dn.en.pdf" }
 @incollection{Courant, author = "Richard Courant and Herbert Robbins",
   title = "Topology",
   pages = "573--590",
@@ -7950,6 +7954,114 @@ ND hypothesis scope, modify the assertion so that the ND hypothesis
 assumption is added to its antecedent (typically using \texttt{adantr}). Most
 proof steps will be proved using rules that have hypotheses and results
 of the form $\varphi \rightarrow$ ...
+
+An example may make this clearer.
+The following table shows a simple proof in Fitch natural deduction style,
+specifically theorem 5.5 of
+\cite[p.~18]{Clemente}\index{Clemente Laboreo, Daniel}
+along with a line by line translation using the usual
+translation of natural deduction (ND) in the Metamath Proof Explorer
+(MPE) notation.
+The \textit{\#} column shows the original numbering,
+\textit{MPE\#} shows the number in the equivalent MPE proof,
+\textit{ND Expression} shows the original proof claim in ND notation,
+and \textit{MPE Translation} shows its translation into MPE
+as discussed in this section.
+The final columns show the rationale in ND and MPE respectively.
+
+{\setlength{\extrarowsep}{4pt} % Keep rows from being too close together
+\begin{longtabu}   { @{} c c X X X X }
+\textbf{\#} & \textbf{MPE\#} & \textbf{ND Ex\-pres\-sion} &
+\textbf{MPE Trans\-lation} & \textbf{ND Ration\-ale} &
+\textbf{MPE Ra\-tio\-nale} \\
+\endhead
+
+1 & 2;3 &
+$( \psi \rightarrow \chi )$ &
+$( \varphi \rightarrow ( \psi \rightarrow \chi ) )$ &
+Given &
+\$e; \texttt{adantr} to put in ND hypothesis \\
+
+2 & 5 &
+$ \lnot \chi$ &
+$( \varphi \rightarrow \lnot \chi )$ &
+Given &
+\$e; \texttt{adantr} to put in ND hypothesis \\
+
+3 & 1 &
+... $\vert$ $\psi$ &
+$( \varphi \rightarrow \psi )$ &
+ND hypothesis assumption &
+\texttt{simpr} \\
+
+4 & 4 &
+... $\chi$ &
+$( ( \varphi \land \psi ) \rightarrow \chi )$ &
+$\rightarrow$\,E 1,3 &
+\texttt{mpd} 1,3 \\
+
+5 & 6 &
+... $\lnot \chi$ &
+$( ( \varphi \land \psi ) \rightarrow \lnot \chi )$ &
+IT 2 &
+\texttt{adantr} 5 \\
+
+6 & 7 &
+$\lnot \psi$ &
+$( \varphi \rightarrow \lnot \psi )$ &
+$\land$\,I 3,4,5 &
+\texttt{pm2.65da} 4,6 \\
+
+\end{longtabu}
+}
+
+
+The original used Latin letters; we have replaced them with Greek letters
+to follow Metamath naming conventions and so that it is easier to follow
+the Metamath translation. The Metamath line-for-line translation of
+this natural deduction approach precedes every line with an antecedent
+including $\varphi$ and uses the Metamath equivalents of the natural deduction
+rules. To add an assumption, the antecedent is modified to include it
+(typically by using \texttt{adantr};
+\texttt{simpr} is useful when you want to
+depend directly on the new assumption).
+
+In Metamath we can represent the two given statements as these hypotheses:
+
+\needspace{2\baselineskip}
+\begin{itemize}
+\item ex-natded5.5.1 $\vdash ( \varphi \rightarrow ( \psi \rightarrow \chi ) )$
+\item ex-natded5.5.2 $\vdash ( \varphi \rightarrow \lnot \chi )$
+\end{itemize}
+
+\needspace{4\baselineskip}
+Here is the proof in Metamath as a line-by-line translation:
+
+\begin{longtabu}   { l l l X }
+\textbf{Step} & \textbf{Hyp} & \textbf{Ref} & \textbf{Ex\-pres\-sion} \\
+\endhead
+1 & & simpr & $\vdash ( ( \varphi \land \psi ) \rightarrow \psi )$ \\
+2 & & ex-natded5.5.1 &
+  $\vdash ( \varphi \rightarrow ( \psi \rightarrow \chi ) )$ \\
+3 & 2 & adantr &
+ $\vdash ( ( \varphi \land \psi ) \rightarrow ( \psi \rightarrow \chi ) )$ \\
+4 & 1, 3 & mpd &
+ $\vdash ( ( \varphi \land \psi ) \rightarrow \chi ) $ \\
+5 & & ex-natded5.5.2 &
+ $\vdash ( \varphi \rightarrow \lnot \chi )$ \\
+6 & 5 & adantr &
+ $\vdash ( ( \varphi \land \psi ) \rightarrow \lnot \chi )$ \\
+7 & 4, 6 & pm2.65da &
+ $\vdash ( \varphi \rightarrow \lnot \psi )$ \\
+\end{longtabu}
+
+Only using specific natural deduction rules directly can lead to very
+long proofs, for exactly the same reason that only using axioms directly
+in Hilbert-style proofs can lead to very long proofs.
+If the goal is short and clear proofs,
+then it is better to reuse already-proven proven assertions
+in deduction form than to start from scratch each time
+and using only basic natural deduction rules.
 
 \subsection{Strengths of Our Approach}
 
