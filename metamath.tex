@@ -14861,10 +14861,10 @@ essential-stmt ::= LABEL '$e' typecode MATH-SYMBOL* '$.'
 
 assert-stmt ::= axiom-stmt | provable-stmt
 
-/* Axiomatic assertion */
+/* Axiomatic assertion. */
 axiom-stmt ::= LABEL '$a' typecode MATH-SYMBOL* '$.'
 
-/* Provable assertion */
+/* Provable assertion. */
 provable-stmt ::= LABEL '$p' typecode MATH-SYMBOL*
   '$=' proof '$.'
 
