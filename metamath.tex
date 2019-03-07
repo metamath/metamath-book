@@ -14876,7 +14876,7 @@ compressed-proof ::= '(' LABEL* ')' COMPRESSED-PROOF-BLOCK+
 
 typecode ::= constant
 
-filename ::= PRINTABLE-SEQUENCE
+filename ::= MATH-SYMBOL /* Cannot include whitespace or '$' */
 constant ::= MATH-SYMBOL
 variable ::= MATH-SYMBOL
 \end{verbatim}
