@@ -7764,23 +7764,6 @@ Theorem \texttt{dedth} simply turns a hypothesis into an antecedent
 is placed in front of the assertion, and the hypothesis
 itself is eliminated) given certain conditions.
 
-For example, look at the proof of \texttt{renegcl}, which proves that
-$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $.
-In \texttt{renegcl} step 5,
-there is a reference to the deduction \texttt{renegcli}, which proves that
-$ \vdash A \in \mathbb{R} \Rightarrow\, \vdash - A \in \mathbb{R}$.
-A special substitution instance of \texttt{renegcli} is used
-to feed the last hypothesis of the deduction theorem \texttt{dedth}, which in
-turn converts the deduction into the theorem
-$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $
-in \texttt{renegcl} step 6.
-The somewhat strange-looking steps in \texttt{renegcl} before step 5 are just
-some technical stuff that makes this magic work, and they can be ignored
-for a quick overview of the proof. To continue following the "important"
-part of the proof of \texttt{renegcl},
-click on the reference to \texttt{renegcli} at step 5.
-We now turn to a brief discussion of the Weak Deduction Theorem itself.
-
 The Weak Deduction Theorem
 eliminates a hypothesis $\varphi$, making it become an antecedent.
 It does this by proving an expression
@@ -7789,15 +7772,63 @@ $ \varphi \rightarrow \psi $ given two hypotheses:
 $ ( A = if ( \varphi , A , B ) \rightarrow ( \varphi \leftrightarrow \chi ) ) $
 and
 (2) $\chi$.
-This requires that a proof exists for $\varphi$ when the class variable
+Note that it requires that a proof exists for $\varphi$ when the class variable
 $A$ is replaced with a specific class $B$. The hypothesis $\chi$
 should be assigned to the inference.
-You can see the proof details in theorem \texttt{dedth}; you should also
-study proofs like \texttt{renegcl} that make use of it.
+You can see the details of the proof of the Weak Deduction Theorem
+in theorem \texttt{dedth}.
+
+The Weak Deduction Theorem
+is probably easier to understand by studying proofs that make use of it.
+For example, let's look at the proof of \texttt{renegcl}, which proves that
+$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} )$:
+
+\needspace{4\baselineskip}
+\begin{longtabu} {l l l X}
+\textbf{Step} & \textbf{Hyp} & \textbf{Ref} & \textbf{Expression} \\
+  1 &  & negeq &
+  $\vdash$ $($ $A$ $=$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$ $,$ $A$ $,$ $1$ $)$ $\rightarrow$
+  $\textrm{-}$ $A$ $=$ $\textrm{-}$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$
+  $,$ $A$ $,$ $1$ $)$ $)$ \\
+ 2 & 1 & 1re &
+    $\vdash$ $($ $A$ $=$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$ $,$ $A$ $,$ $1$ $)$ $\rightarrow$ $($
+    $\textrm{-}$ $A$ $\in$ $\mathbb{R}$ $\leftrightarrow$
+    $\textrm{-}$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$ $,$ $A$ $,$ $1$ $)$ $\in$
+    $\mathbb{R}$ $)$ $)$ \\
+ 3 &  & 1re & $\vdash 1 \in \mathbb{R}$ \\
+ 4 & 3 & elimel &
+   $\vdash {\rm if} ( A \in \mathbb{R} , A , 1 ) \in \mathbb{R}$ \\
+ 5 & 4 & renegcli &
+   $\vdash \textrm{-} {\rm if} ( A \in \mathbb{R} , A , 1 ) \in \mathbb{R}$ \\
+ 6 & 2,5 & dedth &
+   $\vdash ( A \in \mathbb{R} \rightarrow \textrm{-} A \in \mathbb{R}$ ) \\
+\end{longtabu}
+
+The somewhat strange-looking steps in \texttt{renegcl} before step 5 are just
+some technical stuff that makes this magic work, and they can be ignored
+for a quick overview of the proof. To continue following the ``important''
+part of the proof of \texttt{renegcl},
+you can look at the reference to \texttt{renegcli} at step 5.
+
+That said, let's briefly look at how
+\texttt{renegcl} uses the
+Weak Deduction Theorem (\texttt{dedth}) to do its job,
+in case you want to do something similar or want understand it more deeply.
+In \texttt{renegcl} proof step 5,
+there is a reference to the deduction \texttt{renegcli}, which proves that
+$ \vdash A \in \mathbb{R} \Rightarrow\, \vdash - A \in \mathbb{R}$.
+A proven special substitution instance of \texttt{renegcli}
+(in this case, $1 \in \mathbb{R}$ in step 3)
+is used
+to feed the last hypothesis of the deduction theorem \texttt{dedth}.
+That in, turn, turn converts the deduction into the theorem
+$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $
+in \texttt{renegcl} step 6.
 
 The weak deduction theorem has limitations.
-Specifically, we must be able to prove a special case of the deduction's
+In particular, we must be able to prove a special case of the deduction's
 hypothesis as a stand-alone theorem.
+For example, we used $1 \in \mathbb{R}$ in step 3 of \texttt{renegcl}.
 
 We used to use the weak deduction theorem
 extensively within \texttt{set.mm}.
