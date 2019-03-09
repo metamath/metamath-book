@@ -5838,15 +5838,13 @@ mentioned.
 
 \noindent Define proper substitution.\index{proper
 substitution}\index{substitution!proper}\label{df-sb}
-Note that this
-definition is valid even when
-$x$ and $y$ are the same variable.  The first conjunct is a ``trick'' used to
-achieve this property, making the definition look somewhat peculiar at
-first.   For our notation, we use $[ y / x ] \varphi$ to mean ``the wff that
-results when $y$ is properly substituted with $x$ in the wff $\varphi$.''  The
-notation is different from the notation $\varphi (
-x | y )$ that is sometimes used, because the latter notation is ambiguous
-for us:
+For our notation, we use $[ y / x ] \varphi$ to mean ``the wff that
+results when $y$ is properly substituted with $x$ in the wff $\varphi$.''
+% This is elsb4 : ( [ x / y ] z e. y <-> z e. x )
+For example,
+$[ x / y ] z \in y$ is the same as $z \in x$.
+The notation is different from the notation $\varphi ( x | y )$
+that is sometimes used, because the latter notation is ambiguous for us:
 for example, we don't know whether $\lnot \varphi ( x | y )$ is to be
 interpreted as $\lnot ( \varphi x | y )$ or $( \lnot \varphi x | y
 )$.\footnote{Because of the way we initially defined wffs, this is the case
@@ -5863,6 +5861,11 @@ could actually redefine all notation to be Polish if we wanted to without
 having to change any proofs!}  Other texts often use $\varphi(y)$ to indicate
 our $[ y / x ] \varphi$, but this notation is even more ambiguous since there is
 no explicit indication of what is being substituted.
+Note that this
+definition is valid even when
+$x$ and $y$ are the same variable.  The first conjunct is a ``trick'' used to
+achieve this property, making the definition look somewhat peculiar at
+first.
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-sb\ \$a\ }
