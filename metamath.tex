@@ -7822,17 +7822,26 @@ That said, let's briefly look at how
 \texttt{renegcl} uses the
 Weak Deduction Theorem (\texttt{dedth}) to do its job,
 in case you want to do something similar or want understand it more deeply.
-
-In \texttt{renegcl} proof step 5,
-there is a reference to the deduction \texttt{renegcli}, which proves that
-$ \vdash A \in \mathbb{R} \Rightarrow\, \vdash - A \in \mathbb{R}$.
-A proven special substitution instance of \texttt{renegcli}
-(in this case, $1 \in \mathbb{R}$ in step 3)
-is used
-to feed the last hypothesis of the deduction theorem \texttt{dedth}.
-That in turn converts the deduction into the theorem
-$ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $
-in \texttt{renegcl} step 6.
+Let's work backwards in the proof of \texttt{renegcl}.
+Step 6 applies \texttt{dedth} to produce our goal result
+$ \vdash ( A \in \mathbb{R} \rightarrow\, - A \in \mathbb{R} )$.
+This requires on the one hand the (substituted) deduction
+\texttt{renegcli} in step 5.
+By itself \texttt{renegcli} proves the deduction
+$ \vdash A \in \mathbb{R} \Rightarrow\, \vdash - A \in \mathbb{R}$;
+this is the deduction form we are trying to turn into theorem form,
+and thus
+\texttt{renegcli} has a separate hypothesis that must be fulfilled.
+To fulfill the hypothesis of the invocation of
+\texttt{renegcli} in step 5, it is eventually
+reduced to the already proven theorem $1 \in \mathbb{R}$ in step 3.
+Step 4 connects steps 3 and 5; step 4 invokes
+\texttt{elimel}, a special case of \texttt{elimhyp} that eliminates
+a membership hypothesis for the weak deduction theorem.
+On the other hand, the equivalence of the conclusion of
+\texttt{renegcl}
+$( - A \in \mathbb{R} )$ and the substituted conclusion of
+\texttt{renegcli} must be proven, which is done in steps 2 and 1.
 
 The weak deduction theorem has limitations.
 In particular, we must be able to prove a special case of the deduction's
