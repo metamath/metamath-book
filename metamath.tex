@@ -7798,7 +7798,7 @@ $ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} )$:
   $\vdash$ $($ $A$ $=$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$ $,$ $A$ $,$ $1$ $)$ $\rightarrow$
   $\textrm{-}$ $A$ $=$ $\textrm{-}$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$
   $,$ $A$ $,$ $1$ $)$ $)$ \\
- 2 & 1 & 1re &
+ 2 & 1 & eleq1d &
     $\vdash$ $($ $A$ $=$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$ $,$ $A$ $,$ $1$ $)$ $\rightarrow$ $($
     $\textrm{-}$ $A$ $\in$ $\mathbb{R}$ $\leftrightarrow$
     $\textrm{-}$ ${\rm if}$ $($ $A$ $\in$ $\mathbb{R}$ $,$ $A$ $,$ $1$ $)$ $\in$
@@ -7812,8 +7812,8 @@ $ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} )$:
    $\vdash ( A \in \mathbb{R} \rightarrow \textrm{-} A \in \mathbb{R}$ ) \\
 \end{longtabu}
 
-The somewhat strange-looking steps in \texttt{renegcl} before step 5 are just
-some technical stuff that makes this magic work, and they can be ignored
+The somewhat strange-looking steps in \texttt{renegcl} before step 5 are
+technical stuff that makes this magic work, and they can be ignored
 for a quick overview of the proof. To continue following the ``important''
 part of the proof of \texttt{renegcl},
 you can look at the reference to \texttt{renegcli} at step 5.
@@ -7822,6 +7822,7 @@ That said, let's briefly look at how
 \texttt{renegcl} uses the
 Weak Deduction Theorem (\texttt{dedth}) to do its job,
 in case you want to do something similar or want understand it more deeply.
+
 In \texttt{renegcl} proof step 5,
 there is a reference to the deduction \texttt{renegcli}, which proves that
 $ \vdash A \in \mathbb{R} \Rightarrow\, \vdash - A \in \mathbb{R}$.
@@ -7829,7 +7830,7 @@ A proven special substitution instance of \texttt{renegcli}
 (in this case, $1 \in \mathbb{R}$ in step 3)
 is used
 to feed the last hypothesis of the deduction theorem \texttt{dedth}.
-That in, turn, turn converts the deduction into the theorem
+That in turn converts the deduction into the theorem
 $ \vdash ( A \in \mathbb{R} \rightarrow - A \in \mathbb{R} $
 in \texttt{renegcl} step 6.
 
@@ -8098,7 +8099,7 @@ Only using specific natural deduction rules directly can lead to very
 long proofs, for exactly the same reason that only using axioms directly
 in Hilbert-style proofs can lead to very long proofs.
 If the goal is short and clear proofs,
-then it is better to reuse already-proven proven assertions
+then it is better to reuse already-proven assertions
 in deduction form than to start from scratch each time
 and using only basic natural deduction rules.
 
@@ -9724,7 +9725,7 @@ the following typecodes are used:
   instead, it is used to ensure that there is only a single symbol used
   after quantiers like for-all ($\forall$) and there-exists ($\exists$).
 \item \texttt{class} :
-  An expression that is a syntactically valid class expresion.
+  An expression that is a syntactically valid class expression.
   All valid set expressions are also valid class expression, so expressions
   of sets normally have the \texttt{class} typecode.
 \end{itemize}
