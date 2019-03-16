@@ -8009,19 +8009,32 @@ proof steps will be proved using rules that have hypotheses and results
 of the form $\varphi \rightarrow$ ...
 
 An example may make this clearer.
-The following table shows a simple proof in Fitch natural deduction style,
-specifically theorem 5.5 of
+Let's show theorem 5.5 of
 \cite[p.~18]{Clemente}\index{Clemente Laboreo, Daniel}
 along with a line by line translation using the usual
 translation of natural deduction (ND) in the Metamath Proof Explorer
-(MPE) notation.
+(MPE) notation (this is proof \texttt{ex-natded5.5}).
+The proof's original goal was to prove
+$\lnot \psi$ given two hypotheses,
+$( \psi \rightarrow \chi )$ and $ \lnot \chi$.
+We will translate these statements into MPE deduction form
+by prefixing them all with $\varphi \rightarrow$.
+As a result, in MPE the goal is stated as
+$( \varphi \rightarrow \lnot \psi )$, and the two hypotheses are stated as
+$( \varphi \rightarrow ( \psi \rightarrow \chi ) )$ and
+$( \varphi \rightarrow \lnot \chi )$.
+
+The following table shows the proof in Fitch natural deduction style
+and its MPE equivalent.
 The \textit{\#} column shows the original numbering,
-\textit{MPE\#} shows the number in the equivalent MPE proof,
+\textit{MPE\#} shows the number in the equivalent MPE proof
+(which we will show later),
 \textit{ND Expression} shows the original proof claim in ND notation,
 and \textit{MPE Translation} shows its translation into MPE
 as discussed in this section.
 The final columns show the rationale in ND and MPE respectively.
 
+\needspace{4\baselineskip}
 {\setlength{\extrarowsep}{4pt} % Keep rows from being too close together
 \begin{longtabu}   { @{} c c X X X X }
 \textbf{\#} & \textbf{MPE\#} & \textbf{ND Ex\-pres\-sion} &
@@ -8077,7 +8090,7 @@ including $\varphi$ and uses the Metamath equivalents of the natural deduction
 rules. To add an assumption, the antecedent is modified to include it
 (typically by using \texttt{adantr};
 \texttt{simpr} is useful when you want to
-depend directly on the new assumption).
+depend directly on the new assumption, as is shown here).
 
 In Metamath we can represent the two given statements as these hypotheses:
 
