@@ -12407,25 +12407,32 @@ that point.  For example, it will not allow an \texttt{assign} of a
 statement that cannot be unified with the unknown proof step being
 assigned.
 
-{\em Important:} You should figure out your first few proofs completely
-and write them down by hand, before using the Proof Assistant.
-Otherwise you will become extremely frustrated.  The Proof Assistant is
+{\em Important:}
+The Proof Assistant is
 {\em not} a tool to help you discover proofs.  It is just a tool to help
 you add them to the database.  For a tutorial read
-Section~\ref{frstprf}.  To practice using the Proof Assistant, you may
+Section~\ref{frstprf}.
+To practice using the Proof Assistant, you may
 want to \texttt{prove} an existing theorem, then delete all steps with
 \texttt{delete all}, then re-create it with the Proof Assistant while
 looking at its proof display (before deletion).
+You might want to figure out your first few proofs completely
+and write them down by hand, before using the Proof Assistant, though
+not everyone finds that effective.
 
-{\em Important:} Keep track of your work with a log file (\texttt{open
+{\em Important:}
+The \texttt{undo} command if very helpful when entering a proof, because
+it allows you to undo a previously-entered step.
+In addition, we suggest that you
+keep track of your work with a log file (\texttt{open
 log}) and save it frequently (\texttt{save new{\char`\_}proof},
-\texttt{write source}), because currently there is no undo command!
-Hopefully there will be an undo command in a future version.
-However, you can use \texttt{delete} to reverse an \texttt{assign}, and
-you can do \texttt{delete floating{\char`\_}hypotheses}, then
+\texttt{write source}).
+You can use \texttt{delete} to reverse an \texttt{assign}.
+You can also do \texttt{delete floating{\char`\_}hypotheses}, then
 \texttt{initialize all}, then \texttt{unify all /interactive} to
 reinitialize bad unifications made accidentally or by bad
 \texttt{assign}s.  You cannot reverse a \texttt{delete} except by
+a relevant \texttt{undo} or using
 \texttt{exit /force} then reentering the Proof Assistant to recover from
 the last \texttt{save new{\char`\_}proof}.
 
@@ -12519,6 +12526,13 @@ individual commands for more detail.
         size can be reduced as a result.  See \texttt{help
         minimize{\char`\_}with} in the
         Metamath program for its usage.
+ \item[]
+ \texttt{undo}\index{\texttt{undo} command}
+    - Undo the effect of a proof-changing command (all but the
+      \texttt{show} and \texttt{save} commands above).
+ \item[]
+ \texttt{redo}\index{\texttt{redo} command}
+    - Reverse the previous \texttt{undo}.
 \end{itemize}
 
 The following commands set parameters that may be relevant to your proof.
@@ -12823,10 +12837,11 @@ branches off of the specified step and makes the step become unknown.
 where {\em step} is the last step in the proof (i.e.\ the beginning of
 the proof tree).
 
-There is currently no undo command, and you cannot reverse a
-\texttt{delete}.  The best you can do is salvage your last \texttt{save
-new{\char`\_}proof} by exiting and reentering the Proof Assistant.  For
-this reason, it is important to keep a log file open to record your work
+In most cases the \texttt{undo} command is the best way to undo
+a previous step.
+An alternative is to salvage your last \texttt{save
+new{\char`\_}proof} by exiting and reentering the Proof Assistant.
+For this to work, keep a log file open to record your work
 and to do \texttt{save new{\char`\_}proof} frequently, especially before
 \texttt{delete}.
 
