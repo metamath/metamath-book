@@ -12109,7 +12109,7 @@ See also \texttt{erase}.
 
 
 \subsection{\texttt{write source} Command}\index{\texttt{write source} command}
-Syntax:  \texttt{write source} {\em filename} [\texttt{/format}]
+Syntax:  \texttt{write source} {\em filename}
 [\texttt{/rewrap}]
 [\texttt{/split}]
 [\texttt{/keep\_includes}]
@@ -12120,13 +12120,9 @@ database into a file.\index{source file}
 
 Optional command qualifiers:
 
-\texttt{/format} - Reformats statements and comments according to the
-convention used in the set.mm database.  Proofs are not
-reformatted; use \texttt{save proof * / compressed} to do that.
-Incidentally, \texttt{save proof} honors the \texttt{set width}
-parameter currently in effect.
-
-\texttt{/rewrap} - Same as \texttt{/format} but more aggressive.
+\texttt{/rewrap} -
+Reformats statements and comments according to the
+convention used in the set.mm database.
 It unwraps the
 lines in the comment before each \$a and \$p statement, then it
 rewraps the line.  You should compare the output to the original
@@ -12136,6 +12132,10 @@ the original source.  The wrapped line length honors the
 parameter currently in effect.  Note:  Text
 enclosed in \texttt{<HTML>}...\texttt{</HTML>} tags is not modified by the
 \texttt{/rewrap} qualifier.
+Proofs themselves are not reformatted;
+use \texttt{save proof * / compressed} to do that.
+Incidentally, \texttt{save proof} also honors the \texttt{set width}
+parameter currently in effect.
 
 \texttt{/split} - Files included in the source with
 \$[ \textit{inclfile} \$] will be
