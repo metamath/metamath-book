@@ -12109,31 +12109,48 @@ See also \texttt{erase}.
 
 
 \subsection{\texttt{write source} Command}\index{\texttt{write source} command}
-Syntax:  \texttt{write source} {\em filename} [\texttt{/clean}]
+Syntax:  \texttt{write source} {\em filename}
+[\texttt{/rewrap}]
+[\texttt{/split}]
+[\texttt{/keep\_includes}]
+[\texttt{/no\_versioning}]
 
 This command will write the contents of a Metamath\index{database}
-database into a file.\index{source file} Note:  The present version of
-Metamath\index{Metamath!limitations of version 0.07.30} will not
-split the database into its constituent source files included with
-\texttt{\$[}\index{\texttt{\$[} and \texttt{\$]} auxiliary keywords} and
-\texttt{\$]} keywords.  A future version is planned to properly separate
-all constituent files.
+database into a file.\index{source file}
 
-Optional command qualifier (primarily intended to assist web site updates):
+Optional command qualifiers:
 
-    \texttt{/clean} - Suppresses (deletes) the output of any theorem that
-        has been flagged
-        with a question mark (\texttt{?}) placed in or in place of the date
-       comment field at the
-        end of its proof, for example ``\texttt{\$( [?31-Oct-00] \$)}.''
-        This lets
-        you strip out proofs under development so that a ``clean''
-        version of the database can be generated for official release.
-        {\em Note:}  Currently, hypotheses are not stripped, only \texttt{\$p}
-        statements.
-        Spurious date comment fields of the suppressed theorems may also
-        remain.  Be careful to use a different name for the \texttt{/clean}
-        version so that your work in progress won't be destroyed.
+\texttt{/rewrap} -
+Reformats statements and comments according to the
+convention used in the set.mm database.
+It unwraps the
+lines in the comment before each \$a and \$p statement, then it
+rewraps the line.  You should compare the output to the original
+to make sure that the desired effect results; if not, go back to
+the original source.  The wrapped line length honors the
+\texttt{set width}
+parameter currently in effect.  Note:  Text
+enclosed in \texttt{<HTML>}...\texttt{</HTML>} tags is not modified by the
+\texttt{/rewrap} qualifier.
+Proofs themselves are not reformatted;
+use \texttt{save proof * / compressed} to do that.
+Incidentally, \texttt{save proof} also honors the \texttt{set width}
+parameter currently in effect.
+
+\texttt{/split} - Files included in the source with
+\$[ \textit{inclfile} \$] will be
+written out separately instead of included in a single output
+file.  The name of each separately written included file will be
+\textit{inclfile} argument of its inclusion command.
+
+\texttt{/keep\_includes} - If a source file has includes but is written as a
+single file by omitting \texttt{/split}, by default the included files will
+be deleted (actually just renamed with a \char`\~1 suffix unless
+\texttt{/no\_versioning} is specified) to prevent the possibly confusing
+source duplication in both the output file and the included file.
+The \texttt{/keep\_includes} qualifier will prevent this deletion.
+
+\texttt{/no\_versioning} - Backup files suffixed with \char`\~1 are not created.
 
 
 \section{Showing Status and Statements}
