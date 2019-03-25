@@ -10716,6 +10716,8 @@ unification}\index{unification!ambiguous}
 language}
 
 \subsection{Comments in the Metamath Language}\label{comments}
+\index{markup notation}
+\index{comments!markup notation}
 
 The commenting feature allows you to annotate the contents of
 a database.  Just as with most
@@ -10725,8 +10727,7 @@ additional white space\index{white
 space} between tokens
 when a database is parsed.
 
-A comment may be placed between any two tokens\index{token} in a source
-file.
+A comment may be placed between any two tokens\index{token} in a source file.
 
 Comments have the following syntax:
 \begin{center}
@@ -10745,52 +10746,45 @@ complain if you give it
 \begin{center}
  \texttt{\$( This is a \$( nested \$) comment.\ \$)}
 \end{center}
-(To compensate for this behavior, I often change all \texttt{\$}'s to
-\texttt{@}'s in sections of Metamath code I wish to comment out.)
+To compensate for this non-nesting behavior, I often change all \texttt{\$}'s
+to \texttt{@}'s in sections of Metamath code I wish to comment out.
 
-\subsubsection{Math Symbols and Labels Inside Comments}
-\label{mathcomments}
-\index{\texttt{`} inside comments}
-\index{\texttt{\char`\~} inside comments}
-\index{markup notation}
-\index{comments!markup notation}
-
-Inside of comments, a string of tokens\index{token} enclosed in grave
-accents\index{grave accent (\texttt{`})} (\texttt{`}) will be converted
-to standard mathematical symbols during \LaTeX\ output
-typesetting,\index{latex@{\LaTeX}} according to the information in the
-special \texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting
-comment} comment in the database, as described in Appendix~\ref{ASCII}.
-The first \texttt{`} causes the output processor to enter {\bf math
-mode}\index{math mode} and the second one exits it.  Two consecutive
-grave accents \texttt{``} are treated as a single actual grave accent
-(both inside and outside of math mode) and will not cause the output
-processor to enter or exit math mode.
-
-Outside of math mode, any token preceded by a tilde\index{tilde
-(\texttt{\char`\~})} (\verb/~/) will be formatted in \texttt{typewriter}
-font, and the tilde removed, to make them stand out from the rest of the
-text.  This formatting will be applied from all characters after the
-tilde up to the first white space\index{white space}.  This formatting
-mode is called {\bf label mode}\index{label mode}.  If a literal tilde
-is desired (outside of math mode), use two tildes in a row to represent
-it.
-
+The Metamath program supports a number of markup mechanisms and conventions
+to generate good-looking results in \LaTeX\ and {\sc html},
+as discussed below.
 These markup features have to do only with how the comments are typeset,
-and have no effect on how Metamath verifies the database.  The improper
+and have no effect on how Metamath verifies the proofs in the database.
+The improper
 use of them may result in incorrectly typeset output, but no Metamath
 error messages will result during the \texttt{read} and \texttt{verify
 proof} commands.  (However, the \texttt{write
-theorem\texttt{\char`\_}list} command, added in version 0.07.30 of the
-Metamath program, will check for markup errors as a side-effect of its
+theorem\texttt{\char`\_}list} command
+will check for markup errors as a side-effect of its
 {\sc html} generation.)
+Section~\ref{texout} has instructions for creating \LaTeX\ output, and
+section~\ref{htmlout} has instructions for creating 
+{\sc html}\index{HTML} output.
 
-Section~\ref{texout} has instructions for creating \LaTeX\ output.
+\subsubsection{Math mode}
+\label{mathcomments}
+\index{\texttt{`} inside comments}
+\index{\texttt{\char`\~} inside comments}
+\index{math mode}
 
-\subsubsection{Math Symbols In Comments}\index{math symbol}\index{math mode}
+Inside of comments, a string of tokens\index{token} enclosed in
+grave accents\index{grave accent (\texttt{`})} (\texttt{`}) will be converted
+to standard mathematical symbols during
+{\sc HTML}\index{HTML} or \LaTeX\ output
+typesetting,\index{latex@{\LaTeX}} according to the information in the
+special \texttt{\$t}\index{\texttt{\$t} comment}\index{typesetting
+comment} comment in the database
+(see section~\ref{tcomment} for information about the typesetting
+comment, and Appendix~\ref{ASCII} to see examples of its results).
 
-The grave accent\index{grave accent (\texttt{`})} \texttt{`} tells
-Metamath\index{Metamath} to switch a comment to math mode.  In this
+The first grave accent\index{grave accent (\texttt{`})} \texttt{`}
+causes the output processor to enter {\bf math mode}\index{math mode}
+and the second one exits it.
+In this
 mode, the characters following the \texttt{`} are interpreted as a
 sequence of math symbol tokens separated by white space\index{white
 space}.  The tokens are looked up in the \texttt{\$t}
@@ -10802,9 +10796,12 @@ The tokens do not have to be active in the database, although a warning
 will be issued if they are not declared with \texttt{\$c} or
 \texttt{\$v} statements.
 
-The comment will stay in math mode until a second \texttt{`} is found or the end
-of the comment is reached.  Here is an example of its use\index{Pierce's
-axiom}:
+Two consecutive
+grave accents \texttt{``} are treated as a single actual grave accent
+(both inside and outside of math mode) and will not cause the output
+processor to enter or exit math mode.
+
+Here is an example of its use\index{Pierce's axiom}:
 \begin{center}
 \texttt{\$( Pierce's axiom, ` ( ( ph -> ps ) -> ph ) -> ph ` ,\\
          is not very intuitive. \$)}
@@ -10836,93 +10833,51 @@ from the \texttt{help tex} command in the Metamath program.  You will
 then probably want to edit the resulting file with a text editor to fine
 tune it to your exact needs.
 
-\subsubsection{Label References in Comments}\index{label mode}
+\subsubsection{Label Mode}\index{label mode}
 
 Outside of math mode, a tilde\index{tilde (\texttt{\char`\~})} \verb/~/
 indicates to Metamath's\index{Metamath} output processor that the
 token\index{token} that follows (i.e.\ the characters up to the next
-white space\index{white space}) represents a statement label.  Whether
+white space\index{white space}) represents a statement label or URL.
+This formatting mode is called {\bf label mode}\index{label mode}.
+If a literal tilde
+is desired (outside of math mode) instead of label mode,
+use two tildes in a row to represent it.
+
+When generating a \LaTeX\ output file,
+the following token will be formatted in \texttt{typewriter}
+font, and the tilde removed, to make it stand out from the rest of the text.
+This formatting will be applied from all characters after the
+tilde up to the first white space\index{white space}.
+Whether
 or not the token is an actual statement label is not checked, and the
 token does not have to have the correct syntax for a label; no error
 messages will be produced.  The only effect of the label mode on the
 output is that typewriter font will be used for the tokens that are
 placed in the \LaTeX\ output file.
 
-(On the other hand, the tokens after the tilde {\em must} be actual
-labels for correct output of {\sc html}, described in the next section,
-and error messages will be issued during that output if they aren't.)
+When generating {\sc html},
+the tokens after the tilde {\em must} be a URL (either http: or https:)
+or a valid label.
+Error messages will be issued during that output if they aren't.
+A hyperlink will be generated to that URL or label.
 
-\begin{sloppy}
-\subsection{Comment Markup No\-ta\-tion for HTML}\label{htmlmkup}
-\index{\texttt{`} inside comments}
-\index{\texttt{\char`\~} inside comments}
-\index{markup notation}
-\index{comments!markup notation}
-\end{sloppy}
+\subsubsection{Link to bibliographical reference}\index{citation}%
+\index{link to bibliographical reference}
 
-The automated generation of {\sc html}\index{html generation@{\sc html}
-generation} web pages
-(Section~\ref{htmlout}) was added in version 0.07.30 of the Metamath program.
-The comment markup notation for \LaTeX\ also applies to {\sc html}, and
-some additional features specifically for {\sc html} were added.
-These markup features (including those reused from \LaTeX) are the
-following.
-\begin{itemize}
- \item[]
-         \texttt{`} {\em math-symbol} {\em math-symbol} ... \texttt{`}
-             (math symbols enclosed in grave accents i.e.\ backticks) -
-             Use graphical {\em math-symbol}s
-             in the {\sc html} output.
-             Inside of a {\em math-symbol}, \texttt{``} means literal \texttt{`}.
- \item[]
-         \texttt{\char`\~} {\em label} (tilde followed by a label)
-             - Use  a hyperlink in the {\sc html} output
-             that links to the web page for statement {\em label}.
-             Exception:  if {\em label} begins with \texttt{http://},
-             it is assumed to be
-             a {\sc url} (which is used as-is, except that
-             a \texttt{\char`\~} in the {\sc url} should
-             be specified with \texttt{\char`\~}\texttt{\char`\~}).
-             Only \texttt{\$a} and \texttt{\$p}
-             statement labels may be used, since web pages for
-             \texttt{\$e} and \texttt{\$f} statements are not generated.
- \item[]
-         \texttt{[}{\em author}\texttt{]} - Link to a bibliographical reference. See
-             \texttt{help html} and \texttt{help write
-             bibliography} in the Metamath program for more
-            information.\index{\texttt{\char`\[}\ldots\texttt{]} inside comments}
-            See also Sections~\ref{tcomment} and \ref{wrbib}.
- \item[]
-         \texttt{\$t} - Flag the comment as the special
-             one\index{\texttt{\$t} comment}\index{typesetting comment}
-             containing \LaTeX\ and/or {\sc html} typesetting
-             definitions.  See Section~\ref{tcomment} and Appendix~\ref{ASCII}.
- \item[]
-         \texttt{\char`\_} (underscore)\index{\texttt{\char`\_} inside comments} -
-             Italicize text starting from
-              {\em space}\texttt{\char`\_}{\em non-space} (i.e.\ \texttt{\char`\_}
-              with a space before it and a non-space character after it) until
-             the next
-             {\em non-space}\texttt{\char`\_}{\em space}.  Normal
-             punctuation (e.g.\ a trailing
-             comma or period) is ignored when determining {\em space}.
- \item[]
-         \texttt{\char`\_} (underscore) - {\em
-         non-space}\texttt{\char`\_}{\em non-space-string}, where
-          {\em non-space-string} is a string of non-space characters,
-         will make {\em non-space-string} become a subscript.
-\end{itemize}
-It is recommended that spaces surround any \texttt{\char`\~} and \texttt{`} tokens
-in the comment and that a space follow the {\em label} after a \texttt{\char`\~} token.
-This will make global substitutions to change labels and symbol names much easier
-and also eliminate any future chance of ambiguity.  Spaces
-around these tokens are automatically removed in
-the final output to conform with normal rules of punctuation; for example, a space
-between a trailing \texttt{`} and a left parenthesis will be removed.
+Bibliographical references are handled specially when generating
+{\sc html} if formatted specially.
+Text in the form \texttt{[}{\em author}\texttt{]}
+is considered a link to a bibliographical reference.
+See \texttt{help html} and \texttt{help write
+bibliography} in the Metamath program for more
+information.
+% \index{\texttt{\char`\[}\ldots\texttt{]} inside comments}
+See also Sections~\ref{tcomment} and \ref{wrbib}.
 
 The \texttt{[}{\em author}\texttt{]} notation will also create an entry in
 the bibliography cross-reference file generated by \texttt{write
-bibliography} (Section~\ref{wrbib}).  For this to work properly, the
+bibliography} (Section~\ref{wrbib}) for HTML.  For this to work properly, the
 surrounding comment must be formatted as follows:
 \begin{quote}
     {\em keyword} {\em label} {\em noise-word}
@@ -10948,6 +10903,79 @@ and is  ignored when the cross-reference file is created.  The
 \texttt{write
 biblio\-graphy} command will perform error checking to verify the
 above format.\index{error checking}
+
+\subsubsection{Parentheticals}\label{parentheticals}
+
+The end of a comment may include one or more parenthicals, that is,
+statements enclosed in parentheses.
+The Metamath program looks for certain parentheticals and can issue
+warnings based on them.
+They are:
+
+\begin{itemize}
+ \item[] \texttt{(Contributed by }
+   \textit{NAME}\texttt{,} \textit{DATE}\texttt{.)} -
+   document the original contributor's name and the date it was created.
+ \item[] \texttt{(Revised by }
+   \textit{NAME}\texttt{,} \textit{DATE}\texttt{.)} -
+   document the contributor's name and creation date
+   that resulted in significant revision
+   (not just an automated minimization or shortening).
+ \item[] \texttt{(Proof shortened by }
+   \textit{NAME}\texttt{,} \textit{DATE}\texttt{.)} -
+   document the contributor's name and date that developed a significant
+   shortening of the proof (not just an automated minimization).
+ \item[] \texttt{(Proof modification is discouraged.)} -
+   Note that this proof should normally not be modified.
+ \item[] \texttt{(New usage is discouraged.)} -
+   Note that this assertion should normally not be used.
+\end{itemize}
+
+The \textit{DATE} must be in form YYYY-MMM-DD, where MMM is the
+English abbreviation of that month.
+
+\subsubsection{Other markup}\label{othermarkup}
+\index{markup notation}
+
+There are other markup notations for generating good-looking results
+beyond math mode and label mode:
+
+\begin{itemize}
+ \item[]
+         \texttt{\char`\_} (underscore)\index{\texttt{\char`\_} inside comments} -
+             Italicize text starting from
+              {\em space}\texttt{\char`\_}{\em non-space} (i.e.\ \texttt{\char`\_}
+              with a space before it and a non-space character after it) until
+             the next
+             {\em non-space}\texttt{\char`\_}{\em space}.  Normal
+             punctuation (e.g.\ a trailing
+             comma or period) is ignored when determining {\em space}.
+ \item[]
+         \texttt{\char`\_} (underscore) - {\em
+         non-space}\texttt{\char`\_}{\em non-space-string}, where
+          {\em non-space-string} is a string of non-space characters,
+         will make {\em non-space-string} become a subscript.
+ \item[]
+         \texttt{<HTML>}...\texttt{</HTML>} - do not convert
+         ``\texttt{<}'' and ``\texttt{>}''
+         in the enclosed text when generating HTML,
+         otherwise process markup normally. This allows direct insertion
+         of {\sc html} commands.
+ \item[]
+	 ``\texttt{\&}ref\texttt{;}'' - insert an HTML character reference.
+         This is how to insert arbitrary Unicode characters
+         (such as accented characters).  Currently only directly supported
+         when generating {\sc html}.
+\end{itemize}
+
+It is recommended that spaces surround any \texttt{\char`\~} and
+\texttt{`} tokens in the comment and that a space follow the {\em label}
+after a \texttt{\char`\~} token.  This will make global substitutions
+to change labels and symbol names much easier and also eliminate any
+future chance of ambiguity.  Spaces around these tokens are automatically
+removed in the final output to conform with normal rules of punctuation;
+for example, a space between a trailing \texttt{`} and a left parenthesis
+will be removed.
 
 A good way to become familiar with the markup notation is to look at
 the extensive examples in the \texttt{set.mm} database.
