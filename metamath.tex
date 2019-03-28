@@ -9744,16 +9744,20 @@ the following typecodes are used:
 \item \texttt{$\vdash$} :
   Turnstile (read: ``the following symbol sequence is provable'' or
   ``a proof exists for'').
-\item \texttt{set} :
+\item \texttt{setvar} :
   Individual set variable type (read: ``the following is an
-  individual (set) variable'').
+  individual set variable'').
   Note that this is \textit{not} the type of an arbitrary set expression,
   instead, it is used to ensure that there is only a single symbol used
-  after quantiers like for-all ($\forall$) and there-exists ($\exists$).
+  after quantifiers like for-all ($\forall$) and there-exists ($\exists$).
 \item \texttt{class} :
   An expression that is a syntactically valid class expression.
   All valid set expressions are also valid class expression, so expressions
   of sets normally have the \texttt{class} typecode.
+  Use the \texttt{class} typecode,
+  \textit{not} the \texttt{setvar} typecode,
+  for the type of set expressions unless you are specifically identifying
+  a single set variable.
 \end{itemize}
 
 \subsection{Assertions (\texttt{\$a} and \texttt{\$p} Statements)}
@@ -11279,9 +11283,9 @@ Examples of additional information comments with various commands
   $( $j congruence 'notbii'; $)
 \end{verbatim}
 
-   \item Add \texttt{set} as a typecode.
+   \item Add \texttt{setvar} as a typecode.
 \begin{verbatim}
-  $( $j syntax 'set'; $)
+  $( $j syntax 'setvar'; $)
 \end{verbatim}
 
    \item Register $=$ as an equality for its type (\texttt{class}).
@@ -14395,7 +14399,7 @@ expository language) that ranges over metavariables (which are primitives of
 our formal system) each of which ranges over the actual individual variables
 of predicate calculus (which are never mentioned in our formal system).
 
-The constant called ``var'' above is called \texttt{set} in the
+The constant called ``var'' above is called \texttt{setvar} in the
 \texttt{set.mm} database file, but it means the same thing.  I felt
 that ``var'' is a more meaningful name in the context of predicate
 calculus, whose use is not limited to set theory.  For consistency we
