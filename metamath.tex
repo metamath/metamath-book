@@ -10769,6 +10769,29 @@ Section~\ref{texout} has instructions for creating \LaTeX\ output, and
 section~\ref{htmlout} has instructions for creating 
 {\sc html}\index{HTML} output.
 
+\subsubsection{Headings}\label{commentheadings}
+
+If the \texttt{\$(} is immediately followed by a new line
+starting with a heading marker, it is a header.
+This can start with:
+
+\begin{itemize}
+ \item[] \texttt{\#\#\#\#} - major part header
+ \item[] \texttt{\#*\#*} - section header
+ \item[] \texttt{=-=-} - subsection header
+ \item[] \texttt{-.-.} - subsubsection header
+\end{itemize}
+
+The line following the marker line
+will be used for the table of contents entry, after trimming spaces.
+The next line should be another (closing) matching marker line.
+Any text after that
+but before the closing \texttt{\$}, such as an extended description of the
+section, will be included on the \texttt{mmtheoremsNNN.html} page.
+
+For more information, run
+\texttt{help write theorem\char`\_list}.
+
 \subsubsection{Math mode}
 \label{mathcomments}
 \index{\texttt{`} inside comments}
