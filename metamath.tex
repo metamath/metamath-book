@@ -7692,22 +7692,26 @@ it is easy to recover the deduction
 using modus ponens\index{modus ponens}
 (\texttt{ax-mp}; see section \ref{axmp}).
 
-In the following subsections we discuss the standard deduction theorem
-(the traditional but awkward way to convert deductions into theorems),
+In the following subsections we first discuss the standard deduction theorem
+(the traditional but awkward way to convert deductions into theorems) and
 the weak deduction theorem (a limited version of the standard deduction
 theorem that is easier to use and was once widely used in
-\texttt{set.mm}\index{set theory database (\texttt{set.mm})}),
-and deduction style (the newer approach we now recommend in most cases).
-Deduction style prefixes each hypothesis (other than definitions) and the
+\texttt{set.mm}\index{set theory database (\texttt{set.mm})}).
+In section \ref{deductionstyle} we discuss
+deduction style, the newer approach we now recommend in most cases.
+Deduction style uses ``deduction form,'' a form that
+prefixes each hypothesis (other than definitions) and the
 conclusion with a universal antecedent (``$\varphi \rightarrow$'').
 Deduction style is widely used in \texttt{set.mm},
-so it is useful to understand \textit{why} it is widely used.
-We will also briefly discuss our approach for using natural deduction
-within \texttt{set.mm}, as that approach is deeply related to deduction style.
+so it is useful to understand it and \textit{why} it is widely used.
+Section \ref{naturaldeduction}
+briefly discusses our approach for using natural deduction
+within \texttt{set.mm},
+as that approach is deeply related to deduction style.
 We conclude with a summary of the strengths of
 our approach, which we believe are compelling.
 
-\subsection{The Standard Deduction Theorem}
+\subsection{The Standard Deduction Theorem}\label{standarddeductiontheorem}
 
 It is possible to make use of information
 contained in the deduction or its proof to assist us with the proof of
@@ -7750,7 +7754,7 @@ all over again—starting from axioms—in order to obtain the theorem
 form. In terms of proof length, there would be no savings over just
 proving the theorem directly instead of first proving the deduction form.
 
-\subsection{Weak Deduction Theorem}
+\subsection{Weak Deduction Theorem}\label{weakdeductiontheorem}
 
 We have developed
 a more efficient method for proving a theorem from a deduction
@@ -7858,7 +7862,7 @@ However, we now recommend applying something called ``deduction style''
 instead in most cases, as deduction style is
 often an easier and clearer approach.
 
-\subsection{Deduction style}
+\subsection{Deduction style}\label{deductionstyle}
 
 Today there is a preference for writing assertions in
 something called``deduction form''
@@ -7866,34 +7870,44 @@ instead of writing a proof that would require use of the standard or
 weak deduction theorem. Applying this approach is called
 ``deduction style.''\index{deduction style}
 
-An assertion is in deduction form\index{deduction form}%
-\index{forms!deduction}
-if the conclusion is an implication with
-a wff variable as the antecedent (usually $\varphi$), and every MPE hypothesis
-(\$e statement) is either a definition or is also an implication with
-the same wff variable as the antecedent (usually $\varphi$). A definition
+It will be easier to explain this by first defining some terms:
+
+\begin{itemize}
+\item \textbf{closed form}\index{closed form}\index{forms!closed}:
+A kind of assertion (theorem) with no hypotheses.
+Typically its label has no special suffix.
+\item \textbf{deduction form}\index{deduction form}\index{forms!deduction}:
+A kind of assertion with one or more hypotheses
+where the conclusion is an implication with
+a wff variable as the antecedent (usually $\varphi$), and every hypothesis
+(\$e statement)
+is either (1) an implication with the same antecedent as the conclusion or
+(2) a definition.
+A definition
 can be for a class variable (this is a class variable followed by ``='')
 or a wff variable (this is a wff variable followed by $\leftrightarrow$);
-in practice
-definitions (if used) are for class variables. In practice, a proof
+class variable definitions are more common.
+In practice, a proof
 in deduction form will also contain many steps that are implications
 where the antecedent is either that wff variable (normally $\varphi$)
 or is
 a conjunction (...$\land$...) including that wff variable ($\varphi$).
-
-By contrast, we call assertions with hypotheses
-but no common antecedent ``inference form''\index{inference form}%
-\index{forms!inference}
-and suffix its label with ``i.''
-A theorem in ``closed form''\index{closed form}%
-\index{forms!closed}
-is a theorem with no hypotheses,
-and its label would have no suffix.
 If an assertion is in deduction form, and other forms are also available,
 then we suffix its label with ``d.''
+\item \textbf{inference form}\index{inference form}\index{forms!inference}:
+A kind of assertion with one or more hypotheses that is not in deduction form
+(e.g., there is no common antecedent).
+If an assertion is in inference form, and other forms are also available,
+then we suffix its label with ``i.''
+\end{itemize}
 
-In deduction form the antecedent (e.g., $\varphi$) mimics the context handled
-in the deduction theorem.
+When using deduction style we express an assertion in deduction form.
+This form prefixes each hypothesis (other than definitions) and the
+conclusion with a universal antecedent (``$\varphi \rightarrow$'').
+The antecedent (e.g., $\varphi$)
+mimics the context handled in the deduction theorem, eliminating
+the need to directly use the deduction theorem.
+
 Once you have an assertion in deduction form, you can easily convert it
 to inference form or closed form:
 
@@ -7942,10 +7956,10 @@ assertion Ti in inference form by applying
 modus ponens\index{modus ponens} (see section \ref{axmp}).
 
 The deduction form antecedent can also be used to represent the context
-necessary to support natural deduction systems, so we now
-turn to discuss natural deduction.
+necessary to support natural deduction systems, so we will now
+discuss natural deduction.
 
-\subsection{Natural Deduction}
+\subsection{Natural Deduction}\label{naturaldeduction}
 
 Natural deduction\index{natural deduction}
 (ND) systems, as such, were originally introduced in
