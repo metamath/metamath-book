@@ -7676,7 +7676,7 @@ Informally we often call both of them theorems, but in this section we
 will stick to the strict definitions.
 
 It sometimes happens that we have proved a deduction of the form
-$\varphi \Rightarrow \psi$
+$\varphi \Rightarrow \psi$\index{$\Rightarrow$}
 (given hypothesis $\varphi$ we can prove $\psi$)
 and we want to then prove a theorem of the form
 $\varphi \rightarrow \psi$.
@@ -7887,6 +7887,9 @@ It will be easier to explain this by first defining some terms:
 \item \textbf{closed form}\index{closed form}\index{forms!closed}:
 A kind of assertion (theorem) with no hypotheses.
 Typically its label has no special suffix.
+An example is \texttt{unss}, which states:
+$\vdash ( ( A \subseteq C \wedge B \subseteq C ) \leftrightarrow ( A \cup B )
+\subseteq C )\label{eq:unss}$
 \item \textbf{deduction form}\index{deduction form}\index{forms!deduction}:
 A kind of assertion with one or more hypotheses
 where the conclusion is an implication with
@@ -7905,11 +7908,24 @@ or is
 a conjunction (...$\land$...) including that wff variable ($\varphi$).
 If an assertion is in deduction form, and other forms are also available,
 then we suffix its label with ``d.''
+An example is \texttt{unssd}, which states\footnote{
+For brevity we show here (and in other places)
+a $\&$\index{$\&$} between hypotheses\index{hypotheses}
+and a $\Rightarrow$\index{$\Rightarrow$}\index{conclusion}
+between the hypotheses and the conclusion.
+This notation is technically not part of the Metamath language, but is
+instead a convenient abbreviation to show both the hypotheses and conclusion.}:
+$\vdash ( \varphi \rightarrow A \subseteq C )\quad\&\quad \vdash ( \varphi
+    \rightarrow B \subseteq C )\quad\Rightarrow\quad \vdash ( \varphi
+    \rightarrow ( A \cup B ) \subseteq C )\label{eq:unssd}$
 \item \textbf{inference form}\index{inference form}\index{forms!inference}:
 A kind of assertion with one or more hypotheses that is not in deduction form
 (e.g., there is no common antecedent).
 If an assertion is in inference form, and other forms are also available,
 then we suffix its label with ``i.''
+An example is \texttt{unssi}, which states:
+$\vdash A \subseteq C\quad\&\quad \vdash B \subseteq C\quad\Rightarrow\quad
+    \vdash ( A \cup B ) \subseteq C\label{eq:unssi}$
 \end{itemize}
 
 When using deduction style we express an assertion in deduction form.
