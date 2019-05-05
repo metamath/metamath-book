@@ -12230,6 +12230,10 @@ enclosed in \texttt{<HTML>}...\texttt{</HTML>} tags is not modified by the
 \texttt{/rewrap} qualifier.
 Proofs themselves are not reformatted;
 use \texttt{save proof * / compressed} to do that.
+An isolated tilde (\~{}) is always kept on the same line as the following
+symbol, so you can find all comment references to a symbol by
+searching for \~{} followed by a space and that symbol
+(this is useful for finding cross-references).
 Incidentally, \texttt{save proof} also honors the \texttt{set width}
 parameter currently in effect.
 
