@@ -46,6 +46,8 @@ if ! grep -Ei '(Error|Warning):' "$texfile.log" | grep -vF -f ../allowed-errors
 then
   echo 'PDF generation successful.'
 else
+  echo "Failed.  Here's a list of labels that changed:"
+  egrep -A2 "label .* changed:" *.log
   exit 1 # fail
 fi
 
