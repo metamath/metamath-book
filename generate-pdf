@@ -4,30 +4,49 @@
 # Stop processing if error occurs (-e) and show what we're doing (-x)
 set -ex
 
+style="${1:-normal}"
+style="${style%.sty}"
+
+texfile="${2:-metamath}"
+texfile="${texfile%.tex}"
+
+if [ "$style" == 'normal' ]; then
+  outfile="$texfile"
+else
+  outfile="${texfile}-${style}"
+fi
+# Try to remove output .pdf first - if we can't, no point in going further.
+rm -f "${outfile}.pdf"
+
 # Run pdflatex on $1.
 # TODO: Add -output-directory _build
 do_pdflatex () {
   pdflatex -halt-on-error -interaction=nonstopmode "$1"
 }
 
-# Try to remove metamath.pdf first - if we can't, no point in going further.
-rm -f metamath.pdf
+# Set up temporary directory
+tempdir="temp-$outfile"
+rm -fr "$tempdir"
+mkdir -p "$tempdir"
+cp -p "${texfile}.tex" "$tempdir"
+cp -p "${style}.sty" "$tempdir/special-settings.sty"
 
-# Clean up
-rm -f realref.sty metamath.bib
+cd "temp-$outfile"
 touch metamath.ind
 
-do_pdflatex metamath
-do_pdflatex metamath
-bibtex metamath
-makeindex metamath
-do_pdflatex metamath
-do_pdflatex metamath
+do_pdflatex "$texfile"
+do_pdflatex "$texfile"
+bibtex "$texfile"
+makeindex "$texfile"
+do_pdflatex "$texfile"
+do_pdflatex "$texfile"
 
 # Print errors not already allowed; return error code if there are any
-if ! grep -Ei '(Error|Warning):' metamath.log | grep -vF -f allowed-errors
+if ! grep -Ei '(Error|Warning):' "$texfile.log" | grep -vF -f ../allowed-errors
 then
   echo 'PDF generation successful.'
 else
   exit 1 # fail
 fi
+
+cp -p "${texfile}.pdf" "../${outfile}.pdf"

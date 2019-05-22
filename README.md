@@ -86,14 +86,9 @@ note = {{\tt http://us.metamath.org/downloads/metamath.pdf}},
 
 ## Narrow width screens
 
-You can run `./make-narrow` to generate "metamath-narrow.pdf",
+You can run `./generate-pdf narrow` to generate "metamath-narrow.pdf",
 a version of the PDF formatted for
 narrow-width screens such as mobile phones.
-The program erases metamath.pdf, so you'll need to regenerate metamath.pdf
-afterwards if you want it also.
-The program also manipulates some files, so you need to run these
-programs sequentially (one at a time) if you are running them in the
-same directory.
 
 The narrow version is based on
 an old version of this book that was generated specifically for
