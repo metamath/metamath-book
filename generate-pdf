@@ -40,6 +40,7 @@ bibtex "$texfile"
 makeindex "$texfile"
 do_pdflatex "$texfile"
 do_pdflatex "$texfile"
+do_pdflatex "$texfile"
 
 # Print errors not already allowed; return error code if there are any
 if ! grep -Ei '(Error|Warning):' "$texfile.log" | grep -vF -f ../allowed-errors
