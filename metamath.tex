@@ -2096,13 +2096,13 @@ p.~40.}\\
 
 \begin{quote}
   {\em The {\em Principia Mathematica} was the crowning achievement of the
-  formalists.  It was also the deathblow of the formalist view.\ldots\\
+  formalists.  It was also the deathblow of the formalist view.\ldots
   {[Rus\-sell]} failed, in three enormous volumes, to get beyond the elementary
   facts of arithmetic.  He showed what can be done in principle and what
   cannot be done in practice.  If the mathematical process were really
   one of strict, logical progression, we would still be counting our
-  fingers.\ldots\\
-  One theoretician estimates, for instance, that a demonstration of one of
+  fingers.\ldots
+  One theoretician estimates\ldots that a demonstration of one of
   Ramanujan's conjectures assuming set theory and elementary analysis would
   take about two thousand pages; the length of a deduction from first principles
   is nearly in\-con\-ceiv\-a\-ble\ldots The probabilists argue that\ldots any
@@ -2155,6 +2155,7 @@ created for us.}
    \flushright\sc  David Hilbert\footnote{As quoted in \cite{Moore}, p.~131.}\\
 \end{quote}\index{Hilbert, David}
 
+\needspace{3\baselineskip}
 \begin{quote}
   {\em Mathematics possesses not only truth, but some supreme beauty ---a
   beauty cold and austere, like that of a sculpture.}
@@ -2194,6 +2195,7 @@ considered more elegant.  In the set theory database
 \index{Metamath Proof Explorer}
 provided with Metamath, one goal was to make all proofs as short as possible.
 
+\needspace{4\baselineskip}
 \subsection{Simplicity}
 
 \begin{quote}
@@ -2202,12 +2204,14 @@ provided with Metamath, one goal was to make all proofs as short as possible.
     \flushright\sc Eccles. 7:29\footnote{Jerusalem Bible.}\\
 \end{quote}\index{Bible}
 
+\needspace{3\baselineskip}
 \begin{quote}
   {\em God made integers, all else is the work of man.}
     \flushright\sc Leopold Kronecker\footnote{{\em Jahresbericht
 	der Deutschen Mathematiker-Vereinigung }, vol. 2, p. 19.}\\
 \end{quote}\index{Kronecker, Leopold}
 
+\needspace{3\baselineskip}
 \begin{quote}
   {\em For what is clear and easily comprehended attracts; the
   complicated repels.}
@@ -2460,6 +2464,7 @@ waste their time on such a boring, unrewarding chore.
 
 
 
+\needspace{4\baselineskip}
 \subsection{Trusting the Computer}
 
 \begin{quote}
@@ -2821,7 +2826,7 @@ steps that work... but the sequence is not considered part of the proof.
 
 A good overview of
 higher-level proof verification languages (such as {\sc lcf}\index{lcf@{\sc
-lcf}} and {\sc hol};\index{hol@{\sc hol}})
+lcf}} and {\sc hol}\index{hol@{\sc hol}})
 is given in \cite{Harrison}.  All of these languages are fundamentally
 different from Metamath in that much of the mathematical foundational
 knowledge is embedded in the underlying proof-verification program, rather
@@ -5245,7 +5250,7 @@ typeset them.
 \vskip 1ex
 }
 
-\needspace{4\baselineskip}
+\needspace{5\baselineskip}
 \subsection{Propositional Calculus}\label{propcalc}\index{axioms of
 propositional calculus}
 
@@ -9646,8 +9651,11 @@ whether your axioms are correct.  For example, Metamath would have no idea
 that \texttt{ax-c16}, which we are telling it is an axiom of logic, would lead to
 contradictions if we omitted its associated \texttt{\$d} statement.
 
-{\footnotesize\begin{quotation}\label{nodd}
-{\em Comment.} You may wonder if it is possible to develop standard
+% This was previously a comment in footnote-sized type, but it can be
+% hard to read this much text in a small size.
+% As a result, it's been changed to normally-sized text.
+\label{nodd}
+You may wonder if it is possible to develop standard
 mathematics in the Metamath language without the \texttt{\$d}\index{\texttt{\$d}
 statement} statement, since it seems like a nuisance that complicates proof
 verification. The \texttt{\$d} statement is not needed in certain subsets of
@@ -9669,11 +9677,12 @@ described in \cite{Megill}.  This means it can prove any theorem of
 first-order logic as long as we add to the theorem an antecedent that embeds
 dummy and any other variables that must be distinct.  In a similar fashion,
 axioms for set theory can be devised that do not require distinct variables
-(contact me if interested).  Together, these in principle allow all of
+(contact me if
+interested).\index{Set theory without distinct variable provisos}
+Together, these in principle allow all of
 mathematics to be developed under Metamath without a \texttt{\$d} statement,
 although the length of the resulting theorems will grow as more and
 more dummy variables become required in their proofs.
-\end{quotation}}
 
 \subsection{The \texttt{\$f}
 and \texttt{\$e} Statements}\label{dollaref}
@@ -15191,9 +15200,10 @@ must be unique).
 \begin{verbatim}
 database ::= outermost-scope-stmt*
 
-outermost-scope-stmt ::= include-stmt | constant-stmt | stmt
+outermost-scope-stmt ::=
+  include-stmt | constant-stmt | stmt
 
-/* File inclusion command.  The file is processed as a database.
+/* File inclusion command; process file as a database.
    Databases should NOT have a comment in the filename. */
 include-stmt ::= '$[' filename '$]'
 
@@ -15210,7 +15220,7 @@ block ::= '${' stmt* '$}'
 /* Variable symbols declaration. */
 variable-stmt ::= '$v' variable+ '$.'
 
-/* Disjoint variables. Simple disjoint statements only have
+/* Disjoint variables. Simple disjoint statements have
    2 variables, i.e., "variable*" is empty for them. */
 disjoint-stmt ::= '$d' variable variable variable* '$.'
 
@@ -15231,22 +15241,23 @@ axiom-stmt ::= LABEL '$a' typecode MATH-SYMBOL* '$.'
 provable-stmt ::= LABEL '$p' typecode MATH-SYMBOL*
   '$=' proof '$.'
 
-/* A proof. Note that proofs may be interspersed by comments.
-   If '?' is anywhere in a proof then it is an "incomplete" proof. */
+/* A proof. Proofs may be interspersed by comments.
+   If '?' is in a proof it's an "incomplete" proof. */
 proof ::= uncompressed-proof | compressed-proof
 uncompressed-proof ::= (LABEL | '?')+
 compressed-proof ::= '(' LABEL* ')' COMPRESSED-PROOF-BLOCK+
 
 typecode ::= constant
 
-filename ::= MATH-SYMBOL /* Cannot include whitespace or '$' */
+filename ::= MATH-SYMBOL /* No whitespace or '$' */
 constant ::= MATH-SYMBOL
 variable ::= MATH-SYMBOL
 \end{verbatim}
 
 \needspace{2\baselineskip}
-Given these definitions, a \texttt{frame} is a sequence of 0 or more
-\texttt{disjoint-stmt} and \texttt{hypotheses-stmt} statements
+A \texttt{frame} is a sequence of 0 or more
+\texttt{disjoint-{\allowbreak}stmt} and
+\texttt{hypotheses-{\allowbreak}stmt} statements
 (possibly interleaved with other non-\texttt{assert-stmt} statements)
 followed by one \texttt{assert-stmt}.
 
@@ -15284,7 +15295,8 @@ PRINTABLE-SEQUENCE ::= _PRINTABLE-CHARACTER+
 
 MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
 
-_PRINTABLE-CHARACTER ::= [#x21-#x7e] /* ASCII printable characters */
+/* ASCII printable characters */
+_PRINTABLE-CHARACTER ::= [#x21-#x7e]
 
 LABEL ::= ( _LETTER-OR-DIGIT | '.' | '-' | '_' )+
 
@@ -15292,15 +15304,16 @@ _LETTER-OR-DIGIT ::= [A-Za-z0-9]
 
 COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
 
-/* Define whitespace between tokens. The -> SKIP means that when
-   whitespace is seen, it is skipped and we simply read again. */
+/* Define whitespace between tokens. The -> SKIP
+   means that when whitespace is seen, it is
+   skipped and we simply read again. */
 WHITESPACE ::= (_WHITECHAR+ | _COMMENT) -> SKIP
 
-/* Comments, which have the form $( ... $) and do not nest. */
+/* Comments. $( ... $) and do not nest. */
 _COMMENT ::= '$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')*
   _WHITECHAR+ '$)' _WHITECHAR
 
-/* Whitespace character: (' ' | '\t' | '\r' | '\n' | '\f') */
+/* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
 _WHITECHAR ::= [#x20#x09#x0d#x0a#x0c]
 \end{verbatim}
 % This EBNF was developed as a collaboration between
