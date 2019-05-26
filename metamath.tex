@@ -7580,25 +7580,31 @@ axioms but have since been formally proven (with Metamath) to be redundant:
 \begin{itemize}
 \item
   $\mathbb{C} \in V$.
-  Proven redundant by Mario Carneiro\index{Carneiro, Mario} on 18-Feb-2014.
+  Proven redundant by Mario Carneiro\index{Carneiro, Mario} on
+  17-Nov-2014 (see \texttt{axcnex}).
 \item
   $((A \in \mathbb{C} \land B \in \mathbb{C}$) $\rightarrow$
   $(A + B) = (B + A))$.
   Proved redundant by Eric Schmidt\index{Schmidt, Eric} on 19-Jun-2012,
-  and formalized by Scott Fenton\index{Fenton, Scott} on 4-Jan-2013.
+  and formalized by Scott Fenton\index{Fenton, Scott} on 3-Jan-2013
+  (see \texttt{addcom}).
 \item
   $(A \in \mathbb{C} \rightarrow (A + 0) = A)$.
   Proved redundant by Eric Schmidt on 19-Jun-2012,
-  and formalized by Scott Fenton on 4-Jan-2013.
+  and formalized by Scott Fenton on 3-Jan-2013
+  (see \texttt{addid1}).
 \item
   $(A \in \mathbb{C} \rightarrow \exists x \in \mathbb{C} (A + x) = 0)$.
-Proved redundant by Eric Schmidt, 21-May-2007.
+  Proved redundant by Eric Schmidt and formalized on 21-May-2007
+  (see \texttt{cnegex}).
 \item
   $((A \in \mathbb{C} \land A \ne 0) \rightarrow \exists x \in \mathbb{C} (A \cdot x) = 1)$.
-  Proved redundant by Eric Schmidt on 21-May-2007.
+  Proved redundant by Eric Schmidt and formalized on 22-May-2007
+  (see \texttt{recex}).
 \item
   $0 \in \mathbb{R}$.
-  Proved redundant by Eric Schmidt on 19-Feb-2005.
+  Proved redundant by Eric Schmidt on 19-Feb-2005 and formalized 21-May-2007
+  (see \texttt{0re}).
 \end{itemize}
 
 We could eliminate 0 as an axiomatic object by defining it as
