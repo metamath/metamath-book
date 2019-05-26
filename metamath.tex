@@ -6314,7 +6314,7 @@ concept.  Definition from p.~71 of Enderton, extended to classes.
 relation}.  Definition 6.18, p.~29, of Takeuti and Zaring, generalized to
 arbitrary classes.  This definition is well-defined, although not very
 meaningful, when classes $A$ and/or $B$ are proper.\label{dfbr}  The lack of
-parentheses (or any other connective) is not ambiguous since we are defining
+parentheses (or any other connective) creates no ambiguity since we are defining
 an atomic wff.
 
 \vskip 0.5ex
@@ -6330,8 +6330,10 @@ an atomic wff.
 
 \noindent Define an abstraction class of ordered pairs\index{abstraction
 class!of ordered
-pairs}.  A special case of Definition 4.16, p.~14, of Takeuti and Zaring.  Note
-that $x$, $y$, and $z$ must be distinct but that $x$ and $y$ may occur in $\varphi$.
+pairs}.  A special case of Definition 4.16, p.~14, of Takeuti and Zaring.
+Note that $ z $ must be distinct from $ x $ and $ y $,
+and $ z $ must not occur in $\varphi$, but $ x $ and $ y $ may be
+identical and may appear in $\varphi$.
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-opab\ \$a\ }
@@ -6354,7 +6356,7 @@ that $x$, $y$, and $z$ must be distinct but that $x$ and $y$ may occur in $\varp
 \setbox\startprefix=\hbox{\tt \ \ df-eprel\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{E}\m{=}\m{\{}\m{\langle}\m{x}\m{,}\m{y}\m{\rangle}\m{|}\m{x}\m{
+\m{\vdash}\m{{\rm E}}\m{=}\m{\{}\m{\langle}\m{x}\m{,}\m{y}\m{\rangle}\m{|}\m{x}\m{
 \in}\m{y}\m{\}}
 \endm
 \begin{mmraw}%
