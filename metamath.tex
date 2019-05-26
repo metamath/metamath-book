@@ -6609,7 +6609,7 @@ Zaring, p.~27.
 |- ( A Fn B <-> ( Fun A \TAND dom A = B ) ) \$.
 \end{mmraw}
 
-\noindent Define a function with domain and co-domain.  Definition 6.15(3)
+\noindent Define a function with domain and codomain.  Definition 6.15(3)
 of Takeuti and Zaring, p.~27.
 
 \vskip 0.5ex
@@ -7175,10 +7175,10 @@ Hypotheses \texttt{tfr.1} and \texttt{tfr.2} specify a certain (proper)
 class $ F$.  The complicated definition of $ F$ is not important in
 itself; what is important is that there be such an $ F$ with the
 required properties, and we show this by displaying $ F$ explicitly.
-\texttt{tfr1} states that $ F$ is a function whose domain is the set of
-ordinal numbers.  \texttt{tfr2} states that any value of $ F$ is
+Theorem \texttt{tfr1} states that $ F$ is a function whose domain is the set of
+ordinal numbers.  Theorem \texttt{tfr2} states that any value of $ F$ is
 completely determined by its previous values and the values of an
-auxiliary function, $G$.  \texttt{tfr3} states that $ F$ is unique,
+auxiliary function, $G$.  Theorem \texttt{tfr3} states that $ F$ is unique,
 i.e.\ it is the only function that satisfies \texttt{tfr1} and
 \texttt{tfr2}.  Note that $ f$ is an individual variable like $x$ and
 $y$; it is just a mnemonic to remind us that $A$ is a collection of
@@ -7268,10 +7268,11 @@ axioms; for their definitions see \texttt{set.mm}.
 
 Note that the notation $(A+B)$ (and similarly $(A\cdot B)$) specifies a class
 called an {\em operation},\index{operation} and is the function value of the
-class $+$ at ordered pair $\langle A,B \rangle$.  An operation is defined by
-statement \texttt{df-opr} on p.~\pageref{dfopr}.
+class $+$ at the ordered pair $\langle A,B \rangle$.  An operation is defined by
+the statement \texttt{df-opr} on p.~\pageref{dfopr}.
 The notation $A <_{\mathbb{R}} B$ specifies a
-wff called a {\em binary relation}\index{binary relation} and means $\langle A,B \rangle \in \,<_{\mathbb{R}}$, as defined by statement \texttt{df-br} on p.~\pageref{dfbr}.
+wff called a {\em binary relation}\index{binary relation} and means $\langle A,B \rangle \in \,<_{\mathbb{R}}$, as defined
+by the statement \texttt{df-br} on p.~\pageref{dfbr}.
 
 Our set of 8 given classes is assumed to satisfy the following 22 axioms
 (in the axioms listed below, $<$ really means $<_{\mathbb{R}}$).
@@ -7435,7 +7436,7 @@ Our set of 8 given classes is assumed to satisfy the following 22 axioms
 \endm
 %\vskip 1ex
 
-\noindent 15. Every real number has a negative.
+\noindent 15. Every real number has a real negative.
 
 %\vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ ax-rnegex\ \$p\ }
@@ -7446,7 +7447,7 @@ Our set of 8 given classes is assumed to satisfy the following 22 axioms
 \endm
 %\vskip 1ex
 
-\noindent 16. Every nonzero real number has a reciprocal.
+\noindent 16. Every nonzero real number has a real reciprocal.
 
 %\vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ ax-rrecex\ \$p\ }
@@ -8286,7 +8287,7 @@ Often just examining the database file(s) with a text editor is the best
 approach.  In \texttt{set.mm} there are many detailed comments, especially near
 the beginning, that can help guide you. The \texttt{search} command in the
 Metamath program is also handy.  The \texttt{comments} qualifier will list the
-statements whose associated comment (the one immediately before it) contain a
+statements whose associated comment (the one immediately before it) contains the
 string you give it.  For example, if you are studying Enderton's {\em Elements
 of Set Theory} \cite{Enderton}\index{Enderton, Herbert B.} you may want to see
 the references to it in the database.  The search string \texttt{enderton} is not
@@ -8586,17 +8587,18 @@ con2 <- nega <- pm2.18 <- pm2.43i <- pm2.43 <- pm2.27 <-
 com12 <- syl <- a1i <- a1i.1 .
 \end{verbatim}
 
-This tells us that we would have to inspect 196 steps if we want to
+This tells us that we would have to inspect 196 steps if we wanted to
 verify the proof completely starting from the axioms.  A few more
 statistics are also shown.  There are one or more paths back to axioms
 that are the longest; this command ferrets out one of them and shows it
-to you.  There may be a sense in which the longest path length is
+to you.
+Provided that the proof is in some sense optimal,
+there may be a sense in which the longest path length is
 related to how ``deep'' the theorem is.
 
 Finally, we might be curious about what proofs depend on the theorem
-\texttt{prth}.  If it is never used later on, we could eliminate it as
-redundant if it has no intrinsic interest by itself.\index{\texttt{show
-usage} command}
+\texttt{prth}.  If it is never used later on, we could eliminate it
+if it has no intrinsic interest.\index{\texttt{show usage} command}
 
 \begin{verbatim}
 MM> show usage prth
