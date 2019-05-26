@@ -1300,7 +1300,7 @@ those sets which lie in a transitive set of cardinality less than
 $\kappa$.  Instead of the ``category of all groups,'' one works relative
 to a universe [considering the category of groups of cardinality less
 than $\kappa$].  Now the category whose objects are all categories
-``relative'' to the universe $U(\kappa)$'' will be a category not
+``relative to the universe $U(\kappa)$'' will be a category not
 relative to this universe but to the next universe.
 
      All of the things category theorists like to do can be done in this
@@ -1364,7 +1364,7 @@ the one slight deviation in axiom ax-6 is explained and justified.
 The real and complex number axioms were modified to be consistent with
 \texttt{set.mm}\index{set theory database (\texttt{set.mm})}%
 \index{Metamath Proof Explorer}.
-Long-awaited specification changes ``1-8'' were made,
+Long-awaited specification changes ``1--8'' were made,
 which clarified previously ambiguous points.
 Some errors in the text involving \texttt{\$f} and
 \texttt{\$d} statements were corrected (the spec was correct, but
@@ -1382,7 +1382,7 @@ Many minor corrections (too numerous to list here) were also made.
 
 This added a description of the Matamath language syntax in
 Extended Backus--Naur Form (EBNF)\index{Extended Backus--Naur Form}\index{EBNF}
-in appendix \ref{BNF}, added a brief explanation about typecodes,
+in Appendix \ref{BNF}, added a brief explanation about typecodes,
 inserted more examples in the deduction section,
 and added a variety of smaller improvements.
 
@@ -1763,8 +1763,8 @@ theorems with amazing speed, they can't actually prove a single one of them.
 
 After some puzzlement, you revisit some popular books on what mathematics is
 all about.  Somewhere you read that all of mathematics is actually derived
-from something called ``set theory.''  This is a little confusing, because no
-where in the book that presented the axioms of arithmetic was there any
+from something called ``set theory.''  This is a little confusing, because
+nowhere in the book that presented the axioms of arithmetic was there any
 mention of set theory, or if there was, it seemed to be just a tool that helps
 you describe things better---the set of even numbers, that sort of thing.  If
 set theory is the basis for all mathematics, then why are additional axioms
@@ -1984,10 +1984,6 @@ in number theory.} The bugs\index{computer program bugs} that have cropped up
 so far have already made you start to lose faith in the rigor you seem to have
 achieved, and you know it's just going to get worse as your program gets larger.
 
-\begin{center}
-***
-\end{center}
-
 \subsection{Mathematics and the Non-Specialist}
 
 \begin{quote}
@@ -2127,7 +2123,8 @@ theorems rather than proving them over and over.
 Just as important, definitions\index{definition} can be introduced along
 the way, allowing very complex formulas to be represented with few
 symbols.  Not doing this can lead to absurdly long formulas.  For
-example, G\"{o}del's incompleteness theorem\index{G\"{o}del's
+example, the mere statement of
+G\"{o}del's incompleteness theorem\index{G\"{o}del's
 incompleteness theorem}, which can be expressed with a small number of
 defined symbols, would require about 20,000 primitive symbols to express
 it.\index{Boolos, George S.}\footnote{George S.\ Boolos, lecture at
@@ -2754,7 +2751,7 @@ computer found the proof in 1996.  For more information on
 the Robbins algebra problem see \cite{Wos}.}
 
 How does Metamath\index{Metamath} relate to automated theorem provers?  A
-theorem prover is primary concerned with one theorem at a time (perhaps
+theorem prover is primarily concerned with one theorem at a time (perhaps
 tapping into a small database of known theorems) whereas Metamath is more like
 a theorem archiving system, storing both the theorem and its proof in a
 database for access and verification.  Metamath is one answer to ``what do you
@@ -2886,9 +2883,9 @@ Metamath community.
 That said, the Metamath and Ghilbert communities overlap, and fruitful
 conversations between them have occurred many times over the years.
 
-\subsection{Creating a database of formalized mathematics}\label{mathdatabase}
+\subsection{Creating a Database of Formalized Mathematics}\label{mathdatabase}
 
-Besides Metamath, there are several other on-going projects with the goal of
+Besides Metamath, there are several other ongoing projects with the goal of
 formalizing mathematics into computer-verifiable databases.
 Understanding some history will help.
 
@@ -3019,7 +3016,7 @@ that are more compelling, depending on what you value.
 In any case, we hope this helps you understand Metamath
 within a wider context.
 
-\subsection{In summary}\label{computers-summary}
+\subsection{In Summary}\label{computers-summary}
 
 To summarize our discussions of computers and mathematics, computer algebra
 systems can be viewed as theorem generators focusing on a narrow realm of
@@ -3030,7 +3027,7 @@ provers require human guidance, proof verifiers verify proofs but
 historically they have been
 restricted to first-order logic.
 Metamath, in contrast,
-is a proof verifier and documentor whose realm is essentially unlimited.
+is a proof verifier and documenter whose realm is essentially unlimited.
 
 \section{Mathematics and Metamath}
 
@@ -3279,12 +3276,12 @@ arrive at this result.  First we would prove ``$\exists x \, x = x $,'' then
 we would separately prove ``$\exists x \, x = y $, where $x$ and $y$ are
 distinct variables.''  We would then combine these two special cases ``outside
 of the system'' (i.e.\ in our heads) to be able to claim, ``$\exists x \, x =
-y $, regardless of whether $x$ and $y$ are distinct.''  In other words, in the
+y $, regardless of whether $x$ and $y$ are distinct.''  In other words, the
 combination of the two special cases is a
 metatheorem.  In the system of logic
 used in Metamath's set theory\index{set theory database (\texttt{set.mm})}
 database, the axioms of logic are broken down into small pieces that allow
-them to reassembled in such a way that theorems such as these can be proved
+them to be reassembled in such a way that theorems such as these can be proved
 directly.
 
 Breaking down the axioms in this way makes them look peculiar and not very
@@ -5159,7 +5156,7 @@ being considered axioms.
 This is in keeping with our general goal of minimizing the number of
 axioms we must depend on.
 
-\subsection{Other axioms}
+\subsection{Other Axioms}
 
 Above we qualified the phrase "all of mathematics" with "essentially."
 The main important missing piece is the ability to do category theory,
@@ -5309,7 +5306,7 @@ Axiom of Simplification.\label{ax1}
 
 
 \needspace{7\baselineskip}
-\subsection{Axioms of Predicate Calculus with equality - Tarski's S2}\index{axioms of predicate calculus}
+\subsection{Axioms of Predicate Calculus with Equality---Tarski's S2}\index{axioms of predicate calculus}
 
 \needspace{3\baselineskip}
 \noindent Rule of Generalization.\index{rule of generalization}
@@ -5389,7 +5386,7 @@ Axiom of Simplification.\label{ax1}
 
 
 \needspace{4\baselineskip}
-\subsection{Axioms of Predicate Calculus with Equality - Auxiliary}\index{axioms of predicate calculus - auxiliary}
+\subsection{Axioms of Predicate Calculus with Equality---Auxiliary}\index{axioms of predicate calculus - auxiliary}
 
 \needspace{2\baselineskip}
 \noindent Axiom of Quantified Negation.
@@ -7888,7 +7885,7 @@ However, we now recommend applying something called ``deduction style''
 instead in most cases, as deduction style is
 often an easier and clearer approach.
 
-\subsection{Deduction style}\label{deductionstyle}
+\subsection{Deduction Style}\label{deductionstyle}
 
 Today there is a preference for writing assertions in
 something called``deduction form''
