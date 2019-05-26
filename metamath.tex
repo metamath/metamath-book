@@ -6504,18 +6504,17 @@ Takeuti and Zaring, p.~24.
 |- dom A = \{ x | E. y <. x , y >. e. A \} \$.
 \end{mmraw}
 
-\noindent Define the range\index{range} of a class.  Definition 6.5(2) of
-Takeuti and Zaring, p.~24.
+\noindent Define the range\index{range} of a class.
+% Definition 6.5(2) of Takeuti and Zaring, p.~24.
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-rn\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{\,\mbox{\rm ran}}\m{A}\m{=}\m{\{}\m{y}\m{|}\m{\exists}\m{x}\m{
-\langle}\m{x}\m{,}\m{y}\m{\rangle}\m{\in}\m{A}\m{\}}
+\m{\vdash}\m{{\rm ran}}\m{A}\m{=}\m{{\rm dom}}\m{{}^{\smallsmile}}\m{A}
 \endm
 \begin{mmraw}%
-|- ran A = \{ y | E. x <. x , y >. e. A \} \$.
+|- ran A = dom {\char`\`}' A \$.
 \end{mmraw}
 
 \noindent Define the restriction\index{restriction} of a class.  Definition
