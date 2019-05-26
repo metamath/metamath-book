@@ -5705,6 +5705,7 @@ notation in the database.  For simplicity, the necessary \texttt{\$f}
 and \texttt{\$d} statements are not shown.  If you are in doubt, use the
 \texttt{show statement}\index{\texttt{show statement} command} command
 in the Metamath program to see the full statement.
+A selection of this notation is summarized in Appendix~\ref{ASCII}.
 
 To understand the motivation for these definitions, you should consult the
 references indicated:  Takeuti and Zaring \cite{Takeuti}\index{Takeuti, Gaisi},
@@ -6112,10 +6113,10 @@ quantifier ($\exists$)!restricted}  Enderton, p.~22.
 \setbox\startprefix=\hbox{\tt \ \ df-v\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{V}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{=}\m{x}\m{\}}
+\m{\vdash}\m{{\rm V}}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{=}\m{x}\m{\}}
 \endm
 \begin{mmraw}%
-|- V = \{ x | x = x \} \$.
+|- {\char`\_}V = \{ x | x = x \} \$.
 \end{mmraw}
 
 \noindent Define the subclass\index{subclass}\index{subset} relationship
@@ -6188,7 +6189,7 @@ Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
 \m{\vdash}\m{\varnothing}\m{=}\m{(}\m{V}\m{\setminus}\m{V}\m{)}
 \endm
 \begin{mmraw}%
-|- (/) = ( V \SLASH V ) \$.
+|- (/) = ( {\char`\_}V \SLASH {\char`\_}V ) \$.
 \end{mmraw}
 
 \noindent Define power class\index{power set}\index{power class}.  Definition 5.10 of
@@ -6529,7 +6530,7 @@ Takeuti and Zaring, p.~24.
 \m{\times}\m{V}\m{)}\m{)}
 \endm
 \begin{mmraw}%
-|- ( A |` B ) = ( A i\^{}i ( B X. V ) ) \$.
+|- ( A |` B ) = ( A i\^{}i ( B X. {\char`\_}V ) ) \$.
 \end{mmraw}
 
 \noindent Define the image\index{image} of a class.  Definition 6.6(2) of
@@ -6573,7 +6574,7 @@ Zaring, p.~23.
 \m{(}\m{V}\m{\times}\m{V}\m{)}\m{)}
 \endm
 \begin{mmraw}%
-|- ( Rel A <-> A C\_ ( V X. V ) ) \$.
+|- ( Rel A <-> A C\_ ( {\char`\_}V X. {\char`\_}V ) ) \$.
 \end{mmraw}
 
 \noindent Define a function\index{function}.  Definition 6.4(4) of Takeuti and
