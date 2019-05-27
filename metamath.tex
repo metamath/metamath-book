@@ -7821,7 +7821,7 @@ eliminates a hypothesis $\varphi$, making it become an antecedent.
 It does this by proving an expression
 $ \varphi \rightarrow \psi $ given two hypotheses:
 (1)
-$ ( A = if ( \varphi , A , B ) \rightarrow ( \varphi \leftrightarrow \chi ) ) $
+$ ( A = {\rm if} ( \varphi , A , B ) \rightarrow ( \varphi \leftrightarrow \chi ) ) $
 and
 (2) $\chi$.
 Note that it requires that a proof exists for $\varphi$ when the class variable
@@ -7894,16 +7894,17 @@ For example, we used $1 \in \mathbb{R}$ in step 3 of \texttt{renegcl}.
 
 We used to use the weak deduction theorem
 extensively within \texttt{set.mm}.
-However, we now recommend applying something called ``deduction style''
+However, we now recommend applying ``deduction style''
 instead in most cases, as deduction style is
 often an easier and clearer approach.
+Therefore, we will now describe deduction style.
 
 \subsection{Deduction Style}\label{deductionstyle}
 
-Today there is a preference for writing assertions in
-something called``deduction form''
+We now prefer to write assertions in ``deduction form''
 instead of writing a proof that would require use of the standard or
-weak deduction theorem. Applying this approach is called
+weak deduction theorem.
+We call this appraoch
 ``deduction style.''\index{deduction style}
 
 It will be easier to explain this by first defining some terms:
@@ -8032,7 +8033,7 @@ least these three criteria:
 also for eliminating them. Usually it requires some bookkeeping devices
 for indicating the scope of an assumption, and showing that a part of
 a proof depending on eliminated assumption is discharged.
-\item There are no (or, at least, very limited set of) axioms, because
+\item There are no (or, at least, a very limited set of) axioms, because
 their role is taken over by the set of primitive rules for introduction
 and elimination of logical constants which means that elementary
 inferences instead of formulae are taken as primitive.
