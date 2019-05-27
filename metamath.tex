@@ -3833,7 +3833,7 @@ is arbitrary. To close the log file, type
 MM> close log
 \end{verbatim}
 
-Several commands let you examine what's inside of your database.
+Several commands let you examine what's inside your database.
 Section~\ref{exploring} has an overview of some useful ones.  The
 \texttt{show labels} command lets you see what statement
 labels\index{label} exist.  A \texttt{*} matches any combination of
@@ -3878,7 +3878,7 @@ The mandatory hypotheses\index{mandatory hypothesis} and their
 order\index{RPN order} are
 useful to know when you are trying to understand or debug a proof.
 
-Now you are ready to look at what's really inside of our proof.  First, here is
+Now you are ready to look at what's really inside our proof.  First, here is
 how to look at every step in the proof---not just the ones corresponding to an
 ordinary formal proof\index{formal proof}, but also the ones that build up the
 formulas that appear in each ordinary formal proof step.\index{\texttt{show
@@ -4154,7 +4154,7 @@ Note:  The proof you are starting with is already complete.
 MM-PA>
 \end{verbatim}
 
-The \verb/MM-PA>/ prompt means we are inside of the Proof
+The \verb/MM-PA>/ prompt means we are inside the Proof
 Assistant.\index{Proof Assistant} Most of the regular Metamath commands
 (\texttt{show statement}, etc.) are still available if you need them.
 
@@ -5069,7 +5069,7 @@ The axioms are very general and apply to almost any conceivable mathematical
 object, and this level of abstraction can be overwhelming at first.  To gain an
 intuitive feel, it can be helpful to draw a picture illustrating the concept;
 for example, a circle containing dots could represent a collection of sets,
-and a smaller circle drawn inside of the circle could represent a subset.
+and a smaller circle drawn inside the circle could represent a subset.
 Overlapping circles can illustrate intersection and union.  Circles that
 illustrate the concepts of set theory are frequently used in elementary
 textbooks and are called Venn diagrams\index{Venn diagram}.\index{axioms of
@@ -8790,7 +8790,7 @@ followed by \texttt{\$]}.\index{\texttt{\$[} and \texttt{\$]} auxiliary
 keywords}\index{included file}\index{file inclusion}
 It is only allowed in the outermost scope (i.e., not between
 \texttt{\$\char`\{} and \texttt{\$\char`\}})
-and must not be inside of a statement (e.g., it may not occur
+and must not be inside a statement (e.g., it may not occur
 between the label of a \texttt{\$a} statement and its \texttt{\$.}).
 The file name may not
 contain a \texttt{\$} or white space.  The file must exist.
@@ -9211,7 +9211,7 @@ Metamath command \texttt{open tex} {\em filename}\index{\texttt{open tex} comman
 produces output that can be read by \LaTeX.\index{latex@{\LaTeX}}
 The correspondence
 between tokens and the actual symbols is made by \texttt{latexdef}
-statements inside of a special database comment tagged
+statements inside a special database comment tagged
 with \texttt{\$t}.\index{\texttt{\$t} comment}\index{typesetting comment}
   You can edit
 this comment to change the definitions or add new ones.
@@ -9573,7 +9573,7 @@ This statement has the obvious requirement that $z$ must be
 distinct\index{distinct variables} from $x$ in theorem \texttt{ax17eq} that
 states $x=y \rightarrow \forall z \, x=y$ (well, obvious if you're a logician,
 for otherwise we could conclude  $x=y \rightarrow \forall x \, x=y$, which is
-false when free variables $x$ and $y$ are equal.).
+false when the free variables $x$ and $y$ are equal.).
 
 Let's look at what happens if we edit the database to comment out this
 requirement.
@@ -9978,9 +9978,8 @@ must occur before a \texttt{\$e} statement in which its variable occurs.
 The first property determines the set of variables occurring in a frame.
 These are the {\bf mandatory
 variables}\index{mandatory variable} of the frame.  The second property
-tells us there must be only one type specified for a variable.  The
-third property determines which \texttt{\$d} statements belong to the
-frame.  The last property is not a theoretical requirement but it
+tells us there must be only one type specified for a variable.
+The last property is not a theoretical requirement but it
 makes parsing of the database easier.
 
 For our examples, we assume our database has the following declarations:
@@ -10083,7 +10082,7 @@ Variable \texttt{R} may be used in its proof if desired (although this would
 probably have no advantage in propositional calculus).  Note that the sequence
 of mandatory hypotheses in RPN order is still \texttt{wp}, \texttt{wq}, \texttt{maj},
 \texttt{min} (i.e.\ \texttt{wr} is omitted), and this sequence is still assumed
-whenever assertion \texttt{mp} is referenced in a subsequent proof.
+whenever the assertion \texttt{mp} is referenced in a subsequent proof.
 
 \begin{verbatim}
 wp  $f wff P $.
@@ -10105,7 +10104,7 @@ The conceptually simplest way of organizing a Metamath database is as a
 sequence of extended frames.  The scoping statements
 \texttt{\$\char`\{}\index{\texttt{\$\char`\{} and \texttt{\$\char`\}}
 keywords} and \texttt{\$\char`\}} can be used to delimit the start and
-end of a frame, leading to the following possible structure for a
+end of an extended frame, leading to the following possible structure for a
 database.  \label{framelist}
 
 \vskip 2ex
@@ -10205,7 +10204,7 @@ Each \texttt{\$\char`\{} statement in this example is said to be {\bf
 matched} with the \texttt{\$\char`\}} statement that has the same
 subscript.  Each pair of matched scoping statements defines a region of
 the database called a {\bf block}.\index{block} Blocks can be {\bf
-nested}\index{nested block} inside of other blocks; in the example, the
+nested}\index{nested block} inside other blocks; in the example, the
 block defined by $\mbox{\tt \$\char`\{}_4$ and $\mbox{\tt \$\char`\}}_4$
 is nested inside the block defined by $\mbox{\tt \$\char`\{}_3$ and
 $\mbox{\tt \$\char`\}}_3$ as well as inside the block defined by
@@ -10463,7 +10462,7 @@ any future language extensions.}
 % statement}, \texttt{\$a}\index{\texttt{\$a} statement}, and
 % \texttt{\$p}\index{\texttt{\$p}
 % statement} statement types require labels, which allow them to be
-% referenced later inside of proofs.  A label is considered {\bf
+% referenced later inside proofs.  A label is considered {\bf
 % active}\index{active label} when the statement it is associated with is
 % active.  The token\index{token} for a label may be reused
 % (redeclared)\index{redeclaration of labels} provided that it is not being used
@@ -11508,7 +11507,7 @@ follows.  The {\em label-list} includes all statements referred to by the
 proof except the mandatory hypotheses\index{mandatory hypothesis}.  The {\em
 compressed-proof} is a compact encoding of the proof, using upper case
 letters, and can be thought of as a large integer in base 26.  White
-space\index{white space} inside of {\em compressed-proof} is
+space\index{white space} inside a {\em compressed-proof} is
 optional and is ignored.
 
 It is important to note that the order of the mandatory hypotheses of
@@ -12072,7 +12071,7 @@ After the lines in the file are exhausted, Metamath returns to its
 normal user interface mode.
 
 Currently, the \texttt{submit} command is not recursive.  In other words,
-\texttt{submit} commands are not allowed inside of a command file.
+\texttt{submit} commands are not allowed inside a command file.
 
 
 \subsection{\texttt{erase} Command}\index{\texttt{erase} command}
@@ -12943,7 +12942,7 @@ If {\em step} is positive, \texttt{let step} may be used to assign known
 \texttt{assign}) as well as unknown steps.
 
 Either single or double quotes can surround the {\em symbol-sequence} as
-long as they are different from any quotes inside of {\em
+long as they are different from any quotes inside a {\em
 symbol-sequence}.  If {\em symbol-sequence} contains both kinds of
 quotes, see the instructions at the end of \texttt{help let} in the
 Metamath program.
@@ -13495,7 +13494,7 @@ A complete list is available at \url{http://metamath.org}.
 
 These {\sc ASCII} representations, along
 with information on how to display them,
-are defined in the \texttt{set.mm} database file inside of
+are defined in the \texttt{set.mm} database file inside
 a special comment called a \texttt{\$t} {\em
 comment}\index{\texttt{\$t} comment} or {\em typesetting
 comment.}\index{typesetting comment}
