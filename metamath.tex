@@ -4959,7 +4959,7 @@ than the traditional textbook formalization,
 but it is \textit{exactly equivalent} to the textbook formalization,
 and it is \textit{much} easier to work with.
 This is reproduced as system S3 in Section 6 of
-Megill's formalization\cite{Megill}\index{Megill, Norman}.
+Megill's formalization \cite{Megill}\index{Megill, Norman}.
 
 There is one exception, Tarski's axiom of existence,
 which we label as axiom ax-6.
@@ -4987,7 +4987,7 @@ Tarski's system to eliminate this difficulty. The additional
 ``auxilliary'' axiom
 schemes (as we will call them in this section; see below) endow Tarski's
 system with a nice property we call
-metalogical completeness\cite[Remark 9.6]{Megill}\index{Megill, Norman}.
+metalogical completeness \cite[Remark 9.6]{Megill}\index{Megill, Norman}.
 As a result, we can prove any theorem scheme
 expressable in the ``simple metalogic'' of Tarski's system by using
 only Metamath's direct substitution rule applied to the axiom system
@@ -8004,7 +8004,7 @@ discuss natural deduction.
 
 Natural deduction\index{natural deduction}
 (ND) systems, as such, were originally introduced in
-1934 by two logicians working independently: Jaśkowski and Gentzen. ND
+1934 by two logicians working independently: Ja\'skowski and Gentzen. ND
 systems are supposed to reconstruct, in a formally proper way, traditional
 ways of mathematical reasoning (such as conditional proof, indirect proof,
 and proof by cases). As reconstructions they were naturally influenced
@@ -8012,7 +8012,7 @@ by previous work, and many specific ND systems and notations have been
 developed since their original work.
 
 There are many ND variants, but
-Indrzejczak\cite[p.~31-32]{Indrzejczak}\index{Indrzejczak, Andrzej}
+Indrzejczak \cite[p.~31-32]{Indrzejczak}\index{Indrzejczak, Andrzej}
 suggests that any natural deductive system must satisfy at
 least these three criteria:
 
@@ -8036,7 +8036,7 @@ That is, MPE is based on a larger number of axioms (compared
 to natural deduction systems), a very small set of rules of inference
 (modus ponens), and the context is not changed by the rules of inference
 in the middle of a proof. That said, MPE proofs can be developed using
-the natural deduction (ND) approach as originally developed by Jaśkowski
+the natural deduction (ND) approach as originally developed by Ja\'skowski
 and Gentzen.
 
 The most common and recommended approach for applying ND in MPE is to use
@@ -8049,7 +8049,7 @@ We maintain a list of equivalences that you may consult.
 This approach for applying an ND approach within MPE relies on Metamath's
 wff metavariables in an essential way, and is described in more detail
 in the presentation ``Natural Deductions in the Metamath Proof Language''
-by Mario Carneiro\cite{CarneiroND}\index{Carneiro, Mario}.
+by Mario Carneiro \cite{CarneiroND}\index{Carneiro, Mario}.
 
 In this style many steps are an implication, whose antecedent mimics
 the context ($\Gamma$) of most ND systems. To add an assumption, simply add
@@ -8205,7 +8205,7 @@ a rigorous proof that uses only the axiom system. Unlike the standard
 Deduction Theorem, there is no implicit external justification that we
 have to trust in order to use it.
 
-Mario's natural deduction\index{natural deduction}
+Mario Carneiro's natural deduction\index{natural deduction}
 method also does not require any new metalogical
 notions. It avoids the Deduction Theorem's metalogic by prefixing the
 hypotheses and conclusion of every would-be inference with a universal
@@ -8609,7 +8609,7 @@ Thus \texttt{prth} is used by 7 proofs, and indirectly by many more that
 make use of {\em those} proofs, and so on.  (The \texttt{/recursive}
 qualifier gives you all of them.)
 
-\subsection{A Note on ``Compact'' Proof Format}
+\subsection{A Note on the ``Compact'' Proof Format}
 
 The present version of Metamath\index{Metamath!limitations of
 version 0.07.30} will display proofs in a ``compact''\index{compact proof}
@@ -8624,16 +8624,16 @@ MM> show proof id1 /lemmon/all
  1 wph           $f wff ph
  2 wph           $f wff ph
  3 wph           $f wff ph
- 4 2,3 wi    @1: $a wff ( ph -> ph )
- 5 1,4 wi    @2: $a wff ( ph -> ( ph -> ph ) )
- 6 @1            $a wff ( ph -> ph )
+ 4 2,3 wi    @4: $a wff ( ph -> ph )
+ 5 1,4 wi    @5: $a wff ( ph -> ( ph -> ph ) )
+ 6 @4            $a wff ( ph -> ph )
 \end{verbatim}
 
 \begin{center}
 {etc.}
 \end{center}
 
-Step 4 has a ``local label,''\index{local label} \texttt{@1}, assigned to it.
+Step 4 has a ``local label,''\index{local label} \texttt{@4}, assigned to it.
 Later on, at step 6, the label \texttt{@1} is referenced instead of
 displaying the explicit proof for that step.  This technique takes advantage
 of the fact that steps in a proof often repeat, especially during the
