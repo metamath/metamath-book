@@ -3978,7 +3978,7 @@ the ``essential'' or logical steps of a proof, i.e.\ those steps
 that correspond to an
 ordinary formal proof\index{formal proof}.  If you type
 \begin{verbatim}
-MM> show proof th1 /essential /lemmon /renumber
+MM> show proof th1 /lemmon /renumber
 \end{verbatim}
 you will see\label{demoproof}
 \begin{verbatim}
@@ -3990,12 +3990,20 @@ you will see\label{demoproof}
 5 1,4 mp         $a |- t = t
 \end{verbatim}
 Compare this to the formal proof on p.~\pageref{zeroproof} and
-notice the resemblance.  The \texttt{/essential} qualifier in the \texttt{show
-proof} command tells Metamath to discard all \texttt{\$f}\index{\texttt{\$f}
+notice the resemblance.
+By default Metamath
+does not show \texttt{\$f}\index{\texttt{\$f}
 statement} hypotheses and everything branching off of them in the proof tree
 when the proof is displayed; this makes the proof look more like an ordinary
 mathematical proof, which does not normally incorporate the explicit
-construction of expressions.  The \texttt{/renumber} qualifier means to renumber
+construction of expressions.
+This is called the ``essential'' view
+(at one time you had to add the
+\texttt{/essential} qualifier in the \texttt{show proof}
+command to get this view, but this is now the default).
+You can could use the \texttt{/all} qualifier in the \texttt{show
+proof} command to also show the explicit construction of expressions.
+The \texttt{/renumber} qualifier means to renumber
 the steps to correspond only to what is displayed.\index{\texttt{show proof}
 command}
 
@@ -4106,9 +4114,9 @@ identified as not proved.
 
 When I first started creating Metamath proofs, I would write down
 on a piece of paper the complete
-formal proof\index{formal proof} as it would appear with the \texttt{/essential}
-qualifier in a \texttt{show proof} command\index{\texttt{show proof} command}; see
-the display of \texttt{show proof th1 /essential /lemmon /re\-num\-ber} above as an
+formal proof\index{formal proof} as it would appear
+in a \texttt{show proof} command\index{\texttt{show proof} command}; see
+the display of \texttt{show proof th1 /lemmon /re\-num\-ber} above as an
 example.  After you get used to using the Proof Assistant\index{Proof
 Assistant} you may get to a point where you can ``see'' the proof in your mind
 and let the Proof Assistant guide you in filling in the details, at least for
@@ -4217,7 +4225,7 @@ here on we will display only the ``essential'' hypotheses, i.e.\ those
 steps that correspond to traditional formal proofs\index{formal proof}.
 
 \begin{verbatim}
-MM-PA> show new_proof/lemmon/essential
+MM-PA> show new_proof/lemmon
 3 ?              $? |- $2
 4 ?              $? |- ( $2 -> t = t )
 5 3,4 mp         $a |- t = t
@@ -8405,7 +8413,7 @@ Let's look at the proof of statement \texttt{id1}.  We'll suppress the
 command}
 
 \begin{verbatim}
-MM> show proof id1/essential/lemmon/renumber
+MM> show proof id1 /lemmon/renumber
 1 ax-2           $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
                      ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph )
                                                           ) )
@@ -8429,7 +8437,7 @@ the \texttt{renumber} qualifier.\index{\texttt{show proof}
 command}
 
 \begin{verbatim}
-MM> show proof id1/lemmon/essential
+MM> show proof id1 /lemmon
 18 ax-2          $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
                      ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph )
                                                           ) )
@@ -8492,7 +8500,7 @@ The statement and its hypotheses require the variables:  ph
 These additional variables are allowed in its proof:  et
 The variables it contains are:  ph ps ch th
 
-MM> show proof prth/essential/lemmon/renumber
+MM> show proof prth /lemmon/renumber
 1 pm3.2          $p |- ( ps -> ( th -> ( ps /\ th ) ) )
 2 1 syl3dt       $p |- ( ps -> ( ( ch -> th ) -> ( ch -> ( ps
                                                 /\ th ) ) ) )
@@ -8512,7 +8520,7 @@ There are references to a lot of unfamiliar statements.  To see what they are,
 you may type the following:
 
 \begin{verbatim}
-MM> show proof prth/statement_summary/essential
+MM> show proof prth /statement_summary
 Summary of statements used in the proof of "prth":
 
 Statement "syl3" is located on line 355 of the file "set.mm".
@@ -10743,15 +10751,18 @@ stack (the most recent stack entry) as it exists after that proof step is
 processed.  With a little practice, you should have no trouble reading proofs
 displayed in this format.
 
-Our simple example shows the syntax construction of a formula that might be
-used as part of the construction of a ``real'' proof step that deduces
-theorems from other theorems.  In standard mathematics, this kind of
+Metamath proofs include the syntax construction of a formula.
+In standard mathematics, this kind of
 construction is not considered a proper part of the proof at all, and it
-certainly becomes rather boring after a while.  To filter out syntax
-constructions in the proof display, the \texttt{show proof}\index{\texttt{show proof}
-command} command has the qualifier \texttt{/essential} which you will probably
-use quite often in order to see just the ``real'' steps of
-the proof.
+certainly becomes rather boring after a while.
+Therefore,
+by default the \texttt{show proof}\index{\texttt{show proof}
+command} command does not show the syntax construction.
+Historically \texttt{show proof} command
+\textit{did} show the syntax construction, and you needed to add the
+\texttt{/essential} option to hide, them, but today
+\texttt{/essential} is the default and you need to use
+\texttt{/all} to see the syntax constructions.
 
 When verifying a proof, Metamath will check that no mandatory
 \texttt{\$d}\index{\texttt{\$d} statement}\index{mandatory \texttt{\$d}
@@ -15183,7 +15194,7 @@ $)
       wI wI wI we wI wI we wI ax II II I_ III II IV $.
 \end{verbatim}\index{well-formed formula (wff)}
 
-The \texttt{show proof /essential/lemmon/renumber} command
+The \texttt{show proof /lemmon/renumber} command
 yields the following display.  It is very similar
 to the one in \cite[pp.~35--36]{Hofstadter}.\index{Hofstadter, Douglas R.}
 
