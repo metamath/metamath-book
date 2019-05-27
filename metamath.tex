@@ -6194,8 +6194,8 @@ Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
 
 \noindent Define power class\index{power set}\index{power class}.  Definition 5.10 of
 Takeuti and Zaring, p.~17, but we also let it apply to proper classes.  (Note
-that \verb$P~$ is the symbol for calligraphic P, the tilde
-suggesting ``curly;'' see Appendix~\ref{ASCII}.)
+that \verb$~P$ is the symbol for calligraphic P, the tilde
+suggesting ``curly;'' see Appendix~\ref{ASCII}.)\label{df-pw}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-pw\ \$a\ }
@@ -6205,7 +6205,7 @@ suggesting ``curly;'' see Appendix~\ref{ASCII}.)
 \endm
 % Special incantation required to put ~ into the text
 \begin{mmraw}%
-|- P\char`\~~A = \{ x | x C\_ A \} \$.
+|- \char`\~P~A = \{ x | x C\_ A \} \$.
 \end{mmraw}
 
 \noindent Define the singleton of a class\index{singleton}.  Definition 7.1 of
@@ -13601,6 +13601,9 @@ if that is necessary for clarity.
 \texttt{(/)} & $ \varnothing $ &
   \hyperref[df-nul]{\texttt{df-nul}} &
   $ \varnothing $ is the empty set (aka null set). \\
+\texttt{\char`\~P} & $ \cal P $ &
+  \hyperref[df-pw]{\texttt{df-pw}} &
+  Power class. \\
 \texttt{<.\ A , B >.} & $\langle A , B \rangle$ &
   \hyperref[df-op]{\texttt{df-op}} &
   The ordered pair $\langle A , B \rangle$. \\
