@@ -8778,10 +8778,14 @@ case-sensitive.
 
 \subsection{Preprocessing}
 
-\texttt{\$(} begins a {\bf comment} and \texttt{\$)} ends a comment.\index{\texttt{\$(}
-and \texttt{\$)} auxiliary keywords}\index{comment}  Comments may contain any of
-the 94 printable characters and white space, except they may not contain the
-2-character sequences \texttt{\$(} or \texttt{\$)} (comments do not nest).  Comments are ignored (treated
+The token \texttt{\$(} begins a {\bf comment} and
+\texttt{\$)} ends a comment.\index{\texttt{\$(}
+and \texttt{\$)} auxiliary keywords}\index{comment}
+Comments may contain any of
+the 94 non-whitespace printable characters and white space,
+except they may not contain the
+2-character sequences \texttt{\$(} or \texttt{\$)} (comments do not nest).
+Comments are ignored (treated
 like white space) for the purpose of parsing, e.g.,
 \texttt{\$( \$[ \$)} is a comment.
 See p.~\pageref{mathcomments} for comment typesetting conventions; these
