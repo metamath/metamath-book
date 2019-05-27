@@ -8803,7 +8803,8 @@ references to the same file (whether in the top-level file or in included
 files) cause the inclusion command to be ignored (treated like white space).
 A verifier may assume that file names with different strings
 refer to different files for the purpose of ignoring later references.
-A file self-reference is ignored, as is any reference to the top-level file.
+A file self-reference is ignored, as is any reference to the top-level file
+(to avoid loops).
 Included files may not include a \texttt{\$(} without a matching \texttt{\$)},
 may not include a \texttt{\$[} without a matching \texttt{\$]}, and may
 not include incomplete statements (e.g., a \texttt{\$a} without a matching
@@ -8825,9 +8826,12 @@ These are the scoping statements \texttt{\$\char`\{} and
 statements.
 
 A {\bf scoping statement}\index{scoping statement} consists only of its
-keyword, \texttt{\$\char`\{} or \texttt{\$\char`\}}. \texttt{\$\char`\{} begins a {\bf
-block}\index{block} and a matching \texttt{\$\char`\}} ends the block. Every \texttt{\$\char`\{}
-must have a matching \texttt{\$\char`\}}. Defining it recursively, we say a block
+keyword, \texttt{\$\char`\{} or \texttt{\$\char`\}}.
+A \texttt{\$\char`\{} begins a {\bf
+block}\index{block} and a matching \texttt{\$\char`\}} ends the block.
+Every \texttt{\$\char`\{}
+must have a matching \texttt{\$\char`\}}.
+Defining it recursively, we say a block
 contains a sequence of zero or more tokens other
 than \texttt{\$\char`\{} and \texttt{\$\char`\}} and
 possibly other blocks.  There is an {\bf outermost
@@ -8840,7 +8844,7 @@ A {\bf \$v} or {\bf \$c statement}\index{\texttt{\$v} statement}\index{\texttt{\
 statement} consists of the keyword token \texttt{\$v} or \texttt{\$c} respectively,
 followed by one or more math symbols,
 % The word "token" is used to distinguish "$." from the sentence-ending period.
-followed by the \texttt{\$.} token.
+followed by the \texttt{\$.}\ token.
 These
 statements {\bf declare}\index{declaration} the math symbols to be {\bf
 variables}\index{variable!Metamath} or {\bf constants}\index{constant}
@@ -8864,11 +8868,11 @@ see p.~\pageref{redeclarationf}.}\index{redeclaration of symbols}
 A {\bf \$f statement}\index{\texttt{\$f} statement} consists of a label,
 followed by \texttt{\$f}, followed by its typecode (an active constant),
 followed by an
-active variable, followed by the \texttt{\$.} token.  A {\bf \$e
+active variable, followed by the \texttt{\$.}\ token.  A {\bf \$e
 statement}\index{\texttt{\$e} statement} consists of a label, followed
 by \texttt{\$e}, followed by its typecode (an active constant),
 followed by zero or more
-active math symbols, followed by the \texttt{\$.} token.  A {\bf
+active math symbols, followed by the \texttt{\$.}\ token.  A {\bf
 hypothesis}\index{hypothesis} is a \texttt{\$f} or \texttt{\$e}
 statement.
 The type declared by a \texttt{\$f} statement for a given label
@@ -8878,10 +8882,10 @@ nd \texttt{class P} in another).
 
 A {\bf simple \$d statement}\index{\texttt{\$d} statement!simple}
 consists of \texttt{\$d}, followed by two different active variables,
-followed by the \texttt{\$.} token.  A {\bf compound \$d
+followed by the \texttt{\$.}\ token.  A {\bf compound \$d
 statement}\index{\texttt{\$d} statement!compound} consists of
 \texttt{\$d}, followed by three or more variables (all different),
-followed by the \texttt{\$.} token.  The order of the variables in a
+followed by the \texttt{\$.}\ token.  The order of the variables in a
 \texttt{\$d} statement is unimportant.  A compound \texttt{\$d}
 statement is equivalent to a set of simple \texttt{\$d} statements, one
 for each possible pair of variables occurring in the compound
@@ -8893,12 +8897,12 @@ restriction}.\index{disjoint-variable restriction}
 A {\bf \$a statement}\index{\texttt{\$a} statement} consists of a label,
 followed by \texttt{\$a}, followed by its typecode (an active constant),
 followed by
-zero or more active math symbols, followed by the \texttt{\$.} token.  A {\bf
+zero or more active math symbols, followed by the \texttt{\$.}\ token.  A {\bf
 \$p statement}\index{\texttt{\$p} statement} consists of a label,
 followed by \texttt{\$p}, followed by its typecode (an active constant),
 followed by
 zero or more active math symbols, followed by \texttt{\$=}, followed by
-a sequence of labels, followed by the \texttt{\$.} token.  An {\bf
+a sequence of labels, followed by the \texttt{\$.}\ token.  An {\bf
 assertion}\index{assertion} is a \texttt{\$a} or \texttt{\$p} statement.
 
 A \texttt{\$f}, \texttt{\$e}, or \texttt{\$d} statement is {\bf active}\index{active
@@ -13641,7 +13645,7 @@ RPN proof format described in Section~\ref{proof} (with \texttt{save proof}
 {\em label} \texttt{/normal}).  However for sake of completeness we describe the
 format here and show how it maps to the normal RPN proof format.
 
-A compressed proof, located between \texttt{\$=} and \texttt{\$.} keywords, consists
+A compressed proof, located between \texttt{\$=} and \texttt{\$.}\ keywords, consists
 of a left parenthesis, a sequence of statement labels, a right parenthesis,
 and a sequence of upper-case letters \texttt{A} through \texttt{Z} (with optional
 white space between them).  White space must surround the parentheses
