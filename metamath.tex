@@ -5705,6 +5705,7 @@ notation in the database.  For simplicity, the necessary \texttt{\$f}
 and \texttt{\$d} statements are not shown.  If you are in doubt, use the
 \texttt{show statement}\index{\texttt{show statement} command} command
 in the Metamath program to see the full statement.
+A selection of this notation is summarized in Appendix~\ref{ASCII}.
 
 To understand the motivation for these definitions, you should consult the
 references indicated:  Takeuti and Zaring \cite{Takeuti}\index{Takeuti, Gaisi},
@@ -6106,16 +6107,16 @@ quantifier ($\exists$)!restricted}  Enderton, p.~22.
 \end{mmraw}
 
 \noindent Define the universal class\index{universal class ($V$)}.  Definition
-5.20, p.~21, of Takeuti and Zaring.
+5.20, p.~21, of Takeuti and Zaring.\label{df-v}
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-v\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{V}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{=}\m{x}\m{\}}
+\m{\vdash}\m{{\rm V}}\m{=}\m{\{}\m{x}\m{|}\m{x}\m{=}\m{x}\m{\}}
 \endm
 \begin{mmraw}%
-|- V = \{ x | x = x \} \$.
+|- {\char`\_}V = \{ x | x = x \} \$.
 \end{mmraw}
 
 \noindent Define the subclass\index{subclass}\index{subset} relationship
@@ -6185,10 +6186,10 @@ Compare  Definition 5.14 of Takeuti and Zaring, p.~20.\label{df-nul}
 \setbox\startprefix=\hbox{\tt \ \ df-nul\ \$a\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{\varnothing}\m{=}\m{(}\m{V}\m{\setminus}\m{V}\m{)}
+\m{\vdash}\m{\varnothing}\m{=}\m{(}\m{{\rm V}}\m{\setminus}\m{{\rm V}}\m{)}
 \endm
 \begin{mmraw}%
-|- (/) = ( V \SLASH V ) \$.
+|- (/) = ( {\char`\_}V \SLASH {\char`\_}V ) \$.
 \end{mmraw}
 
 \noindent Define power class\index{power set}\index{power class}.  Definition 5.10 of
@@ -6526,10 +6527,10 @@ Takeuti and Zaring, p.~24.
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{A}\m{\restriction}\m{B}\m{)}\m{=}\m{(}\m{A}\m{\cap}\m{(}\m{B}
-\m{\times}\m{V}\m{)}\m{)}
+\m{\times}\m{{\rm V}}\m{)}\m{)}
 \endm
 \begin{mmraw}%
-|- ( A |` B ) = ( A i\^{}i ( B X. V ) ) \$.
+|- ( A |` B ) = ( A i\^{}i ( B X. {\char`\_}V ) ) \$.
 \end{mmraw}
 
 \noindent Define the image\index{image} of a class.  Definition 6.6(2) of
@@ -6570,10 +6571,10 @@ Zaring, p.~23.
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
 \m{\vdash}\m{(}\m{\mbox{\rm Rel}}\m{\,A}\m{\leftrightarrow}\m{A}\m{\subseteq}
-\m{(}\m{V}\m{\times}\m{V}\m{)}\m{)}
+\m{(}\m{{\rm V}}\m{\times}\m{{\rm V}}\m{)}\m{)}
 \endm
 \begin{mmraw}%
-|- ( Rel A <-> A C\_ ( V X. V ) ) \$.
+|- ( Rel A <-> A C\_ ( {\char`\_}V X. {\char`\_}V ) ) \$.
 \end{mmraw}
 
 \noindent Define a function\index{function}.  Definition 6.4(4) of Takeuti and
@@ -6871,7 +6872,7 @@ The hypothesis
 \setbox\startprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \$e\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{A}\m{\in}\m{V}
+\m{\vdash}\m{A}\m{\in}\m{{\rm V}}
 \endm
 \vskip 1ex
 
@@ -6963,7 +6964,7 @@ Theorem 6.9 of Quine, p. 43.
 \setbox\startprefix=\hbox{\tt \ \ isset\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{(}\m{A}\m{\in}\m{V}\m{\leftrightarrow}\m{\exists}\m{x}\m{\,x}\m{=}
+\m{\vdash}\m{(}\m{A}\m{\in}\m{{\rm V}}\m{\leftrightarrow}\m{\exists}\m{x}\m{\,x}\m{=}
 \m{A}\m{)}
 \endm
 \vskip 1ex
@@ -6981,12 +6982,12 @@ theory.  Compare Exercise 4 of Takeuti and Zaring, p.~22.
 \setbox\startprefix=\hbox{\tt \ \ inex1.1\ \$e\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{A}\m{\in}\m{V}
+\m{\vdash}\m{A}\m{\in}\m{{\rm V}}
 \endm
 \setbox\startprefix=\hbox{\tt \ \ inex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{(}\m{A}\m{\cap}\m{B}\m{)}\m{\in}\m{V}
+\m{\vdash}\m{(}\m{A}\m{\cap}\m{B}\m{)}\m{\in}\m{{\rm V}}
 \endm
 \vskip 1ex
 
@@ -6997,7 +6998,7 @@ other axioms of ZF set theory. Corollary 5.16 of Takeuti and Zaring, p.~20.
 \setbox\startprefix=\hbox{\tt \ \ 0ex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{\varnothing}\m{\in}\m{V}
+\m{\vdash}\m{\varnothing}\m{\in}\m{{\rm V}}
 \endm
 \vskip 1ex
 
@@ -7007,7 +7008,7 @@ axioms of ZF set theory.  Theorem 7.13 of Quine, p.~51.
 \setbox\startprefix=\hbox{\tt \ \ prex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{\{}\m{A}\m{,}\m{B}\m{\}}\m{\in}\m{V}
+\m{\vdash}\m{\{}\m{A}\m{,}\m{B}\m{\}}\m{\in}\m{{\rm V}}
 \endm
 \vskip 2ex
 
@@ -7037,7 +7038,7 @@ its power set.  Compare Theorem 6B(b) of Enderton, p.~132.
 \setbox\startprefix=\hbox{\tt \ \ canth.1\ \$e\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{A}\m{\in}\m{V}
+\m{\vdash}\m{A}\m{\in}\m{{\rm V}}
 \endm
 \setbox\startprefix=\hbox{\tt \ \ canth\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ }
@@ -7056,7 +7057,7 @@ not two.)
 \setbox\startprefix=\hbox{\tt \ \ onprc\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{\lnot}\m{\mbox{\rm On}}\m{\in}\m{V}
+\m{\vdash}\m{\lnot}\m{\mbox{\rm On}}\m{\in}\m{{\rm V}}
 \endm
 \vskip 1ex
 
@@ -7228,7 +7229,7 @@ Axiom of Infinity.)
 \ omex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ }
 \startm
-\m{\vdash}\m{\omega}\m{\in}\m{V}
+\m{\vdash}\m{\omega}\m{\in}\m{{\rm V}}
 \endm
 %\vskip 2ex
 
@@ -13574,6 +13575,9 @@ if that is necessary for clarity.
 \texttt{e.} & $ \in $ &
   \hyperref[df-clel]{\texttt{df-clel}} &
   Class membership; $A \in B$ if $A$ is a member of $B$. \\
+\texttt{{\char`\_}V} & {\rm V} & 
+  \hyperref[df-v]{\texttt{df-v}} &
+  Class of all sets (not itself a set). \\
 \texttt{C\_} & $ \subseteq $ &
   \hyperref[df-ss]{\texttt{df-ss}} &
   Subclass (subset); $A \subseteq B$ is true iff
