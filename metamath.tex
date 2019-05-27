@@ -3785,9 +3785,8 @@ Type HELP for help, EXIT to exit.
 MM>
 \end{verbatim}
 The \texttt{MM>} prompt means that Metamath is waiting for a command.
-(The help message line suggests that commands should be typed in upper
-case, but actually command keywords\index{command keyword} are not case
-sensitive.  We will use lower case in our examples.)
+Command keywords\index{command keyword} are not case sensitive;
+we will use lower-case commands in our examples.
 The version number and its release date will probably be different on your
 system from the one we show above.
 
@@ -8273,8 +8272,7 @@ the commands.  Note that we have included the full spelling of all commands to
 prevent ambiguity with future commands.  In practice you may type just the
 characters needed to specify each command keyword\index{command keyword}
 unambiguously, often just one or two characters per keyword, and you don't
-need to type them in upper
-case.
+need to type them in upper case.
 
 First run the Metamath program as described earlier.  You should see the
 \verb/MM>/ prompt.  Read in the \texttt{set.mm} file:\index{\texttt{read}
@@ -10972,7 +10970,7 @@ use two tildes in a row to represent it.
 When generating a \LaTeX\ output file,
 the following token will be formatted in \texttt{typewriter}
 font, and the tilde removed, to make it stand out from the rest of the text.
-This formatting will be applied from all characters after the
+This formatting will be applied to all characters after the
 tilde up to the first white space\index{white space}.
 Whether
 or not the token is an actual statement label is not checked, and the
@@ -11498,7 +11496,7 @@ third file, only the {\em first} reference to this common file will be read
 in.  This allows you to include two or more files that build on a common
 starting file without having to worry about label and symbol conflicts that
 would occur if the common file were read in more than once.  (In fact, if a
-file includes itself, the self reference will be ignored, although of course
+file includes itself, the self-reference will be ignored, although of course
 it would not make any sense to do that.)  This feature also means, however,
 that if you try to include a common file in several inner blocks, the result
 might not be what you expect, since only the first reference will be replaced
@@ -11534,7 +11532,7 @@ The overall structure of the compressed format is as follows:
 The first \texttt{(} serves as a flag to Metamath that a compressed proof
 follows.  The {\em label-list} includes all statements referred to by the
 proof except the mandatory hypotheses\index{mandatory hypothesis}.  The {\em
-compressed-proof} is a compact encoding of the proof, using upper case
+compressed-proof} is a compact encoding of the proof, using upper-case
 letters, and can be thought of as a large integer in base 26.  White
 space\index{white space} inside a {\em compressed-proof} is
 optional and is ignored.
@@ -13706,7 +13704,7 @@ represent zero or more most-significant digits in base 5, where the
 digits start counting at 1 instead of the usual 0. With this scheme, we
 don't need white space between these ``numbers.''
 
-(In the design of the compressed proof format, only upper case letters,
+(In the design of the compressed proof format, only upper-case letters,
 as opposed to say all non-whitespace printable {\sc ascii} characters other than
 %\texttt{\$}, was chosen to make the compressed proof a little less
 %displeasing to the eye, at the expense of a typical 20\% compression
@@ -15233,7 +15231,7 @@ notation from W3C\index{W3C}
 The \texttt{database}
 rule is processed until the end of the file (\texttt{EOF}).
 The rules eventually require reading whitespace-separated tokens.
-A token has an uppercase definition (see below)
+A token has an upper-case definition (see below)
 or is a string constant in a non-token (such as \texttt{'\$a'}).
 We intend for this to be correct, but if there is a conflict the
 rules of section \ref{spec} govern. That section also discusses
@@ -15309,7 +15307,7 @@ followed by one \texttt{assert-stmt}.
 \needspace{3\baselineskip}
 Here are the rules for lexical processing (tokenization) beyond
 the constant tokens shown above.
-By convention these tokenization rules have names in upper case.
+By convention these tokenization rules have upper-case names.
 Every token is read for the longest possible length.
 Whitespace-separated tokens are read sequentially;
 note that the separating whitespace and \texttt{\$(} ... \texttt{\$)}
