@@ -8741,21 +8741,23 @@ them as simply as one knows how.}
 
 \subsection{Preliminaries}\label{spec1}
 
+% Space is technically a printable character, so we'll word things
+% carefully so it's unambiguous.
 A Metamath {\bf database}\index{database} is built up from a top-level source
 file together with any source files that are brought in through file inclusion
 commands (see below).  The only characters that are allowed to appear in a
-Metamath source file are the 94 printable {\sc
+Metamath source file are the 94 non-whitespace printable {\sc
 ascii}\index{ascii@{\sc ascii}} characters, which are digits, upper and lower
-case letters, and the following 32 special characters\index{special characters}
-\label{spec1chars}
+case letters, and the following 32 special
+characters\index{special characters}:\label{spec1chars}
 
 \begin{verbatim}
-` ~ ! @ # $ % ^ & * ( ) - _ = +
-[ ] { } ; : ' " , . < > / ? \ |
+! " # $ % & ' ( ) * + , - . / :
+; < = > ? @ [ \ ] ^ _ ` { | } ~
 \end{verbatim}
-plus the following non-printable characters which are
-defined as ``white space'' characters: space, tab,
-carriage return, line feed, and form feed.\label{whitespace}
+plus the following characters which are the ``white space'' characters:
+space (a printable character),
+tab, carriage return, line feed, and form feed.\label{whitespace}
 We will use \texttt{typewriter}
 font to display the printable characters.
 
@@ -8770,8 +8772,8 @@ of {\bf keyword}\index{keyword} tokens is \texttt{\$\char`\{},
 keyword} or preprocessing keywords.  A {\bf label}\index{label} token
 consists of any combination of letters, digits, and the characters
 hyphen, underscore, and period.  A {\bf math symbol}\index{math symbol}
-token may consist of any combination of the 93 printable standard {\sc
-ascii} characters other than \texttt{\$}~. All tokens are
+token may consist of any combination of the 92 printable standard {\sc
+ascii} characters other than space or \texttt{\$}~. All tokens are
 case-sensitive.
 
 \subsection{Preprocessing}
@@ -9024,10 +9026,11 @@ one or more {\bf source files}\index{source file} which contain characters
 expressed in the standard {\sc ascii} (American Standard Code for Information
 Interchange)\index{ascii@{\sc ascii}} code for computers.  A source file
 consists of a series of {\bf tokens}\index{token}, which are strings of
+non-whitespace
 printable characters (from the set of 94 shown on p.~\pageref{spec1chars})
 separated by {\bf white space}\index{white space} (spaces, tabs, carriage
 returns, line feeds, and form feeds). Any string consisting only of these
-characters is treated the same as a single space.  The printable
+characters is treated the same as a single space.  The non-whitespace printable
 characters\index{printable character} that Metamath recognizes are the 94
 characters on standard {\sc ascii} keyboards.
 
@@ -9171,7 +9174,7 @@ as rich as possible.
 
 Math symbols\index{math symbol} are tokens used to represent the symbols
 that appear in ordinary mathematical formulas.  They may consist of any
-combination of the 93 printable {\sc ascii} characters other than
+combination of the 93 non-whitespace printable {\sc ascii} characters other than
 \texttt{\$}~. Some examples are \texttt{x}, \texttt{+}, \texttt{(},
 \texttt{|-}, \verb$!%@?&$, and \texttt{bounded}.  For readability, it is
 best to try to make these look as similar to actual mathematical symbols
@@ -11430,7 +11433,8 @@ including a file is as follows:
 \end{center}
 
 The {\em file-name} should be a single token\index{token} with the same syntax
-as a math symbol (i.e., all 93 printable characters other than \texttt{\$} are
+as a math symbol (i.e., all 93 non-whitespace
+printable characters other than \texttt{\$} are
 allowed, subject to the file-naming limitations of your operating system).
 Comments may appear between the \texttt{\$[} and \texttt{\$]} keywords.  Included
 files may include other files, which may in turn include other files, and so
@@ -13679,7 +13683,7 @@ digits start counting at 1 instead of the usual 0. With this scheme, we
 don't need white space between these ``numbers.''
 
 (In the design of the compressed proof format, only upper case letters,
-as opposed to say all printable {\sc ascii} characters other than
+as opposed to say all non-whitespace printable {\sc ascii} characters other than
 %\texttt{\$}, was chosen to make the compressed proof a little less
 %displeasing to the eye, at the expense of a typical 20\% compression
 \texttt{\$}, were chosen so as not to collide with most text editor
@@ -15312,7 +15316,7 @@ PRINTABLE-SEQUENCE ::= _PRINTABLE-CHARACTER+
 
 MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
 
-/* ASCII printable characters */
+/* ASCII non-whitespace printable characters */
 _PRINTABLE-CHARACTER ::= [#x21-#x7e]
 
 LABEL ::= ( _LETTER-OR-DIGIT | '.' | '-' | '_' )+
