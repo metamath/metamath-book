@@ -10681,9 +10681,11 @@ locations 1 and 2, then places the result into stack location~1:
 \end{tabular}\end{center}
 
 After Metamath finishes processing the proof, it checks to see that the
-contents of stack location 1 is the same as the math symbol sequence in the
+stack contains exactly one element and that this element is
+the same as the math symbol sequence in the
 \texttt{\$p}\index{\texttt{\$p} statement} statement.  This is the case for our
-proof of \texttt{wnew}, so we have proved \texttt{wnew} successfully.  If the result
+proof of \texttt{wnew},
+so we have proved \texttt{wnew} successfully.  If the result
 differs, Metamath will notify you with an error message.  An error message
 will also result if the stack contains more than one entry at the end of the
 proof, or if the stack did not contain enough entries at any point in the
