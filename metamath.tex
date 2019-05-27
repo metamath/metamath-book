@@ -12510,11 +12510,11 @@ Optional command qualifier:
 
 \subsection{\texttt{show trace\_back} Command}\index{\texttt{show
        trace{\char`\_}back} command}
-Syntax:  \texttt{show trace{\char`\_}back} [\texttt{/essential}] [\texttt{/axioms}]
+Syntax:  \texttt{show trace{\char`\_}back} {\em label-match} [\texttt{/essential}] [\texttt{/axioms}]
     [\texttt{/tree}] [\texttt{/depth} {\em number}]
 
-This command lists all statements that the proof of the specified
-\texttt{\$p}\index{\texttt{\$p} statement} statement depends on.
+This command lists all statements that the proof of the \texttt{\$p}
+statement(s) specified by {\em label-match} depends on.
 
 Optional command qualifiers:
 
@@ -12528,7 +12528,7 @@ Optional command qualifiers:
     \texttt{/depth} {\em number} - Restrict the \texttt{/tree} trace-back to the
         specified indentation depth.
 
-    \texttt{/count{\char`\_}steps} - Counts the number of steps the proof has
+    \texttt{/count{\char`\_}steps} - Count the number of steps the proof has
        all the way back to axioms.  If \texttt{/essential} is specified,
        expansions of variable-type hypotheses (syntax constructions) are not counted.
 
@@ -12538,8 +12538,8 @@ Syntax:  \texttt{verify proof} {\em label-match} [\texttt{/syntax{\char`\_}only}
 This command verifies the proofs of the specified statements.  {\em
 label-match} may contain wild card characters (\texttt{*}) to verify
 more than one proof; for example \verb/*abc*def/ will match all labels
-containing \texttt{abc} and ending with \texttt{def}.  \texttt{verify
-proof *} will verify all proofs in the database.
+containing \texttt{abc} and ending with \texttt{def}.
+The command \texttt{verify proof *} will verify all proofs in the database.
 
 Optional command qualifier:
 
@@ -12553,8 +12553,53 @@ Optional command qualifier:
 {\em Note:} \texttt{read}, followed by \texttt{verify proof *}, will ensure
  the database is free
 from errors in the Metamath language but will not check the markup notation
-in comments; for that
-see Section~\ref{htmlout}.
+in comments.
+You can also check the markup notation by running \texttt{verify markup *}
+as discussed in Section~\ref{verifymarkup}; see also the discussion
+on generating {\sc HTML} in Section~\ref{htmlout}.
+
+\subsection{\texttt{verify markup} Command}\index{\texttt{verify markup} command}\label{verifymarkup}
+Syntax:  \texttt{verify markup} {\em label-match}
+[\texttt{/date{\char`\_}skip}]
+[\texttt{/top{\char`\_}date{\char`\_}skip}]
+[\texttt{/file{\char`\_}skip}]
+[\texttt{/verbose}]
+
+This command checks comment markup and other informal conventions we have
+adopted.  It error-checks the latexdef, htmldef, and althtmldef statements
+in the \texttt{\$t} statement of a Metamath source file.
+It error-checks any \texttt{`}...\texttt{`},
+\texttt{\char`\~}~\textit{label},
+and bibliographic markups in statement descriptions.
+It checks that
+\texttt{\$p} and \texttt{\$a} statements
+have the same content when their labels start with
+``ax'' and ``ax-'' respectively but are otherwise identical, for example
+ax4 and ax-4.
+It also verifies the date consistency of ``(Contributed by...),''
+``(Revised by...),'' and ``(Proof shortened by...)'' tags in the comment
+above each \texttt{\$a} and \texttt{\$p} statement.
+
+Optional command qualifiers:
+
+    \texttt{/date{\char`\_}skip} - This qualifier will
+        skip date consistency checking,
+        which is usually not required for databases other than set.mm
+
+    \texttt{/top{\char`\_}date{\char`\_}skip} - This qualifier will check date consistency except
+        that the version date at the top of the database file will not
+        be checked.  Only one of
+        \texttt{/date{\char`\_}skip} and
+        \texttt{/top{\char`\_}date{\char`\_}skip} may be
+        specified.
+
+    \texttt{/file{\char`\_}skip} - This qualifier will skip checks that require
+        external files to be present, such as checking GIF existence and
+        bibliographic links to mmset.html or equivalent.  It is useful
+        for doing a quick check from a directory without these files
+
+    \texttt{/verbose} - Provides more information.  Currently it provides a list
+        of axXXX vs. ax-XXX matches.
 
 \subsection{\texttt{save proof} Command}\index{\texttt{save proof} command}
 Syntax:  \texttt{save proof} {\em label} [\texttt{/normal}]
