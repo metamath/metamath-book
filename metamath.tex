@@ -6508,6 +6508,20 @@ of two classes.  Definition 9.11 of Quine, p.~64.
 |- ( A X. B ) = \{ <. x , y >. | ( x e. A \TAND y e. B) \} \$.
 \end{mmraw}
 
+\noindent Define a relation\index{relation}.  Definition 6.4(1) of Takeuti and
+Zaring, p.~23.
+
+\vskip 0.5ex
+\setbox\startprefix=\hbox{\tt \ \ df-rel\ \$a\ }
+\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
+\startm
+\m{\vdash}\m{(}\m{\mbox{\rm Rel}}\m{\,A}\m{\leftrightarrow}\m{A}\m{\subseteq}
+\m{(}\m{{\rm V}}\m{\times}\m{{\rm V}}\m{)}\m{)}
+\endm
+\begin{mmraw}%
+|- ( Rel A <-> A C\_ ( {\char`\_}V X. {\char`\_}V ) ) \$.
+\end{mmraw}
+
 \noindent Define the domain\index{domain} of a class.  Definition 6.5(1) of
 Takeuti and Zaring, p.~24.
 
@@ -6578,20 +6592,6 @@ Takeuti and Zaring, p.~24.
 \begin{mmraw}%
 |- ( A o. B ) = \{ <. x , y >. | E. z ( <. x , z
 >. e. B \TAND <. z , y >. e. A ) \} \$.
-\end{mmraw}
-
-\noindent Define a relation\index{relation}.  Definition 6.4(1) of Takeuti and
-Zaring, p.~23.
-
-\vskip 0.5ex
-\setbox\startprefix=\hbox{\tt \ \ df-rel\ \$a\ }
-\setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ }
-\startm
-\m{\vdash}\m{(}\m{\mbox{\rm Rel}}\m{\,A}\m{\leftrightarrow}\m{A}\m{\subseteq}
-\m{(}\m{{\rm V}}\m{\times}\m{{\rm V}}\m{)}\m{)}
-\endm
-\begin{mmraw}%
-|- ( Rel A <-> A C\_ ( {\char`\_}V X. {\char`\_}V ) ) \$.
 \end{mmraw}
 
 \noindent Define a function\index{function}.  Definition 6.4(4) of Takeuti and
