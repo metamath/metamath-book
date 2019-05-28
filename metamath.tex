@@ -9592,7 +9592,7 @@ This statement has the obvious requirement that $z$ must be
 distinct\index{distinct variables} from $x$ in theorem \texttt{ax17eq} that
 states $x=y \rightarrow \forall z \, x=y$ (well, obvious if you're a logician,
 for otherwise we could conclude  $x=y \rightarrow \forall x \, x=y$, which is
-false when the free variables $x$ and $y$ are equal.).
+false when the free variables $x$ and $y$ are equal).
 
 Let's look at what happens if we edit the database to comment out this
 requirement.
@@ -11730,7 +11730,7 @@ definition even though the definition itself is typically simple to
 state.
 
 Metamath itself has no built-in technical limitation that prevents
-multiple-part recursive definitions in the traditional textbook style,
+multiple-part recursive definitions in the traditional textbook style.
 However, because the recursive definition requires advanced metalogic
 to justify, eliminating a recursive definition is very difficult and
 often not even shown in textbooks.
@@ -11754,13 +11754,13 @@ side.  Quine calls this form ``a genuine or direct definition'' \cite[p.
 174]{Quine}\index{Quine, Willard Van Orman}, which makes the definitions
 very easy to eliminate and the metalogic\index{metalogic} needed to
 justify them as simple as possible.
-Put another way, we had a philosophical goal of being able to
+Put another way, we had a goal of being able to
 eliminate all definitions with direct mechanical substitution and to
 verify easily the soundness of the definitions.
 
 \subsubsection{Example of direct definitions}
 
-We achieved this philosophical goal in almost all cases in \texttt{set.mm}.
+We achieved this goal in almost all cases in \texttt{set.mm}.
 Sometimes this makes the definitions more complex and less
 intuitive.
 For example, the traditional way to define addition of
@@ -11821,7 +11821,7 @@ defines a recursive definition generator on ${\rm On}$ (the class of ordinal
 numbers) with characteristic function $F$ and initial value $I$.
 This rather amazing operation allows us to define, with
 compact direct definitions, functions that are usually defined in
-textbooks only with indirect self-referencing recursive definitions.
+textbooks with recursive definitions.
 The price paid with our approach
 is the daunting complexity of our ${\rm rec}$ operation
 (especially when {\tt df-recs} that it is built on is also eliminated).
@@ -11847,13 +11847,13 @@ The definition of ${\rm rec}$ depends on ${\rm recs}$.
 New direct usage of the more powerful (and more primitive) ${\rm recs}$
 construct is discouraged, but it is available when needed.
 This
-define a function $\mathrm{recs} ( F )$ on ${\rm On}$, the class of ordinal
+defines a function $\mathrm{recs} ( F )$ on ${\rm On}$, the class of ordinal
 numbers, by transfinite recursion given a rule $F$ which sets the next
 value given all values so far.
 Unlike {\tt df-rdg} which restricts the
 update rule to use only the previous value, this version allows the
 update rule to use all previous values, which is why it is described
-as ``strong", although it is actually more primitive.  See {\tt
+as ``strong,'' although it is actually more primitive.  See {\tt
 recsfnon} and {\tt recsval} for the primary contract of this definition.
 It is defined as:
 
@@ -11873,10 +11873,7 @@ number}\index{addition}\index{recursive definition}\index{ordinal addition}
 The end result is the same, but we completely eliminate the rather complex
 metalogic that justifies the recursive definition.
 
-You may be surprised at the complexity of what
-seems like such a simple notion.
-For a mathematician,
-recursive definitions are often considered more efficient and intuitive than
+Recursive definitions are often considered more efficient and intuitive than
 direct ones once the metalogic has been learned or possibly just accepted as
 correct.  However, it was felt that direct definition in \texttt{set.mm}
 maximizes rigor by minimizing metalogic.  It can be eliminated effortlessly,
@@ -11884,11 +11881,9 @@ something that is difficult to do with a recursive definition.
 
 Again, Metamath itself has no built-in technical limitation that prevents
 multiple-part recursive definitions in the traditional textbook style.
-Instead, our philosophical goal is to eliminate all definitions with
+Instead, our goal is to eliminate all definitions with
 direct mechanical substitution and to verify easily the soundness of
 definitions.
-We believe the advantages of this approach to definitions
-outweigh its disadvantages.
 
 \subsection{Adding Constraints on Definitions}
 
