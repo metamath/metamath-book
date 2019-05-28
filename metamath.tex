@@ -11876,7 +11876,7 @@ This prevents some errors such as definitions with imbalanced parentheses.
 Second, we run a definition soundness check specific to
 \texttt{set.mm} or databases similar to it.
 (through the \texttt{definitionCheck} macro).
-Some \$a statements (including all ax-* statemnets)
+Some \texttt{\$a} statements (including all ax-* statemnets)
 are excluded from these checks, as they will
 always fail this simple check,
 but they are appropriate for most definitions.
@@ -11886,7 +11886,7 @@ This check imposes a set of additional rules:
 
 \item New definitions must be introduced using $=$ or $\leftrightarrow$.
 
-\item No \$a statement introduced before this one is allowed to use the
+\item No \texttt{\$a} statement introduced before this one is allowed to use the
 symbol being defined in this definition, and the definition is not
 allowed to use itself (except once, in the definiendum).
 
@@ -11916,7 +11916,7 @@ metatheorems to establish that they are not creative.
 
 Instead of building such complications into the Metamath language itself,
 the basic Metmath language and program simply treat traditional
-axioms and definitions as the same kind of \$a statement.
+axioms and definitions as the same kind of \texttt{\$a} statement.
 We have then built various tools to enable people to
 verify additional conditions as their creators believe is appropriate
 for those specific databases, without complicating the Metamath foundations.
@@ -11940,6 +11940,7 @@ using the \texttt{gcc} {\sc c} compiler available on those systems.
 In the command syntax descriptions below, fields enclosed in square
 brackets [\ ] are optional.  File names may be optionally enclosed in
 single or double quotes.  This is useful if the file name contains
+spaces or
 slashes (\texttt{/}), such as in Unix path names, \index{Unix file
 names}\index{file names!Unix} that might be confused with Metamath
 command qualifiers.\index{Unix file names}\index{file names!Unix}
@@ -12024,7 +12025,8 @@ value of the argument.
 Some commands have one or more optional qualifiers which modify the
 behavior of the command.  Qualifiers are preceded by a slash
 (\texttt{/}), such as in \texttt{read set.mm / verify}.  Spaces are
-optional around the \texttt{/}.  If you need to use a slash in a command
+optional around the \texttt{/}.  If you need to use a space or
+slash in a command
 argument, as in a Unix file name, put single or double quotes around the
 command argument.
 
@@ -12285,7 +12287,8 @@ Optional command qualifiers:
 Reformats statements and comments according to the
 convention used in the set.mm database.
 It unwraps the
-lines in the comment before each \$a and \$p statement, then it
+lines in the comment before each \texttt{\$a} and \texttt{\$p} statement,
+then it
 rewraps the line.  You should compare the output to the original
 to make sure that the desired effect results; if not, go back to
 the original source.  The wrapped line length honors the
@@ -12302,10 +12305,10 @@ searching for \~{} followed by a space and that symbol
 Incidentally, \texttt{save proof} also honors the \texttt{set width}
 parameter currently in effect.
 
-\texttt{/split} - Files included in the source with
+\texttt{/split} - Files included in the source using the expression
 \$[ \textit{inclfile} \$] will be
-written out separately instead of included in a single output
-file.  The name of each separately written included file will be
+written into separate files instead of being included in a single output
+file.  The name of each separately written included file will be the
 \textit{inclfile} argument of its inclusion command.
 
 \texttt{/keep\_includes} - If a source file has includes but is written as a
@@ -12344,7 +12347,7 @@ statements that match {\em label-match}.  A \verb$*$ in {label-match}
 matches zero or more characters.  For example, \verb$*abc*def$ will match all
 labels containing \verb$abc$ and ending with \verb$def$.
 
-Optional command qualifier:
+Optional command qualifiers:
 
    \texttt{/all} - Include matches for \texttt{\$e} and \texttt{\$f}
    statement labels.
@@ -12356,14 +12359,14 @@ Optional command qualifier:
 
 
 \subsection{\texttt{show statement} Command}\index{\texttt{show statement} command}
-Syntax:  \texttt{show statement} {\em label} [{\em qualifiers} (see below)]
+Syntax:  \texttt{show statement} {\em label-match} [{\em qualifiers} (see below)]
 
 This command provides information about a statement.  Only statements
 that have labels (\texttt{\$f}\index{\texttt{\$f} statement},
 \texttt{\$e}\index{\texttt{\$e} statement},
 \texttt{\$a}\index{\texttt{\$a} statement}, and
 \texttt{\$p}\index{\texttt{\$p} statement}) may be specified.
-If {\em label}
+If {\em label-match}
 contains wildcard (\verb$*$) characters, all matching statements will be
 displayed in the order they occur in the database.
 
@@ -12428,11 +12431,11 @@ Optional command qualifiers:
 
 
 \subsection{\texttt{show proof} Command}\index{\texttt{show proof} command}
-Syntax:  \texttt{show proof} {\em label} [{\em qualifiers} (see below)]
+Syntax:  \texttt{show proof} {\em label-match} [{\em qualifiers} (see below)]
 
 This command displays the proof of the specified
 \texttt{\$p}\index{\texttt{\$p} statement} statement in various formats.
-The {\em label} may contain wildcard (\verb@$*@) characters to match
+The {\em label-match} may contain wildcard (\verb@$*@) characters to match
 multiple statements.  Without any qualifiers, only the logical steps
 will be shown (i.e.\ syntax construction steps will be omitted), in an
 indented format.
@@ -12503,7 +12506,7 @@ Optional command qualifiers:
 
 
 \subsection{\texttt{show usage} Command}\index{\texttt{show usage} command}
-Syntax:  \texttt{show usage} {\em label} [\texttt{/recursive}]
+Syntax:  \texttt{show usage} {\em label-match} [\texttt{/recursive}]
 
 This command lists the statements whose proofs make direct reference to
 the statement specified.
@@ -12564,7 +12567,7 @@ in comments; for that
 see Section~\ref{htmlout}.
 
 \subsection{\texttt{save proof} Command}\index{\texttt{save proof} command}
-Syntax:  \texttt{save proof} {\em label} [\texttt{/normal}]
+Syntax:  \texttt{save proof} {\em label-match} [\texttt{/normal}]
    [\texttt{/compressed}]
 
 The \texttt{save proof} command will reformat a proof in one of two formats and
@@ -13232,19 +13235,20 @@ The database must already include the necessary typesetting information
 The ability to produce {\sc html} web pages was added in Metamath version
 0.07.30.
 
-To create an {\sc html} output file for a \texttt{\$a} or \texttt{\$p}
-statement, use
+To create an {\sc html} output file(s) for \texttt{\$a} or \texttt{\$p}
+statement(s), use
 \begin{quote}
-    \texttt{show statement} {\em label} \texttt{/html}
+    \texttt{show statement} {\em label-match} \texttt{/html}
 \end{quote}
-The output file will be named {\em label}\texttt{.html}.  When {\em
-label} has wildcard (\texttt{*}) characters, all statements with
+The output file will be named {\em label-match}\texttt{.html}
+for each match.  When {\em
+label-match} has wildcard (\texttt{*}) characters, all statements with
 matching labels will have {\sc html} files produced for them.  Also,
-when {\em label} has a wildcard (\texttt{*}) character, two additional
+when {\em label-match} has a wildcard (\texttt{*}) character, two additional
 files, \texttt{mmdefinitions.html} and \texttt{mmascii.html} will be
 produced.  To produce {\em only} these two additional files, you can use
 \texttt{?*}, which will not match any statement label, in place of {\em
-label}.
+label-match}.
 
 There are three other qualifiers for \texttt{show statement} that also
 generate {\sc HTML} code.  These are \texttt{/alt{\char`\_}html},
@@ -13254,9 +13258,9 @@ next section.
 
 The command
 \begin{quote}
-    \texttt{show statement} {\em label} \texttt{/alt{\char`\_}html}
+    \texttt{show statement} {\em label-match} \texttt{/alt{\char`\_}html}
 \end{quote}
-does the same as \texttt{show statement} {\em label} \texttt{/html},
+does the same as \texttt{show statement} {\em label-match} \texttt{/html},
 except that the {\sc html} code for the symbols is taken from
 \texttt{althtmldef} statements instead of \texttt{htmldef} statements in
 the \texttt{\$t} comment.
