@@ -12811,20 +12811,26 @@ with empty symbol sequences\index{empty substitution}.  However, in many
 formal systems\index{formal system} this will never happen in a valid
 proof.  Allowing for this possibility increases the likelihood of
 ambiguous unifications\index{ambiguous
-unification}\index{unification!ambiguous} during proof creation, and you
-may want to \texttt{set empty{\char`\_}substitution off} to help make
-the process more efficient.  With this mode set, you may not be able to
-create some proofs in formal systems that allow empty substitutions.
-(An example would be a system that implements a Deduction Rule and in
+unification}\index{unification!ambiguous} during proof creation.
+The default is that
+empty substitutions are not allowed; for formal systems requiring them,
+you must \texttt{set empty{\char`\_}substitution on}.
+(An example where this must be \texttt{on}
+would be a system that implements a Deduction Rule and in
 which deductions from empty assumption lists would be permissible.  The
 MIU-system\index{MIU-system} described in Appendix~\ref{MIU} is another
 example.)
+Note that empty substitutions are
+always permissable in proof verification (VERIFY PROOF...) outside the
+Proof Assistant.  (See the MIU system in the Metamath book for an example
+of a system needing empty substitutions; another example would be a
+system that implements a Deduction Rule and in which deductions from
+empty assumption lists would be permissable.)
 
+It is better to leave this \texttt{off} when working with \texttt{set.mm}.
 Note that this command does not affect the way proofs are verified with
 the \texttt{verify proof} command.  Outside of the Proof Assistant,
 substitution of empty sequences for math symbols is always allowed.
-
-
 
 \subsection{\texttt{set search\_limit} Command}\index{\texttt{set
 search{\char`\_}limit} command} Syntax:  \texttt{set search{\char`\_}limit} {\em
