@@ -5854,7 +5854,9 @@ explicitly
 mentioned.
 
 \vskip 2ex
-\noindent Define existential quantification.\index{existential quantifier
+\noindent Define existential quantification.
+The expression $\exists x \varphi$ means
+``there exists an $x$ where $\varphi$ is true.''\index{existential quantifier
 ($\exists$)}\label{df-ex}
 
 \vskip 0.5ex
@@ -5870,12 +5872,17 @@ mentioned.
 
 \noindent Define proper substitution.\index{proper
 substitution}\index{substitution!proper}\label{df-sb}
-For our notation, we use $[ y / x ] \varphi$ to mean ``the wff that
-results when $y$ is properly substituted for $x$ in the wff $\varphi$''
-(that is, $y$ properly replaces $x$).
+In our notation, we use $[ y / x ] \varphi$ to mean ``the wff that
+results when $y$ is properly substituted for $x$ in the wff
+$\varphi$.''\footnote{
+This can also be described
+as substituting $x$ with $y$, $y$ properly replaces $x$, or
+$x$ is properly replaced by $y$.}
 % This is elsb4, though it currently says: ( [ x / y ] z e. y <-> z e. x )
 For example,
 $[ y / x ] z \in x$ is the same as $z \in y$.
+One way to remember this notation is to notice that it looks like division
+and recall that $( y / x ) \cdot x $ is $y$ (when $x \neq 0$).
 The notation is different from the notation $\varphi ( x | y )$
 that is sometimes used, because the latter notation is ambiguous for us:
 for example, we don't know whether $\lnot \varphi ( x | y )$ is to be
