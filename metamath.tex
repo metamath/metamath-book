@@ -12400,7 +12400,8 @@ Optional qualifiers (only one qualifier at a time is allowed):
 
 \subsection{\texttt{search} Command}\index{\texttt{search} command}
 Syntax:  search {\em label-match}
-\texttt{"}{\em symbol-match}{\tt}" [\texttt{/ all}] [\texttt{/ comments}]
+\texttt{"}{\em symbol-match}{\tt}" [\texttt{/all}] [\texttt{/comments}]
+[\texttt{/join}]
 
 This command searches all \texttt{\$a} and \texttt{\$p} statements
 matching {\em label-match} for occurrences of {\em symbol-match}.  A
@@ -12417,15 +12418,18 @@ to match individual characters in labels and symbols respectively; see
 
 Optional command qualifiers:
 
-    \texttt{/ all} - Also search \texttt{\$e} and \texttt{\$f} statements.
+    \texttt{/all} - Also search \texttt{\$e} and \texttt{\$f} statements.
 
-    \texttt{/ comments} - Search the comment that immediately precedes each
+    \texttt{/comments} - Search the comment that immediately precedes each
         label-matched statement for {\em symbol-match}.  In this case
         {\em symbol-match} is an arbitrary, non-case-sensitive character
         string.  Quotes around {\em symbol-match} are optional if there
         is no ambiguity.
 
-
+    \texttt{/join} - In the case of a \texttt{\$a} or \texttt{\$p} statement,
+	prepend its \texttt{\$e}
+	hypotheses for searching. The
+	\texttt{/join} qualifier has no effect in \texttt{/comments} mode.
 
 \section{Displaying and Verifying Proofs}
 
