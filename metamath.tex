@@ -7260,7 +7260,8 @@ Axiom of Infinity.)
 \section{Axioms for Real and Complex Numbers}\label{real}
 \index{real and complex numbers!axioms for}
 
-This section presents the axioms for real and complex numbers.  Analysis
+This section presents the axioms for real and complex numbers, along
+with some commentary about them.  Analysis
 textbooks implicitly or explicitly use these axioms or their equivalents
 as their starting point.  In the database \texttt{set.mm}, we define real
 and complex numbers as (rather complicated) specific sets and derive these
@@ -7281,6 +7282,9 @@ think of them as otherwise unspecified sets that happen to satisfy the axioms.
 The derivation is not easy, but the fact that it works is quite remarkable
 and lends support to the idea that ZFC set theory is all we need to
 provide a foundation for essentially all of mathematics.
+
+\needspace{3\baselineskip}
+\subsection{The Axioms for Real and Complex Numbers Themselves}\label{realactual}
 
 For the axioms we are given (or postulate) 8 classes:  $\mathbb{C}$ (the
 set of complex numbers), $\mathbb{R}$ (the set of real numbers, a subset
@@ -7577,7 +7581,7 @@ automatically applies to integers.  The natural numbers $\mathbb{N}$
 are different from the set $\omega$ we defined earlier, but both satisfy
 Peano's postulates.
 
-\subsubsection{Complex Number Axioms in Analysis Texts}
+\subsection{Complex Number Axioms in Analysis Texts}
 
 Most analysis texts construct complex numbers as ordered pairs of reals,
 leading to construction-dependent properties that satisfy these axioms
@@ -7591,7 +7595,7 @@ None of these axioms is unique individually, but this carefully worked out
 collection of axioms is the result of years of work
 by the Metamath community.
 
-\subsubsection{Eliminating Unnecessary Complex Number Axioms}
+\subsection{Eliminating Unnecessary Complex Number Axioms}
 
 We once had more axioms for real and complex numbers, but over years of time
 we (the Metamath community)
@@ -7604,7 +7608,7 @@ axioms but have since been formally proven (with Metamath) to be redundant:
 \begin{itemize}
 \item
   $\mathbb{C} \in V$.
-  At one time this was listed as a ``complex number axiom''
+  At one time this was listed as a ``complex number axiom.''
   However, this is not properly speaking a complex number axiom,
   and in any case its proof uses axioms of set theory.
   Proven redundant by Mario Carneiro\index{Carneiro, Mario} on
