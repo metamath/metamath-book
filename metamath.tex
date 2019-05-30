@@ -1,4 +1,4 @@
-% metamath.tex - Version of 24-May-2019
+% metamath.tex - Version of 30-May-2019
 % If you change the date above, also change the "Printed date" below.
 % SPDX-License-Identifier: CC0-1.0
 %
@@ -3780,7 +3780,7 @@ alternate ways of invoking the Metamath program.)
 When you first enter Metamath\index{Metamath}, it will be at the CLI, waiting
 for your input. You will see something like the following on your screen:
 \begin{verbatim}
-Metamath - Version 0.172 25-Jan-2019
+Metamath - Version 0.177 27-Apr-2019
 Type HELP for help, EXIT to exit.
 MM>
 \end{verbatim}
@@ -8697,8 +8697,7 @@ Statement "prth" directly or indirectly affects the proofs of
 
 \subsection{A Note on the ``Compact'' Proof Format}
 
-The present version of Metamath\index{Metamath!limitations of
-version 0.07.30} will display proofs in a ``compact''\index{compact proof}
+The Metamath program will display proofs in a ``compact''\index{compact proof}
 format whenever the proof is stored in compressed format in the database.  It
 may be be slightly confusing unless you know how to interpret it.
 For example,
@@ -8940,9 +8939,7 @@ and stays active until the end of the block in which it is declared.  A
 variable may not be declared a second time while it is active, but it
 may be declared again (as a variable, but not as a constant) after it
 becomes inactive.  A constant must be declared in the outermost block and may
-not be declared a second time.\footnote{The rules for redeclaration may
-become more general in the future;
-see p.~\pageref{redeclarationf}.}\index{redeclaration of symbols}
+not be declared a second time.\index{redeclaration of symbols}
 
 A {\bf \$f statement}\index{\texttt{\$f} statement} consists of a label,
 followed by \texttt{\$f}, followed by its typecode (an active constant),
@@ -10411,17 +10408,11 @@ irrelevant when the assertion is referenced in a proof, and it doesn't matter
 if that token is not available outside of the referenced assertion's frame.
 Constants, however, must be globally fixed.
 
-In the present version of the Metamath language, there is no theoretical
+There is no theoretical
 benefit for the feature allowing variables to be active for limited scopes
 rather than global. It is just a convenience that allows them, for example, to
 be locally grouped together with their corresponding \texttt{\$f} variable-type
-declarations.\footnote{A future version\label{redeclarationf} of the Metamath
-language may extend the language to include true local variables as well as
-local constants.  I have not decided upon the best way to do this or even if
-it should be done at all; the main issue is whether the benefits offset
-greater confusion in learning the language.  In any case, the rules for
-the present language were chosen to let existing databases be compatible with
-any future language extensions.}
+declarations.
 
 %c%If you declare a math symbol more than once, internally Metamath considers it a
 %c%new distinct symbol, even though it has the same name.  If you are unaware of
@@ -10909,8 +10900,8 @@ that the character strings \texttt{\$(} and \texttt{\$)} may not appear
 in {\em text}.  Thus nested comments are not
 permitted:\footnote{Computer languages have differing standards for
 nested comments, and rather than picking one it was felt simplest not to
-allow them at all, at least in the current version of
-Metamath\index{Metamath!limitations of version 0.07.30}.} Metamath will
+allow them at all, at least in the current version (0.177) of
+Metamath\index{Metamath!limitations of version 0.177}.} Metamath will
 complain if you give it
 \begin{center}
  \texttt{\$( This is a \$( nested \$) comment.\ \$)}
@@ -11228,7 +11219,7 @@ or more white space characters
 The typesetting comment continues until the comment end token \texttt{\$)}
 (which must be preceded by one or more white space characters).
 
-In version 0.07.30\index{Metamath!limitations of version 0.07.30} of the
+In version 0.177\index{Metamath!limitations of version 0.177} of the
 Metamath program, there may be only one \texttt{\$t} comment in a
 database.  This restriction may be lifted in the future to allow
 many \texttt{\$t} comments in a database.
@@ -11248,7 +11239,7 @@ Every definition ends in an unquoted semicolon;
 white space is not required before the terminating semicolon of a definition.
 Each definition should start on a new line.\footnote{This
 restriction of the current version of Metamath
-(0.07.30)\index{Metamath!limitations of version 0.07.30} may be removed
+(0.177)\index{Metamath!limitations of version 0.177} may be removed
 in a future version, but you should do it anyway for readability.}
 
 For example, this typesetting definition:
@@ -12247,8 +12238,14 @@ of the screen output is continuous, so you may want to open a log file
 After the lines in the file are exhausted, Metamath returns to its
 normal user interface mode.
 
-Currently, the \texttt{submit} command is not recursive.  In other words,
-\texttt{submit} commands are not allowed inside a command file.
+The \texttt{submit} command can be called recursively (i.e. from inside
+of a \texttt{submit} command file).
+
+
+Optional command qualifier:
+
+    \texttt{/silent} - suppresses the screen output but still
+        records the output in a log file if one is open.
 
 
 \subsection{\texttt{erase} Command}\index{\texttt{erase} command}
@@ -12956,8 +12953,8 @@ This command will enter the Proof Assistant\index{Proof Assistant}, which will
 allow you to create or edit the proof of the specified statement.
 The command-line prompt will change from \texttt{MM>} to \texttt{MM-PA>}.
 
-Note:  In the present version of
-Metamath\index{Metamath!limitations of version 0.07.30}, the Proof
+Note:  In the present version (0.177) of
+Metamath\index{Metamath!limitations of version 0.177}, the Proof
 Assistant does not verify that \texttt{\$d}\index{\texttt{\$d}
 statement} restrictions are met as a proof is being built.  After you
 have completed a proof, you should type \texttt{save new{\char`\_}proof}
@@ -13117,15 +13114,16 @@ Syntax:  \texttt{match step} {\em step} [\texttt{/max{\char`\_}essential{\char`\
 This command, available in the Proof Assistant only, shows what
 statements can be unified with the specified step(s).  {\em Note:} In
 its current form, this command is not very useful because of the large
-number of matches it reports.  I rarely use it.
-It may be enhanced in the future.
+number of matches it reports.
+It may be enhanced in the future.  In the meantime, the \texttt{search}
+command can often provide finer control over locating theorems of interest.
 
 Optional command qualifiers:
 
     \texttt{/max{\char`\_}essential{\char`\_}hyp} {\em number} - filters out
         of the list any statements
         with more than the specified number of
-        \texttt{\$e}\index{\texttt{\$e} statement} hypotheses
+        \texttt{\$e}\index{\texttt{\$e} statement} hypotheses.
 
     \texttt{/essential{\char`\_}only} - in the \texttt{match all} statement, only
         the steps that
@@ -13506,13 +13504,13 @@ Optional command qualifier:
  This qualifier specifies the number of statements to
         write per web page.  The default is 100.
 
-{\em Note:} In version 0.07.30\index{Metamath!limitations of version
-0.07.30} of Metamath, the ``Nearby theorems'' links on the individual
+{\em Note:} In version 0.177\index{Metamath!limitations of version
+0.177} of Metamath, the ``Nearby theorems'' links on the individual
 web pages presuppose 100 theorems per page when linking to the theorem
 list pages.  Therefore the \texttt{/theorems{\char`\_}per{\char`\_}page}
 qualifier, if it specifies a number other than 100, will cause the
 individual web pages to be out of sync and should not be used to
-generate the main theorem list for the web site.  This is expected to be
+generate the main theorem list for the web site.  This may be
 fixed in a future version.
 
 
