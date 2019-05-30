@@ -8251,6 +8251,9 @@ metavariables.
 \begin{sloppy}
 \section{Exploring the Set The\-o\-ry Data\-base}\label{exploring}
 \end{sloppy}
+% NOTE: All examples performed in this section are
+% recorded wtih "set width 61" % on set.mm as of 2019-05-28
+% commit c1e7849557661260f77cfdf0f97ac4354fbb4f4d.
 
 At this point you may wish to study the \texttt{set.mm}\index{set theory
 database (\texttt{set.mm})} file in more detail.  Pay particular
@@ -8290,12 +8293,16 @@ command}
 
 \begin{verbatim}
 MM> read set.mm
-Reading source file "set.mm"...
-73689 lines (3543983 characters) were read from "set.mm".
-The source has 21443 statements; 417 are $a and 5989 are $p.
+Reading source file "set.mm"... 34554442 bytes
+34554442 bytes were read into the source buffer.
+The source has 155711 statements; 2254 are $a and 32250 are $p.
 No errors were found.  However, proofs were not checked.
 Type VERIFY PROOF * if you want to check them.
 \end{verbatim}
+
+As with most examples in this book, what you will see
+will be slightly different because we are continuously
+improving our databases (including \texttt{set.mm}).
 
 Let's check the database integrity.  This may take a minute or two to run if
 your computer is slow.
@@ -8325,11 +8332,10 @@ command}
 
 \begin{verbatim}
 MM> search * "enderton" / comments
-3332 df-ral $a "...niversal quantification. Enderton, p. 22."
-3333 df-rex $a "...stential quantification. Enderton, p. 22."
-4828 df-tp $a "...of classes. Definition of Enderton, p. 19."
-5200 ssuniss $p "...nd union. Exercise 5 of Enderton, p. 26."
-5217 opeluu $p "...air belongs. Lemma 3D of Enderton, p. 41."
+12067 unineq $p "... Exercise 20 of [Enderton] p. 32 and ..."
+12459 undif2 $p "...Corollary 6K of [Enderton] p. 144. (C..."
+12953 df-tp $a "...s. Definition of [Enderton] p. 19. (Co..."
+13689 unissb $p ".... Exercise 5 of [Enderton] p. 26 and ..."
 \end{verbatim}
 \begin{center}
 (etc.)
@@ -8342,12 +8348,11 @@ command}
 
 \begin{verbatim}
 MM> search * conjunction / comments
-634 wa $a "...wff definition to include conjunction ('and')."
-636 df-an $a "Define conjunction ('and')."
-654 iman $p "Express implication in terms of conjunction."
-655 annim $p "Express conjunction in terms of implication."
-687 pm3.2 $p "... antecedents with conjunction. Theorem *..."
-751 anor $p "Conjunction in terms of disjunction (de Morg..."
+120 a1d $p "...be replaced with a conjunction ( ~ df-an )..."
+662 df-bi $a "...viated form after conjunction is introdu..."
+1319 wa $a "...ff definition to include conjunction ('and')."
+1321 df-an $a "Define conjunction (logical 'and'). Defini..."
+1420 imnan $p "...tion in terms of conjunction. (Contribu..."
 \end{verbatim}
 \begin{center}
 (etc.)
@@ -8355,12 +8360,12 @@ MM> search * conjunction / comments
 
 
 Now we will start to look at some details.  Let's look at the first
-axiom of propositional calculus.\index{\texttt{show statement}
-command}
+axiom of propositional calculus
+(we could use \texttt{sh st} to abbreviate
+\texttt{show statement}).\index{\texttt{show statement} command}
 
 \begin{verbatim}
 MM> show statement ax-1/full
-MM> sh st ax-1/full
 Statement 19 is located on line 881 of the file "set.mm".
 "Axiom _Simp_.  Axiom A1 of [Margaris] p. 49.  One of the 3
 axioms of propositional calculus.  The 3 axioms are also
@@ -8371,6 +8376,21 @@ Its mandatory hypotheses in RPN order are:
   wps $f wff ps $.
 The statement and its hypotheses require the variables:  ph
       ps
+The variables it contains are:  ph ps
+
+
+Statement 49 is located on line 11182 of the file "set.mm".
+Its statement number for HTML pages is 6.
+"Axiom _Simp_.  Axiom A1 of [Margaris] p. 49.  One of the 3
+axioms of propositional calculus.  The 3 axioms are also
+given as Definition 2.1 of [Hamilton] p. 28.
+...
+49 ax-1 $a |- ( ph -> ( ps -> ph ) ) $.
+Its mandatory hypotheses in RPN order are:
+  wph $f wff ph $.
+  wps $f wff ps $.
+The statement and its hypotheses require the variables:
+  ph ps
 The variables it contains are:  ph ps
 \end{verbatim}
 
@@ -8390,17 +8410,20 @@ command}
 
 \begin{verbatim}
 MM> show statement id1/full
-Statement 36 is located on line 968 of the file "set.mm".
-"Principle of identity.  Theorem *2.08 of Whitehead and
-Russell.  This version is proved directly from the axioms
-for demonstration purposes."
-  id1 $p |- ( ph -> ph ) $= ... $.
+Statement 116 is located on line 11371 of the file "set.mm".
+Its statement number for HTML pages is 22.
+"Principle of identity.  Theorem *2.08 of [WhiteheadRussell]
+p. 101.  This version is proved directly from the axioms for
+demonstration purposes.
+...
+116 id1 $p |- ( ph -> ph ) $= ... $.
 Its mandatory hypotheses in RPN order are:
   wph $f wff ph $.
-Its optional hypotheses are:  wps wch wth wet
+Its optional hypotheses are:  wps wch wth wta wet
+      wze wsi wrh wmu wla wka
 The statement and its hypotheses require the variables:  ph
-These additional variables are allowed in its proof:  ps ch
-      th et
+These additional variables are allowed in its proof:
+      ps ch th ta et ze si rh mu la ka
 The variables it contains are:  ph
 \end{verbatim}
 
@@ -8416,20 +8439,24 @@ hypotheses or variables.  This becomes important after quantifiers are
 introduced, where ``dummy'' variables\index{dummy variable} are often needed
 in the middle of a proof.
 
-Let's look at the proof of statement \texttt{id1}.  We'll suppress the
+Let's look at the proof of statement \texttt{id1}.  We'll use the
+\texttt{show proof} command, which by default suppresses the
 ``non-essential'' steps that construct the wffs.\index{\texttt{show proof}
 command}
+We will display the proof in ``lemmon' format (a non-indented format
+with explicit previous step number references) and renumber the
+displayed steps:
 
 \begin{verbatim}
 MM> show proof id1 /lemmon/renumber
-1 ax-2           $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
+1 ax-1           $a |- ( ph -> ( ph -> ph ) )
+2 ax-1           $a |- ( ph -> ( ( ph -> ph ) -> ph ) )
+3 ax-2           $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
                      ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph )
                                                           ) )
-2 ax-1           $a |- ( ph -> ( ( ph -> ph ) -> ph ) )
-3 1,2 ax-mp      $a |- ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph
+4 2,3 ax-mp      $a |- ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph
                                                           ) )
-4 ax-1           $a |- ( ph -> ( ph -> ph ) )
-5 3,4 ax-mp      $a |- ( ph -> ph )
+5 1,4 ax-mp      $a |- ( ph -> ph )
 \end{verbatim}
 
 If you have read Section~\ref{trialrun}, you'll know how to interpret this
@@ -8446,26 +8473,26 @@ command}
 
 \begin{verbatim}
 MM> show proof id1 /lemmon
-18 ax-2          $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
+ 9 ax-1          $a |- ( ph -> ( ph -> ph ) )
+20 ax-1          $a |- ( ph -> ( ( ph -> ph ) -> ph ) )
+24 ax-2          $a |- ( ( ph -> ( ( ph -> ph ) -> ph ) ) ->
                      ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph )
                                                           ) )
-21 ax-1          $a |- ( ph -> ( ( ph -> ph ) -> ph ) )
-22 18,21 ax-mp   $a |- ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph
+25 20,24 ax-mp   $a |- ( ( ph -> ( ph -> ph ) ) -> ( ph -> ph
                                                           ) )
-25 ax-1          $a |- ( ph -> ( ph -> ph ) )
-26 22,25 ax-mp   $a |- ( ph -> ph )
+26 9,25 ax-mp    $a |- ( ph -> ph )
 \end{verbatim}
 
-The ``real'' step number is 21.  Let's look at its details.
+The ``real'' step number is 20.  Let's look at its details.
 
 \begin{verbatim}
-MM> show proof id1 /detailed_step 21
-Proof step 21:  min=ax-1 $a |- ( ph -> ( ( ph -> ph ) -> ph )
+MM> show proof id1 /detailed_step 20
+Proof step 20:  min=ax-1 $a |- ( ph -> ( ( ph -> ph ) -> ph )
   )
 This step assigns source "ax-1" ($a) to target "min" ($e).
 The source assertion requires the hypotheses "wph" ($f, step
-19) and "wps" ($f, step 20).  The parent assertion of the
-target hypothesis is "ax-mp" ($a, step 22).
+18) and "wps" ($f, step 19).  The parent assertion of the
+target hypothesis is "ax-mp" ($a, step 25).
 The source assertion before substitution was:
     ax-1 $a |- ( ph -> ( ps -> ph ) )
 The following substitutions were made to the source
@@ -8482,8 +8509,8 @@ The following substitution was made to the target hypothesis:
 
 This shows the substitutions\index{substitution!variable}\index{variable
 substitution} made to the variables in \texttt{ax-1}.  References are made to
-steps 19 and 20 which are not shown in our proof display.  To see these steps,
-you can display the proof without the \texttt{essential} qualifier.
+steps 18 and 19 which are not shown in our proof display.  To see these steps,
+you can display the proof with the \texttt{all} qualifier.
 
 Let's look at a slightly more advanced proof of propositional calculus.  Note
 that \verb+/\+ is the symbol for $\wedge$ (logical {\sc and}, also
@@ -8492,35 +8519,35 @@ called conjunction).\index{conjunction ($\wedge$)}
 
 \begin{verbatim}
 MM> show statement prth/full
-Statement 1521 is located on line 4730 of the file "set.mm".
-"Theorem *3.47 of Whitehead and Russell, called 'praeclarum
-theorema' by Leibniz."
-  prth $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( ( ph /\
-      ch ) -> ( ps /\ th ) ) ) $= ... $.
+Statement 1791 is located on line 15503 of the file "set.mm".
+Its statement number for HTML pages is 559.
+"Conjoin antecedents and consequents of two premises.  This
+is the closed theorem form of ~ anim12d .  Theorem *3.47 of
+[WhiteheadRussell] p. 113.  It was proved by Leibniz,
+and it evidently pleased him enough to call it
+_praeclarum theorema_ (splendid theorem).
+...
+1791 prth $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( ( ph
+      /\ ch ) -> ( ps /\ th ) ) ) $= ... $.
 Its mandatory hypotheses in RPN order are:
   wph $f wff ph $.
   wps $f wff ps $.
   wch $f wff ch $.
   wth $f wff th $.
-Its optional hypotheses are:  wet
+Its optional hypotheses are:  wta wet wze wsi wrh wmu wla wka
 The statement and its hypotheses require the variables:  ph
       ps ch th
-These additional variables are allowed in its proof:  et
+These additional variables are allowed in its proof:  ta et
+      ze si rh mu la ka
 The variables it contains are:  ph ps ch th
 
+
 MM> show proof prth /lemmon/renumber
-1 pm3.2          $p |- ( ps -> ( th -> ( ps /\ th ) ) )
-2 1 syl3dt       $p |- ( ps -> ( ( ch -> th ) -> ( ch -> ( ps
-                                                /\ th ) ) ) )
-3 2 syl3         $p |- ( ( ph -> ps ) -> ( ph -> ( ( ch -> th
-                            ) -> ( ch -> ( ps /\ th ) ) ) ) )
-4 3 com23        $p |- ( ( ph -> ps ) -> ( ( ch -> th ) -> (
-                           ph -> ( ch -> ( ps /\ th ) ) ) ) )
-5 4 impa         $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) ->
-                           ( ph -> ( ch -> ( ps /\ th ) ) ) )
-6 impexp         $p |- ( ( ( ph /\ ch ) -> ( ps /\ th ) ) <->
-                           ( ph -> ( ch -> ( ps /\ th ) ) ) )
-7 5,6 sylibr     $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) ->
+1 simpl          $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) ->
+                                               ( ph -> ps ) )
+2 simpr          $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) ->
+                                               ( ch -> th ) )
+3 1,2 anim12d    $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) ->
                            ( ( ph /\ ch ) -> ( ps /\ th ) ) )
 \end{verbatim}
 
@@ -8531,17 +8558,26 @@ you may type the following:
 MM> show proof prth /statement_summary
 Summary of statements used in the proof of "prth":
 
-Statement "syl3" is located on line 355 of the file "set.mm".
-"Inference adding common antecedents in an implication."
-  syl3.1 $e |- ( ph -> ps ) $.
-  syl3 $p |- ( ( ch -> ph ) -> ( ch -> ps ) ) $= ... $.
-
-Statement "syl3dt" is located on line 438 of the file
+Statement simpl is located on line 14748 of the file
 "set.mm".
-"Deduction adding nested antecedents."
-  syl3dt.1 $e |- ( ph -> ( ps -> ch ) ) $.
-  syl3dt $p |- ( ph -> ( ( th -> ps ) -> ( th -> ch ) ) ) $=
-      ... $.
+"Elimination of a conjunct.  Theorem *3.26 (Simp) of
+[WhiteheadRussell] p. 112. ..."
+  simpl $p |- ( ( ph /\ ps ) -> ph ) $= ... $.
+
+Statement simpr is located on line 14777 of the file
+"set.mm".
+"Elimination of a conjunct.  Theorem *3.27 (Simp) of
+[WhiteheadRussell] ..."
+  simpr $p |- ( ( ph /\ ps ) -> ps ) $= ... $.
+
+Statement anim12d is located on line 15445 of the file
+"set.mm".
+"Conjoin antecedents and consequents in a deduction.
+..."
+  anim12d.1 $e |- ( ph -> ( ps -> ch ) ) $.
+  anim12d.2 $e |- ( ph -> ( th -> ta ) ) $.
+  anim12d $p |- ( ph -> ( ( ps /\ th ) -> ( ch /\ ta ) ) )
+      $= ... $.
 \end{verbatim}
 \begin{center}
 (etc.)
@@ -8558,18 +8594,23 @@ statements containing \verb@ph -> ps@ followed by \verb@ch -> th@.  The
 \texttt{SEARCH} is also a wildcard that in this case means ``match any label.''
 \index{\texttt{search} command}
 
+% I'm omitting this one, since readers are unlikely to see it:
+% 1096 bisymOLD $p |- ( ( ( ph -> ps ) -> ( ch -> th ) ) -> ( (
+%   ( ps -> ph ) -> ( th -> ch ) ) -> ( ( ph <-> ps ) -> ( ch
+%    <-> th ) ) ) )
 \begin{verbatim}
-MM> SEARCH * "ph -> ps $* ch -> th"
-1521 prth $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( ( ph
+MM> search * "ph -> ps $* ch -> th"
+1791 prth $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( ( ph
     /\ ch ) -> ( ps /\ th ) ) )
-1522 pm3.48 $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( (
+2455 pm3.48 $p |- ( ( ( ph -> ps ) /\ ( ch -> th ) ) -> ( (
     ph \/ ch ) -> ( ps \/ th ) ) )
-1739 elimant $p |- ( ( ( ph -> ps ) /\ ( ( ps -> ch ) -> ( ph
-    -> th ) ) ) -> ( ph -> ( ch -> th ) ) )
+117859 pm11.71 $p |- ( ( E. x ph /\ E. y ch ) -> ( ( A. x (
+    ph -> ps ) /\ A. y ( ch -> th ) ) <-> A. x A. y ( ( ph /\
+    ch ) -> ( ps /\ th ) ) ) )
 \end{verbatim}
 
 Three statements, \texttt{prth}, \texttt{pm3.48},
- and \texttt{elimant}, were found to match.
+ and \texttt{pm11.71}, were found to match.
 
 To see what axioms\index{axiom} and definitions\index{definition}
 \texttt{prth} ultimately depends on for its proof, you can have the
@@ -8602,40 +8643,54 @@ has\index{proof length} if we were to follow it all the way back to
 
 \begin{verbatim}
 MM> show trace_back prth /essential/count_steps
-The statement's actual proof has 5 steps.  Backtracking, a
-total of 55 different subtheorems are used.  The statement
-and subtheorems have a total of 196 actual steps.  If
+The statement's actual proof has 3 steps.  Backtracking, a
+total of 79 different subtheorems are used.  The statement
+and subtheorems have a total of 274 actual steps.  If
 subtheorems used only once were eliminated, there would be a
-total of 25 subtheorems, and the statement and subtheorems
-would have a total of 143 steps.  The maximum path length is
-20.  A longest path is:  prth <- imp4b <- imp4a <- impexp <-
-imbi1i <- impbi <- bi3 <- expi <- expt <- pm3.2im <- con2d <-
-con2 <- nega <- pm2.18 <- pm2.43i <- pm2.43 <- pm2.27 <-
-com12 <- syl <- a1i <- a1i.1 .
+total of 38 subtheorems, and the statement and subtheorems
+would have a total of 185 steps.  The proof would have 28349
+steps if fully expanded back to axiom references.  The
+maximum path length is 38.  A longest path is:  prth <-
+anim12d <- syl2and <- sylan2d <- ancomsd <- ancom <- pm3.22
+<- pm3.21 <- pm3.2 <- ex <- sylbir <- biimpri <- bicomi <-
+bicom1 <- bi2 <- dfbi1 <- impbii <- bi3 <- simprim <- impi <-
+con1i <- nsyl2 <- mt3d <- con1d <- notnot1 <- con2i <- nsyl3
+<- mt2d <- con2d <- notnot2 <- pm2.18d <- pm2.18 <- pm2.21 <-
+pm2.21d <- a1d <- syl <- mpd <- a2i <- a2i.1 .
 \end{verbatim}
 
-This tells us that we would have to inspect 196 steps if we want to
+This tells us that we would have to inspect 274 steps if we want to
 verify the proof completely starting from the axioms.  A few more
 statistics are also shown.  There are one or more paths back to axioms
 that are the longest; this command ferrets out one of them and shows it
 to you.  There may be a sense in which the longest path length is
 related to how ``deep'' the theorem is.
 
-Finally, we might be curious about what proofs depend on the theorem
+We might also be curious about what proofs depend on the theorem
 \texttt{prth}.  If it is never used later on, we could eliminate it as
 redundant if it has no intrinsic interest by itself.\index{\texttt{show
 usage} command}
 
+% I decided to show the OLD values here.
 \begin{verbatim}
 MM> show usage prth
-Statement "prth" is directly referenced in the proofs of 4
+Statement "prth" is directly referenced in the proofs of 18
 statements:
-  anim12d mo 2mo ssxp tfrlem5 climunii climadd
+  mo3 moOLD 2mo 2moOLD euind reuind reuss2 reusv3i opelopabt
+  wemaplem2 rexanre rlimcn2 o1of2 o1rlimmul 2sqlem6 spanuni
+  heicant pm11.71
 \end{verbatim}
 
-Thus \texttt{prth} is used by 7 proofs, and indirectly by many more that
-make use of {\em those} proofs, and so on.  (The \texttt{/recursive}
-qualifier gives you all of them.)
+Thus \texttt{prth} is directly used by 18 proofs.
+We can use the \texttt{/recursive} qualifier to include indirect use:
+
+\begin{verbatim}
+MM> show usage prth /recursive
+Statement "prth" directly or indirectly affects the proofs of
+24214 statements:
+  mo3 mo mo3OLD eu2 moOLD eu2OLD eu3OLD mo4f mo4 eu4 mopick
+...
+\end{verbatim}
 
 \subsection{A Note on the ``Compact'' Proof Format}
 
@@ -9677,7 +9732,7 @@ The variables it contains are:  x y ph
 Since Metamath will always detect when \texttt{\$d}\index{\texttt{\$d} statement}
 statements are needed for a proof, you don't have to worry too much about
 forgetting to put one in; it can always be added if you see the error message
-above.  If you put in unnecessary \texttt{\$d} statements, the worst that will
+above.  If you put in unnecessary \texttt{\$d} statements, the worst that could
 happen is that your theorem might not be as general as it could be, and this
 may limit its use later on.
 
@@ -12953,11 +13008,11 @@ which deductions from empty assumption lists would be permissible.  The
 MIU-system\index{MIU-system} described in Appendix~\ref{MIU} is another
 example.)
 Note that empty substitutions are
-always permissable in proof verification (VERIFY PROOF...) outside the
+always permissible in proof verification (VERIFY PROOF...) outside the
 Proof Assistant.  (See the MIU system in the Metamath book for an example
 of a system needing empty substitutions; another example would be a
 system that implements a Deduction Rule and in which deductions from
-empty assumption lists would be permissable.)
+empty assumption lists would be permissible.)
 
 It is better to leave this \texttt{off} when working with \texttt{set.mm}.
 Note that this command does not affect the way proofs are verified with
