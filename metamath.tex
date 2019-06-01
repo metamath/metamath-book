@@ -8852,7 +8852,7 @@ of {\bf keyword}\index{keyword} tokens is \texttt{\$\char`\{},
 keyword} or preprocessing keywords.  A {\bf label}\index{label} token
 consists of any combination of letters, digits, and the characters
 hyphen, underscore, and period.  A {\bf math symbol}\index{math symbol}
-token may consist of any combination of the 92 printable standard {\sc
+token may consist of any combination of the 93 printable standard {\sc
 ascii} characters other than space or \texttt{\$}~. All tokens are
 case-sensitive.
 
@@ -9729,8 +9729,8 @@ Statement 3033 is located on line 9338 of the file "set.mm".
   ax-c16 $a |- ( A. x x = y -> ( ph -> A. x ph ) ) $.
 Its mandatory hypotheses in RPN order are:
   wph $f wff ph $.
-  vx $f set x $.
-  vy $f set y $.
+  vx $f setvar x $.
+  vy $f setvar y $.
 Its mandatory disjoint variable pairs are:  <x,y>
 The statement and its hypotheses require the variables:  x y
       ph
@@ -9856,7 +9856,7 @@ statement).
 Some examples of hypotheses you might encounter in logic and set theory are
 \begin{center}
   \texttt{stmt1 \$f wff P \$.}\\
-  \texttt{stmt2 \$f set x \$.}\\
+  \texttt{stmt2 \$f setvar x \$.}\\
   \texttt{stmt3 \$e |- ( P -> Q ) \$.}
 \end{center}
 \index{\texttt{\$e} statement}
