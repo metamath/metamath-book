@@ -12420,7 +12420,9 @@ See also \texttt{erase}.
 Syntax:  \texttt{write source} {\em filename}
 [\texttt{/rewrap}]
 [\texttt{/split}]
-[\texttt{/keep\_includes}]
+% TeX doesn't handle this long line with tt text very well,
+% so force a line break here.
+[\texttt{/keep\_includes}] {\\}
 [\texttt{/no\_versioning}]
 
 This command will write the contents of a Metamath\index{database}
@@ -12721,7 +12723,7 @@ on generating {\sc HTML} in Section~\ref{htmlout}.
 \subsection{\texttt{verify markup} Command}\index{\texttt{verify markup} command}\label{verifymarkup}
 Syntax:  \texttt{verify markup} {\em label-match}
 [\texttt{/date{\char`\_}skip}]
-[\texttt{/top{\char`\_}date{\char`\_}skip}]
+[\texttt{/top{\char`\_}date{\char`\_}skip}] {\\}
 [\texttt{/file{\char`\_}skip}]
 [\texttt{/verbose}]
 
