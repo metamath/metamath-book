@@ -1,11 +1,1 @@
-Metamath is a computer language and an associated computer program
-for archiving, verifying, and studying mathematical proofs.
-The Metamath language is simple and robust, with an
-almost total absence of hard-wired syntax, and we believe that it
-provides about the simplest possible framework that allows essentially all of
-mathematics to be expressed with absolute rigor.
-While simple, it is also powerful;
-the Metamath Proof Explorer (MPE) database has over 20,000 proven theorems
-and is one of the top systems in the “Formalizing 100 Theorems” challenge.
-This book explains the Metamath language and program, with specific
-emphasis on the fundamentals of the MPE database.
+Metamath is a computer language and an associated computer program for archiving, verifying, and studying mathematical proofs.  The Metamath language is simple and robust, with an almost total absence of hard-wired syntax, and we believe that it provides about the simplest possible framework that allows essentially all of mathematics to be expressed with absolute rigor.  While simple, it is also powerful; the Metamath Proof Explorer (MPE) database has over 23,000 proven theorems and is one of the top systems in the “Formalizing 100 Theorems” challenge.  This book explains the Metamath language and program, with specific emphasis on the fundamentals of the MPE database.
