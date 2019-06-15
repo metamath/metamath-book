@@ -9,7 +9,7 @@ dated 2019-06-02:
 * Section 4.3 (page 138) there is a superfluous comma:
   "... option to hide, them, but today ...".
 * Section 5.6.3 `set empty_substitution` Command,
-  there's a duplication and the first braccketed text could be removed.
+  there's a duplication and the first bracketed text could be removed.
   It says:
   "(An example where this must be on would
   be a system that implements a Deduction Rule and in which deductions from
