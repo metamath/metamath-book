@@ -22,6 +22,14 @@ no longer match those in Sections 3.3.2 and 3.3.3 of the 2014 version
 of the book. A cross reference between the new and old numbers can be
 found in Appendix 8 of the Metamath Proof Explorer Home Page.
 
+## Get your printed copy!
+
+[You can get your very own printed copy of the 2019 hardback via Lulu](http://www.lulu.com/shop/norman-megill-and-david-a-wheeler/metamath-a-computer-language-for-mathematical-proofs/hardcover/product-24129769.html)
+
+## Errata
+
+[Errata for the 2019 Metamath book is available](./errata.md).
+
 ## Editing
 
 To edit the text, simply edit file metamath.tex.
