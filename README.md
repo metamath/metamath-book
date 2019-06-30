@@ -29,6 +29,8 @@ found in Appendix 8 of the Metamath Proof Explorer Home Page.
 ## Errata
 
 [Errata for the 2019 Metamath book is available](./errata.md).
+If you prefer, you can see the
+[errata in raw text form](https://raw.githubusercontent.com/metamath/metamath-book/master/errata.md).
 
 ## Editing
 
