@@ -3,6 +3,7 @@
 The following are errata for the Metamath 2019 ("Second Edition") book
 dated 2019-06-02:
 
+* Preface (Note Added March 7, 2019) - Matamath --> Metamath
 * Section 1.4.2 (page 32, paragraph 3) -
   there's an extraneous ")" after the term set.mm.
 * Section 2.4 (page 52) and further shows this text after some assign commands:
