@@ -18,6 +18,9 @@ dated 2019-06-02:
 * Section 3.9.3 (page 97) - "appraoch" should be "approach".
 * Section 4.3 (page 138) - there is a superfluous comma:
   "... option to hide, them, but today ...".
+* Section 4.3.1 (page 139) - "used and that each $f hypothesis have"
+  should be "used, and each $f hypothesis must have".
+* Section 4.5.4 (page 155) - "Metmath" should be "Metamath".
 * Chapter 5 mentions the minimize command, but does not describe it
   in detail. A future version of the book might describe it in more detail.
 * Section 5.6.3 `set empty_substitution` Command (page 171) -
@@ -32,3 +35,4 @@ dated 2019-06-02:
   a system needing empty substitutions; another example would be a system
   that implements a Deduction Rule and in which deductions from empty
   assumption lists would be permissible.)"
+
