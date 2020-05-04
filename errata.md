@@ -23,6 +23,8 @@ dated 2019-06-02:
 * Section 4.5.4 (page 155) - "Metmath" should be "Metamath".
 * Chapter 5 mentions the minimize command, but does not describe it
   in detail. A future version of the book might describe it in more detail.
+* Section 5.6 (page 168) - In "The undo command if very helpful",
+  the "if" should be "is".
 * Section 5.6.3 `set empty_substitution` Command (page 171) -
   there's a duplication and the first bracketed text could be removed.
   It says:
