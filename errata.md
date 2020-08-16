@@ -16,6 +16,9 @@ dated 2019-06-02:
 * Section 3.3.2 and 3.3.3 headings (page 71) - the headings go past
   the intended margin (though they're quite readable).
 * Section 3.9.3 (page 97) - "appraoch" should be "approach".
+* Section 3.10 (page 103 and 104) - the output of "show statement ax-1/full"
+  seems to be shown twice (once at the end of page 103, and once at the top of
+  page 104).
 * Section 4.3 (page 138) - there is a superfluous comma:
   "... option to hide, them, but today ...".
 * Section 4.3.1 (page 139) - "used and that each $f hypothesis have"
