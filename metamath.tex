@@ -1034,7 +1034,7 @@ consistent notation to express proofs, once you grasp its basic concepts
 Metamath provides you with the ability to immediately follow and dissect
 proofs even in totally unfamiliar areas.
 
-Of course, just being able follow a proof will not necessarily give you an
+Of course, just being able to follow a proof will not necessarily give you an
 intuitive familiarity with mathematics.  Memorizing the rules of chess does not
 give you the ability to appreciate the game of a master, and knowing how the
 notes on a musical score map to piano keys does not give you the ability to
@@ -1267,7 +1267,7 @@ certainty, and elimination of human error.
 \subsubsection{Note on Bibliography and Index}
 
 The Bibliography usually includes the Library of Congress classification
-for a work to make it easier for you to find it in on a university
+for a work to make it easier for you to find it on a university
 library shelf.  The Index has author references to pages where their works
 are cited, even though the authors' names may not appear on those pages.
 
@@ -1394,7 +1394,7 @@ Many minor corrections (too numerous to list here) were also made.
 
 \subsubsection{Note Added March 7, 2019}\label{note201903}
 
-This added a description of the Matamath language syntax in
+This added a description of the Metamath language syntax in
 Extended Backus--Naur Form (EBNF)\index{Extended Backus--Naur Form}\index{EBNF}
 in Appendix \ref{BNF}, added a brief explanation about typecodes,
 inserted more examples in the deduction section,
@@ -1622,7 +1622,7 @@ training in computers.  You don't claim to be an expert in software design,
 but you can write a passable program when necessary to suit your needs.  Even
 more important, you know that you can look at anyone else's Pascal program, no
 matter how complex, and with enough patience figure out exactly how it works,
-even though you are not a specialist.  Pascal allows you do anything that a
+even though you are not a specialist.  Pascal allows you to do anything that a
 computer can do, at least in principle.  Thus you know you have the ability,
 in principle, to follow anything that a computer program can do:  you just
 have to break it down into small enough pieces.
@@ -2442,7 +2442,7 @@ proof verifiers have at least basic wff syntax built into their programs.
 Metamath has no hard-wired knowledge of what constitutes a wff built into it;
 instead every wff must be explicitly constructed based on rules defining wffs
 that are present in a database.  Thus a single step in an ordinary formal
-proof may be correspond to many steps in a Metamath proof. Despite the larger
+proof may correspond to many steps in a Metamath proof. Despite the larger
 number of steps, though, this does not mean that a Metamath proof must be
 significantly larger than an ordinary formal proof. The reason is that since
 we have constructed the wff from scratch, we know what the wff is, so there is
@@ -2797,7 +2797,7 @@ If you want to combine automated theorem provers with Metamath
 consider investigating
 the book {\em Automated Reasoning:  Introduction and Applications}
 \cite{Wos}\index{Wos, Larry}.  This book discusses
-how to use {\sc otter} in a way that can
+how to use {\sc otter} in a way that is
 not only able to generate
 relatively efficient proofs, it can even be instructed to search for
 shorter proofs.  The effective use of {\sc otter} (and similar tools)
@@ -2870,7 +2870,7 @@ Automated theorem provers are usually concerned with attacking one theorem at
 time rather than making a large, organized database easily available to the
 user.  Metamath is one way to help close this gap.
 
-By itself Metamath is a mostly a proof verifier.
+By itself Metamath is mostly a proof verifier.
 This does not mean that other approaches can't be used; the difference
 is that in Metamath, the results of various provers must be recorded
 step-by-step so that they can be verified.
@@ -3216,7 +3216,7 @@ have to be made to the variables in that axiom, rule, or theorem.  Ordinarily,
 condensed detachment is more or less limited to propositional
 calculus\index{propositional calculus}.  The concept has been extended to
 first-order logic\index{first-order logic} in \cite{Megill}\index{Megill,
-Norman}, making it is easy to write a small computer program to verify proofs
+Norman}, making it easy to write a small computer program to verify proofs
 of simple first-order logic theorems.\index{condensed detachment!and
 first-order logic}
 
@@ -4020,7 +4020,7 @@ This is called the ``essential'' view
 (at one time you had to add the
 \texttt{/essential} qualifier in the \texttt{show proof}
 command to get this view, but this is now the default).
-You can could use the \texttt{/all} qualifier in the \texttt{show
+You could use the \texttt{/all} qualifier in the \texttt{show
 proof} command to also show the explicit construction of expressions.
 The \texttt{/renumber} qualifier means to renumber
 the steps to correspond only to what is displayed.\index{\texttt{show proof}
@@ -4268,7 +4268,7 @@ if needed.
 We are now going to describe an obscure feature that you will probably
 never use but should be aware of.  The Metamath language allows empty
 symbol sequences to be substituted for variables, but in most formal
-systems this feature is never used.  One of the few examples where is it
+systems this feature is never used.  One of the few examples where it is
 used is the MIU-system\index{MIU-system} described in
 Appendix~\ref{MIU}.  But such systems are rare, and by default this
 feature is turned off in the Proof Assistant.  (It is always allowed for
@@ -4567,7 +4567,7 @@ immediately apparent and in principle needn't ever be.  Our description just
 tries to summarize what mathematicians think about when they work with the
 axioms.
 
-Logic is a set of rules that allow us determine truths given other truths.
+Logic is a set of rules that allow us to determine truths given other truths.
 Put another way,
 logic is more or less the translation of what we would consider common sense
 into a rigorous set of axioms.\index{axioms of logic}  Suppose $\varphi$,
@@ -4585,7 +4585,7 @@ Predicate calculus\index{predicate calculus}
 extends propositional calculus by also allowing us
 to discuss statements about objects (not just true and false values), including
 statements about ``all'' or ``at least one'' object.
-For example, predicate calculus allows to say,
+For example, predicate calculus allows us to say,
 ``if $\varphi$ is true for all $x$, then $\varphi$ is true for some $x$.''
 The logic used in \texttt{set.mm} is standard classical logic
 (as opposed to other logic systems like intuitionistic logic).
@@ -5011,7 +5011,7 @@ of set theory built into it.)
 
 The Metamath axiom system for predicate calculus extends
 Tarski's system to eliminate this difficulty. The additional
-``auxilliary'' axiom
+``auxiliary'' axiom
 schemes (as we will call them in this section; see below) endow Tarski's
 system with a nice property we call
 metalogical completeness \cite[Remark 9.6]{Megill}\index{Megill, Norman}.
@@ -5200,7 +5200,7 @@ for details about it.
 Again, we only use this axiom when we need to.
 You are only likely to encounter or use this axiom if you are doing
 category theory, since its use is highly specialized,
-so we will not list the Tarsky-Grothendieck axiom
+so we will not list the Tarski-Grothendieck axiom
 in the short list of axioms below.
 
 Can there be even more axioms?
@@ -6439,7 +6439,7 @@ A \TAND y e. A ) -> ( x R y \TOR x = y \TOR y R x ) ) ) ) \$.
 
 \noindent Define the ordinal predicate\index{ordinal predicate}, which is true for a class
 that is transitive and is well-ordered by the epsilon relation.  Similar to
-definition on p.~468, Bell and Machover.
+the definition on p.~468, Bell and Machover.
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ df-ord\ \$a\ }
@@ -7949,7 +7949,7 @@ Therefore, we will now describe deduction style.
 We now prefer to write assertions in ``deduction form''
 instead of writing a proof that would require use of the standard or
 weak deduction theorem.
-We call this appraoch
+We call this approach
 ``deduction style.''\index{deduction style}
 
 It will be easier to explain this by first defining some terms:
@@ -8724,7 +8724,7 @@ Statement "prth" directly or indirectly affects the proofs of
 
 The Metamath program will display proofs in a ``compact''\index{compact proof}
 format whenever the proof is stored in compressed format in the database.  It
-may be be slightly confusing unless you know how to interpret it.
+may be slightly confusing unless you know how to interpret it.
 For example,
 if you display the complete proof of theorem \texttt{id1} it will start
 off as follows:
@@ -8979,7 +8979,7 @@ statement.
 The type declared by a \texttt{\$f} statement for a given label
 is global even if the variable is not
 (e.g., a database may not have \texttt{wff P} in one local scope
-nd \texttt{class P} in another).
+and \texttt{class P} in another).
 
 A {\bf simple \$d statement}\index{\texttt{\$d} statement!simple}
 consists of \texttt{\$d}, followed by two different active variables,
@@ -9931,7 +9931,7 @@ the following typecodes are used:
   after quantifiers like for-all ($\forall$) and there-exists ($\exists$).
 \item \texttt{class} :
   An expression that is a syntactically valid class expression.
-  All valid set expressions are also valid class expression, so expressions
+  All valid set expressions are also valid class expressions, so expressions
   of sets normally have the \texttt{class} typecode.
   Use the \texttt{class} typecode,
   \textit{not} the \texttt{setvar} typecode,
@@ -10841,9 +10841,9 @@ certainly becomes rather boring after a while.
 Therefore,
 by default the \texttt{show proof}\index{\texttt{show proof}
 command} command does not show the syntax construction.
-Historically \texttt{show proof} command
+Historically the \texttt{show proof} command
 \textit{did} show the syntax construction, and you needed to add the
-\texttt{/essential} option to hide, them, but today
+\texttt{/essential} option to hide them, but today
 \texttt{/essential} is the default and you need to use
 \texttt{/all} to see the syntax constructions.
 
@@ -10882,8 +10882,8 @@ However, in the case of Metamath it is intentionally trivial.
 Mandatory hypotheses must be
 pushed on the proof stack in the order in which they appear.
 In addition, each variable must have its type specified
-with a \texttt{\$f} hypothesis before it is used
-and that each \texttt{\$f} hypothesis
+with a \texttt{\$f} hypothesis before it is used,
+and each \texttt{\$f} hypothesis must
 have the restricted syntax of a typecode (a constant) followed by a variable.
 The typecode in the \texttt{\$f} hypothesis must match the first symbol of
 the corresponding RPN stack entry (which will also be a constant), so
@@ -11115,7 +11115,7 @@ above format.\index{error checking}
 
 \subsubsection{Parentheticals}\label{parentheticals}
 
-The end of a comment may include one or more parenthicals, that is,
+The end of a comment may include one or more parentheticals, that is,
 statements enclosed in parentheses.
 The Metamath program looks for certain parentheticals and can issue
 warnings based on them.
@@ -11344,7 +11344,7 @@ The {\em token-string} and {\em latex-string} are the data
 the token and the \LaTeX\ definition of the token, respectively,
 
 These \LaTeX\ definitions are used by the Metamath program
-when it is asked to product \LaTeX output using
+when it is asked to produce \LaTeX output using
 the \texttt{write tex} command.
 
 \subsubsection{Typesetting Comment - {\sc html}}
@@ -11364,7 +11364,7 @@ The key kinds of {\sc HTML} definitions have the following syntax:
 Note that in {\sc HTML} there are two possible definitions for math tokens.
 This feature is useful when
 an alternate representation of symbols is desired, for example one that
-uses Unicode entities and another uses {\sc gif} images.
+uses Unicode entities and another that uses {\sc gif} images.
 
 There are many other typesetting definitions that can control {\sc HTML}.
 These include:
@@ -11393,7 +11393,7 @@ title, such as ``Metamath Proof Explorer.''  The \texttt{htmlhome} is
 code for a link back to the home page.  The \texttt{htmlvarcolor} is
 code for a color key that appears at the bottom of each proof.  The file
 specified by {\em filename} is an {\sc html} file that is assumed to
-have a \texttt{<A NAME=}\ldots\texttt{>} tag for each bibiographic
+have a \texttt{<A NAME=}\ldots\texttt{>} tag for each bibliographic
 reference in the database comments.  For example, if
 \texttt{[Monk]}\index{\texttt{\char`\[}\ldots\texttt{]} inside comments}
 occurs in the comment for a theorem, then \texttt{<A NAME='Monk'>} must
@@ -12031,7 +12031,7 @@ This prevents some errors such as definitions with imbalanced parentheses.
 Second, we run a definition soundness check specific to
 \texttt{set.mm} or databases similar to it.
 (through the \texttt{definitionCheck} macro).
-Some \texttt{\$a} statements (including all ax-* statemnets)
+Some \texttt{\$a} statements (including all ax-* statements)
 are excluded from these checks, as they will
 always fail this simple check,
 but they are appropriate for most definitions.
@@ -12047,7 +12047,7 @@ allowed to use itself (except once, in the definiendum).
 
 \item Every variable in the definiens should not be distinct
 
-\item Every dummy variable in the definiendum
+\item All dummy variables in the definiendum
 are required to be distinct from each other and from variables in
 the definiendum.
 To determine this, the system will look for a "justification" theorem
@@ -12070,7 +12070,7 @@ definitions can be subtle, sometimes requiring difficult
 metatheorems to establish that they are not creative.
 
 Instead of building such complications into the Metamath language itself,
-the basic Metmath language and program simply treat traditional
+the basic Metamath language and program simply treat traditional
 axioms and definitions as the same kind of \texttt{\$a} statement.
 We have then built various tools to enable people to
 verify additional conditions as their creators believe is appropriate
@@ -12328,7 +12328,7 @@ height} command}
 Syntax:  \texttt{set height} {\em number}
 
 Metamath assumes your screen height is 24 lines of characters.  If your
-screen is taller or shorter, this command lets you to change the number
+screen is taller or shorter, this command lets you change the number
 of lines at which the display pauses and prompts you to continue.
 
 \subsection{\texttt{beep} Command}\index{\texttt{beep} command}
@@ -12843,7 +12843,7 @@ and write them down by hand, before using the Proof Assistant, though
 not everyone finds that effective.
 
 {\em Important:}
-The \texttt{undo} command if very helpful when entering a proof, because
+The \texttt{undo} command is very helpful when entering a proof, because
 it allows you to undo a previously-entered step.
 In addition, we suggest that you
 keep track of your work with a log file (\texttt{open
@@ -13036,10 +13036,7 @@ MIU-system\index{MIU-system} described in Appendix~\ref{MIU} is another
 example.)
 Note that empty substitutions are
 always permissible in proof verification (VERIFY PROOF...) outside the
-Proof Assistant.  (See the MIU system in the Metamath book for an example
-of a system needing empty substitutions; another example would be a
-system that implements a Deduction Rule and in which deductions from
-empty assumption lists would be permissible.)
+Proof Assistant.
 
 It is better to leave this \texttt{off} when working with \texttt{set.mm}.
 Note that this command does not affect the way proofs are verified with
@@ -13271,7 +13268,7 @@ a previous step.
 An alternative is to salvage your last \texttt{save
 new{\char`\_}proof} by exiting and reentering the Proof Assistant.
 For this to work, keep a log file open to record your work
-and to do \texttt{save new{\char`\_}proof} frequently, especially before
+and do \texttt{save new{\char`\_}proof} frequently, especially before
 \texttt{delete}.
 
 \texttt{delete floating{\char`\_}hypotheses} will delete all sections of
@@ -13836,7 +13833,7 @@ if that is necessary for clarity.
   \hyperref[df-eu]{\texttt{df-eu}} &
   There exists exactly one;
   $\exists ! x \varphi$ is true iff
-  there is at least one $x$ where $\varphi$ is true. \\
+  there is exactly one $x$ where $\varphi$ is true. \\
 \texttt{\{ y | phi \}}  & $ \{ y | \varphi \}$ &
   \hyperref[df-clab]{\texttt{df-clab}} &
   The class of all sets where $\varphi$ is true. \\
@@ -14352,7 +14349,7 @@ condition ${\cal V}(H\cup\{A\}) \subseteq {\cal V}(T) $
 means that each variable occurring in a statement's logical
 hypotheses or assertion must have an associated variable-type hypothesis or
 ``type declaration,'' in  analogy to a computer programming language, where a
-variable must be declared to be say, a string or an integer.  The requirement
+variable must be declared to be, say, a string or an integer.  The requirement
 that $\forall e,f\in T \, e_1 \ne f_1$ for $e\neq f$
 means that each variable must be
 associated with a unique constant designating its variable type; e.g., a
