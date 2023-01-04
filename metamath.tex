@@ -15588,7 +15588,7 @@ COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
 WHITESPACE ::= (_WHITECHAR+ | _COMMENT) -> SKIP
 
 /* Comments. $( ... $) and do not nest. */
-_COMMENT ::= '$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')*
+_COMMENT ::= '$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)'))*
   _WHITECHAR+ '$)' _WHITECHAR
 
 /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
