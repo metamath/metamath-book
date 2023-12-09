@@ -1,0 +1,30 @@
+% Settings to generate PDF for a narrow display (e.g. a smartphone).
+% Copy this file to special-settings.sty to use it.
+
+\usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
+
+% Use "listings" package.  This lets us have automatic line breaking.
+% In the future we might use syntax highlighting, but that's not necessary
+% for now.
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,      % print size
+  breaklines=true,                        % sets automatic line breaking
+  breakatwhitespace=true,                 % sets if automatic breaks should only happen at whitespace
+}
+
+% Override definition of "verbatim" with a "listings" block.
+% Reasons:
+% 1. This provides *useful* text highlighting.
+%    Text editors like vim know about verbatim, but not listings, so
+%    directly replacing "\begin{verbatim" with "\begin{lstlisting}[breaklines]"
+%    causes *all* text highlighting to go wrong once verbatim is
+%    first used.
+% 2. We really only need listings for the narrow case, so let's only
+%    override it in that case.
+% 3. This eliminates the need to change many lines in the .tex file.
+%    That's not a *big* deal, but it's a minor bonus.
+
+\let\verbatim\someundefinedcommand
+\lstnewenvironment{verbatim}
+{}{}

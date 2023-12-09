@@ -1,0 +1,223 @@
+\contentsline {section}{Vorwort}{xi}{chapter*.2}% 
+\contentsline {subsubsection}{\IeC {\"U}bersicht}{xi}{section*.3}% 
+\contentsline {subsubsection}{Was Sie erwartet}{xiv}{section*.4}% 
+\contentsline {subsubsection}{Metamath und mathematische Literatur}{xv}{section*.5}% 
+\contentsline {subsubsection}{Formalismus}{xvi}{section*.6}% 
+\contentsline {subsubsection}{Eine pers\IeC {\"o}nliche Anmerkung}{xvii}{section*.7}% 
+\contentsline {subsubsection}{Anmerkung zu Bibliographie und Index}{xvii}{section*.8}% 
+\contentsline {subsubsection}{Danksagungen}{xvii}{section*.9}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 22. Juni 2005}{xvii}{section*.10}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 24. Juni 2006}{xix}{section*.11}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt 10 M\IeC {\"a}rz 2007}{xix}{section*.12}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 27. Mai 2009}{xix}{section*.13}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 17 Nov. 2014}{xix}{section*.14}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 25. Mai 2016}{xix}{section*.15}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt Februar 25, 2019}{xix}{section*.16}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 7. M\IeC {\"a}rz 2019}{xx}{section*.17}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 7. April 2019}{xx}{section*.18}% 
+\contentsline {subsubsection}{Notiz hinzugef\IeC {\"u}gt am 2. Juni 2019}{xx}{section*.19}% 
+\contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Mathematik als eine Computersprache}{4}{section.1.1}% 
+\contentsline {subsection}{\numberline {1.1.1}Ist die Mathematik \active@dq \dq@prtct {`}benutzerfreundlich\active@dq \dq@prtct {'}?}{5}{subsection.1.1.1}% 
+\contentsline {subsubsection}{Die Suche eines Nicht-Mathematikers nach der Wahrheit}{5}{section*.20}% 
+\contentsline {subsection}{\numberline {1.1.2}Mathematik und der Nichtfachmann}{14}{subsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.1.3}Ein unm\IeC {\"o}glicher Traum?}{16}{subsection.1.1.3}% 
+\contentsline {subsection}{\numberline {1.1.4}Sch\IeC {\"o}nheit}{17}{subsection.1.1.4}% 
+\contentsline {subsection}{\numberline {1.1.5}Einfachheit}{19}{subsection.1.1.5}% 
+\contentsline {subsection}{\numberline {1.1.6}Strenge}{20}{subsection.1.1.6}% 
+\contentsline {section}{\numberline {1.2}Computer und Mathematiker}{24}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}Dem Computer vertrauen}{24}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.2}Dem Mathematiker vetrauen}{25}{subsection.1.2.2}% 
+\contentsline {section}{\numberline {1.3}Der Einsatz von Computern in der Mathe\-matik}{28}{section.1.3}% 
+\contentsline {subsection}{\numberline {1.3.1}Computeralgebrasysteme}{28}{subsection.1.3.1}% 
+\contentsline {subsection}{\numberline {1.3.2}Automatische Theorembeweiser}{29}{subsection.1.3.2}% 
+\contentsline {subsection}{\numberline {1.3.3}Interaktive Theorembeweiser}{31}{subsection.1.3.3}% 
+\contentsline {subsection}{\numberline {1.3.4}Beweisverifizierer}{32}{subsection.1.3.4}% 
+\contentsline {subsection}{\numberline {1.3.5}Erstellung einer Datenbasis f\IeC {\"u}r formalisierte\\ Mathematik}{33}{subsection.1.3.5}% 
+\contentsline {subsection}{\numberline {1.3.6}Zusammenfassung}{36}{subsection.1.3.6}% 
+\contentsline {section}{\numberline {1.4}Die Mathematik und Metamath}{36}{section.1.4}% 
+\contentsline {subsection}{\numberline {1.4.1}Standard-Mathematik}{36}{subsection.1.4.1}% 
+\contentsline {subsection}{\numberline {1.4.2}Andere formale Systeme}{37}{subsection.1.4.2}% 
+\contentsline {subsection}{\numberline {1.4.3}Metamath und seine Philosophie}{38}{subsection.1.4.3}% 
+\contentsline {subsection}{\numberline {1.4.4}Die Hintergr\IeC {\"u}nde des Metamath-Ansatzes}{39}{subsection.1.4.4}% 
+\contentsline {subsection}{\numberline {1.4.5}Metamath und die Logik erster Ordnung}{40}{subsection.1.4.5}% 
+\contentsline {chapter}{\numberline {2}Verwendung des Metamath-Programms}{43}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Installation}{43}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Ihr erstes formales System}{44}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}Vom Nichts zur Zahl Null}{44}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}Konvertierung des Beweises nach Metamath}{47}{subsection.2.2.2}% 
+\contentsline {section}{\numberline {2.3}Ein Probelauf}{52}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.3.1}Einige Hinweise zur Verwendung der Befehlszeilenschnittstelle}{57}{subsection.2.3.1}% 
+\contentsline {section}{\numberline {2.4}Ihr erster Beweis}{58}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}\tolerance 9999\emergencystretch 3em\hfuzz .5\p@ \vfuzz \hfuzz Hinweise zur Bearbeitung einer Daten\-basis}{65}{section.2.5}% 
+\contentsline {chapter}{\numberline {3}Abstrakte Mathematik enth\IeC {\"u}llt}{67}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Logik und Mengenlehre}{67}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Die Axiome f\IeC {\"u}r die gesamte Mathematik}{70}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}Aussagenlogik}{71}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\"a}dikatenlogik}{73}{subsection.3.2.2}% 
+\contentsline {subsubsection}{G\IeC {\"a}ngige Axiome}{73}{section*.21}% 
+\contentsline {subsubsection}{Tarski-System S2}{74}{section*.22}% 
+\contentsline {subsubsection}{Entwicklung einer Metamath-Darstellung}{74}{section*.23}% 
+\contentsline {subsubsection}{Metamath-Darstellung}{75}{section*.24}% 
+\contentsline {subsection}{\numberline {3.2.3}Mengenlehre}{77}{subsection.3.2.3}% 
+\contentsline {subsection}{\numberline {3.2.4}Andere Axiome}{79}{subsection.3.2.4}% 
+\contentsline {section}{\numberline {3.3}Die Axiome in der Metamath-Sprache}{79}{section.3.3}% 
+\contentsline {subsection}{\numberline {3.3.1}Aussagenlogik}{80}{subsection.3.3.1}% 
+\contentsline {subsection}{\numberline {3.3.2}Axiome der Pr\IeC {\"a}dikatenlogik mit Gleichheit\\--- Tarskis S2}{80}{subsection.3.3.2}% 
+\contentsline {subsection}{\numberline {3.3.3}Axiome der Pr\IeC {\"a}dikatenlogik mit Gleichheit\\--- Hilfsaxiome}{80}{subsection.3.3.3}% 
+\contentsline {subsection}{\numberline {3.3.4}Mengenlehre}{81}{subsection.3.3.4}% 
+\contentsline {subsection}{\numberline {3.3.5}Das war's}{81}{subsection.3.3.5}% 
+\contentsline {section}{\numberline {3.4}Eine Hierarchie von Definitionen}{82}{section.3.4}% 
+\contentsline {subsection}{\numberline {3.4.1}Definitionen f\IeC {\"u}r die Aussagenlogik}{84}{subsection.3.4.1}% 
+\contentsline {subsection}{\numberline {3.4.2}Definitionen f\IeC {\"u}r die Pr\IeC {\"a}dikatenlogik}{85}{subsection.3.4.2}% 
+\contentsline {subsection}{\numberline {3.4.3}Definitionen f\IeC {\"u}r die Mengenlehre}{86}{subsection.3.4.3}% 
+\contentsline {section}{\numberline {3.5}Tricks des Verfahrens}{95}{section.3.5}% 
+\contentsline {section}{\numberline {3.6}Einige Beispiele f\IeC {\"u}r Theoreme}{97}{section.3.6}% 
+\contentsline {section}{\numberline {3.7}Axiome f\IeC {\"u}r reelle und komplexe Zahlen}{100}{section.3.7}% 
+\contentsline {subsection}{\numberline {3.7.1}Die Axiome f\IeC {\"u}r reelle und komplexe Zahlen selbst}{100}{subsection.3.7.1}% 
+\contentsline {subsection}{\numberline {3.7.2}Axiome f\IeC {\"u}r komplexe Zahlen in Texten zur \\Analysis}{102}{subsection.3.7.2}% 
+\contentsline {subsection}{\numberline {3.7.3}Beseitigung unn\IeC {\"o}tiger Axiome f\IeC {\"u}r komplexe \\Zahlen}{103}{subsection.3.7.3}% 
+\contentsline {section}{\numberline {3.8}Zwei plus zwei ist gleich vier}{104}{section.3.8}% 
+\contentsline {section}{\numberline {3.9}Deduktion}{105}{section.3.9}% 
+\contentsline {subsection}{\numberline {3.9.1}Das Standard-Deduktionstheorem}{106}{subsection.3.9.1}% 
+\contentsline {subsection}{\numberline {3.9.2}Das Theorem der schwachen Deduktion}{107}{subsection.3.9.2}% 
+\contentsline {subsection}{\numberline {3.9.3}Deduktionsstil}{109}{subsection.3.9.3}% 
+\contentsline {subsection}{\numberline {3.9.4}Nat\IeC {\"u}rliche Deduktion}{111}{subsection.3.9.4}% 
+\contentsline {subsection}{\numberline {3.9.5}Die St\IeC {\"a}rken unseres Ansatzes}{114}{subsection.3.9.5}% 
+\contentsline {section}{\numberline {3.10}Erforschung der Mengenlehre-Datenbasis}{114}{section.3.10}% 
+\contentsline {subsection}{\numberline {3.10.1}Eine Anmerkung zum \active@dq \dq@prtct {`}kompakten\active@dq \dq@prtct {'} \\Beweis\-format}{122}{subsection.3.10.1}% 
+\contentsline {chapter}{\numberline {4}Die Metamath-Sprache}{125}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Spezifikation der Metamath-Sprache}{126}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Vorbereitungen}{126}{subsection.4.1.1}% 
+\contentsline {subsection}{\numberline {4.1.2}Vorverarbeitung}{127}{subsection.4.1.2}% 
+\contentsline {subsection}{\numberline {4.1.3}Grundlegende Syntax}{128}{subsection.4.1.3}% 
+\contentsline {subsection}{\numberline {4.1.4}Beweisverifizierung}{129}{subsection.4.1.4}% 
+\contentsline {subsubsection}{\IeC {\"U}berpr\IeC {\"u}fung von disjunkten Variableneinschr\IeC {\"a}nkungen}{130}{section*.25}% 
+\contentsline {section}{\numberline {4.2}Die grundlegenden Schl\IeC {\"u}sselw\IeC {\"o}rter}{130}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Benutzerdefinierte Tokens}{132}{subsection.4.2.1}% 
+\contentsline {subsubsection}{Mathemathische Symbole}{132}{section*.26}% 
+\contentsline {subsubsection}{Labels}{133}{section*.27}% 
+\contentsline {subsection}{\numberline {4.2.2}Konstanten und Variablen}{134}{subsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.2.3}Die \texttt {\$c}- und \texttt {\$v}-Deklarationsanweisungen}{134}{subsection.4.2.3}% 
+\contentsline {subsection}{\numberline {4.2.4}Die \texttt {\$d}-Anweisung}{136}{subsection.4.2.4}% 
+\contentsline {subsubsection}{Zusammengesetzte \texttt {\$d} Anweisungen}{137}{section*.28}% 
+\contentsline {subsection}{\numberline {4.2.5}Die \texttt {\$f}- und \texttt {\$e}-Anweisungen}{141}{subsection.4.2.5}% 
+\contentsline {subsection}{\numberline {4.2.6}Behauptungen (\texttt {\$a}- und \texttt {\$p}-Anweisungen)}{143}{subsection.4.2.6}% 
+\contentsline {subsubsection}{Die \texttt {\$a}-Anweisung}{144}{section*.29}% 
+\contentsline {subsection}{\numberline {4.2.7}Frames}{145}{subsection.4.2.7}% 
+\contentsline {subsection}{\numberline {4.2.8}G\IeC {\"u}ltigkeitsbereichsanweisungen (\texttt {\$\{} und \texttt {\$\}})}{149}{subsection.4.2.8}% 
+\contentsline {subsubsection}{Umdeklarierung von mathematischen Symbolen}{151}{section*.30}% 
+\contentsline {subsubsection}{Zur\IeC {\"u}ck zu Frames}{151}{section*.31}% 
+\contentsline {section}{\numberline {4.3}Die Anatomie eines Beweises}{152}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Das Konzept der Vereinheitlichung}{156}{subsection.4.3.1}% 
+\contentsline {section}{\numberline {4.4}Erweiterungen der Metamath-Sprache}{157}{section.4.4}% 
+\contentsline {subsection}{\numberline {4.4.1}Kommentare in der Metamath-Sprache}{157}{subsection.4.4.1}% 
+\contentsline {subsubsection}{\IeC {\"U}berschriften}{158}{section*.32}% 
+\contentsline {subsubsection}{Mathe-Modus}{158}{section*.33}% 
+\contentsline {subsubsection}{Label-Modus}{159}{section*.34}% 
+\contentsline {subsubsection}{Querverweis zum Literaturverzeichnis}{160}{section*.35}% 
+\contentsline {subsubsection}{Parenthesen}{161}{section*.36}% 
+\contentsline {subsubsection}{Sonstige Textauszeichnungen}{161}{section*.37}% 
+\contentsline {subsection}{\numberline {4.4.2}Der Schriftsatz-Kommentar (\texttt {\$t})}{162}{subsection.4.4.2}% 
+\contentsline {subsubsection}{\IeC {\"U}bersicht \IeC {\"u}ber die Syntax von Schriftsatzkommentaren}{163}{section*.38}% 
+\contentsline {subsubsection}{Schriftsatzkommentar - \LaTeX }{164}{section*.39}% 
+\contentsline {subsubsection}{Schriftsatzkommentar - {\sc html}}{165}{section*.40}% 
+\contentsline {subsection}{\numberline {4.4.3}Zusatzinformationskommentar (\texttt {\$j})}{166}{subsection.4.4.3}% 
+\contentsline {subsection}{\numberline {4.4.4}Einbindung anderer Dateien in eine Metamath-Quelldatei}{167}{subsection.4.4.4}% 
+\contentsline {subsection}{\numberline {4.4.5}Komprimiertes Beweisformat}{168}{subsection.4.4.5}% 
+\contentsline {subsection}{\numberline {4.4.6}Unbekannte Beweise oder Teilbeweise}{169}{subsection.4.4.6}% 
+\contentsline {section}{\numberline {4.5}Axiome vs. Definitionen}{170}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Was ist eine Definition?}{170}{subsection.4.5.1}% 
+\contentsline {subsection}{\numberline {4.5.2}Der Ansatz f\IeC {\"u}r Definitionen in \texttt {set.mm}}{172}{subsection.4.5.2}% 
+\contentsline {subsubsection}{Direkte Definitionen anstelle von rekursiven Definitionen}{172}{section*.41}% 
+\contentsline {subsubsection}{Beispiel f\IeC {\"u}r direkte Definitionen}{172}{section*.42}% 
+\contentsline {subsubsection}{Rekursionsoperatoren}{173}{section*.43}% 
+\contentsline {subsubsection}{Abschlie\IeC {\ss }ende Bemerkungen zu direkten Definitionen}{174}{section*.44}% 
+\contentsline {subsection}{\numberline {4.5.3}Hinzuf\IeC {\"u}gen von Einschr\IeC {\"a}nkungen f\IeC {\"u}r Definitionen}{174}{subsection.4.5.3}% 
+\contentsline {subsection}{\numberline {4.5.4}Zusammenfassung des Metamath-Ansatzes f\IeC {\"u}r Definitionen}{176}{subsection.4.5.4}% 
+\contentsline {chapter}{\numberline {5}Das Metamath-Programm}{177}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Aufruf von Metamath}{177}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Steuerung von Metamath}{178}{section.5.2}% 
+\contentsline {subsection}{\numberline {5.2.1}\texttt {exit}-Befehl}{179}{subsection.5.2.1}% 
+\contentsline {subsection}{\numberline {5.2.2}\texttt {open log}-Befehl}{180}{subsection.5.2.2}% 
+\contentsline {subsection}{\numberline {5.2.3}\texttt {close log}-Befehl}{180}{subsection.5.2.3}% 
+\contentsline {subsection}{\numberline {5.2.4}\texttt {submit}-Befehl}{180}{subsection.5.2.4}% 
+\contentsline {subsection}{\numberline {5.2.5}\texttt {erase}-Befehl}{181}{subsection.5.2.5}% 
+\contentsline {subsection}{\numberline {5.2.6}\texttt {set echo}-Befehl}{181}{subsection.5.2.6}% 
+\contentsline {subsection}{\numberline {5.2.7}\texttt {set scroll}-Befehl}{181}{subsection.5.2.7}% 
+\contentsline {subsection}{\numberline {5.2.8}\texttt {set width}-Befehl}{181}{subsection.5.2.8}% 
+\contentsline {subsection}{\numberline {5.2.9}\texttt {set height}-Befehl}{182}{subsection.5.2.9}% 
+\contentsline {subsection}{\numberline {5.2.10}\texttt {beep}-Befehl}{182}{subsection.5.2.10}% 
+\contentsline {subsection}{\numberline {5.2.11}\texttt {more}-Befehl}{182}{subsection.5.2.11}% 
+\contentsline {subsection}{\numberline {5.2.12}Betriebssystem-Befehle}{182}{subsection.5.2.12}% 
+\contentsline {subsection}{\numberline {5.2.13}Gr\IeC {\"o}\IeC {\ss }enbeschr\IeC {\"a}nkungen in Metamath}{182}{subsection.5.2.13}% 
+\contentsline {section}{\numberline {5.3}Lesen und Schreiben von Dateien}{183}{section.5.3}% 
+\contentsline {subsection}{\numberline {5.3.1}\texttt {read}-Befehl}{183}{subsection.5.3.1}% 
+\contentsline {subsection}{\numberline {5.3.2}\texttt {write source}-Befehl}{183}{subsection.5.3.2}% 
+\contentsline {section}{\numberline {5.4}Anzeige von Status und Anweisungen}{184}{section.5.4}% 
+\contentsline {subsection}{\numberline {5.4.1}\texttt {show settings}-Befehl}{184}{subsection.5.4.1}% 
+\contentsline {subsection}{\numberline {5.4.2}\texttt {show memory}-Befehl}{184}{subsection.5.4.2}% 
+\contentsline {subsection}{\numberline {5.4.3}\texttt {show labels}-Befehl}{185}{subsection.5.4.3}% 
+\contentsline {subsection}{\numberline {5.4.4}\texttt {show statement}-Befehl}{185}{subsection.5.4.4}% 
+\contentsline {subsection}{\numberline {5.4.5}\texttt {search}-Befehl}{185}{subsection.5.4.5}% 
+\contentsline {section}{\numberline {5.5}Anzeigen und Verifizieren von Beweisen}{186}{section.5.5}% 
+\contentsline {subsection}{\numberline {5.5.1}\texttt {show proof}-Befehl}{186}{subsection.5.5.1}% 
+\contentsline {subsection}{\numberline {5.5.2}\texttt {show usage}-Befehl}{187}{subsection.5.5.2}% 
+\contentsline {subsection}{\numberline {5.5.3}\texttt {show trace\_back}-Befehl}{187}{subsection.5.5.3}% 
+\contentsline {subsection}{\numberline {5.5.4}\texttt {verify proof}-Befehl}{188}{subsection.5.5.4}% 
+\contentsline {subsection}{\numberline {5.5.5}\texttt {verify markup}-Befehl}{188}{subsection.5.5.5}% 
+\contentsline {subsection}{\numberline {5.5.6}\texttt {save proof}-Befehl}{189}{subsection.5.5.6}% 
+\contentsline {section}{\numberline {5.6}Beweise erstellen}{189}{section.5.6}% 
+\contentsline {subsection}{\numberline {5.6.1}\texttt {prove}-Befehl}{192}{subsection.5.6.1}% 
+\contentsline {subsection}{\numberline {5.6.2}\texttt {set unification\_timeout}-Befehl}{193}{subsection.5.6.2}% 
+\contentsline {subsection}{\numberline {5.6.3}\texttt {set empty\_substitution}-Befehl}{193}{subsection.5.6.3}% 
+\contentsline {subsection}{\numberline {5.6.4}\texttt {set search\_limit}-Befehl}{193}{subsection.5.6.4}% 
+\contentsline {subsection}{\numberline {5.6.5}\texttt {show new\_proof}-Befehl}{194}{subsection.5.6.5}% 
+\contentsline {subsection}{\numberline {5.6.6}\texttt {assign}-Befehl}{194}{subsection.5.6.6}% 
+\contentsline {subsection}{\numberline {5.6.7}\texttt {match}-Befehl}{195}{subsection.5.6.7}% 
+\contentsline {subsection}{\numberline {5.6.8}\texttt {let}-Befehl}{195}{subsection.5.6.8}% 
+\contentsline {subsection}{\numberline {5.6.9}\texttt {unify}-Befehl}{196}{subsection.5.6.9}% 
+\contentsline {subsection}{\numberline {5.6.10}\texttt {initialize}-Befehl}{196}{subsection.5.6.10}% 
+\contentsline {subsection}{\numberline {5.6.11}\texttt {delete}-Befehl}{197}{subsection.5.6.11}% 
+\contentsline {subsection}{\numberline {5.6.12}\texttt {improve}-Befehl}{197}{subsection.5.6.12}% 
+\contentsline {subsection}{\numberline {5.6.13}\texttt {save new\_proof}-Befehl}{198}{subsection.5.6.13}% 
+\contentsline {section}{\numberline {5.7}Erstellen von \LaTeX -Ausgaben}{199}{section.5.7}% 
+\contentsline {subsection}{\numberline {5.7.1}\texttt {open tex}-Befehl}{199}{subsection.5.7.1}% 
+\contentsline {subsection}{\numberline {5.7.2}\texttt {close tex}-Befehl}{200}{subsection.5.7.2}% 
+\contentsline {section}{\numberline {5.8}Erstellen von {\sc HTML}-Ausgaben}{200}{section.5.8}% 
+\contentsline {subsection}{\numberline {5.8.1}\texttt {write theorem\_list} -Befehl}{201}{subsection.5.8.1}% 
+\contentsline {subsection}{\numberline {5.8.2}\texttt {write bibliography} -Befehl}{201}{subsection.5.8.2}% 
+\contentsline {subsection}{\numberline {5.8.3}\texttt {write recent\_additions} -Befehl}{202}{subsection.5.8.3}% 
+\contentsline {section}{\numberline {5.9}Text File Utilities}{202}{section.5.9}% 
+\contentsline {subsection}{\numberline {5.9.1}\texttt {tools}-Befehl}{202}{subsection.5.9.1}% 
+\contentsline {subsection}{\numberline {5.9.2}\texttt {help}-Befehl (in \texttt {tools})}{202}{subsection.5.9.2}% 
+\contentsline {subsection}{\numberline {5.9.3}Verwendung von \texttt {tools} zur Erstellung von Metamath \texttt {submit}-Skripten}{204}{subsection.5.9.3}% 
+\contentsline {subsection}{\numberline {5.9.4}Beispiel f\IeC {\"u}r eine \texttt {tools}-Sitzung}{204}{subsection.5.9.4}% 
+\contentsline {chapter}{\numberline {A}Beispielhafte Darstellungen}{207}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Komprimierte Beweise}{211}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Das formale System von Metamath}{215}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Einf\IeC {\"u}hrung}{215}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Die formale Beschreibung}{216}{section.C.2}% 
+\contentsline {subsection}{\numberline {C.2.1}Vorbereitende Ma\IeC {\ss }nahmen}{216}{subsection.C.2.1}% 
+\contentsline {subsection}{\numberline {C.2.2}Konstanten, Variablen und Ausdr\IeC {\"u}cke}{216}{subsection.C.2.2}% 
+\contentsline {subsection}{\numberline {C.2.3}Substitution}{217}{subsection.C.2.3}% 
+\contentsline {subsection}{\numberline {C.2.4}Aussagen}{218}{subsection.C.2.4}% 
+\contentsline {subsection}{\numberline {C.2.5}Formale Systeme}{219}{subsection.C.2.5}% 
+\contentsline {section}{\numberline {C.3}Beispiele f\IeC {\"u}r formale Systeme}{220}{section.C.3}% 
+\contentsline {subsection}{\numberline {C.3.1}Beispiel\nobreakspace {}1 --- Aussagenlogik}{221}{subsection.C.3.1}% 
+\contentsline {subsection}{\numberline {C.3.2}Beispiel\nobreakspace {}2 --- Pr\IeC {\"a}dikatenlogik mit Gleichheit}{223}{subsection.C.3.2}% 
+\contentsline {subsection}{\numberline {C.3.3}Freie Variablen und echte Substitution}{225}{subsection.C.3.3}% 
+\contentsline {subsection}{\numberline {C.3.4}Metalogische Vollst\IeC {\"a}ndigkeit}{226}{subsection.C.3.4}% 
+\contentsline {subsection}{\numberline {C.3.5}Beispiel\nobreakspace {}3 --- Metalogisch vollst\IeC {\"a}ndige Pr\IeC {\"a}dikatenlogik mit Gleichheit}{227}{subsection.C.3.5}% 
+\contentsline {subsection}{\numberline {C.3.6}Beispiel\nobreakspace {}4 --- Hinzuf\IeC {\"u}gen von Definitionen}{228}{subsection.C.3.6}% 
+\contentsline {subsection}{\numberline {C.3.7}Beispiel\nobreakspace {}5 --- ZFC Mengenlehre}{229}{subsection.C.3.7}% 
+\contentsline {subsection}{\numberline {C.3.8}Beispiel\nobreakspace {}6 --- Begriff der Klasse in der Mengenlehre}{230}{subsection.C.3.8}% 
+\contentsline {section}{\numberline {C.4}Metamath als formales System}{231}{section.C.4}% 
+\contentsline {chapter}{\numberline {D}Das MIU-System}{235}{appendix.D}% 
+\contentsline {chapter}{\numberline {E}Metamath-Sprache EBNF}{239}{appendix.E}% 
+\contentsline {chapter}{\numberline {F}Metamath 100}{243}{appendix.F}% 
+\contentsline {chapter}{\numberline {G}Glossar}{249}{appendix.G}% 
+\contentsline {section}{\numberline {G.1}Deutsch - Englisch}{249}{section.G.1}% 
+\contentsline {section}{\numberline {G.2}Englisch - Deutsch}{259}{section.G.2}% 
+\contentsline {chapter}{Literaturverzeichnis}{269}{section*.45}% 
+\contentsline {chapter}{Index}{275}{section*.47}% 

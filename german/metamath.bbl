@@ -1,0 +1,488 @@
+\begin{thebibliography}{10}
+
+\bibitem{Albers}
+Donald~J. Albers and G.~L. Alexanderson, editors.
+\newblock {\em Mathematical People}.
+\newblock Contemporary Books, Inc., Chicago, 1985.
+\newblock [QA28.M37].
+
+\bibitem{Anderson}
+Alan~Ross Anderson and Nuel~D. Belnap.
+\newblock {\em Entailment}, volume~1.
+\newblock Princeton University Press, Princeton, 1975.
+\newblock [QA9.A634 1975 v.1].
+
+\bibitem{Barrow}
+John~D. Barrow.
+\newblock {\em Theories of Everything: The Quest for Ultimate Explanation}.
+\newblock Oxford University Press, Oxford, 1991.
+\newblock [Q175.B225].
+
+\bibitem{Behnke}
+H.~Behnke, F.~Backmann, K.~Fladt, and W.~S{\"{u}}ss, editors.
+\newblock {\em Fundamentals of Mathematics}, volume~I.
+\newblock The MIT Press, Cambridge, Massachusetts, 1974.
+\newblock [QA37.2.B413].
+
+\bibitem{Bell}
+J.~L. Bell and M.~Machover.
+\newblock {\em A Course in Mathematical Logic}.
+\newblock North-Holland, Amsterdam, 1977.
+\newblock [QA9.B3953].
+
+\bibitem{Blass}
+Andrea Blass.
+\newblock The interaction between category theory and set theory.
+\newblock In John~Walter Gray, editor, {\em Mathematical Applications of
+  Category Theory (Proceedings of the Special Session on Mathematical
+  Applications Category Theory, 89th Annual Meeting of the American
+  Mathematical Society, held in Denver, Colorado January 5--9, 1983)}, pages
+  5--29, Providence, Rhode Island, 1983. American Mathematical Society.
+\newblock [QA169.A47 1983].
+
+\bibitem{Bledsoe}
+W.~W. Bledsoe and D.~W. Loveland, editors.
+\newblock {\em Automated Theorem Proving: After 25 Years (Proceedings of the
+  Special Session on Automatic Theorem Proving, 89th Annual Meeting of the
+  American Mathematical Society, held in Denver, Colorado January 5--9, 1983)},
+  Providence, Rhode Island, 1983. American Mathematical Society.
+\newblock [QA76.9.A96.S64 1983].
+
+\bibitem{Boolos}
+George~S. Boolos and Richard~C. Jeffrey.
+\newblock {\em Computability and Log\-ic}.
+\newblock Cambridge University Press, Cambridge, third edition, 1989.
+\newblock [QA9.59.B66 1989].
+
+\bibitem{Campbell}
+John Campbell.
+\newblock {\em Programmer's Progress}.
+\newblock White Star Software, Box 51623, Palo Alto, CA 94303, 1991.
+
+\bibitem{DBLP:journals/corr/Carneiro14}
+Mario Carneiro.
+\newblock Conversion of {HOL} light proofs into metamath.
+\newblock {\em CoRR}, abs/1412.8091, 2014.
+
+\bibitem{CarneiroND}
+Mario Carneiro.
+\newblock Natural deductions in the metamath proof language.
+\newblock 2014.
+
+\bibitem{Chou}
+Shang-Ching Chou.
+\newblock Proving elementary geometry theorems using {W}u's algorithm.
+\newblock In W.~W. Bledsoe and D.~W. Loveland, editors, {\em Automated Theorem
+  Proving: After 25 Years (Proceedings of the Special Session on Automatic
+  Theorem Proving, 89th Annual Meeting of the American Mathematical Society,
+  held in Denver, Colorado January 5--9, 1983)}, pages 243--286, Providence,
+  Rhode Island, 1983. American Mathematical Society.
+\newblock [QA76.9.A96.S64 1983].
+
+\bibitem{Courant}
+Richard Courant and Herbert Robbins.
+\newblock Topology.
+\newblock In James~R. Newman, editor, {\em The World of Mathematics, Volume
+  One}, pages 573--590. Simon and Schuster, New York, 1956.
+\newblock [QA3.W67 1988].
+
+\bibitem{Curry}
+Haskell~B. Curry.
+\newblock {\em Foundations of Mathematical Logic}.
+\newblock Dover Publications, Inc., New York, 1977.
+\newblock [QA9.C976 1977].
+
+\bibitem{Davis}
+Philip~J. Davis and Reuben Hersh.
+\newblock {\em The Mathematical Experience}.
+\newblock Birkh{\"{a}}user Boston, Boston, 1981.
+\newblock [QA8.4.D37 1982].
+
+\bibitem{deMillo}
+Richard de~Millo, Richard Lipton, and Alan Perlis.
+\newblock Social processes and proofs of theorems and programs.
+\newblock In Thomas Tymoczko, editor, {\em New Directions in the Philosophy of
+  Mathematics}, pages 267--285. Birkh{\"{a}}user Boston, Inc., Boston, 1986.
+\newblock [QA8.6.N48 1986].
+
+\bibitem{Edwards}
+Robert~E. Edwards.
+\newblock {\em A Formal Background to Mathematics}.
+\newblock Springer-Verlag, New York, 1979.
+\newblock [QA37.2.E38 v.1a].
+
+\bibitem{Enderton}
+Herbert~B. Enderton.
+\newblock {\em Elements of Set Theory}.
+\newblock Academic Press, Inc., San Diego, 1977.
+\newblock [QA248.E5].
+
+\bibitem{Goodstein}
+R.~L. Goodstein.
+\newblock {\em Development of Mathematical Logic}.
+\newblock Springer-Verlag New York Inc., New York, 1971.
+\newblock [QA9.G6554].
+
+\bibitem{Guillen}
+Michael Guillen.
+\newblock {\em Bridges to Infinity}.
+\newblock Jeremy P. Tarcher, Inc., Los Angeles, 1983.
+\newblock [QA93.G8].
+
+\bibitem{Hamilton}
+Alan~G. Hamilton.
+\newblock {\em Logic for Mathematicians}.
+\newblock Cambridge University Press, Cambridge, revised edition, 1988.
+\newblock [QA9.H298].
+
+\bibitem{Harrison}
+John~Robert Harrison.
+\newblock Metatheory and reflection in theorem proving: A survey and critique.
+\newblock Technical Report CRC-053. SRI Cambridge, Millers Yard, Cambridge, UK,
+  1995. Available on the Web as
+  {\verb+http:+}\-{\verb+//www.cl.cam.ac.uk/users/jrh/papers/reflect.html+}.
+
+\bibitem{Harrison-thesis}
+John~Robert Harrison.
+\newblock Theorem proving with the real numbers.
+\newblock Technical Report 408, University of Cambridge Computer
+  Lab\-o\-ra\-to\-ry, New Museums Site, Pembroke Street, Cambridge, CB2 3QG,
+  UK, 1996.
+\newblock Author's PhD thesis, available on the Web at
+  {\verb+http:+}\-{\verb+//www.cl.cam.ac.uk+}\-{\verb+/users+}\-{\verb+/jrh+}%
+  \-{\verb+/papers+}\-{\verb+/thesis.html+}.
+
+\bibitem{Herrlich}
+Horst Herrlich and George~E. Strecker.
+\newblock {\em Category Theory: An Introduction}.
+\newblock Allyn and Bacon Inc., Boston, 1973.
+\newblock [QA169.H567].
+
+\bibitem{Hindley}
+J.~Roger Hindley and David Meredith.
+\newblock Principal type-schemes and condensed detachment.
+\newblock {\em The Journal of Symbolic Logic}, 55:90--105, 1990.
+\newblock [QA.J87].
+
+\bibitem{Hofstadter}
+Douglas~R. Hofstadter.
+\newblock {\em G{\"{o}}del, Escher, Bach}.
+\newblock Basic Books, Inc., New York, 1979.
+\newblock [QA9.H63 1980].
+
+\bibitem{Indrzejczak}
+Andrzej Indrzejczak.
+\newblock Natural deduction, hybrid systems and modal logic.
+\newblock {\em Trends in Logic}, 30, 2010.
+
+\bibitem{Kalish}
+D.~Kalish and R.~Montague.
+\newblock On {T}arski's formalization of predicate logic with identity.
+\newblock {\em Archiv f{\"{u}}r Mathematische Logik und Grundlagenfor\-schung},
+  7:81--101, 1965.
+\newblock [QA.A673].
+
+\bibitem{Kalman}
+J.~A. Kalman.
+\newblock Condensed detachment as a rule of inference.
+\newblock {\em Studia Logica}, 42(4):443--451, 1983.
+\newblock [B18.P6.S933].
+
+\bibitem{Kline}
+Morris Kline.
+\newblock {\em Mathematical Thought from Ancient to Modern Times}.
+\newblock Oxford University Press, New York, 1972.
+\newblock [QA21.K516 1990 v.3].
+
+\bibitem{Klinel}
+Morris Kline.
+\newblock {\em Mathematics, The Loss of Certainty}.
+\newblock Oxford University Press, New York, 1980.
+\newblock [QA21.K525].
+
+\bibitem{Knill}
+Oliver Knill.
+\newblock Some fundamental theorems in mathematics.
+\newblock 2018.
+
+\bibitem{Kramer}
+Edna~E. Kramer.
+\newblock {\em The Nature and Growth of Modern Mathematics}.
+\newblock Princeton University Press, Princeton, New Jersey, 1981.
+\newblock [QA93.K89 1981].
+
+\bibitem{Clemente}
+Daniel~Clemente Laboreo.
+\newblock {\em Introduction to natural deduction}.
+\newblock 2014.
+
+\bibitem{Landau}
+Edmund Landau.
+\newblock {\em Foundations of Analysis}.
+\newblock Chelsea Publishing Company, New York, second edition, 1960.
+\newblock [QA241.L2541 1960].
+
+\bibitem{Leblanc}
+Hugues Leblanc.
+\newblock On {M}eyer and {L}ambert's quantificational calculus {FQ}.
+\newblock {\em The Journal of Symbolic Logic}, 33:275--280, 1968.
+\newblock [QA.J87].
+
+\bibitem{Lejewski}
+Czeslaw Lejewski.
+\newblock On implicational definitions.
+\newblock {\em Studia Logica}, 8:189--208, 1958.
+\newblock [B18.P6.S933].
+
+\bibitem{Levy}
+Azriel Levy.
+\newblock {\em Basic Set Theory}.
+\newblock Dover Publications, Mineola, NY, 2002.
+
+\bibitem{Margaris}
+Angelo Margaris.
+\newblock {\em First Order Mathematical Logic}.
+\newblock Blaisdell Publishing Company, Waltham, Massachusetts, 1967.
+\newblock [QA9.M327].
+
+\bibitem{Mathias}
+Adrian R.~D. Mathias.
+\newblock A term of length 4,523,659,424,929.
+\newblock {\em Synthese}, 133:75--86, 2002.
+\newblock [Q.S993].
+
+\bibitem{Megill}
+Norman~D. Megill.
+\newblock A finitely axiomatized formalization of predicate calculus with
+  equality.
+\newblock {\em Notre Dame Journal of Formal Logic}, 36:435--453, 1995.
+\newblock [QA.N914].
+
+\bibitem{MegillBunder}
+Norman~D. Megill and Martin~W. Bunder.
+\newblock Weaker {D}-complete logics.
+\newblock {\em Journal of the IGPL}, 4:215--225, 1996.
+\newblock Available on the Web at
+  {\verb+http:+}\-{\verb+//www.mpi-sb.mpg.de+}\-{\verb+/igpl+}%
+  \-{\verb+/Journal+}\-{\verb+/V4-2+}\-{\verb+/#Megill+}.
+
+\bibitem{Mendelson}
+Elliott Mendelson.
+\newblock {\em Introduction to Mathematical Logic}.
+\newblock D. Van Nostrand Company, Inc., New York, second edition, 1979.
+\newblock [QA9.M537 1979].
+
+\bibitem{CAMeredith}
+C.~A. Meredith.
+\newblock Single axioms for the systems ({C},{N}), ({C},{O}) and ({A},{N}) of
+  the two-valued propositional calculus.
+\newblock {\em The Journal of Computing Systems}, 3:155--164, 1953.
+
+\bibitem{Meredith}
+David Meredith.
+\newblock In memoriam {C}arew {A}rthur {M}eredith (1904-1976).
+\newblock {\em Notre Dame Journal of Formal Logic}, 18:513--516, 1977.
+\newblock [QA.N914].
+
+\bibitem{Monks}
+J.~Donald Monk.
+\newblock Substitutionless predicate logic with identity.
+\newblock {\em Archiv f{\"{u}}r Mathematische Logik und Grundlagenfor\-schung},
+  7:103--121, 1965.
+
+\bibitem{Moore}
+A.~W. Moore.
+\newblock {\em The Infinite}.
+\newblock Routledge, New York, 1989.
+\newblock [BD411.M59].
+
+\bibitem{Munkres}
+James~R. Munkres.
+\newblock {\em Topology: A First Course}.
+\newblock Prentice-Hall, Inc., Englewood Cliffs, New Jersey, 1975.
+\newblock [QA611.M82].
+
+\bibitem{Nemesszeghy}
+E.~Z. Nemesszeghy and E.~A. Nemesszeghy.
+\newblock On strongly creative definitions: A reply to {V}. {F}. {R}ickey.
+\newblock {\em Logique et Analyse (N.\ S.)}, 20:111--115, 1977.
+\newblock [BC.L832].
+
+\bibitem{Nemeti}
+I.~N{\'{e}}meti.
+\newblock Algebraizations of quantifier logics, an overview.
+\newblock Version 11.4, preprint, Mathematical Institute, Budapest, 1994. A
+  shortened version without proofs appeared in ``Algebraizations of quantifier
+  logics, an introductory overview,'' {\em Studia Logica}, 50:485--569, 1991
+  [B18.P6.S933].
+
+\bibitem{Pavicic}
+M.~Pavi{\v{c}}i{\'{c}}.
+\newblock A new axiomatization of unified quantum logic.
+\newblock {\em International Journal of Theoretical Physics}, 31:1753 --1766,
+  1992.
+\newblock [QC.I626].
+
+\bibitem{Penrose}
+Roger Penrose.
+\newblock {\em The Emperor's New Mind}.
+\newblock Oxford University Press, New York, 1989.
+\newblock [Q335.P415].
+
+\bibitem{PetersonI}
+Ivars Peterson.
+\newblock {\em The Mathematical Tourist}.
+\newblock W. H. Freeman and Company, New York, 1988.
+\newblock [QA93.P475].
+
+\bibitem{Peterson}
+Jeremy~George Peterson.
+\newblock An automatic theorem prover for substitution and detachment systems.
+\newblock {\em Notre Dame Journal of Formal Logic}, 19:119--122, 1978.
+\newblock [QA.N914].
+
+\bibitem{Quine}
+Willard Van~Orman Quine.
+\newblock {\em Set Theory and Its Logic}.
+\newblock The Belknap Press of Harvard University Press, Cambridge,
+  Massachusetts, revised edition, 1969.
+\newblock [QA248.Q7 1969].
+
+\bibitem{Robinson}
+J.~A. Robinson.
+\newblock A machine-oriented logic based on the resolution principle.
+\newblock {\em Journal of the Association for Computing Machinery}, 12:23--41,
+  1965.
+
+\bibitem{Robinsont}
+T.~Thacher Robinson.
+\newblock Independence of two nice sets of axioms for the propositional
+  calculus.
+\newblock {\em The Journal of Symbolic Logic}, 33:265--270, 1968.
+\newblock [QA.J87].
+
+\bibitem{Rucker}
+Rudy Rucker.
+\newblock {\em Infinity and the Mind: The Science and Philosophy of the
+  Infinite}.
+\newblock Bantam Books, Inc., New York, 1982.
+\newblock [QA9.R79 1982].
+
+\bibitem{Russell2}
+Bertrand Russell.
+\newblock Recent work on the principles of mathematics.
+\newblock {\em International Monthly}, 4:84, 1901.
+
+\bibitem{Russell}
+Bertrand Russell.
+\newblock {\em Mysticism and Logic, and Other Essays}.
+\newblock Barnes \& Noble Books, Totowa, New Jersey, 1981.
+\newblock [B1649.R963.M9 1981].
+
+\bibitem{Schmidt}
+Eric Schmidt.
+\newblock Reductions in norman megill's axiom system for complex numbers.
+\newblock 2012.
+
+\bibitem{Shoenfield}
+Joseph~R. Shoenfield.
+\newblock {\em Mathematical Logic}.
+\newblock Addison-Wesley Publishing Company, Inc., Reading, Massachusetts,
+  1967.
+\newblock [QA9.S52].
+
+\bibitem{Solow}
+Daniel Solow.
+\newblock {\em How to Read and Do Proofs: An Introduction to Mathematical
+  Thought Process}.
+\newblock John Wiley \& Sons, New York, 1982.
+\newblock [QA9.S577].
+
+\bibitem{Stark}
+Harold~M. Stark.
+\newblock {\em An Introduction to Number Theory}.
+\newblock Markham Publishing Company, Chicago, 1970.
+\newblock [QA241.S72 1978].
+
+\bibitem{Swart}
+E.~R. Swart.
+\newblock The philosophical implications of the four-color problem.
+\newblock {\em American Mathematical Monthly}, 87:697--707, November 1980.
+\newblock [QA.A5125].
+
+\bibitem{Szpiro}
+George~G. Szpiro.
+\newblock {\em Poincar{\'{e}}'s Prize: The Hundred-Year Quest to Solve One of
+  Math's Greatest Puzzles}.
+\newblock Penguin Books Ltd, London, 2007.
+\newblock [QA43.S985 2007].
+
+\bibitem{Takeuti}
+Gaisi Takeuti and Wilson~M. Zaring.
+\newblock {\em Introduction to Axiomatic Set Theory}.
+\newblock Springer-Verlag New York Inc., New York, second edition, 1982.
+\newblock [QA248.T136 1982].
+
+\bibitem{Tarski}
+Alfred Tarski.
+\newblock What is elementary geometry.
+\newblock In Leon Henkin, Patrick Suppes, and Alfred Tarski, editors, {\em The
+  Axiomatic Method, with Special Reference to Geometry and Physics (Proceedings
+  of an International Symposium held at the University of California, Berkeley,
+  December 26, 1957 --- January 4, 1958)}, pages 16--29, Amsterdam, 1959.
+  North-Holland Publishing Company.
+
+\bibitem{Tarski1965}
+Alfred Tarski.
+\newblock A simplified formalization of predicate logic with identity.
+\newblock {\em Archiv f{\"{u}}r Mathematische Logik und Grundlagenforschung},
+  7:61--79, 1965.
+\newblock [QA.A673].
+
+\bibitem{Tymoczko}
+Thomas Tymoczko, editor.
+\newblock {\em New Directions in the Philosophy of Mathematics}.
+\newblock Birkh{\"{a}}user Boston, Inc., Boston, 1986.
+\newblock [QA8.6.N48 1986].
+
+\bibitem{Wang}
+Hao Wang.
+\newblock Theory and practice in mathematics.
+\newblock In Thomas Tymoczko, editor, {\em New Directions in the Philosophy of
+  Mathematics}, pages 129--152. Birkh{\"{a}}user Boston, Inc., Boston, 1986.
+\newblock [QA8.6.N48 1986].
+
+\bibitem{DBLP:journals/corr/Whalen16}
+Daniel Whalen.
+\newblock Holophrasm: a neural automated theorem prover for higher-order logic.
+\newblock {\em CoRR}, abs/1608.02644, 2016.
+
+\bibitem{Whitehead}
+Alfred~North Whitehead.
+\newblock {\em An Introduction to Mathematics}, 1911.
+
+\bibitem{PM}
+Alfred~North Whitehead and Bertrand Russell.
+\newblock {\em Principia Mathematica}.
+\newblock Cambridge University Press, Cambridge, second edition, 1927.
+\newblock (3 vols.) [QA9.W592 1927].
+
+\bibitem{Wiedijk-revisited}
+Freek Wiedijk.
+\newblock The qed manifesto revisited.
+\newblock 2007.
+
+\bibitem{Wolfram}
+Stephen Wolfram.
+\newblock {\em Mathematica: A System for Doing Mathematics by Computer}.
+\newblock Addison-Wesley Publishing Co., Redwood City, California, second
+  edition, 1991.
+\newblock [QA76.95.W65 1991].
+
+\bibitem{Wos}
+Larry Wos, Ross Overbeek, Ewing Lusk, and Jim Boyle.
+\newblock {\em Automated Reasoning: Introduction and Applications}.
+\newblock McGraw-Hill, Inc., New York, second edition, 1992.
+\newblock [QA76.9.A96.A93 1992].
+
+\end{thebibliography}
