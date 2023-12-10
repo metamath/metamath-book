@@ -504,8 +504,8 @@
   title = "Algebraizations of Quantifier Logics, an Overview",
   note = "Version 11.4, preprint, Mathematical Institute, Budapest,
     1994.  A shortened version without proofs appeared in
-    "`Algebraizations of quantifier logics, an introductory overview,"'
-   {\em Studia Logica}, 50:485--569, 1991 [B18.P6.S933]"}
+    {\glqq }Algebraizations of quantifier logics, an introductory overview{\grqq },
+    {\em Studia Logica}, 50:485--569, 1991 [B18.P6.S933]"}
 @article{Pavicic, author = "M. Pavi{\v{c}}i{\'{c}}",
   title = "A New Axiomatization of Unified Quantum Logic",
   journal = "International Journal of Theoretical Physics",
@@ -747,8 +747,8 @@
 \usepackage[plainpages=false,pdfpagelabels=true]{hyperref}
 
 \usepackage{needspace}     % Enable control over page breaks
-\usepackage{breqn}         % automatic equation breaking
-\usepackage{microtype}     % microtypography, reduces hyphenation
+%% AV (nicht verfügbar, nicht benötigt?): \usepackage{breqn}         % automatic equation breaking
+%% AV (Fehler bei Ausführung, nicht benötigt?): \usepackage{microtype}     % microtypography, reduces hyphenation
 
 % Packages for flexible tables.  We need to be able to
 % wrap text within a cell (with automatically-determined widths) AND
@@ -7329,7 +7329,7 @@ Optionale Befehlszeilenparameter ({\em qualifiers}, es ist jeweils nur ein Param
 \subsection{\texttt{search}-Befehl}\index{\texttt{search}-Befehl}
 
 Syntax:  search {\em label-match}
-\texttt{"`}{\em symbol-match}{\tt}"' [\texttt{/all}] [\texttt{/comments}]
+\texttt{\char`\"}{\em symbol-match}\texttt{\char`\"} [\texttt{/all}] [\texttt{/comments}]
 [\texttt{/join}]
 
 Dieser Befehl durchsucht alle \texttt{\$a}- und \texttt{\$p}-Anweisungen, die mit {\em label-match} übereinstimmen, nach Vorkommen von {\em symbol-match}.  Ein \verb@*@ in {\em label-match} entspricht einem beliebigen Label-Zeichen.  Ein \verb@$*@ in {\em symbol-match} passt auf eine beliebige Folge von Symbolen.  Die Symbole in {\em symbol-match} müssen durch einen Whitespace getrennt sein.  Die Anführungszeichen, die {\em symbol-match} umgeben, können einfache oder doppelte Anführungszeichen sein.  Zum Beispiel listet \texttt{search b}\verb@* "-> $* ch"@ alle Anweisungen auf, deren Label mit \texttt{b} beginnen und die Symbole \verb@->@ und \texttt{ch} enthalten, die eine beliebige Symbolfolge umgeben (einschließlich keiner Symbolfolge).  Die Platzhalter \texttt{?} und \texttt{\$?} sind auch verfügbar, um einzelne Zeichen in Labels bzw. Symbolen zu finden; siehe \texttt{help search} im Metamath-Programm für Details zu ihrer Verwendung. 
@@ -7636,25 +7636,26 @@ Optionale Befehlszeilenparameter:
 
 \subsection{\texttt{let}-Befehl}\index{\texttt{let}-Befehl}
 
-Syntax: \texttt{let variable} {\em variable} = \verb/"`/{\em symbol-sequence}\verb/"'/
+Syntax: \texttt{let variable} {\em variable} = \texttt{\char`\"}{\em symbol-sequence}\texttt{\char`\"}
 
-  und: \texttt{let step} {\em step} = \verb/"`/{\em symbol-sequence}\verb/"'/
+  und: \texttt{let step} {\em step} = \texttt{\char`\"}{\em symbol-sequence}\texttt{\char`\"}
 
 Diese Befehle, die nur im Beweis-Assistenten\index{Beweis-Assistent} verfügbar sind, weisen einer temporären Variable\index{temporäre Variable} oder einem unbekannten Schritt eine bestimmte Symbolfolge zu.  Sie sind während der Erstellung eines Beweises nützlich, wenn Sie wissen, was in dem Beweisschritt enthalten sein soll, der Vereinheitlichungsalgorithmus aber noch nicht genügend Informationen hat, um die temporären Variablen vollständig zu ermitteln.  Eine "`temporäre Variable"' ist eine Variable, die in der Beweisanzeige die Form \texttt{\$}{\em nn} hat, wie z.B. \texttt{\$1}, \texttt{\$2}, usw.  Die {\em Symbolfolge} kann auch andere unbekannte Variablen enthalten, falls gewünscht.  Beispiele: 
 
-    \verb/let variable $32 = "`A = B"'/
+    \verb/let variable $32 = "A = B"/
 
-    \verb/let variable $32 = "`A = $35"'/
+    \verb/let variable $32 = "A = $35"/
 
     \verb/let step 10 = '|- x = x'/
 
-    \verb/let step -2 = "`|- ( $7 = ph )"'/
+    \verb/let step -2 = "|- ( $7 = ph )"/
 
 Für den Befehl \texttt{let variable} wird jede beliebige Symbolfolge akzeptiert.  Für \texttt{let step} werden nur solche Symbolfolgen akzeptiert, die mit dem Schritt vereinheitlicht werden können. 
 
-Die \texttt{let}-Befehle "`knallen"' Informationen in den Beweis, die nur verifiziert werden können, wenn der Beweis weiter aufgebaut wird.  Wenn Sie einen Fehler machen, kann die Befehlssequenz \texttt{delete{\char`\_}floating_hypotheses}, \texttt{initialize all} und \texttt{unify all /interactive} eine falsche \texttt{let}-Zuweisung rückgängig machen. 
+Die \texttt{let}-Befehle "`knallen"' Informationen in den Beweis, die nur verifiziert werden können, wenn der Beweis weiter aufgebaut wird.  Wenn Sie einen Fehler machen, kann die Befehlssequenz \texttt{delete floating{\char`\_}hypotheses},\linebreak
+\texttt{initialize all} und \texttt{unify all /interactive} eine falsche \texttt{let}-Zuweisung rückgängig machen. 
 
-Wenn {\em step} 0 oder negativ ist, wird der -{\em step}-te vom letzten unbekannten Schritt, wie durch \texttt{show new{\char`\_}proof /unknown} gezeigt, verwendet.  Der Befehl \texttt{let step 0} = \verb/"`/{\em symbol-sequence}\verb/"'/ verwendet den letzten unbekannten Schritt, \texttt{let step -1} = \verb/"`/{\em symbol-sequence}\verb/"'/ den vorletzten, usw. Wenn {\em step} positiv ist, kann \texttt{let step} verwendet werden, um sowohl bekannte (im Sinne von zuvor mit \texttt{assign} ein Label zugewiesen) als auch unbekannte Schritte zuzuweisen. 
+Wenn {\em step} 0 oder negativ ist, wird der -{\em step}-te vom letzten unbekannten Schritt, wie durch \texttt{show new{\char`\_}proof /unknown} gezeigt, verwendet.  Der Befehl \texttt{let step 0} = \texttt{\char`\"}{\em symbol-sequence}\texttt{\char`\"} verwendet den letzten unbekannten Schritt, \texttt{let step -1} = \texttt{\char`\"}{\em symbol-sequence}\texttt{\char`\"} den vorletzten, usw. Wenn {\em step} positiv ist, kann \texttt{let step} verwendet werden, um sowohl bekannte (im Sinne von zuvor mit \texttt{assign} ein Label zugewiesen) als auch unbekannte Schritte zuzuweisen. 
 
 Einfache oder doppelte Anführungszeichen können {\em symbol-sequence} um\-ge\-ben, solange sie sich von allen Anführungszeichen innerhalb einer {\em symbol-sequence} unterscheiden.  Wenn {\em symbol-sequence} beide Arten von Anführungs\-zeichen enthält: siehe die Anweisungen am Ende von \texttt{help let} im Metamath-Programm. 
 
@@ -7995,91 +7996,91 @@ In der folgenden Tabelle zeigt die Spalte "`{\sc ASCII}"' die {\sc ASCII}-Darste
 \textbf{ASCII} & \textbf{Symbol} & \textbf{Labels} & \textbf{Beschreibung} \\
 \endhead
 \texttt{|-} & $\vdash$ & &
-  "`Es ist beweisbar, dass..."' \\
+"`Es ist beweisbar, dass..."' \\
 \texttt{ph} & $\varphi$ & \texttt{wph} &
-  Die (boolesche) wff-Variable Phi, üblicherweise die erste wff-Variable. \\
+Die (boolesche) wff-Variable Phi, üblicherweise die erste wff-Variable. \\
 \texttt{ps} & $\psi$ & \texttt{wps} &
-  Die (boolesche) wff-Variable Psi, üblicherweise die zweite wff-Variable. \\  
+Die (boolesche) wff-Variable Psi, üblicherweise die zweite wff-Variable. \\  
 \texttt{ch} & $\chi$ & \texttt{wch} &
-  Die (boolesche) wff-Variable Chi, üblicherweise die dritte wff-Variable. \\  
+Die (boolesche) wff-Variable Chi, üblicherweise die dritte wff-Variable. \\  
 \texttt{-.} & $\lnot$ & \texttt{wn} &
-  Logisch nicht. Wenn z.B. $\varphi$ wahr ist, dann ist $\lnot \varphi$ falsch. \\
+Logisch nicht. Wenn z.B. $\varphi$ wahr ist, dann ist $\lnot \varphi$ falsch. \\
 \texttt{->} & $\rightarrow$ & \texttt{wi} &
 Impliziert, auch als materielle Implikation bezeichnet.   In der klassischen Logik ist der Ausdruck $\varphi \rightarrow \psi$ wahr, wenn entweder $\varphi$ falsch oder $\psi$ wahr ist (oder beides), d.h. $\varphi \rightarrow \psi$ hat die gleiche Bedeutung wie $\lnot \varphi \lor \psi$ (wie in Theorem \texttt{imor} bewiesen). \\
 \texttt{<->} & $\leftrightarrow$ &
-  \hyperref[df-bi]{\texttt{df-bi}} &
-  Bikonditional (auch bekannt als is-equals für boolesche Werte). $\varphi \leftrightarrow \psi$ ist wahr, wenn und nur dann wenn $\varphi$ und $\psi$ den gleichen Wert haben. \\
+\hyperref[df-bi]{\texttt{df-bi}} &
+Bikonditional (auch bekannt als ist-gleich für boolesche Werte). $\varphi \leftrightarrow \psi$ ist wahr, wenn und nur dann wenn $\varphi$ und $\psi$ den gleichen Wert haben.\\
 \texttt{\char`\\/} & $\lor$ &
-  \makecell[tl]{{\hyperref[df-or]{\texttt{df-or}}}, \\
-	         \hyperref[df-3or]{\texttt{df-3or}}} &
-  Disjunktion (logisches "`oder"'). $\varphi \lor \psi$ ist wahr, wenn $\varphi$, $\psi$, oder beide wahr sind. \\
+\makecell[tl]{{\hyperref[df-or]{\texttt{df-or}}}, \\
+	\hyperref[df-3or]{\texttt{df-3or}}} &
+Disjunktion (logisches "`oder"'). $\varphi \lor \psi$ ist wahr, wenn $\varphi$, $\psi$, oder beide wahr sind. \\
 \texttt{/\char`\\} & $\land$ &
-  \makecell[tl]{{\hyperref[df-an]{\texttt{df-an}}}, \\
-                 \hyperref[df-3an]{\texttt{df-3an}}} &
-  Konjunktion (logisches "`und"'). $\varphi \land \psi$ ist wahr, wenn sowohl $\varphi$ als auch $\psi$ wahr sind. \\
+\makecell[tl]{{\hyperref[df-an]{\texttt{df-an}}}, \\
+	\hyperref[df-3an]{\texttt{df-3an}}} &
+Konjunktion (logisches "`und"'). $\varphi \land \psi$ ist wahr, wenn sowohl $\varphi$ als auch $\psi$ wahr sind. \\
 \texttt{A.} & $\forall$ &
-  \texttt{wal} &
-  Für alle; die wff $\forall x \varphi$ ist wahr, wennf $\varphi$ für alle Werte von $x$ wahr ist. \\
+\texttt{wal} &
+Für alle; die wff $\forall x \varphi$ ist wahr, wenn $\varphi$ für alle Werte von $x$ wahr ist. \\
 \texttt{E.} & $\exists$ &
-  \hyperref[df-ex]{\texttt{df-ex}} &
-  Es existiert; die wff $\exists x \varphi$ ist wahr, wenn es mindestens ein $x$ gibt, wo $\varphi$ wahr ist. \\
+\hyperref[df-ex]{\texttt{df-ex}} &
+Es existiert; die wff $\exists x \varphi$ ist wahr, wenn es mindestens ein $x$ gibt, für das $\varphi$ wahr ist. \\
 \texttt{[ y / x ]} & $[ y / x ]$ &
-  \hyperref[df-sb]{\texttt{df-sb}} &
-  Das wff $[ y / x ] \varphi$ liefert das Ergebnis, wenn $y$ in $\varphi$ richtig durch $x$ ersetzt wird ($y$ ersetzt $x$). 
-  % Dies ist elsb4 
-  % ( [ x / y ] z e. y <-> z e. x ) 
-  Zum Beispiel ist $[ x / y ] z \in y$ das gleiche wie $z \in x$. \\
+\hyperref[df-sb]{\texttt{df-sb}} &
+Die wff $[ y / x ] \varphi$ ist das Ergebnis, wenn $y$ in $\varphi$ echt durch $x$ ersetzt wird ($y$ ersetzt $x$). 
+% Dies ist elsb4 
+% ( [ x / y ] z e. y <-> z e. x ) 
+Zum Beispiel ist $[ x / y ] z \in y$ das Gleiche wie $z \in x$. \\
 \texttt{E!} & $\exists !$ &
-  \hyperref[df-eu]{\texttt{df-eu}} &
-  Es gibt genau einen; $\exists ! x \varphi$ ist wahr, wenn es mindestens ein $x$ gibt, bei dem $\varphi$ wahr ist. \\
+\hyperref[df-eu]{\texttt{df-eu}} &
+Es gibt genau ein; $\exists ! x \varphi$ ist wahr, wenn es genau ein $x$ gibt, bei dem $\varphi$ wahr ist. \\
 \texttt{\{ y | phi \}}  & $ \{ y | \varphi \}$ &
-  \hyperref[df-clab]{\texttt{df-clab}} &
-  Die Klasse aller Mengen, in denen $\varphi$ wahr ist. \\
+\hyperref[df-clab]{\texttt{df-clab}} &
+Die Klasse aller Mengen, in denen $\varphi$ wahr ist. \\
 \texttt{=} & $ = $ &
-  \hyperref[df-cleq]{\texttt{df-cleq}} &
-  Klassengleichheit; $A = B$ iff $A$ ist gleich $B$. \\
+\hyperref[df-cleq]{\texttt{df-cleq}} &
+Klassengleichheit; $A = B$ gdw $A$ gleich $B$ ist. \\
 \texttt{e.} & $ \in $ &
-  \hyperref[df-clel]{\texttt{df-clel}} &
-  Klassenzugehörigkeit; $A \in B$, wenn $A$ ein Mitglied von $B$ ist. \\
+\hyperref[df-clel]{\texttt{df-clel}} &
+Klassenzugehörigkeit; $A \in B$ gdw $A$ ein Element von $B$ ist. \\
 \texttt{{\char`\_}V} & {\rm V} &
-  \hyperref[df-v]{\texttt{df-v}} &
-  Klasse aller Mengen (nicht selbst eine Menge). \\
+\hyperref[df-v]{\texttt{df-v}} &
+Klasse aller Mengen (selbst keine Menge). \\
 \texttt{C\_} & $ \subseteq $ &
-  \hyperref[df-ss]{\texttt{df-ss}} &
-  Unterklasse (Untermenge); $A \subseteq B$ ist wahr, wenn und nur dann wenn $A$ eine Unterklasse von $B$ ist. \\
+\hyperref[df-ss]{\texttt{df-ss}} &
+Unterklasse (Untermenge); $A \subseteq B$ ist wahr gdw $A$ eine Unterklasse von $B$ ist. \\
 \texttt{u.} & $ \cup $ &
-  \hyperref[df-un]{\texttt{df-un}} &
-  $A \cup B$ ist die Vereinigung der Klassen $A$ und $B$. \\
-\texttt{i^i} & $ \cap $ &
-  \hyperref[df-in]{\texttt{df-in}} &
-  $A \cap B$ ist die Schnittmenge der Klassen $A$ und $B$. \\
- \texttt{\char`\\} & $ \setminus $ &
-  \hyperref[df-dif]{\texttt{df-dif}} &
-  $A \setminus B$ (Mengenunterschied) ist die Klasse aller Mengen in $A$ mit Ausnahme derjenigen in $B$. \\
+\hyperref[df-un]{\texttt{df-un}} &
+$A \cup B$ ist die Vereinigung der Klassen $A$ und $B$. \\
+\texttt{i\char`\^i} & $ \cap $ &
+\hyperref[df-in]{\texttt{df-in}} &
+$A \cap B$ ist die Schnittmenge der Klassen $A$ und $B$. \\
+\texttt{\char`\\} & $ \setminus $ &
+\hyperref[df-dif]{\texttt{df-dif}} &
+$A \setminus B$ (Klassendifferenz) ist die Klasse aller Mengen in $A$ mit Ausnahme derjenigen in $B$. \\
 \texttt{(/)} & $ \varnothing $ &
-  \hyperref[df-nul]{\texttt{df-nul}} &
-  $ \varnothing $ ist die leere Menge. \\
- \texttt{\char`\~P} & $ \cal P $ &
-  \hyperref[df-pw]{\texttt{df-pw}} &
-  Leistungsklasse. \\
- \texttt{<.\ A , B >.} & $\langle A , B \rangle$ &
-  \hyperref[df-op]{\texttt{df-op}} &
-  Das geordnete Paar $\langle A , B \rangle$. \\
- \texttt{( F ` A )} & $ ( F ` A ) $ &
-  \hyperref[df-fv]{\texttt{df-fv}} &
-  Der Wert der Funktion $F$ bei Anwendung auf $A$. \\
- \texttt{\_i} & $ i $ &
- \texttt{df-i} &
-  Die Quadratwurzel von minus eins. \\
- \texttt{x.} & $ \cdot $ &
- \texttt{df-mul} &
-  Multiplikation komplexer Zahlen; $2~\cdot~3~=~6$. \\
- \texttt{CC} & $ \mathbb{C} $ &
+\hyperref[df-nul]{\texttt{df-nul}} &
+$ \varnothing $ ist die leere Menge. \\
+\texttt{\char`\~P} & $ \cal P $ &
+\hyperref[df-pw]{\texttt{df-pw}} &
+Potenzklasse. \\
+\texttt{<.\ A , B >.} & $\langle A , B \rangle$ &
+\hyperref[df-op]{\texttt{df-op}} &
+Das geordnete Paar $\langle A , B \rangle$. \\
+\texttt{( F ` A )} & $ ( F ` A ) $ &
+\hyperref[df-fv]{\texttt{df-fv}} &
+Der Wert der Funktion $F$ an der Stelle $A$. \\
+\texttt{\_i} & $ i $ &
+\texttt{df-i} &
+Die Quadratwurzel von minus eins. \\
+\texttt{x.} & $ \cdot $ &
+\texttt{df-mul} &
+Multiplikation komplexer Zahlen; $2~\cdot~3~=~6$. \\
+\texttt{CC} & $ \mathbb{C} $ &
 \texttt{df-c} &
 Die Menge der komplexen Zahlen. \\
 \texttt{RR} & $ \mathbb{R} $ &
-  \texttt{df-r} &
-  Die Menge der reellen Zahlen. \\
+\texttt{df-r} &
+Die Menge der reellen Zahlen. \\
 \end{longtabu}
 } % end of extrarowsep}}% }}entfernen
 
@@ -8900,7 +8901,7 @@ Wie auf S.~\pageref{exampleref} erwähnt, entsprechen die Beispiele 1 und 3--6 i
 \index{formales System}
 \index{MIU-System}
 
-Es folgt eine (übersetzte\footnote{Anm. der Übersetzer: Übersetzung angelehnt an die deutschen Übersetzung _Gödel, Escher, Bach: ein Endloses Geflochtenes Band_ (Klett-Cotta, Stuttgart, 1986), S. 37ff.}) Auflistung der Datei \texttt{miu.mm}.  Sie ist selbsterklärend.
+Es folgt eine (übersetzte\footnote{Anm. der Übersetzer: Übersetzung angelehnt an die deutschen Übersetzung von \textit{Gödel, Escher, Bach: ein Endloses Geflochtenes Band} (Klett-Cotta, Stuttgart, 1986), S. 37ff.}) Auflistung der Datei \texttt{miu.mm}.  Sie ist selbsterklärend.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
