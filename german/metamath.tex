@@ -1,4 +1,4 @@
-% metamath.tex - Version of 18-Nov-2023
+% metamath.tex - Version of 11-Dec-2023
 % If you change the date above, also change the "Printed date" below.
 % SPDX-License-Identifier: CC0-1.0
 %
@@ -28,6 +28,9 @@
 % Margaret E. Myers (Division Director of the Information Technology
 % and Systems Division) on 2019-05-24 and by Ben Lindorf (General Counsel)
 % on 2019-05-22.
+%
+% Georg M. van der Vekens and Alexander W. van der Vekens also donate their
+% German translation of this file to the public domain per the CC0.
 
 % This file, 'metamath.tex', is self-contained with everything needed to
 % generate the the PDF file 'metamath.pdf' (the _Metamath_ book) on
@@ -748,7 +751,7 @@
 
 \usepackage{needspace}     % Enable control over page breaks
 %% AV (nicht verfügbar, nicht benötigt?): \usepackage{breqn}         % automatic equation breaking
-%% AV (Fehler bei Ausführung, nicht benötigt?): \usepackage{microtype}     % microtypography, reduces hyphenation
+\usepackage{microtype}     % microtypography, reduces hyphenation
 
 % Packages for flexible tables.  We need to be able to
 % wrap text within a cell (with automatically-determined widths) AND
@@ -881,8 +884,8 @@ Deutsche Übersetzung von \\
 $\sim$\ {\sc Public Domain}\ $\sim$
 
 \vspace{2ex}
-Dieses Buch (einschließlich seiner späteren Überarbeitungen) wurde von Norman Megill gemäß der 'Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication' in die Public Domain veröffentlicht. 
-David A. Wheeler hat selbiges getan. Diese Public Domain Veröffentlichung gilt weltweit. Für den Fall, dass dies rechtlich nicht möglich ist, wird das Recht eingeräumt, das Werk für jeden Zweck zu nutzen, ohne irgendwelche Bedingungen, es sei denn, solche Bedingungen sind gesetzlich vorgeschrieben.
+Dieses Buch (einschließlich seiner späteren Überarbeitungen und Übersetzungen) wurde von Norman Megill gemäß der 'Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication' in die Public Domain veröffentlicht. 
+David A. Wheeler, Georg M. van der Vekens und Alexander W. van der Vekens haben selbiges getan. Diese Public Domain Veröffentlichung gilt weltweit. Für den Fall, dass dies rechtlich nicht möglich ist, wird das Recht eingeräumt, das Werk für jeden Zweck zu nutzen, ohne irgendwelche Bedingungen, es sei denn, solche Bedingungen sind gesetzlich vorgeschrieben.
 Siehe \url{https://creativecommons.org/publicdomain/zero/1.0/}.
 
 \vspace{3ex}
@@ -1094,7 +1097,7 @@ Dank gebührt zunächst meiner Frau Deborah (die am 4. September 1998 verstorben
 
 \subsubsection{Notiz hinzugefügt am 22. Juni 2005}\label{note2002}
 
-Die ursprüngliche, unveröffentlichte Version dieses Buches wurde 1997 geschrie\-ben und über das Internet verbreitet.  Die vorliegende Ausgabe wurde aktualisiert, um das aktuelle Metamath-Programm und die Datenbasen sowie aktuellere {\sc url}s für Internet-Seiten wiederzugeben.  Dank an Josh Purinton\index{Purinton, Josh}, One Hand Clapping, Mel L.\ O'Cat und Roy F. Longton für das Aufzeigen von typografischen und anderen Fehler.  Ich habe auch von zahlreichen Diskussionen mit Raph Levien\index{Levien, Raph} profitiert, der Metamaths Philosophie der Strenge erweitert hat, was in seine Beweissprache {\em Ghilbert}\index{Ghilbert} (\url{http://ghilbert.org}) resultierte.
+Die ursprüngliche, unveröffentlichte Version dieses Buches wurde 1997 geschrieben und über das Internet verbreitet.  Die vorliegende Ausgabe wurde aktualisiert, um das aktuelle Metamath-Programm und die Datenbasen sowie aktuellere {\sc url}s für Internet-Seiten wiederzugeben.  Dank an Josh Purinton\index{Purinton, Josh}, One Hand Clapping, Mel L.\ O'Cat und Roy F. Longton für das Aufzeigen von typografischen und anderen Fehler.  Ich habe auch von zahlreichen Diskussionen mit Raph Levien\index{Levien, Raph} profitiert, der Metamaths Philosophie der Strenge erweitert hat, was in seine Beweissprache {\em Ghilbert}\index{Ghilbert} (\url{http://ghilbert.org}) resultierte.
 
 Robert (Bob) Solovay\index{Solovay, Robert} teilte ein neues Ergebnis von A.~R.~D.~Mathias über das System von Bourbaki mit, und der Text wurde entsprechend aktualisiert (S.~\pageref{bourbaki}).
 
@@ -1778,9 +1781,9 @@ Im Gegensatz dazu ist Metamath ein Beweisverifizierer und Dokumentierer, dessen 
 
 \section{Die Mathematik und Metamath}
 
-\subsection{Standard-Mathematik}
+\subsection{Standardmathematik}
 
-Es gibt eine Reihe von Möglichkeiten, Metamath\index{Metamath} für die Standard-Mathematik zu benutzen.  Der philosophisch befriedigendste Weg ist, ganz am Anfang zu beginnen und die gewünschte Mathematik aus den Axiomen der Logik und Mengenlehre zu entwickeln.  Dies ist der Ansatz, der in der
+Es gibt eine Reihe von Möglichkeiten, Metamath\index{Metamath} für die Standardmathematik zu benutzen.  Der philosophisch befriedigendste Weg ist, ganz am Anfang zu beginnen und die gewünschte Mathematik aus den Axiomen der Logik und Mengenlehre zu entwickeln.  Dies ist der Ansatz, der in der
 \texttt{set.mm}\index{Mengenlehre-Datenbasis (\texttt{set.mm})}%
 \index{Metamath Proof Explorer}
 Datenbasis (auch bekannt als Metamath Proof Explorer) angewandt wird.
@@ -2757,7 +2760,7 @@ Es stellt sich heraus, dass das Leermengenaxiom, das Paarmengenaxiom und das Aus
 
 \subsection{Andere Axiome}
 
-Oben haben wir die Formulierung "`die gesamte Mathematik"' mit "`im Wesentlichen"' relativiert. Das wichtigste fehlende Element ist die Fähigkeit zur Kategorientheorie, die riesige Mengen (unzugängliche Kardinalzahlen) erfordert, die größer sind als die, die von den ZFC-Axiomen abgeleitet werden können. Das Tarski-Grothendieck-Axiom postuliert die Existenz solcher Mengen. Man beachte, dass dies dasselbe Axiom ist, das von Mizar zur Unterstützung der Kategorientheorie verwendet wird. Das Tarski-Grothendieck-Axiom kann als ein sehr starker Ersatz für das Unendlichkeitsaxiom, das Auswahlaxiom und das Potenzmengenaxiom angesehen werden. Die Datenbasis \texttt{set.mm} enthält dieses Axiom; Einzelheiten dazu finden Sie in der Datenbasis. Auch dieses Axiom wird nur verwendet, wenn es absolut notwendig ist. Sie werden diesem Axiom wahrscheinlich nur begegnen oder es verwenden, wenn Sie sich mit der Kategorientheorie beschäftigen, da seine Verwendung hochspezialisiert ist. Daher werden wir das Tarsky-Grothendieck-Axiom in der folgenden kurzen Liste von Axiomen nicht aufführen.
+Oben haben wir die Formulierung "`die gesamte Mathematik"' mit "`im Wesentlichen"' relativiert. Das wichtigste fehlende Element ist die Fähigkeit zur Kategorientheorie, die riesige Mengen (unzugängliche Kardinalzahlen) erfordert, die größer sind als die, die von den ZFC-Axiomen abgeleitet werden können. Das Tarski-Grothendieck-Axiom postuliert die Existenz solcher Mengen. Man beachte, dass dies dasselbe Axiom ist, das von Mizar zur Unterstützung der Kategorientheorie verwendet wird. Das Tarski-Grothendieck-Axiom kann als ein sehr starker Ersatz für das Unendlichkeitsaxiom, das Auswahlaxiom und das Potenzmengenaxiom angesehen werden. Die Datenbasis \texttt{set.mm} enthält dieses Axiom; Einzelheiten dazu finden Sie in der Datenbasis. Auch dieses Axiom wird nur verwendet, wenn es absolut notwendig ist. Sie werden diesem Axiom wahrscheinlich nur begegnen oder es verwenden, wenn Sie sich mit der Kategorientheorie beschäftigen, da seine Verwendung hochspezialisiert ist. Daher werden wir das Tarsky-Grothendieck-Axiom in der folgenden kurzen Liste von Axiomen nicht auf\-führen.
 
 Kann es noch mehr Axiome geben? Ja, natürlich. G\"{o}del hat gezeigt, dass keine endliche Menge von Axiomen oder Axiomenschemata eine konsistente Theorie, die stark genug ist, um die Arithmetik einzuschließen, vollständig beschreiben kann. Aber praktisch gesehen sind die oben genannten Axiome die anerkannte Grundlage, auf der fast alle Mathematiker explizit oder implizit ihre Arbeit aufbauen.
 
@@ -3931,7 +3934,8 @@ A \TAND y e. A ) -> ( x R y \TOR x = y \TOR y R x ) ) ) ) \$.
 \m{\mbox{\rm ran}}\m{\,F}\m{=}\m{B}\m{)}\m{)}
 \endm
 \begin{mmraw}%
-|- ( F : A -onto-> B <-> ( F Fn A \TAND ran F = B ) ) \$.
+|- ( F : A -onto-> B\linebreak
+<-> ( F Fn A \TAND ran F = B ) ) \$.
 \end{mmraw}
 
 \noindent Definition einer {\bf bijektiven Funktion}\index{bijektive Funktion}.  Vergleiche Definition 6.15(6) von Takeuti und Zaring, S.~27.
@@ -3962,8 +3966,8 @@ A \TAND y e. A ) -> ( x R y \TOR x = y \TOR y R x ) ) ) ) \$.
 \m{B}\m{)}\m{)}
 \endm
 \begin{mmraw}%
-|- ( F : A -1-1-onto-> B <-> ( F : A -1-1-> B \linebreak
-\TAND F : A -onto-> B ) ) \$.
+|- ( F : A -1-1-onto-> B \linebreak
+<-> ( F : A -1-1-> B \TAND F : A -onto-> B ) ) \$.
 \end{mmraw}
 
 \noindent Definition eines {\bf Funktionswertes}\index{Funktionswert}.  Diese Definition gilt für jede Klasse und wird zur leeren Menge ausgewertet, wenn sie nicht sinnvoll ist. Beachten Sie, dass $ F`A$ dasselbe bedeutet wie die bekanntere Notation $ F(A)$ für den Wert einer Funktion an der Stelle $A$.  Die Notation $ F`A$ ist in der formalen Mengenlehre gebräuchlich.\label{df-fv}
@@ -4193,7 +4197,7 @@ Als nächstes beweisen wir die Axiome der Standard-ZF-Mengenlehre, die in unsere
 \endm
 \vskip 1ex
 
-\noindent Das Leermengenaxiom\index{Leermengenaxiom}, bewiesen aus den anderen Axiomen der ZF-Mengen\-lehre. Korollar 5.16 von Takeuti und Zaring, S.~20.
+\noindent Das Leermengenaxiom\index{Leermengenaxiom}, bewiesen aus den anderen Axiomen der ZF-Mengenlehre. Korollar 5.16 von Takeuti und Zaring, S.~20.
 
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ 0ex\ \$p\ }
@@ -4203,7 +4207,7 @@ Als nächstes beweisen wir die Axiome der Standard-ZF-Mengenlehre, die in unsere
 \endm
 \vskip 1ex
 
-\noindent Das Paarmengenaxiom\index{Paarmengenaxiom}, bewiesen aus den anderen Axiomen der ZF Mengenlehre.  Theorem 7.13 von Quine, S. 51.
+\noindent Das Paarmengenaxiom\index{Paarmengenaxiom}, bewiesen aus den anderen Axiomen der ZF-Mengenlehre.  Theorem 7.13 von Quine, S. 51.
 \vskip 0.5ex
 \setbox\startprefix=\hbox{\tt \ \ prex\ \$p\ }
 \setbox\contprefix=\hbox{\tt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
@@ -4755,7 +4759,7 @@ In den folgenden Unterabschnitten besprechen wir zunächst das Standard-Deduktio
 
 Die Informationen, die in der Deduktion oder ihrem Beweis enthalten sind, können genutzt werden, um uns beim Beweis des zugehörigen Theorems zu helfen. In traditionellen Logikbüchern gibt es ein Metatheorem, das sogenannte Deduktionstheorem\index{Deduktionstheorem}\index{Standard-Deduktionstheorem}, das von Herbrand und Tarski um 1930 unabhängig voneinander entdeckt wurde. Das Deduktionstheorem, das wir oft als Standard-Deduktionstheorem bezeichnen, liefert einen Algorithmus für die Konstruktion eines Beweises eines Theorems aus dem Beweis seiner entsprechenden Deduktion. Siehe z. B. \cite[S.~56]{Margaris}\index{Margaris, Angelo}. Um einen Beweis für ein Theorem zu konstruieren, betrachtet der Algorithmus jeden Schritt im Beweis der ursprünglichen Deduktion und ersetzt den Schritt durch mehrere Schritte, wobei die Annahme eliminiert und zu einer Prämisse wird.
 
-In der gewöhnlichen Mathematik führt niemand den Algorithmus tatsächlich aus, weil er (in seiner einfachsten Form) eine exponentielle Explosion der Anzahl der Beweisschritte mit sich bringt, je mehr Annahmen eliminiert werden. Stattdessen beruft man sich auf das Standard-Deduktionstheorem, um zu behaupten, dass der Algorithmus prinzipiell durchführbar ist, ohne ihn tatsächlich auszuführen. Außerdem ist der Algorithmus nicht so einfach, wie er auf den ersten Blick erscheinen mag, wenn man ihn rigoros anwendet. Es gibt eine subtile Einschränkung des Standard-Deduktionstheorems, die bei der Arbeit mit der Prädikatenlogik berücksichtigt werden muss, nämlich das Axiom der Verallgemeinerung (weitere Einzelheiten finden Sie in der Literatur).
+In der gewöhnlichen Mathematik führt niemand den Algorithmus tatsäch\-lich aus, weil er (in seiner einfachsten Form) eine exponentielle Explosion der Anzahl der Beweisschritte mit sich bringt, je mehr Annahmen eliminiert werden. Stattdessen beruft man sich auf das Standard-Deduktionstheorem, um zu behaupten, dass der Algorithmus prinzipiell durchführbar ist, ohne ihn tatsächlich auszuführen. Außerdem ist der Algorithmus nicht so einfach, wie er auf den ersten Blick erscheinen mag, wenn man ihn rigoros anwendet. Es gibt eine subtile Einschränkung des Standard-Deduktionstheorems, die bei der Arbeit mit der Prädikatenlogik berücksichtigt werden muss, nämlich das Axiom der Verallgemeinerung (weitere Einzelheiten finden Sie in der Literatur).
 
 Eines der Ziele von Metamath ist es, mit möglichst wenigen zugrundeliegenden Konzepten deutlich zu machen, wie Mathematik direkt aus den Axiomen abgeleitet werden kann, und nicht indirekt nach irgendwelchen versteckten Regeln, die in einem Programm vergraben sind oder nur von Logikern verstanden werden. Wenn wir das Standard-Deduktionstheorem zur Sprache und zum Beweisverifizierer hinzufügen würden, würde das beides stark verkomplizieren und Metamaths Ziel der Einfachheit weitgehend zunichte machen. Im Prinzip könnten wir direkt Beweise erstellen, indem wir die vom Algorithmus des Standard-Deduktionstheorems generierten Beweisschritte erweitern.  Aber das ist in der Praxis kaum machbar, weil die Anzahl der Beweisschritte schnell riesig, ja sogar astronomisch groß wird. Da der Algorithmus des Standard-Deduktionstheorems durch den Beweis gesteuert wird, müssten wir diesen Beweis noch einmal von vorne durchgehen - ausgehend von den Axiomen -, um das entsprechende Theorem zu erhalten. In Bezug auf die Länge des Beweises würde es keine Einsparungen geben, wenn man das Theorem direkt beweist, anstatt zuerst die Deduktionsform zu beweisen.
 
@@ -5322,7 +5326,7 @@ Beachten Sie, dass aus den ursprünglichen 6 Schritten nun 8 Schritte geworden s
       \flushright\sc  Bertrand Russell\footnote{Frei übersetzt nach \cite[S.~84]{Russell2}.}\\
 \end{quote}\index{Russell, Bertrand}
 
-Das wohl auffälligste Merkmal der Metamath-Sprache ist das fast voll\-stän\-dige Fehlen einer fest verdrahteten Syntax. Metamath\index{Metamath} versteht keine andere Mathematik oder Logik als die, die für die Konstruktion endlicher Symbolfolgen nach einer kleinen Menge einfacher, eingebauter Regeln erforderlich ist.  Die einzige Regel für Beweise ist die Ersetzung einer Variablen durch einen Ausdruck (Symbolfolge) mit einer einfachen Variablenbinschränkung, um Kollisionen zwischen gebundenen Variablen zu verhindern.  Die primitiven Konzepte, die in Metamath eingebaut sind, beinhalten die einfache Manipulation von endlichen Objekten (Symbolen), die wir uns als Menschen leicht vergegenwärtigen können und mit denen Computer leicht umgehen können.  Sie scheinen so ziemlich die einfachsten Konzepte zu sein, die für die Standardmathematik erforderlich sind.
+Das wohl auffälligste Merkmal der Metamath-Sprache ist das fast voll\-stän\-dige Fehlen einer fest verdrahteten Syntax. Metamath\index{Metamath} versteht keine andere Mathematik oder Logik als die, die für die Konstruktion endlicher Symbolfolgen nach einer kleinen Menge einfacher, eingebauter Regeln erforderlich ist.  Die einzige Regel für Beweise ist die Ersetzung einer Variablen durch einen Ausdruck (Symbolfolge) mit einer einfachen Variableneinschränkung, um Kollisionen zwischen gebundenen Variablen zu verhindern.  Die primitiven Konzepte, die in Metamath eingebaut sind, beinhalten die einfache Manipulation von endlichen Objekten (Symbolen), die wir uns als Menschen leicht vergegenwärtigen können und mit denen Computer leicht umgehen können.  Sie scheinen so ziemlich die einfachsten Konzepte zu sein, die für die Standardmathematik erforderlich sind.
 
 Dieses Kapitel dient als Nachschlagewerk für die Sprache Metamath\index{Metamath}. Es behandelt die langwierigen technischen Details der Sprache, von denen Sie einige beim ersten Lesen vielleicht überfliegen möchten.  Andererseits sollten Sie den definierten Begriffen in {\bf Fettschrift} große Aufmerksamkeit schenken; sie haben präzise Bedeutungen, die Sie sich für das spätere Verständnis merken sollten.  Am besten machen Sie sich zunächst mit den Beispielen in Kapitel~\ref{using} vertraut, um eine gewisse Motivation für die Sprache zu erhalten.
 
@@ -5510,7 +5514,7 @@ Metamath hat die Möglichkeit, mehrere Dateien zusammenzufügen, um die Eingabe 
 %May have to adjust if text changes
 %\newpage
 
-Es gibt einige zusätzliche Schlüsselwörter, genannt {\bf Hilfsschlüsselwörter}\index{Hilfsschlüsselwort}, die hilfreich für das Arbeiten mit Metamath\index{Metamath} sind. Diese sind Teil der {\bf erweiterten Sprache}\index{erweiterte Sprache}. Sie bieten Ihnen die Möglichkeit, Kommentare in eine Metamath-Quelldatei\index{Quelldatei} einzufügen und auf andere Quelldateien zu verweisen.  Wir werden diese in späteren Abschnitten vorstellen. Tabelle~\ref{otherkeywords} fasst sie zusammen, so dass Sie diese beim Durchsehen einiger Quelldateien zum Lernen der grundlegenden Schlüsselwörter erkennen können.
+Es gibt einige zusätzliche Schlüsselwörter, {\bf Hilfsschlüsselwörter}\index{Hilfsschlüsselwort} genannt, die hilfreich für das Arbeiten mit Metamath\index{Metamath} sind. Diese sind Teil der {\bf erweiterten Sprache}\index{erweiterte Sprache}. Sie bieten Ihnen die Möglichkeit, Kommentare in eine Metamath-Quelldatei\index{Quelldatei} einzufügen und auf andere Quelldateien zu verweisen.  Wir werden diese in späteren Abschnitten vorstellen. Tabelle~\ref{otherkeywords} fasst sie zusammen, so dass Sie diese beim Durchsehen einiger Quelldateien zum Lernen der grundlegenden Schlüsselwörter erkennen können.
 
 \begin{table}[htp] \caption{Hilfsschlüsselwörter in Methamath} \label{otherkeywords}
 \begin{center}
@@ -5854,7 +5858,7 @@ The variables it contains are:  x y ph
 
 Da Metamath immer erkennt, wenn \texttt{\$d}\index{\texttt{\$d}-Anweisung}-Anweisungen für einen Beweis benötigt werden, brauchen Sie sich keine Sorgen zu machen, dass Sie vergessen haben, eine entsprechende Anweisung einzufügen; sie kann immer hinzugefügt werden, wenn Sie die obige Fehlermeldung sehen.  Wenn Sie unnötige \texttt{\$d}-Anweisungen einfügen, kann es schlimmstenfalls passieren, dass Ihr Theorem nicht so allgemein ist wie es sein könnte, und dies kann seine spätere Verwendung einschränken.
 
-Andererseits muss man bei der Einführung von Axiomen (\texttt{\$a}\index{\texttt{\$a}-Anweisung}-Anweisungen) sehr vorsichtig sein, um die notwendigen zugehörigen \texttt{\$d}-Anweisungen richtig anzugeben, da Metamath keine Möglichkeit hat zu prüfen, ob die Axiome korrekt sind.  Metamath hätte zum Beispiel keine Kenntnis darüber, dass \texttt{ax-c16}, das wir als ein Axiom der Logik betrachten, zu Widersprüchen führen würde, wenn wir seine zugehörige \texttt{\$d}-Anweisung weglassen.
+Andererseits muss man bei der Einführung von Axiomen (\texttt{\$a}\index{\texttt{\$a}-Anweisung}-Anweisun\-gen) sehr vorsichtig sein, um die notwendigen zugehörigen \texttt{\$d}-Anweisungen richtig anzugeben, da Metamath keine Möglichkeit hat zu prüfen, ob die Axiome korrekt sind.  Metamath hätte zum Beispiel keine Kenntnis darüber, dass \texttt{ax-c16}, das wir als ein Axiom der Logik betrachten, zu Widersprüchen führen würde, wenn wir seine zugehörige \texttt{\$d}-Anweisung weglassen.
 
 % This was previously a comment in footnote-sized type, but it can be
 % hard to read this much text in a small size.
@@ -6123,7 +6127,7 @@ Betrachten wir zum Beispiel die folgende Datenbasis, in der wir alle Token auße
 \]
 Zu jeder \texttt{\$\char`\{}-Anweisung in diesem Beispiel {\bf gehört} die \texttt{\$\char`\}}-Anweisung mit demselben Index.  Jedes Paar von so zusammengehörenden Anweisungen definiert einen Bereich der Datenbasis, der als {\bf Block}\index{Block} bezeichnet wird. Blöcke können innerhalb anderer Blöcke {\bf verschachtelt} werden; im Beispiel, ist der Block, der durch $\mbox{\tt \$\char`\{}_4$ und $\mbox{\tt \$\char`\}}_4$ definiert ist, innerhalb des Blocks verschachtelt, der durch $\mbox{\tt \$\char`\{}_3$ und $\mbox{\tt \$\char`\}}_3$ sowie innerhalb des durch $\mbox{\tt \$\char`\{}_1$ und $\mbox{\tt \$\char`\}}_1$ definierten Blocks.  Im Allgemeinen kann ein Block leer sein, er kann nur Anweisungen enthalten, die keine Gültigkeitsbereichsanweisungen sind\footnote{Die Anweisungen, die nicht \texttt{\$\char`\{} und \texttt{\$\char`\}} sind.} oder er kann eine beliebige Mischung aus anderen Blöcken und Anweisungen, die keine Gültigkeitsbereichsanweisungen sind, enthalten.  (Dies wird eine "`rekursive"' Definition\index{rekursive Definition} eines Blocks genannt.)
 
-Jedem Block ist eine Nummer zugeordnet, die als seine {\bf Verschachtelungs\-tiefe}\index{Verschachtelungstiefe} bezeichnet wird und angibt, wie tief der Block verschachtelt ist. Die Verschachtelungstiefe der Blöcke in unserem Beispiel sind wie folgt:
+Jedem Block ist eine Nummer zugeordnet, die als seine {\bf Verschachtelungstiefe}\index{Verschachtelungstiefe} bezeichnet wird und angibt, wie tief der Block verschachtelt ist. Die Verschachtelungstiefe der Blöcke in unserem Beispiel sind wie folgt:
 \[
   \underbrace{
     \mbox{\tt \ }
@@ -6546,12 +6550,13 @@ zum Beispiel
 \end{verbatim}
 Beim {\em keyword} wird nicht zwischen Groß- und Kleinschreibung unterschieden, und es muss einer der folgenden Begriffe verwendet werden\footnote{Anm. der Übersetzer: angepasst an Metamath - Version 0.198 7-Aug-2021}:
 \begin{verbatim}    
-     Axiom Chapter Claim Compare Conclusion Condition Conjecture
-     Corollary Definition Equation Example Exercise Fact Figure
-     Introduction Item Lemma Lemmas Line Lines Notation Note
-     Observation Paragraph Part Postulate Problem Proof Property
-     Proposition Remark Result Rule Scheme Scolia Scolion Section
-     Statement Subsection Table Theorem
+     Axiom Chapter Claim Compare Conclusion Condition
+     Conjecture Corollary Definition Equation Example
+     Exercise Fact Figure Introduction Item Lemma Lemmas
+     Line Lines Notation Note Observation Paragraph Part
+     Postulate Problem Proof Property Proposition Remark
+     Result Rule Scheme Scolia Scolion Section Statement
+     Subsection Table Theorem
 \end{verbatim}
 Das optionale {\em label} kann aus mehr als einem Wort (nicht {\em keyword} und nicht {\em noise-word}) bestehen. Das optionale {\em noise-word} ist eines der folgenden:
 \begin{verbatim}
@@ -6668,7 +6673,7 @@ Kommentare im {\sc c}-Stil \texttt{/*}\ldots\texttt{*/} werden ebenso unterstüt
 
 In der Praxis werden Sie oft Satzdefinitionen mit \texttt{latexdef}, \texttt{htmldef} und \texttt{althtmldef} wie unten beschrieben hinzufügen wollen, wenn Sie ein neues mathematisches Token ergänzen. Auf diese Weise werden sie alle auf dem neuesten Stand sein. Ob Sie alle drei Definitionen verwenden wollen oder nicht, hängt natürlich davon ab, wie die Datenbasis verwendet werden soll.
 
-Im Folgenden werden die verschiedenen möglichen \textit{definition-type}-Optionen erörtert. Wir zeigen die Daten in doppelten Anführungszeichen (in der Praxis können sie auch in einfachen Anführungszeichen stehen und/oder eine durch \texttt{+}s verbundene Sequenz sein). Wir werden spezifische Namen für die \textit{data} verwenden, um zu verdeutlichen, wofür die Daten verwendet werden, z. B. {\em Mathe-Token} (für ein Metamath-Mathematik-Token), {\em Latex-string} (für eine Zeichenkette, die in einen \LaTeX-Text eingefügt werden soll), {\em {\sc html}-code} (für {\sc html}-Code) und {\em filename} (für einen Dateinamen).
+Im Folgenden werden die verschiedenen möglichen \textit{definition-type}-Optio\-nen erörtert. Wir zeigen die Daten in doppelten Anführungszeichen (in der Praxis können sie auch in einfachen Anführungszeichen stehen und/oder eine durch \texttt{+}s verbundene Sequenz sein). Wir werden spezifische Namen für die \textit{data} verwenden, um zu verdeutlichen, wofür die Daten verwendet werden, z. B. {\em Mathe-Token} (für ein Metamath-Mathematik-Token), {\em Latex-string} (für eine Zeichenkette, die in einen \LaTeX-Text eingefügt werden soll), {\em {\sc html}-code} (für {\sc html}-Code) und {\em filename} (für einen Dateinamen).
 
 \subsubsection{Schriftsatzkommentar - \LaTeX}
 
@@ -6848,7 +6853,7 @@ Normalerweise brauchen Sie sich nicht mit den Details des komprimierten Beweisfo
 
 Die  erste Klammer \texttt{(} dient als Kennzeichen für Metamath, dass ein komprimierter Beweis folgt.  Die {\em label-list} enthält alle Anweisungen, auf die sich der Beweis bezieht, mit Ausnahme der obligatorischen Hypothesen\index{obligatorische Hypothese}.  Das {\em compressed-proof} ist eine kompakte Kodierung des Beweises unter Verwendung von Großbuchstaben und kann als eine große ganze Zahl zur Basis 26 angesehen werden.  Das Whitespace\index{Whitespace} innerhalb eines {\em compressed-proof} ist optional und wird ignoriert.
 
-Es ist wichtig zu beachten, dass die Reihenfolge der obligatorischen Hypothesen der zu beweisenden Anweisung nicht geändert werden darf, wenn das komprimierte Beweisformat verwendet wird, da der Beweis sonst falsch wird.  Der Grund dafür ist, dass die obligatorischen Hypothesen im komprimierten Beweis nicht explizit erwähnt werden, um die Komprimierung effizienter zu gestalten. Wenn Sie die Reihenfolge der obligatorischen Hypothesen ändern möchten, müssen Sie den Beweis zunächst wieder in das normale Format konvertieren, indem Sie die Anweisung \texttt{save proof {\em statement} /normal}\index{\texttt{save proof}-Befehl} ausführen. Später können Sie mit dem Befehl \texttt{save proof {\em statement} /compressed} wieder in das komprimierte Format wechseln. 
+Es ist wichtig zu beachten, dass die Reihenfolge der obligatorischen Hypothesen der zu beweisenden Anweisung nicht geändert werden darf, wenn das komprimierte Beweisformat verwendet wird, da der Beweis sonst falsch wird.  Der Grund dafür ist, dass die obligatorischen Hypothesen im komprimierten Beweis nicht explizit erwähnt werden, um die Komprimierung effizienter zu gestalten. Wenn Sie die Reihenfolge der obligatorischen Hypothesen ändern möchten, müssen Sie den Beweis zunächst wieder in das normale Format konvertieren, indem Sie die Anweisung \texttt{save proof} \texttt{{\em statement} /normal}\index{\texttt{save proof}-Befehl} ausführen. Später können Sie mit dem Befehl \texttt{save proof} \texttt{{\em statement} /compressed} wieder in das komprimierte Format wechseln. 
 
 Bei der Fehlerprüfung mit dem Befehl \texttt{verify proof} kann ein in einem komprimierten Beweis gefundener Fehler auf ein Zeichen in {\em compressed-proof} verweisen, das für Sie möglicherweise nicht sehr aussagekräftig ist.  Versuchen Sie in diesem Fall zuerst \texttt{save proof /normal} und führen Sie dann den Befehl \texttt{verify proof} erneut aus.  Im Allgemeinen ist es am besten sich zu vergewissern, dass ein Beweis korrekt ist, bevor man ihn im komprimierten Format speichert, da schwere Fehler mit geringerer Wahrscheinlichkeit wiederhergestellt werden können als im normalen Format. 
 
@@ -7037,7 +7042,7 @@ Zweitens führen wir eine Definitionsprüfung durch, die spezifisch für \texttt
 
 \end{enumerate}
 
-\subsection{Zusammenfassung des Metamath-Ansatzes für Definitionen}
+\subsection{Zusammenfassung des Metamath-Ansatzes für\\ Definitionen}
 
 Kurz gesagt, bei einem rigorosen Vorgehen stellt sich heraus, dass Definitionen subtil sein können und manchmal schwierige Metatheoreme erfordern, um zu beweisen, dass sie nicht kreativ sind. 
 
@@ -7067,7 +7072,7 @@ Um Metamath von einem Windows-Konsolenfenster aus aufzurufen, geben Sie Folgende
 C:\metamath>metamath 
 \end{verbatim} 
 
-Um Befehlszeilenargumente beim Aufruf zu verwenden, sollten die Befehlszeilenargumente eine Liste von Metamath-Befehlen sein, die von Anführungszeichen umgeben sind, wenn sie Leerzeichen enthalten.  Unter Windows müssen die umgebenden Anführungszeichen doppelte (nicht einfache) Anführungszeichen sein.  Um zum Beispiel die Datenbasisdatei \texttt{set.mm} zu lesen, alle Beweise zu überprüfen und das Programm zu beenden, geben Sie (unter Unix) Folgendes ein:
+Um Befehlszeilenargumente beim Aufruf zu verwenden, sollten die Befehlszeilenargumente eine Liste von Metamath-Befehlen sein, die von Anfüh\-rungszeichen umgeben sind, wenn sie Leerzeichen enthalten.  Unter Windows müssen die umgebenden Anführungszeichen doppelte (nicht einfache) Anführungszeichen sein.  Um zum Beispiel die Datenbasisdatei \texttt{set.mm} zu lesen, alle Beweise zu überprüfen und das Programm zu beenden, geben Sie (unter Unix) Folgendes ein:
 \begin{verbatim} 
 bash$ ./metamath 'read set.mm' 'verify proof *' exit 
 \end{verbatim} Beachten Sie, dass unter Unix jeder Verzeichnispfad mit \texttt{/}'s von Anführungszeichen umgeben sein muss, damit Metamath das \texttt{/} nicht als Befehlszeilenparameter interpretiert.  Wenn also \texttt{set.mm} im Verzeichnis \texttt{/tmp} liegt, verwenden Sie für das obige Beispiel 
@@ -7497,7 +7502,8 @@ Die folgenden Befehle stehen im Proof-Assistenten (an der Eingabeaufforderung \t
 \item[]
     \texttt{initialize} {\em step} (oder \texttt{all}) - Entkoppelt das Ziel und die Quelle eines Schritts (oder aller Schritte) sowie die Hypothesen der Quelle und macht alle Variablen in der Quelle unbekannt.  Nützlich, um einen \texttt{assign}- oder \texttt{let}-Fehler zu beheben, der zu falschen Vereinheitlichungen führte.
 \item[]
-    \texttt{delete} {\em step} (oder \texttt{all} oder \texttt{floating{\char`\_}hypotheses}) - Löscht den/die angegebenen Schritt(e).  \texttt{delete floating{\char`\_}hypotheses}, dann \texttt{initialize all}, dann \texttt{unify all /interactive} ist nützlich, um Fehler zu beheben, bei denen falsche Vereinheitlichungen den Variablen falsche mathematische Symbolfolgen zugewiesen haben.
+    \texttt{delete} {\em step} (oder \texttt{all} oder \texttt{floating{\char`\_}hypotheses}) - Löscht den/die angegebenen Schritt(e).  \texttt{delete floating{\char`\_}hypotheses}, dann\linebreak
+    \texttt{initialize all}, dann \texttt{unify all /interactive} ist nützlich, um Fehler zu beheben, bei denen falsche Vereinheitlichungen den Variablen falsche mathematische Symbolfolgen zugewiesen haben.
 \item[]
     \texttt{improve} {\em step} (oder \texttt{all}) - Erstellt automatisch einen Beweis für Schritte (ohne unbekannte Variablen), deren Beweis keine Anweisungen mit \texttt{\$e}-Hypothesen erfordert.  Nützlich zum Ausfüllen von Beweisen für \texttt{\$f}-Hypothesen.  Die Option \texttt{/depth} versucht dies auch mit Anweisungen, deren \texttt{\$e}-Hypothesen keine neuen Variablen enthalten.  {Warnung:} Speichern Sie Ihre Arbeit (mit \texttt{save new{\char`\_}proof} und dann \texttt{write source}), bevor Sie \texttt{/depth = 2} oder größer verwenden, da die Suchzeit exponentiell ansteigt und möglicherweise nie in einer angemessenen Zeit beendet wird, und Sie können die Suche nicht unterbrechen.  Ich habe festgestellt, dass \texttt{/depth = 3} oder größer nur selten nützlich ist.
  \item[]
@@ -7652,7 +7658,7 @@ Diese Befehle, die nur im Beweis-Assistenten\index{Beweis-Assistent} verfügbar 
 
 Für den Befehl \texttt{let variable} wird jede beliebige Symbolfolge akzeptiert.  Für \texttt{let step} werden nur solche Symbolfolgen akzeptiert, die mit dem Schritt vereinheitlicht werden können. 
 
-Die \texttt{let}-Befehle "`knallen"' Informationen in den Beweis, die nur verifiziert werden können, wenn der Beweis weiter aufgebaut wird.  Wenn Sie einen Fehler machen, kann die Befehlssequenz \texttt{delete floating{\char`\_}hypotheses},\linebreak
+Die \texttt{let}-Befehle "`knallen"' Informationen in den Beweis, die nur verifiziert werden können, wenn der Beweis weiter aufgebaut wird.  Wenn Sie einen \mbox{Fehler} machen, kann die Befehlssequenz \texttt{delete floating{\char`\_}hypotheses},
 \texttt{initialize all} und \texttt{unify all /interactive} eine falsche \texttt{let}-Zuweisung rückgängig machen. 
 
 Wenn {\em step} 0 oder negativ ist, wird der -{\em step}-te vom letzten unbekannten Schritt, wie durch \texttt{show new{\char`\_}proof /unknown} gezeigt, verwendet.  Der Befehl \texttt{let step 0} = \texttt{\char`\"}{\em symbol-sequence}\texttt{\char`\"} verwendet den letzten unbekannten Schritt, \texttt{let step -1} = \texttt{\char`\"}{\em symbol-sequence}\texttt{\char`\"} den vorletzten, usw. Wenn {\em step} positiv ist, kann \texttt{let step} verwendet werden, um sowohl bekannte (im Sinne von zuvor mit \texttt{assign} ein Label zugewiesen) als auch unbekannte Schritte zuzuweisen. 
@@ -7681,7 +7687,8 @@ Syntax:  \texttt{initialize step} {\em step}
 
     und: \texttt{initialize all}
 
-Diese Befehle, die nur im Beweis-Assistenten\index{Beweis-Assistent} verfügbar sind, "`ent-unifizie\-ren"' das Ziel und die Quelle eines Schrittes (oder aller Schritte), sowie die Hypothesen der Quelle, und machen alle Variablen in der Quelle und die Hypothesen der Quelle unbekannt.  Dieser Befehl ist nützlich, um einen Beweis nach einer falsche Vereinheitlichungen, die durch ein falsches \texttt{assign}, ein falsches \texttt{let} oder einer falschen automatischen Zuordnung entstanden sind, wiederherzustellen.  Ein Teil oder die gesamte Befehlssequenz \texttt{delete floating{\char`\_}hypotheses}, \texttt{initialize all} und \texttt{unify all /interactive} wird den Beweis nach falschen Vereinheitlichungen wiederherstellen.
+Diese Befehle, die nur im Beweis-Assistenten\index{Beweis-Assistent} verfügbar sind, "`ent-unifizie\-ren"' das Ziel und die Quelle eines Schrittes (oder aller Schritte), sowie die Hypothesen der Quelle, und machen alle Variablen in der Quelle und die Hypothesen der Quelle unbekannt.  Dieser Befehl ist nützlich, um einen Beweis nach einer falsche Vereinheitlichungen, die durch ein falsches \texttt{assign}, ein falsches \texttt{let} oder einer falschen automatischen Zuordnung entstanden sind, wiederherzustellen.  Ein Teil oder die gesamte Befehlssequenz \texttt{delete floating{\char`\_}hypotheses}, \texttt{initialize all} und \texttt{unify all /interactive}\linebreak
+wird den Beweis nach falschen Vereinheitlichungen wiederherstellen.
 
 Siehe auch:  \texttt{unify} und \texttt{delete}
 
@@ -7693,11 +7700,13 @@ Syntax:  \texttt{delete step} {\em step}
 
    und:      \texttt{delete floating{\char`\_}hypotheses}
 
-Diese Befehle sind nur im Beweis-Assistenten verfügbar.  Der Befehl \texttt{delete step} löscht den Abschnitt des Beweisbaums, der von dem angegebenen Schritt abzweigt, und lässt den Schritt unbekannt werden. \texttt{delete all} ist äquivalent zu \texttt{delete step} {\em step}, wobei {\em step} der letzte Schritt im Beweis ist (d.h. \ der Anfang des Beweisbaums). 
+Diese Befehle sind nur im Beweis-Assistenten verfügbar.
+
+Der Befehl \texttt{delete step} löscht den Abschnitt des Beweisbaums, der von dem angegebenen Schritt abzweigt, und lässt den Schritt unbekannt werden. \texttt{delete all} ist äquivalent zu \texttt{delete step} {\em step}, wobei {\em step} der letzte Schritt im Beweis ist (d.h. \ der Anfang des Beweisbaums). 
 
 In den meisten Fällen ist der Befehl \texttt{undo} die beste Methode, um einen vorherigen Schritt rückgängig zu machen. Eine Alternative ist, den letzten Beweis zu speichern, indem Sie den Beweis-Assistenten verlassen und erneut aufrufen. Damit dies funktioniert, sollten Sie eine Protokolldatei öffnen, um Ihre Arbeit zu protokollieren, und den Befehl \texttt{save new{\char`\_}proof} häufig ausführen, insbesondere vor \texttt{delete}. 
 
-\texttt{delete floating{\char`\_}hypotheses} löscht alle Abschnitte des Beweises, die von \texttt{\$f}\index{\texttt{\$f}-Anweisung}-Anweisungen abzweigen.  Es ist manchmal nützlich, dies vor einem \texttt{initialize}-Befehl zu tun, um einen Fehler zu beheben.  Sobald ein Beweis\-schritt mit einer \texttt{\$f}-Hypothese als Ziel vollständig bekannt ist, kann der Befehl \texttt{improve} normalerweise den Beweis für diesen Schritt ausfüllen.  Im Gegensatz zum Löschen von logischen Schritten ist \texttt{delete floating{\char`\_}hypotheses} ein relativ sicherer Befehl, nach dem der Beweis normalerweise leicht wiederhergestellt werden kann. 
+\texttt{delete floating{\char`\_}hypotheses} löscht alle Abschnitte des Beweises, die von \texttt{\$f}\index{\texttt{\$f}-Anweisung}-Anweisungen abzweigen.  Es ist manchmal nützlich, dies vor einem \texttt{initialize}-Befehl zu tun, um einen Fehler zu beheben.  Sobald ein Beweis\-schritt mit einer \texttt{\$f}-Hypothese als Ziel vollständig bekannt ist, kann der Befehl \texttt{improve} normalerweise den Beweis für diesen Schritt ausfüllen.  Im Gegensatz zum Löschen von logischen Schritten ist \texttt{delete} \texttt{floating{\char`\_}hypotheses} ein relativ sicherer Befehl, nach dem der Beweis normalerweise leicht wiederhergestellt werden kann. 
 
 
 \subsection{\texttt{improve}-Befehl}\index{\texttt{improve}-Befehl}
@@ -7803,7 +7812,8 @@ Um (eine) {\sc html} Ausgabedatei(en) für \texttt{\$a}- oder \texttt{\$p}-Anwei
 \begin{quote}
 \texttt{show statement} {\em label-match} \texttt{/html}
 \end{quote}
-Die Ausgabedatei erhält für jede Übereinstimmung den Namen {\em label-match}\texttt{.html}.  Wenn {\em label-match} Platzhalterzeichen (\texttt{*}) enthält, werden für alle Anweisungen mit übereinstimmenden Labels {\sc html}-Dateien erzeugt.  Wenn {\em label-match} einen Platzhalter (\texttt{*}) enthält, werden außerdem zwei zusätzliche Dateien, \texttt{mmdefinitions.html} und \texttt{mmascii.html}, erzeugt.  Um nur diese beiden zusätzlichen Dateien zu erzeugen, können Sie anstelle von {\em label-match} \texttt{?*} verwenden, das mit keinem Label einer Anweisung übereinstimmt. 
+Die Ausgabedatei erhält für jede Übereinstimmung den Namen\linebreak
+{\em label-match}\texttt{.html}.  Wenn {\em label-match} Platzhalterzeichen (\texttt{*}) enthält, werden für alle Anweisungen mit übereinstimmenden Labels {\sc html}-Dateien erzeugt.  Wenn {\em label-match} einen Platzhalter (\texttt{*}) enthält, werden außerdem zwei zusätzliche Dateien, \texttt{mmdefinitions.html} und \texttt{mmascii.html}, erzeugt.  Um nur diese beiden zusätzlichen Dateien zu erzeugen, können Sie anstelle von {\em label-match} \texttt{?*} verwenden, das mit keinem Label einer Anweisung übereinstimmt. 
 
 Es gibt drei weitere Optionen für \texttt{show statement}, die ebenfalls {\sc HTML}-Code erzeugen.  Diese sind \texttt{/alt{\char`\_}html}, \texttt{/brief{\char`\_}html} und \texttt{/brief{\char`\_}alt{\char`\_}html}, welche im nächsten Abschnitt beschrieben werden. 
 
@@ -8375,7 +8385,7 @@ Eine {\em Aussage} ist das Redukt einer Prä-Aussage\index{Aussage!in einem form
 
 Disjunkte Variableneinschränkungen werden verwendet, um anzugeben, welche Variablensubstitutionen zulässig sind, damit die Anweisung gültig bleibt.  In dem Theoremschema der Mengenlehre $\lnot\forall x\,x=y$ dürfen wir zum Beispiel nicht dieselbe Variable sowohl für $x$ als auch für $y$ einsetzen.  Andererseits verlangt das Theoremschema $x=y\to y=x$ nicht, dass $x$ und $y$ verschieden sein müssen, so dass wir keine disjunkte Variableneinschränkungen brauchen, obwohl eine solche Einschränkung nur dazu führen würde, dass das Schema weniger allgemein wäre.  
 
-Eine obligatorische Variablentyp-Hypothese ist eine, deren Variable in einer logischen Hypothese oder der Behauptung vorkommt.  Eine beweisbare Prä-Aussage (siehe unten) kann nicht-obligatorische Variablentyp-Hypothesen erfordern, die im Endeffekt "`Dummy"'-Variablen zur Verwendung in ihrem Beweis einführen.  Jede mögliche Anzahl von Dummy-Variablen kann für einen bestimmten Beweis erforderlich sein; tatsächlich wurde von H.\ Andr\'{e}ka\index{Andr{\'{e}}ka, H.} \cite{Nemeti} gezeigt, dass es keine endliche Obergrenze für die Anzahl der Dummy-Variablen gibt, die benötigt werden, um einen beliebiges Theorem in der Logik erster Ordnung (mit Gleichheit) zu beweisen, der eine feste Anzahl $n>2$ von individuellen Variablen hat.  (Siehe auch den Kommentar zu S.~\pageref{nodd}.) Aus diesem Grund setzen wir keine endliche Größenbeschränkung für die Sammlungen $D$ und $T$, obwohl diese in einer tatsächlichen Anwendung (Metamath-Datenbasis) natürlich endlich sein werden und deren Anzahl wenn nötig vergrößert werden muss, wenn mehr Beweise hinzugefügt werden.
+Eine obligatorische Variablentyp-Hypothese ist eine, deren Variable in einer logischen Hypothese oder der Behauptung vorkommt.  Eine beweisbare Prä-Aussage (siehe unten) kann nicht-obligatorische Variablentyp-Hypothe\-sen erfordern, die im Endeffekt "`Dummy"'-Variablen zur Verwendung in ihrem Beweis einführen.  Jede mögliche Anzahl von Dummy-Variablen kann für einen bestimmten Beweis erforderlich sein; tatsächlich wurde von H.\ Andr\'{e}ka\index{Andr{\'{e}}ka, H.} \cite{Nemeti} gezeigt, dass es keine endliche Obergrenze für die Anzahl der Dummy-Variablen gibt, die benötigt werden, um einen beliebiges Theorem in der Logik erster Ordnung (mit Gleichheit) zu beweisen, der eine feste Anzahl $n>2$ von individuellen Variablen hat.  (Siehe auch den Kommentar zu S.~\pageref{nodd}.) Aus diesem Grund setzen wir keine endliche Größenbeschränkung für die Sammlungen $D$ und $T$, obwohl diese in einer tatsächlichen Anwendung (Metamath-Datenbasis) natürlich endlich sein werden und deren Anzahl wenn nötig vergrößert werden muss, wenn mehr Beweise hinzugefügt werden.
 \end{quotation}}
 
 {\footnotesize\begin{quotation}
@@ -8390,7 +8400,8 @@ $\mbox{\em B}$ eine Teilmenge aller Wörter, die sich über dem Alphabet $\mbox{
 $\Gamma$ eine Menge von Aussagen, die als "`Axiome"' aufgefasst werden (es gilt $\Gamma\subseteq\mbox{\em B}$) und 
 $\mbox{\em R}$ eine Menge von zwei- oder mehrstelligen Relationen über Wörtern aus $\mbox{\em B}$ (hier also die Substitution $\sigma$ als Funktion/zweistellige Releation) ist.}
 
-In einem formalen System $\Gamma$ ist der {\em Abschluss}\index{Abschluss}\footnote{Diese Definition des Abschlusses enthält eine Vereinfachung, die Josh Purinton zu verdanken ist.\index{Purinton, Josh}.} einer Prä-Aussage $\langle D,T,H,A \rangle$ die kleinste Menge $C$ von Ausdrücken, die so beschaffen ist, dass: 
+In einem formalen System $\Gamma$ ist der {\em Abschluss}\index{Abschluss}\footnote{Diese Definition des Abschlusses enthält eine Vereinfachung, die Josh Purinton zu verdanken ist.\index{Purinton, Josh}.} einer Prä-Aussage\linebreak
+$\langle D,T,H,A \rangle$ die kleinste Menge $C$ von Ausdrücken, die so beschaffen ist, dass: 
 \begin{list}{}{\itemsep 0.0pt}
   \item[1.] $T\cup H\subseteq C$ und
   \item[2.] Wenn für eine axiomatische Aussage
@@ -8440,7 +8451,7 @@ Wir weisen auch darauf hin, dass eine einmal als beweisbar nachgewiesene Aussage
 
 \subsection{Beispiel~1 --- Aussagenlogik}\index{Aussagenlogik}
 
-Die klassische Aussagenlogik kann durch das folgende formale System be\-schrie\-ben werden.  Wir nehmen an, dass die Menge der Variablen unendlich ist.  Anstatt die Konstanten und Variablen mit $c_0, c_1, \ldots$ und $v_0, v_1, \ldots$ zu bezeichnen, werden wir aus Gründen der Lesbarkeit stattdessen gängigere Symbole verwenden, wobei wir natürlich davon ausgehen, dass sie unterschiedliche primitive Objekte bezeichnen. Der Lesbarkeit halber können wir auch Kommas zwischen aufeinanderfolgenden Glieder einer Folge weglassen; so steht $\langle \mbox{wff\ } \varphi\rangle$ für $\langle \mbox{wff}, \varphi\rangle$. 
+Die klassische Aussagenlogik kann durch das folgende formale System beschrieben werden.  Wir nehmen an, dass die Menge der Variablen unendlich ist.  Anstatt die Konstanten und Variablen mit $c_0, c_1, \ldots$ und $v_0, v_1, \ldots$ zu bezeichnen, werden wir aus Gründen der Lesbarkeit stattdessen gängigere Symbole verwenden, wobei wir natürlich davon ausgehen, dass sie unterschiedliche primitive Objekte bezeichnen. Der Lesbarkeit halber können wir auch Kommas zwischen aufeinanderfolgenden Glieder einer Folge weglassen; so steht $\langle \mbox{wff\ } \varphi\rangle$ für $\langle \mbox{wff}, \varphi\rangle$. 
 
 Sei
 \begin{itemize}
