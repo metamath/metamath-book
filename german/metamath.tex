@@ -1,4 +1,4 @@
-% metamath.tex - Version of 11-Dec-2023
+% metamath.tex - Version of 15-Dec-2023
 % If you change the date above, also change the "Printed date" below.
 % SPDX-License-Identifier: CC0-1.0
 %
@@ -868,7 +868,7 @@ Deutsche Übersetzung von \\
 {\large Georg M. van der Vekens und Alexander W. van der Vekens} \\
 \vspace{7ex}
 % Printed date. If changing the date below, also fix the date at the beginning.
-18.11.2023
+15.12.2023
 \end{center}
 
 \vfill
@@ -4836,7 +4836,7 @@ Wenn wir den Deduktionsstil verwenden, drücken wir eine Behauptung in der Deduk
 Sobald Sie eine Behauptung in Deduktionsform haben, können Sie sie leicht in die Inferenzform oder geschlossene Form umwandeln:
 
 \begin{itemize}
-\item Um eine Behauptung Ti in Inferenzform zu beweisen, wenn die Behauptung Td in Deduktionsform vorliegt, gibt es einen einfachen mechanischen Prozess, den man anwenden kann. Zuerst nimmt man jede Annahme Ti und fügt ein \texttt{T.} $\rightarrow$-Präfix ("`wahr impliziert"') unter Verwendung von \texttt{a1i} ein. Sie können dann die vorhandene Behauptung Td verwenden, um die resultierende Schlussfolgerung mit einem \texttt{T.} $\rightarrow$-Präfix beweisen. Schließlich können Sie dieses Präfix mit \texttt{trud} entfernen, was zu der Schlussfolgerung führt, die Sie beweisen wollten\footnote{Anm. der Übersetzer: Die Schlussfolgerung der Behauptung Ti muss mittels \texttt{mptru} um den \texttt{T.} $\rightarrow$-Präfix erweitert werden, damit Td darauf angewendet werden kann. Siehe zum Beispiel \texttt{hadbi123i}.}. 
+\item Um eine Behauptung Ti in Inferenzform zu beweisen, wenn die Behauptung Td in Deduktionsform vorliegt, gibt es einen einfachen mechanischen Prozess, den man anwenden kann. Zuerst nimmt man jede Annahme Ti und fügt ein \texttt{T.} $\rightarrow$-Präfix ("`wahr impliziert"') unter Verwendung von \texttt{a1i} ein. Sie können dann die vorhandene Behauptung Td verwenden, um die resultierende Schlussfolgerung mit einem \texttt{T.} $\rightarrow$-Präfix beweisen. Schließlich können Sie dieses Präfix mit \texttt{mptru} entfernen, was zu der Schlussfolgerung führt, die Sie beweisen wollten\footnote{Anm. der Übersetzer: Siehe zum Beispiel \texttt{hadbi123i} oder \texttt{abeq2i}.}. 
 \item Um eine Behauptung T in geschlossener Form zu beweisen, wenn die Behauptung Td in Deduktionsform vorliegt, gibt es ein weiteres einfaches mechanisches Verfahren, das Sie anwenden können. Wählen Sie zunächst einen Ausdruck, der die Konjunktion (...$\land$...) aller Folgerungen jeder Annahme von Td ist. Beweisen Sie dann, dass dieser Ausdruck jede der einzelnen Annahmen von Td impliziert, indem Sie die Konjunktionen eliminieren (es gibt eine Reihe von bewiesenen Behauptungen, um dies zu tun, einschließlich
 \texttt{simpl},
 \texttt{simpr},
