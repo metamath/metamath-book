@@ -1687,7 +1687,7 @@ Es gibt eine Reihe von Unterschieden in ihren spezifischen Konstrukten, aber es 
 Nach dem Stand von 2019 ist die Ghilbert-Gemeinschaft kleiner und weniger aktiv als die Metamath-Gemeinschaft.
 Dennoch gibt es Überschneidungen zwischen der Metamath- und der Ghilbert-Gemeinschaft, und im Laufe der Jahre haben viele Male fruchtbare Gespräche zwischen ihnen  stattgefunden.
 
-\subsection{Erstellung einer Datenbasis für formalisierte\\ Mathematik}\label{mathdatabase}
+\subsection{Erstellung einer Datenbasis für formalisierte\texorpdfstring{\\}{} Mathematik}\label{mathdatabase}
 
 Neben Metamath gibt es mehrere andere laufende Projekte mit dem Ziel, die Mathematik in durch Computer verifizierbare Datenbasen zu formalisieren.  Um sie zu verstehen hilft ein Rückblick auf deren Historie.
 
@@ -2555,7 +2555,7 @@ Der Beweis-Assistent verfügt über verschiedene andere Befehle, die Ihnen bei d
 
 Ein oft nützlicher Befehl ist \texttt{minimize{\char`\_}with*/brief}, der versucht, den Beweis zu verkürzen.  Er kann den Prozess des Beweisens effizienter machen, indem er Sie einen etwas "`schlampigen"' Beweis schreiben lässt und ihn dann durch einige feine Optimierungsdetails für Sie bereinigt (obwohl er keine Wunder vollbringen kann, wie z.B. die Umstrukturierung des gesamten Beweises).
 
-\section{\sloppy Hinweise zur Bearbeitung einer Daten\-basis}
+\section{Hinweise zur Bearbeitung einer Daten\-basis}
 
 Sobald die Quelldatei ihrer Datenbasis Beweise enthält, gibt es einige Einschränkungen für deren Bearbeitung, damit die Beweise gültig bleiben.
 Diese Regeln sollten Sie besonders beachten, da Sie sonst mühsam erzielte Ergebnisse verlieren können. Es ist sinnvoll, alle Beweise regelmäßig mit \texttt{verify proof *} zu überprüfen, um ihre Integrität sicherzustellen.
@@ -2883,7 +2883,7 @@ Axiom der Vereinfachung.\label{ax1}
 
 
 \needspace{7\baselineskip}
-\subsection{Axiome der Prädikatenlogik mit Gleichheit\\--- Tarskis S2}\index{Axiome der Prädikatenlogik}
+\subsection{Axiome der Prädikatenlogik mit Gleichheit\texorpdfstring{\\---}{ ---} Tarskis S2}\index{Axiome der Prädikatenlogik}
 
 \needspace{3\baselineskip}
 \noindent Regel der Verallgemeinerung.\index{Regel der Verallgemeinerung}
@@ -2965,7 +2965,7 @@ Axiom der Vereinfachung.\label{ax1}
 
 
 \needspace{4\baselineskip}
-\subsection{Axiome der Prädikatenlogik mit Gleichheit\\--- Hilfsaxiome}\index{Axiome der Prädikatenlogik - Hilfsaxiome}
+\subsection{Axiome der Prädikatenlogik mit Gleichheit\texorpdfstring{\\---}{ ---} Hilfsaxiome}\index{Axiome der Prädikatenlogik - Hilfsaxiome}
 
 \needspace{2\baselineskip}
 \noindent Axiom der quantifizierten Negation.
@@ -4679,11 +4679,11 @@ Dies ist der vollständige Satz der Axiome für reelle und komplexe Zahlen.  Seh
 
 In \texttt{set.mm} definieren wir die positiven ganzen Zahlen $\mathbb{N}$, die nichtnegativen ganzen Zahlen $\mathbb{N}_0$, die ganzen Zahlen $\mathbb{Z}$ und die rationalen Zahlen $\mathbb{Q}$ als Teilmengen von $\mathbb{R}$.  Dies führt zu der schönen Teilmengenkette $\mathbb{N} \subseteq \mathbb{N}_0 \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}$, was uns einen einheitlichen Rahmen für die Arithmetik gibt, in dem zum Beispiel eine Eigenschaft wie die Kommutativität der Addition komplexer Zahlen automatisch für ganze Zahlen gilt.  Die natürlichen Zahlen $\mathbb{N}$\footnote{Anm. der Übersetzer: sowohl im Deutschen als auch im Englischen ist nicht eindeutig festgelegt, ob mit dem Begriff "`natürliche Zahlen"' die positiven ganzen Zahlen $\mathbb{N}$ oder die nichtnegativen ganzen Zahlen $\mathbb{N}_0$ gemeint werden.} unterscheiden sich von der zuvor definierten Menge $\omega$, aber beide erfüllen die Peanoschen Postulate.
 
-\subsection{Axiome für komplexe Zahlen in Texten zur \\Analysis}
+\subsection{Axiome für komplexe Zahlen in Texten zur \texorpdfstring{\\}{}Analysis}
 
 Die meisten Texte zur Analysis konstruieren komplexe Zahlen als geordnete Paare von reellen Zahlen, was zu konstruktionsabhängigen Eigenschaften führt, die diese Axiome erfüllen, aber nicht in ihrer reinen Form angegeben werden.  (Dies geschieht auch in \texttt{set.mm}, aber unsere Axiome abstrahieren von dieser Konstruktion.) In anderen Texten heißt es einfach, dass $\mathbb{R}$ ein "`komplettes geordnetes Teilfeld von $\mathbb{C}$ ist"', was zu redundanten Axiomen führt, wenn man diese Phrase vollständig ausformuliert.  Tatsächlich habe ich noch keinen Text gesehen, der die Axiome in der obigen expliziten Form enthält. Keines dieser Axiome ist individuell einzigartig, aber diese sorgfältig ausgearbeitete Sammlung von Axiomen ist das Ergebnis jahrelanger Arbeit der Metamath-Gemeinschaft.
 
-\subsection{Beseitigung unnötiger Axiome für komplexe \\Zahlen}
+\subsection{Beseitigung unnötiger Axiome für komplexe \texorpdfstring{\\}{}Zahlen}
 
 Metamath hatte ursprünglich mehr Axiome für reelle und komplexe Zahlen, aber im Laufe der Zeit haben wir (die Metamath-Gemeinschaft) Wege gefunden, unnötige Axiome zu eliminieren (indem wir sie anhand anderer Axiome bewiesen haben) oder sie abzuschwächen (indem wir schwächere Behauptungen aufgestellt haben, ohne die Beweisbarkeit der auf sie aufbauenden Theoreme zu reduzieren). Es folgen einige Aussagen, die früher Axiome für komplexe Zahlen waren, die aber inzwischen (mit Metamath) formal als überflüssig nachgewiesen wurden:
 
@@ -5276,7 +5276,7 @@ Statement "prth" directly or indirectly affects the proofs of
 ...
 \end{verbatim}
 
-\subsection{Eine Anmerkung zum "`kompakten"' \\Beweis\-format}
+\subsection{Eine Anmerkung zum "`kompakten"'\texorpdfstring{\\}{} Beweis\-format}
 
 Das Programm Metamath zeigt Beweise in einem "`kompakten"'\index{kompakter Beweis} Format an, wenn der Beweis in komprimiertem Format in der Datenbasis gespeichert ist.  Dies kann etwas verwirrend sein, wenn man nicht weiß, wie dies zu interpretieren ist. Wenn Sie zum Beispiel den vollständigen Beweis des Theorems \texttt{id1} anzeigen lassen, wird er wie folgt beginnen:
 
@@ -7043,7 +7043,7 @@ Zweitens führen wir eine Definitionsprüfung durch, die spezifisch für \texttt
 
 \end{enumerate}
 
-\subsection{Zusammenfassung des Metamath-Ansatzes für\\ Definitionen}
+\subsection{Zusammenfassung des Metamath-Ansatzes für\texorpdfstring{\\}{} Definitionen}
 
 Kurz gesagt, bei einem rigorosen Vorgehen stellt sich heraus, dass Definitionen subtil sein können und manchmal schwierige Metatheoreme erfordern, um zu beweisen, dass sie nicht kreativ sind. 
 
