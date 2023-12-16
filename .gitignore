@@ -1,0 +1,17 @@
+*.aux
+*.bbl
+*.bib
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ind
+*.ilg
+*.log
+*.out
+*.pdf
+*.toc
+*.synctex.gz
+/realref.sty
+/temp-metamath-narrow/
+/temp-metamath-normal/
