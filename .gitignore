@@ -13,5 +13,7 @@
 *.toc
 *.synctex.gz
 /realref.sty
+/temp-metamath/
 /temp-metamath-narrow/
-/temp-metamath-normal/
+/temp-metamath-de/
+/temp-metamath-de-narrow/
