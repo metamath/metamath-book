@@ -10,8 +10,13 @@ jobs:
     - name: Install LaTeX
       run: |
         sudo apt-get -qq update
-        sudo apt-get install -y --no-install-recommends texlive-fonts-recommended \
-          texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended cm-super
+        sudo apt-get install -y --no-install-recommends \
+          dvipng cm-super \
+          texlive-fonts-recommended \
+          texlive-latex-extra \
+          texlive-fonts-extra \
+          texlive-latex-recommended \
+          texlive-lang-german
         sudo updmap -sys
     - name: Build metamath-narrow.pdf
       run: ./make-narrow
