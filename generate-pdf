@@ -7,13 +7,27 @@ set -ex
 style="${1:-normal}"
 style="${style%.sty}"
 
-texfile="${2:-metamath}"
+lang="${2:-en}"
+
+texfile="${3:-metamath}"
 texfile="${texfile%.tex}"
 
-if [ "$style" == 'normal' ]; then
-  outfile="$texfile"
+if [ "$lang" = 'en' ]; then
+  basename="$texfile"
+  basedir="."
 else
-  outfile="${texfile}-${style}"
+  basename="${texfile}-${lang}"
+  if [ "$lang" = 'de' ]; then
+    basedir="german"
+  else
+    basedir="$lang"
+  fi
+fi
+
+if [ "$style" = 'normal' ]; then
+  outfile="$basename"
+else
+  outfile="${basename}-${style}"
 fi
 # Try to remove output .pdf first - if we can't, no point in going further.
 rm -f "${outfile}.pdf"
@@ -28,8 +42,8 @@ do_pdflatex () {
 tempdir="temp-$outfile"
 rm -fr "$tempdir"
 mkdir -p "$tempdir"
-cp -p "${texfile}.tex" "$tempdir"
-cp -p "${style}.sty" "$tempdir/special-settings.sty"
+cp -p "$basedir/${texfile}.tex" "$tempdir"
+cp -p "$basedir/${style}.sty" "$tempdir/special-settings.sty"
 
 cd "temp-$outfile"
 touch metamath.ind

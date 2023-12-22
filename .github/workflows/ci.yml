@@ -1,0 +1,41 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install LaTeX
+      run: |
+        sudo apt-get -qq update
+        sudo apt-get install -y --no-install-recommends \
+          dvipng cm-super \
+          texlive-fonts-recommended \
+          texlive-latex-extra \
+          texlive-fonts-extra \
+          texlive-latex-recommended \
+          texlive-lang-german
+        sudo updmap -sys
+    - name: Build metamath-narrow.pdf
+      run: ./make-narrow
+    - name: Build metamath.pdf
+      run: ./generate-pdf
+    - name: Build metamath-de.pdf
+      run: ./generate-pdf normal de
+    - uses: actions/upload-artifact@v3
+      with:
+        name: metamath-pdf
+        path: |
+          metamath.pdf
+          metamath-narrow.pdf
+          metamath-de.pdf
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      with:
+        files: |
+          metamath.pdf
+          metamath-narrow.pdf
+          metamath-de.pdf

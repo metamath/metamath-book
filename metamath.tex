@@ -763,7 +763,8 @@
 % * "tabu" much more capable and seems to be recommended. So use that.
 
 \usepackage{makecell}      % Enable forced line splits within a table cell
-\usepackage{longtable}     % Enable multi-page tables
+% v4.13 needed for tabu: https://tex.stackexchange.com/questions/600724/dimension-too-large-after-recent-longtable-update
+\usepackage{longtable}[=v4.13] % Enable multi-page tables
 \usepackage{tabu}          % Multi-page tables with wrapped text in a cell
 
 % You can find more Tex packages using commands like:
